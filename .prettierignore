@@ -1,0 +1,7 @@
+node_modules/
+css/tailwind.css
+reports/
+snapshots/
+design/
+assets/
+pnpm-lock.yaml

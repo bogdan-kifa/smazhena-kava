@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Оформлення замовлення Смаженої Кави: контактні дані, доставка, оплата та підсумок кошика." />
+    <title>Оформлення замовлення — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/checkout.css" />
+  </head>
+  <body class="catalog-page checkout-page">
+    <a class="skip-link" href="#checkout-content">Перейти до оформлення</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари" aria-current="true">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="checkout-content" tabindex="-1">
+      <div class="container catalog-heading checkout-heading">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol><li><a href="index.html">Головна</a></li><li><a href="cart.html">Кошик</a></li><li><span aria-current="page">Оформлення</span></li></ol>
+        </nav>
+        <p class="eyebrow">Оформлення</p>
+        <h1>Оформлення замовлення</h1>
+      </div>
+      <div class="container checkout-layout">
+        <!-- Контактні поля можна заповнити нативно. Надсилання, тарифи й підтвердження замовлення підключимо пізніше. -->
+        <form class="card checkout-form" id="checkout-form" aria-label="Дані для оформлення замовлення" aria-describedby="checkout-status">
+          <p class="visually-hidden" id="checkout-status">Контактні поля доступні для введення. Зміна доставки, оплати, гостьового режиму та підтвердження замовлення поки недоступні; дані нікуди не надсилаються.</p>
+          <section class="checkout-section" aria-labelledby="checkout-contact-title">
+            <h2 id="checkout-contact-title">Контактні дані</h2>
+            <div class="checkout-field">
+              <label for="customer-name">Ім’я</label>
+              <input id="customer-name" name="customer-name" type="text" autocomplete="name" maxlength="80" placeholder="Ваше ім’я" required aria-describedby="customer-name-hint" />
+              <p class="muted" id="customer-name-hint">Як до вас звертатися</p>
+            </div>
+            <div class="checkout-field">
+              <label for="customer-email">Email</label>
+              <input id="customer-email" name="customer-email" type="email" autocomplete="email" maxlength="254" placeholder="name@example.com" required aria-describedby="customer-email-hint" />
+              <p class="muted" id="customer-email-hint">Наприклад name@example.com</p>
+            </div>
+            <div class="checkout-field">
+              <label for="customer-phone">Телефон</label>
+              <input id="customer-phone" name="customer-phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+380 XX XXX XX XX" required aria-describedby="customer-phone-hint" />
+              <p class="muted" id="customer-phone-hint">Для статусу доставки</p>
+            </div>
+          </section>
+          <section class="checkout-section" aria-labelledby="checkout-delivery-title">
+            <h2 id="checkout-delivery-title">Доставка</h2>
+            <fieldset class="checkout-choice-group" disabled aria-describedby="checkout-status">
+              <legend class="visually-hidden">Спосіб доставки</legend>
+              <div class="checkout-options">
+                <input class="visually-hidden checkout-option-input" id="delivery-nova-poshta" name="delivery" type="radio" value="nova-poshta" checked /><label class="checkout-option-label" for="delivery-nova-poshta">Нова пошта</label>
+                <input class="visually-hidden checkout-option-input" id="delivery-courier" name="delivery" type="radio" value="courier" /><label class="checkout-option-label" for="delivery-courier">Кур’єр</label>
+              </div>
+            </fieldset>
+            <div class="checkout-field">
+              <label for="delivery-address">Адреса або відділення</label>
+              <input id="delivery-address" name="delivery-address" type="text" autocomplete="off" maxlength="200" placeholder="Місто, відділення" required />
+            </div>
+          </section>
+          <section class="checkout-section" aria-labelledby="checkout-payment-title">
+            <h2 id="checkout-payment-title">Оплата</h2>
+            <fieldset class="checkout-choice-group" disabled aria-describedby="checkout-status">
+              <legend class="visually-hidden">Спосіб оплати</legend>
+              <div class="checkout-options">
+                <input class="visually-hidden checkout-option-input" id="payment-card" name="payment" type="radio" value="card" checked /><label class="checkout-option-label" for="payment-card">Картка онлайн</label>
+                <input class="visually-hidden checkout-option-input" id="payment-receipt" name="payment" type="radio" value="receipt" /><label class="checkout-option-label" for="payment-receipt">При отриманні</label>
+              </div>
+            </fieldset>
+            <div>
+              <input class="visually-hidden checkout-guest-input" id="guest-checkout" name="guest" type="checkbox" checked disabled aria-describedby="checkout-status" />
+              <label class="checkout-guest-label" for="guest-checkout"><span class="checkout-guest-box" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m5 12 5 5 9-10" /></svg></span>Гостьове оформлення без реєстрації</label>
+            </div>
+          </section>
+        </form>
+        <aside class="checkout-summary" aria-labelledby="checkout-order-title">
+          <div class="card checkout-order-card">
+            <h2 id="checkout-order-title">Ваше замовлення</h2>
+            <dl class="checkout-order-items">
+              <div><dt><a href="products/ethiopia-guji.html">Ефіопія Guji · 250 г</a></dt><dd>360 ₴</dd></div>
+              <div><dt><a href="constructor.html">Мій мікс «Ранок» · 200 г</a></dt><dd>540 ₴</dd></div>
+            </dl>
+            <!-- Демонстраційні суми узгоджені з кошиком: 900 ₴ та безкоштовна доставка від 800 ₴. -->
+            <p class="checkout-order-delivery"><span>Доставка</span><strong>Безкоштовно</strong></p>
+            <p class="checkout-order-total"><span>Разом</span><strong class="checkout-total-price">900 ₴</strong></p>
+            <div class="checkout-order-actions">
+              <button class="button" type="submit" form="checkout-form" data-action="confirm-order" disabled aria-describedby="checkout-status">Підтвердити замовлення</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

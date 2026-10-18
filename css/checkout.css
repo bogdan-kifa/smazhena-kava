@@ -1,0 +1,256 @@
+/* Оформлення за Checkout_Desktop_1440 / Checkout_Mobile_390.
+   Спільна дизайн-система — style.css; шрифти й меню — catalog.css. */
+:root {
+  --checkout-summary-width: 384px;
+}
+
+/* 1. Заголовок, форма й підсумок */
+.checkout-heading h1,
+.checkout-section h2,
+.checkout-order-card h2 {
+  font-weight: var(--font-weight-medium);
+}
+
+.checkout-page .header-cart[aria-current="true"] {
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid) minmax(0, var(--checkout-summary-width));
+  align-items: start;
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-section);
+}
+
+.checkout-layout > * {
+  min-width: 0;
+}
+
+.checkout-form,
+.checkout-order-card,
+.checkout-section {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--spacing-md);
+}
+
+.checkout-section + .checkout-section {
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.checkout-section h2,
+.checkout-order-card h2 {
+  font-size: 1.625rem;
+  line-height: 1.2308;
+}
+
+/* 2. Нативні контактні поля з labels, типами й autocomplete */
+.checkout-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 6px;
+}
+
+.checkout-field label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.checkout-field input {
+  min-width: 0;
+  width: 100%;
+  min-height: 48px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font: inherit;
+}
+
+.checkout-field input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+/* 3. Доставка, оплата й гостьове оформлення: реальні radio/checkbox.
+   Вибір цих параметрів чекає майбутніх розрахунків і логіки JS. */
+.checkout-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.checkout-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.checkout-option-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 44px;
+  padding: var(--spacing-xs) 20px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  cursor: default;
+}
+
+.checkout-option-input:checked + .checkout-option-label {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkout-option-input:focus-visible + .checkout-option-label {
+  outline: 3px solid var(--color-focus);
+  outline-offset: var(--spacing-2xs);
+}
+
+.checkout-guest-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-height: 44px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  cursor: default;
+}
+
+.checkout-guest-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border: var(--border-control);
+  border-radius: var(--radius-xs);
+  background: var(--color-surface);
+}
+
+.checkout-guest-box svg {
+  display: none;
+}
+
+.checkout-guest-input:checked + .checkout-guest-label .checkout-guest-box {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkout-guest-input:checked + .checkout-guest-label svg {
+  display: block;
+}
+
+/* 4. Однакові суми в кошику й оформленні */
+.checkout-order-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+}
+
+.checkout-order-items > div,
+.checkout-order-delivery,
+.checkout-order-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.checkout-order-items dt,
+.checkout-order-delivery > span,
+.checkout-order-total > span {
+  min-width: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.checkout-order-items dt a {
+  text-decoration: none;
+}
+
+.checkout-order-items dt a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--spacing-2xs);
+}
+
+.checkout-order-items dd {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.checkout-order-delivery {
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.checkout-order-delivery strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.checkout-order-total .checkout-total-price {
+  color: var(--color-text);
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.125;
+}
+
+.checkout-order-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-order-actions .button {
+  min-height: 48px;
+  width: 100%;
+  font-size: var(--font-size-body);
+}
+
+/* 5. Підсумок нижче форми на планшеті й телефоні */
+@media (width < 1100px) {
+  .checkout-layout {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+}
+
+@media (width < 768px) {
+  .checkout-layout {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .checkout-section h2,
+  .checkout-order-card h2 {
+    font-size: 1.375rem;
+    line-height: 1.2728;
+  }
+}
+
+@media (width < 360px) {
+  .checkout-form,
+  .checkout-order-card {
+    padding: var(--spacing-md);
+  }
+
+  .checkout-option-label {
+    padding-inline: var(--spacing-md);
+  }
+}

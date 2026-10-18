@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Кошик Смаженої Кави: обрана кава, власний мікс і підсумок замовлення." />
+    <title>Ваш кошик — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+  </head>
+  <body class="catalog-page cart-page">
+    <a class="skip-link" href="#cart-content">Перейти до кошика</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари" aria-current="page">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="cart-content" tabindex="-1">
+      <div class="container catalog-heading cart-heading">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Кошик</span></li></ol>
+        </nav>
+        <p class="eyebrow">Кошик</p>
+        <h1>Ваш кошик</h1>
+        <p class="catalog-intro">2 товари</p>
+      </div>
+      <div class="container cart-layout">
+        <!-- Фіксований приклад двох товарів із макета. Кількість, видалення та підсумок підключимо до стану кошика з JS. -->
+        <section class="card cart-items-card" aria-labelledby="cart-items-title" aria-describedby="cart-status">
+          <h2 class="visually-hidden" id="cart-items-title">Товари в кошику</h2>
+          <p class="visually-hidden" id="cart-status">Показано приклад кошика з двома товарами. Зміна кількості та видалення поки недоступні.</p>
+          <ul class="cart-items" role="list">
+            <li data-cart-item="ethiopia-guji">
+              <article class="cart-item" aria-labelledby="ethiopia-guji-title">
+                <a class="cart-item-photo" href="products/ethiopia-guji.html" aria-label="Ефіопія Guji — детальніше"><img src="assets/images/coffee/ethiopia-guji.webp" alt="Кавові зерна світлого обсмаження" width="1536" height="1024" decoding="async" /></a>
+                <div class="cart-item-copy">
+                  <h3 class="cart-item-title" id="ethiopia-guji-title"><a href="products/ethiopia-guji.html">Ефіопія Guji</a></h3>
+                  <p class="muted">250 г · фільтр</p>
+                  <div class="cart-quantity" role="group" aria-label="Кількість товару Ефіопія Guji">
+                    <button class="cart-quantity-button" type="button" data-action="decrease-quantity" disabled aria-label="Зменшити кількість товару Ефіопія Guji" aria-describedby="cart-status">−</button>
+                    <label class="visually-hidden" for="quantity-ethiopia-guji">Кількість товару Ефіопія Guji</label>
+                    <input class="cart-quantity-input" id="quantity-ethiopia-guji" name="quantity-ethiopia-guji" type="number" min="1" max="99" step="1" value="1" disabled aria-describedby="cart-status" />
+                    <button class="cart-quantity-button" type="button" data-action="increase-quantity" disabled aria-label="Збільшити кількість товару Ефіопія Guji" aria-describedby="cart-status">+</button>
+                  </div>
+                </div>
+                <div class="cart-item-price">
+                  <p class="cart-line-price"><span class="visually-hidden">Вартість товару: </span>360 ₴</p>
+                  <button class="cart-remove" type="button" data-action="remove-item" disabled aria-label="Видалити товар Ефіопія Guji з кошика" aria-describedby="cart-status">Видалити</button>
+                </div>
+              </article>
+            </li>
+            <li data-cart-item="morning-mix">
+              <article class="cart-item" aria-labelledby="morning-mix-title">
+                <a class="cart-item-photo" href="constructor.html" aria-label="Мій мікс «Ранок» — детальніше"><img src="assets/images/coffee/colombia-huila.webp" alt="Ілюстрація кавових зерен для міксу" width="1536" height="1024" decoding="async" /></a>
+                <div class="cart-item-copy">
+                  <h3 class="cart-item-title" id="morning-mix-title"><a href="constructor.html">Мій мікс «Ранок»</a></h3>
+                  <p class="muted">Guji 50% · Nyeri 30% · Cerrado 20% · 200 г</p>
+                  <div class="cart-quantity" role="group" aria-label="Кількість товару Мій мікс «Ранок»">
+                    <button class="cart-quantity-button" type="button" data-action="decrease-quantity" disabled aria-label="Зменшити кількість товару Мій мікс «Ранок»" aria-describedby="cart-status">−</button>
+                    <label class="visually-hidden" for="quantity-morning-mix">Кількість товару Мій мікс «Ранок»</label>
+                    <input class="cart-quantity-input" id="quantity-morning-mix" name="quantity-morning-mix" type="number" min="1" max="99" step="1" value="1" disabled aria-describedby="cart-status" />
+                    <button class="cart-quantity-button" type="button" data-action="increase-quantity" disabled aria-label="Збільшити кількість товару Мій мікс «Ранок»" aria-describedby="cart-status">+</button>
+                  </div>
+                </div>
+                <div class="cart-item-price">
+                  <p class="cart-line-price"><span class="visually-hidden">Вартість товару: </span>540 ₴</p>
+                  <button class="cart-remove" type="button" data-action="remove-item" disabled aria-label="Видалити товар Мій мікс «Ранок» з кошика" aria-describedby="cart-status">Видалити</button>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <aside aria-labelledby="cart-summary-title">
+          <div class="card cart-summary-card">
+            <h2 id="cart-summary-title">Підсумок</h2>
+            <div class="cart-delivery">
+              <p class="muted" id="cart-delivery-label">Безкоштовна доставка доступна</p>
+              <!-- Для демонстраційного порога 800 ₴, використаного в конструкторі, кошик 900 ₴ вже досягнув необхідної суми. -->
+              <progress class="cart-delivery-progress" max="800" value="800" aria-labelledby="cart-delivery-label">Поріг 800 ₴ досягнуто</progress>
+            </div>
+            <dl class="cart-summary-lines">
+              <div><dt>Товари</dt><dd>900 ₴</dd></div>
+              <div><dt>Доставка</dt><dd>Безкоштовно</dd></div>
+            </dl>
+            <p class="cart-summary-total"><span>Разом</span><strong class="cart-total-price">900 ₴</strong></p>
+            <div class="cart-summary-actions">
+              <a class="button" href="checkout.html">Оформити замовлення</a>
+              <a class="button cart-continue" href="catalog.html">Продовжити покупки</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

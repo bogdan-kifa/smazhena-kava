@@ -1,0 +1,608 @@
+/* Конструктор за локальними макетами Constructor.
+   Спільна дизайн-система — style.css; шрифти й нативне меню — catalog.css. */
+:root {
+  --color-success-surface: #e4ebdf;
+  --mix-summary-width: 384px;
+}
+
+/* 1. Глобальний макет: налаштування + підсумок */
+.mix-heading h1 {
+  font-weight: var(--font-weight-medium);
+}
+
+.mix-layout {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid) minmax(0, var(--mix-summary-width));
+  align-items: start;
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-section);
+}
+
+.mix-form,
+.mix-summary,
+.mix-step {
+  min-width: 0;
+}
+
+.mix-settings,
+.mix-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mix-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.mix-step {
+  flex: none;
+}
+
+.mix-step-heading,
+.mix-step-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.mix-step-heading {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.mix-step-title {
+  min-width: 0;
+  font-size: 1.625rem;
+  line-height: 1.2308;
+  font-weight: var(--font-weight-medium);
+}
+
+.mix-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--spacing-xl);
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  border: var(--border-control);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+}
+
+.mix-step-number-complete {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  border-radius: var(--radius-control);
+}
+
+/* 2. Вибрані сорти, вага та помел: справжні елементи форми */
+.mix-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.mix-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: var(--spacing-xs) 20px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-control);
+  opacity: 1;
+  cursor: default;
+}
+
+.mix-chip[aria-pressed="true"],
+.mix-option-input:checked + .mix-chip {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.mix-chip-add {
+  border-style: dashed;
+}
+
+/* Назва й видалення — сусідні кнопки, без вкладення кнопки в кнопку. */
+.mix-bean-chip {
+  display: inline-flex;
+  align-items: stretch;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+}
+
+.mix-bean-chip-current {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.mix-bean-select,
+.mix-bean-remove {
+  min-height: 44px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  opacity: 1;
+  cursor: default;
+}
+
+.mix-bean-select {
+  min-width: 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  text-align: left;
+  line-height: var(--line-height-control);
+}
+
+.mix-bean-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--spacing-xl);
+  width: var(--spacing-xl);
+  padding: 0;
+}
+
+.mix-bean-remove svg {
+  display: block;
+}
+
+/* 3. Пропорції: нативні range/number; значення фіксовані до підключення JS. */
+.mix-proportions {
+  border: 2px solid var(--color-primary);
+}
+
+.mix-ratios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.mix-ratio-row {
+  display: grid;
+  grid-template-columns: minmax(0, 180px) var(--grid-track-fluid) minmax(0, 80px);
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.mix-ratio-name {
+  min-width: 0;
+}
+
+.mix-ratio-slider {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  background: transparent;
+  opacity: 1;
+}
+
+.mix-ratio-slider::-webkit-slider-runnable-track {
+  height: var(--spacing-xs);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(to right, var(--color-primary) 0 var(--mix-ratio), var(--color-border) var(--mix-ratio) 100%);
+}
+
+.mix-ratio-slider::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -6px;
+  appearance: none;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+}
+
+.mix-ratio-slider::-moz-range-track {
+  height: var(--spacing-xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.mix-ratio-slider::-moz-range-progress {
+  height: var(--spacing-xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
+
+.mix-ratio-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+}
+
+.mix-percent-field {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 48px;
+  gap: var(--spacing-2xs);
+  padding-inline: var(--spacing-sm);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+}
+
+.mix-percent-field input {
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  appearance: textfield;
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text);
+  text-align: right;
+}
+
+.mix-percent-field input::-webkit-inner-spin-button,
+.mix-percent-field input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.mix-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.mix-total-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  max-width: 100%;
+  padding: var(--spacing-2xs) var(--spacing-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-success-surface);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+}
+
+.mix-total-badge .icon {
+  color: var(--color-success);
+  font-size: var(--font-size-caption);
+}
+
+/* 4. Обсмаження, нативна допомога з помелу, пакування */
+.mix-roast-row {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid) minmax(0, 200px);
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.mix-roast-row > * {
+  min-width: 0;
+}
+
+.mix-roast-field {
+  position: relative;
+}
+
+.mix-roast-field select {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--spacing-sm) 40px var(--spacing-sm) var(--spacing-md);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  appearance: none;
+  color: var(--color-text);
+  background: var(--color-surface);
+  font: inherit;
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text);
+}
+
+.mix-roast-field .icon {
+  position: absolute;
+  inset-inline-end: var(--spacing-md);
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.mix-grind-help {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.mix-grind-help summary {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.mix-grind-help summary::-webkit-details-marker {
+  display: none;
+}
+
+.mix-grind-help[open] summary .icon {
+  transform: rotate(180deg);
+}
+
+.mix-grind-help ul {
+  margin: var(--spacing-xs) 0 0;
+  padding-inline-start: var(--spacing-lg);
+}
+
+.mix-packaging-options {
+  display: grid;
+  grid-template-columns: repeat(3, var(--grid-track-fluid));
+  gap: var(--spacing-md);
+}
+
+.mix-packaging-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-2xs);
+  min-width: 0;
+  min-height: 90px;
+  padding: 20px;
+  border: var(--border-control);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  cursor: default;
+}
+
+.mix-packaging-label strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.mix-option-input:checked + .mix-packaging-label {
+  border: 2px solid var(--color-primary);
+  background: var(--color-background-soft);
+}
+
+/* 5. Підсумок: DL для значень, meter для профілю, progress для доставки */
+.mix-summary-card {
+  gap: var(--spacing-md);
+}
+
+.mix-summary-card h2 {
+  font-size: 1.625rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.mix-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+}
+
+.mix-summary-list > div,
+.mix-price-row,
+.mix-delivery-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.mix-summary-list dt,
+.mix-delivery-row {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.mix-summary-list dd {
+  margin: 0;
+  text-align: right;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Міцність читається як «3 з 5», а візуально подана зернами. */
+.mix-strength-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  vertical-align: middle;
+}
+
+.mix-strength-bean {
+  display: block;
+  flex-shrink: 0;
+  transform: rotate(25deg);
+}
+
+.mix-strength-bean ellipse,
+.mix-strength-bean path {
+  fill: none;
+  stroke: var(--color-control-border);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.mix-strength-bean-filled ellipse {
+  fill: var(--color-primary);
+  stroke: var(--color-primary);
+}
+
+.mix-strength-bean-filled path {
+  stroke: var(--color-surface);
+}
+
+.mix-summary-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.mix-summary-card .mix-summary-subheading {
+  font-family: var(--font-primary);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+}
+
+.mix-profile-row {
+  display: grid;
+  grid-template-columns: minmax(0, 96px) var(--grid-track-fluid);
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.mix-profile-meter,
+.mix-delivery-progress {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  height: var(--spacing-xs);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-pill);
+  appearance: none;
+  background: var(--color-border);
+}
+
+.mix-profile-meter::-webkit-meter-bar,
+.mix-delivery-progress::-webkit-progress-bar {
+  height: var(--spacing-xs);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.mix-profile-meter::-webkit-meter-optimum-value,
+.mix-delivery-progress::-webkit-progress-value {
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
+
+.mix-profile-meter::-moz-meter-bar,
+.mix-delivery-progress::-moz-progress-bar {
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
+
+.mix-price-row > span {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.mix-price {
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.125;
+}
+
+.mix-summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.mix-summary-actions .button {
+  min-height: 48px;
+  width: 100%;
+  font-size: var(--font-size-body);
+}
+
+.mix-summary-actions .muted {
+  text-align: center;
+}
+
+.mix-reset {
+  color: var(--color-text-muted);
+  background: transparent;
+  border-color: transparent;
+}
+
+/* 6. Підсумок переходить під налаштування; поля не виходять за межі карток. */
+@media (width < 1100px) {
+  .mix-layout {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+}
+
+@media (width < 768px) {
+  .mix-layout {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .mix-step-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .mix-step-title,
+  .mix-summary-card h2 {
+    font-size: 1.375rem;
+    line-height: 1.2728;
+  }
+
+  .mix-ratio-row {
+    grid-template-columns: var(--grid-track-fluid) minmax(0, 80px);
+    row-gap: var(--spacing-xs);
+  }
+
+  .mix-ratio-name {
+    grid-column: 1 / -1;
+  }
+
+  .mix-roast-row,
+  .mix-packaging-options {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+}
+
+@media (width < 360px) {
+  .mix-step,
+  .mix-summary-card {
+    padding: var(--spacing-md);
+  }
+
+  .mix-chip {
+    padding-inline: var(--spacing-md);
+  }
+}

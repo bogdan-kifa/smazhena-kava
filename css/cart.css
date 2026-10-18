@@ -1,0 +1,320 @@
+/* Кошик за Cart_Desktop_1440 і Cart_Mobile_390.
+   Спільні токени — style.css; шрифти й нативне меню — catalog.css. */
+:root {
+  --cart-summary-width: 384px;
+  --cart-photo-size: 72px;
+}
+
+/* 1. Список товарів і підсумок */
+.cart-heading h1,
+.cart-summary-card h2 {
+  font-weight: var(--font-weight-medium);
+}
+
+.cart-page .header-cart[aria-current="page"] {
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid) minmax(0, var(--cart-summary-width));
+  align-items: start;
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-section);
+}
+
+.cart-layout > * {
+  min-width: 0;
+}
+
+.cart-items-card {
+  min-width: 0;
+}
+
+.cart-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-items > li + li {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: var(--cart-photo-size) var(--grid-track-fluid) auto;
+  align-items: start;
+  gap: var(--spacing-md);
+}
+
+.cart-item-photo {
+  display: block;
+  width: var(--cart-photo-size);
+  height: var(--cart-photo-size);
+  overflow: hidden;
+  border-radius: var(--radius-control);
+  background: var(--color-placeholder);
+}
+
+.cart-item-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-photo:focus-visible {
+  outline-offset: -3px;
+}
+
+.cart-item-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--spacing-2xs);
+}
+
+.cart-item .cart-item-title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-body);
+}
+
+.cart-item-title a {
+  text-decoration: none;
+}
+
+.cart-item-title a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--spacing-2xs);
+}
+
+/* 2. Наступна інтеграція JS: окремі кнопки й числове поле з label */
+.cart-quantity {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--spacing-xs);
+  min-width: 0;
+  margin-top: var(--spacing-xs);
+}
+
+.cart-quantity-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--spacing-xl);
+  width: var(--spacing-xl);
+  min-height: 44px;
+  padding: 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  opacity: 1;
+  cursor: default;
+}
+
+.cart-quantity-input {
+  width: 36px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  font: inherit;
+  text-align: center;
+  appearance: textfield;
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text);
+}
+
+.cart-quantity-input::-webkit-inner-spin-button,
+.cart-quantity-input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.cart-item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
+  gap: var(--spacing-2xs);
+}
+
+.cart-line-price {
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.cart-remove {
+  min-height: 44px;
+  padding: 0;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 0;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-small);
+  opacity: 1;
+  cursor: default;
+}
+
+/* 3. Семантичний підсумок і нативний progress */
+.cart-summary-card {
+  gap: var(--spacing-md);
+}
+
+.cart-summary-card h2 {
+  font-size: 1.625rem;
+  line-height: 1.2308;
+}
+
+.cart-delivery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.cart-delivery-progress {
+  display: block;
+  width: 100%;
+  height: var(--spacing-xs);
+  overflow: hidden;
+  appearance: none;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.cart-delivery-progress::-webkit-progress-bar {
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.cart-delivery-progress::-webkit-progress-value {
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
+
+.cart-delivery-progress::-moz-progress-bar {
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
+
+.cart-summary-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.cart-summary-lines > div,
+.cart-summary-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.cart-summary-lines dt,
+.cart-summary-total > span {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.cart-summary-lines dd {
+  min-width: 0;
+  margin: 0;
+  text-align: right;
+  font-weight: var(--font-weight-semibold);
+}
+
+.cart-total-price {
+  color: var(--color-text);
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.125;
+}
+
+.cart-summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.cart-summary-actions .button {
+  min-height: 48px;
+  font-size: var(--font-size-body);
+}
+
+.cart-continue {
+  color: var(--color-text-muted);
+  background: transparent;
+  border-color: transparent;
+}
+
+.cart-continue:hover {
+  color: var(--color-primary);
+  background: var(--color-background-soft);
+  box-shadow: none;
+}
+
+/* 4. Телефон: довгі назви й рецепт мають достатньо місця */
+@media (width < 1100px) {
+  .cart-layout {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+}
+
+@media (width < 768px) {
+  .cart-layout {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .cart-item {
+    grid-template-columns: var(--cart-photo-size) var(--grid-track-fluid);
+    row-gap: var(--spacing-xs);
+  }
+
+  .cart-item-photo {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .cart-item-copy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cart-item-price {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 2;
+    grid-row: 2;
+    gap: var(--spacing-sm);
+  }
+
+  .cart-summary-card h2 {
+    font-size: 1.375rem;
+    line-height: 1.2728;
+  }
+}
+
+@media (width < 360px) {
+  .cart-items-card,
+  .cart-summary-card {
+    padding: var(--spacing-md);
+  }
+}

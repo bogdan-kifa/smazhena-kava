@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Підтвердження замовлення Смаженої Кави: склад замовлення, доставка та підсумок." />
+    <title>Підтвердження замовлення — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/order-confirmation.css" />
+  </head>
+  <body class="catalog-page confirmation-page">
+    <a class="skip-link" href="#confirmation-content">Перейти до підтвердження</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="confirmation-content" tabindex="-1">
+      <!-- Статичний зразок Order_Confirmation. Реальне замовлення, email і очищення кошика підключимо пізніше. -->
+      <section class="container confirmation-layout" aria-labelledby="confirmation-title" aria-describedby="confirmation-status">
+        <p class="visually-hidden" id="confirmation-status">Це статичний приклад підтвердження. Замовлення не створено, оплату не проведено, email не надіслано.</p>
+        <div class="confirmation-success" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m5 12 5 5 9-10" /></svg>
+        </div>
+        <h1 id="confirmation-title">Дякуємо, замовлення прийнято</h1>
+        <p class="confirmation-description">Підтвердження надійде на вказаний email. Точну дату обсмаження побачите на пакованні.</p>
+        <section class="card confirmation-order" aria-labelledby="confirmation-order-title">
+          <h2 id="confirmation-order-title">Замовлення № 2026-0001</h2>
+          <!-- Демонстраційні товари й суми збігаються з кошиком та оформленням. -->
+          <dl class="confirmation-order-details">
+            <div><dt>Ефіопія Guji · 250 г</dt><dd>360 ₴</dd></div>
+            <div><dt>Мій мікс «Ранок» · 200 г</dt><dd>540 ₴</dd></div>
+            <div><dt>Доставка</dt><dd>Безкоштовно</dd></div>
+            <div class="confirmation-total"><dt>Разом</dt><dd>900 ₴</dd></div>
+          </dl>
+        </section>
+        <div class="confirmation-actions">
+          <a class="button" href="my-mixes.html">Мої мікси</a>
+          <a class="button button-secondary" href="index.html">На головну</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

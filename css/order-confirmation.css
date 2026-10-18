@@ -1,0 +1,136 @@
+/* Підтвердження за Order_Confirmation_Desktop_1440 / Mobile_390.
+   Шапка, підвал, палітра та шрифти — спільна дизайн-система. */
+.confirmation-page {
+  --confirmation-summary-width: 520px;
+  --confirmation-content-gap: 20px;
+}
+
+/* 1. Центрована композиція й позначка успіху */
+.confirmation-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--confirmation-content-gap);
+  padding-block: var(--spacing-3xl);
+  text-align: center;
+}
+
+.confirmation-layout > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.confirmation-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--spacing-3xl);
+  width: var(--spacing-3xl);
+  height: var(--spacing-3xl);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-inverse);
+  background: var(--color-success);
+}
+
+.confirmation-layout h1 {
+  font-size: 3rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.0834;
+}
+
+.confirmation-description {
+  width: var(--confirmation-summary-width);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* 2. Семантичний підсумок замовлення: назви й відповідні значення */
+.confirmation-order {
+  flex: none;
+  width: var(--confirmation-summary-width);
+  text-align: left;
+}
+
+.confirmation-order h2 {
+  font-size: 1.625rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2308;
+}
+
+.confirmation-order-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+}
+
+.confirmation-order-details > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.confirmation-order-details dt {
+  min-width: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.4286;
+}
+
+.confirmation-order-details dd {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.confirmation-total {
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.confirmation-total dd {
+  font-size: 2rem;
+  line-height: 1.125;
+}
+
+/* 3. Два рівні переходи: до збережених міксів і на головну. */
+.confirmation-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  width: var(--confirmation-summary-width);
+}
+
+.confirmation-actions .button {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding-inline: var(--spacing-sm);
+  font-size: var(--font-size-body);
+}
+
+/* 4. Типографіка та відступи мобільного макета */
+@media (width < 768px) {
+  .confirmation-layout {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .confirmation-layout h1 {
+    font-size: 2.25rem;
+    line-height: 1.1112;
+  }
+
+  .confirmation-order h2 {
+    font-size: 1.375rem;
+    line-height: 1.2728;
+  }
+}
+
+@media (width < 360px) {
+  .confirmation-order {
+    padding: var(--spacing-md);
+  }
+}

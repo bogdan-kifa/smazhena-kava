@@ -1,0 +1,23 @@
+{
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.requireConfig": true,
+  "tailwindCSS.experimental.configFile": "tailwind.config.js",
+  "files.associations": {
+    "**/css/tailwind.css": "tailwindcss"
+  },
+  "inlineFold.supportedLanguages": ["html"],
+  "inlineFold.regex": "(class)=\"([^\"]{80,})\"",
+  "inlineFold.regexGroup": 2,
+  "inlineFold.autoFold": true,
+  "inlineFold.unfoldOnLineSelect": true
+}

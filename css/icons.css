@@ -1,0 +1,77 @@
+/* Font Awesome Free 6.6.0, font subset for this site; see assets/fonts/FontAwesome-LICENSE.txt. */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../assets/fonts/icons-solid.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/icons-regular.woff2") format("woff2");
+}
+.fa-solid,
+.fa-regular {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-solid {
+  font-weight: 900;
+}
+.fa-regular {
+  font-weight: 400;
+}
+.fa-arrow-right::before {
+  content: "\f061";
+}
+.fa-arrow-up-right-from-square::before {
+  content: "\f08e";
+}
+.fa-bag-shopping::before {
+  content: "\f290";
+}
+.fa-bars::before {
+  content: "\f0c9";
+}
+.fa-chevron-down::before {
+  content: "\f078";
+}
+.fa-chevron-left::before {
+  content: "\f053";
+}
+.fa-chevron-right::before {
+  content: "\f054";
+}
+.fa-circle::before {
+  content: "\f111";
+}
+.fa-heart::before {
+  content: "\f004";
+}
+.fa-mug-hot::before {
+  content: "\f7b6";
+}
+.fa-pause::before {
+  content: "\f04c";
+}
+.fa-play::before {
+  content: "\f04b";
+}
+.fa-star::before {
+  content: "\f005";
+}
+.fa-user::before {
+  content: "\f007";
+}
+.fa-xmark::before {
+  content: "\f00d";
+}

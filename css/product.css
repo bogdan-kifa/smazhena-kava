@@ -1,0 +1,330 @@
+/* Сторінка товару за Product_Desktop_1440 / Product_Mobile_390.
+   Палітра й компоненти — у style.css, локальні шрифти та меню — у catalog.css. */
+
+/* 1. Заголовок і двоколонковий макет */
+.product-heading {
+  gap: var(--spacing-sm);
+}
+
+.product-heading h1,
+.product-origin h2 {
+  font-weight: var(--font-weight-medium);
+}
+
+.product-detail {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-section);
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, var(--grid-track-fluid));
+  align-items: start;
+  gap: var(--spacing-lg);
+}
+
+.product-detail-grid > * {
+  min-width: 0;
+}
+
+/* 2. Три кадрування одного фото: нативна група radio замість скрипту. */
+.product-gallery {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.product-gallery-stage {
+  display: grid;
+  height: 520px;
+  overflow: hidden;
+  background: var(--color-placeholder);
+  border-radius: var(--radius-card);
+}
+
+.product-gallery-stage figure {
+  display: none;
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.product-gallery-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-view-close img,
+.product-thumbnail-close img {
+  transform: scale(1.4);
+  transform-origin: 50% 70%;
+}
+
+.product-view-detail img,
+.product-thumbnail-detail img {
+  transform: scale(1.9);
+  transform-origin: 65% 65%;
+}
+
+.product-gallery-stage .product-badge {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  pointer-events: none;
+}
+
+#photo-overview:checked ~ .product-gallery-stage .product-view-overview,
+#photo-close:checked ~ .product-gallery-stage .product-view-close,
+#photo-detail:checked ~ .product-gallery-stage .product-view-detail {
+  display: block;
+}
+
+.product-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, var(--grid-track-fluid));
+  gap: var(--spacing-sm);
+  margin: var(--spacing-md) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-thumbnails li {
+  min-width: 0;
+}
+
+.product-thumbnail {
+  display: block;
+  height: 80px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: var(--radius-control);
+  background: var(--color-placeholder);
+  cursor: pointer;
+  transition: var(--transition-colors);
+}
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-thumbnail:hover,
+#photo-overview:checked ~ .product-thumbnails label[for="photo-overview"],
+#photo-close:checked ~ .product-thumbnails label[for="photo-close"],
+#photo-detail:checked ~ .product-thumbnails label[for="photo-detail"] {
+  border-color: var(--color-primary);
+}
+
+#photo-overview:focus-visible ~ .product-thumbnails label[for="photo-overview"],
+#photo-close:focus-visible ~ .product-thumbnails label[for="photo-close"],
+#photo-detail:focus-visible ~ .product-thumbnails label[for="photo-detail"] {
+  outline: 3px solid var(--color-focus);
+  outline-offset: var(--spacing-2xs);
+}
+
+/* 3. Смаковий профіль і семантичний список характеристик */
+.product-information {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-tasting-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-tasting-notes li,
+.product-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-2xs) var(--spacing-sm);
+  border: var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-control);
+}
+
+.product-description {
+  color: var(--color-text-muted);
+}
+
+.product-specifications {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding-block: 20px;
+  border-block: var(--border-default);
+}
+
+.product-specifications > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.product-specifications dt {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.product-specifications dd {
+  min-width: 0;
+  margin: 0;
+  text-align: right;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* 4. Макет замовлення. Вага й товарні дії очікують інтеграції JavaScript. */
+.product-purchase {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-margin-top: var(--spacing-lg);
+}
+
+.product-weight {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.product-weight legend {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+}
+
+.product-weight-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.product-weight-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--spacing-xs) 20px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  cursor: default;
+}
+
+.product-weight input:checked + .product-weight-label {
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+}
+
+.product-order-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.product-detail-price {
+  font-size: 2rem;
+  line-height: 1.125;
+  font-weight: var(--font-weight-semibold);
+}
+
+.product-stock::before {
+  content: "";
+  flex-shrink: 0;
+  width: var(--spacing-xs);
+  height: var(--spacing-xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-success);
+}
+
+.product-purchase-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.product-purchase-actions .button {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding-inline: var(--spacing-sm);
+  font-size: var(--font-size-body);
+}
+
+/* 5. Походження, як у макеті; без додаткових вигаданих секцій. */
+.product-origin {
+  background: var(--color-background-soft);
+}
+
+.product-origin .section-intro {
+  max-width: var(--content-copy-width);
+}
+
+.product-origin h2 {
+  font-size: 2.25rem;
+  line-height: 1.1112;
+}
+
+.product-origin .section-intro > p:not(.eyebrow) {
+  font-size: var(--font-size-body);
+}
+
+/* 6. Планшет і телефон */
+@media (width < 1000px) {
+  .product-detail-grid {
+    grid-template-columns: var(--grid-track-fluid);
+    gap: var(--spacing-xl);
+  }
+
+  .product-gallery-stage {
+    height: 400px;
+  }
+}
+
+@media (width < 768px) {
+  .product-gallery-stage {
+    height: 280px;
+  }
+
+  .product-detail {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .product-origin h2 {
+    font-size: 1.75rem;
+    line-height: 1.1429;
+  }
+}
+
+@media (width < 360px) {
+  .product-purchase-actions {
+    flex-direction: column;
+  }
+
+  .product-weight-label {
+    padding-inline: var(--spacing-md);
+  }
+}

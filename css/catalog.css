@@ -1,0 +1,474 @@
+/* Каталог: спільна дизайн-система міститься у style.css.
+   Верстка та нативне мобільне меню працюють без JavaScript. */
+
+/* Ті самі Inter та Lora з локальних файлів; зовнішній запит не потрібний. */
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("../assets/fonts/Lora-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* 1. Шлях до сторінки та заголовок */
+.skip-link {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: var(--spacing-xs);
+  inset-inline-start: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-radius: var(--radius-control);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.catalog-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-xl);
+}
+
+.breadcrumbs {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li + li::before {
+  content: "/";
+  margin-inline-end: var(--spacing-xs);
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--spacing-2xs);
+}
+
+.catalog-heading h1 {
+  font-size: 3rem;
+  line-height: 1.0834;
+}
+
+.catalog-intro {
+  color: var(--color-text-muted);
+}
+
+.catalog-listing {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-section);
+}
+
+/* 2. Категорії та фільтри: нативні поля з labels.
+   Disabled зберігає чесну поведінку статичного HTML/CSS-макета. */
+.catalog-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.catalog-categories,
+.catalog-filters {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.catalog-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.catalog-category {
+  min-height: 44px;
+  max-width: 100%;
+  padding: var(--spacing-xs) 20px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-control);
+  opacity: 1;
+  cursor: default;
+}
+
+.catalog-category-current {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.catalog-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 200px)) minmax(0, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.catalog-filter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 48px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+}
+
+.catalog-filter select {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: var(--spacing-sm) 40px var(--spacing-sm) var(--spacing-md);
+  border: 0;
+  border-radius: inherit;
+  appearance: none;
+  color: var(--color-text);
+  background: transparent;
+  font: inherit;
+  line-height: var(--line-height-control);
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text);
+  cursor: default;
+}
+
+.catalog-filter .icon {
+  grid-column: 2;
+  grid-row: 1;
+  margin-inline-end: var(--spacing-md);
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.catalog-sorting {
+  width: 100%;
+  max-width: 220px;
+  justify-self: end;
+}
+
+.catalog-count {
+  margin-top: var(--spacing-lg);
+}
+
+/* 3. Картки: Grid зовні, Flexbox для вмісту й дій. */
+.catalog-grid {
+  margin-top: var(--spacing-lg);
+}
+
+.catalog-product {
+  gap: var(--spacing-md);
+}
+
+.catalog-product .product-media {
+  aspect-ratio: 8 / 5;
+  margin-bottom: 0;
+}
+
+.catalog-product .product-badge {
+  margin: var(--spacing-md);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.catalog-product-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.catalog-product-heading-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.catalog-product-heading-copy > .eyebrow {
+  margin-bottom: var(--spacing-2xs);
+}
+
+.product-favorite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  color: var(--color-primary);
+  background: var(--color-surface);
+  opacity: 1;
+  cursor: default;
+}
+
+.catalog-product h3 {
+  line-height: 1.25;
+}
+
+.catalog-product-notes {
+  min-height: calc(3 * var(--font-size-small) * var(--line-height-body));
+}
+
+.catalog-product-specs {
+  display: grid;
+  grid-template-columns: repeat(3, var(--grid-track-fluid));
+  gap: var(--spacing-sm);
+  margin: 0;
+}
+
+.catalog-product-specs > div {
+  min-width: 0;
+}
+
+.catalog-product-specs dt {
+  margin-bottom: var(--spacing-2xs);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-control);
+  text-transform: uppercase;
+}
+
+.catalog-product-specs dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-control);
+}
+
+.catalog-product-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-2xs);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-default);
+}
+
+.catalog-product-price .price {
+  font-size: var(--font-size-card-title);
+  line-height: var(--line-height-heading);
+}
+
+.catalog-product-actions {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-xs);
+}
+
+.catalog-product-actions .button {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: var(--spacing-sm);
+}
+
+/* Сторінки — звичайні HTML-посилання. Поточна сторінка не є кнопкою. */
+.catalog-pagination {
+  margin-top: var(--spacing-xl);
+}
+
+.catalog-pagination ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-colors);
+}
+
+.catalog-page-link[href]:hover {
+  background: var(--color-background-soft);
+}
+
+.catalog-page-current {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.catalog-page-link[aria-disabled="true"] {
+  color: var(--color-text-muted);
+  background: transparent;
+  border-color: var(--color-border);
+}
+
+.catalog-page-direction .icon {
+  font-size: var(--font-size-caption);
+}
+
+@media (width < 480px) {
+  .catalog-page-direction-text {
+    display: none;
+  }
+}
+
+/* 4. Мобільна навігація без скриптів.
+   Лише кнопка summary позиціонується у шапці;
+   розгорнута навігація залишається в потоці сторінки. */
+.catalog-mobile-menu {
+  display: none;
+}
+
+.catalog-menu-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-primary);
+  border: var(--border-default);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  list-style: none;
+}
+
+.catalog-menu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.catalog-menu-close-icon,
+.catalog-mobile-menu[open] .catalog-menu-open-icon {
+  display: none;
+}
+
+.catalog-mobile-menu[open] .catalog-menu-close-icon {
+  display: inline-block;
+}
+
+/* 5. Планшет і телефон */
+@media (width < 1100px) {
+  .catalog-page .site-header > .container {
+    position: relative;
+    row-gap: 0;
+  }
+
+  .catalog-desktop-navigation {
+    display: none;
+  }
+
+  .catalog-page .header-actions {
+    margin-inline-end: 56px;
+  }
+
+  .catalog-mobile-menu {
+    display: block;
+    flex: 1 0 100%;
+    order: 3;
+    min-width: 0;
+  }
+
+  .catalog-menu-summary {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .catalog-mobile-menu .navigation {
+    margin-top: var(--spacing-md);
+  }
+
+  .catalog-filters {
+    grid-template-columns: repeat(3, var(--grid-track-fluid));
+  }
+
+  .catalog-sorting {
+    max-width: none;
+    grid-column: span 2;
+  }
+}
+
+@media (width < 768px) {
+  .catalog-heading {
+    padding-top: var(--spacing-lg);
+  }
+
+  .catalog-heading h1 {
+    font-size: 2.25rem;
+    line-height: 1.1112;
+  }
+
+  .catalog-listing {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .catalog-filters {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+
+  .catalog-sorting {
+    grid-column: auto;
+  }
+
+}
+
+@media (width < 360px) {
+  .catalog-product-specs {
+    grid-template-columns: repeat(2, var(--grid-track-fluid));
+  }
+
+  .catalog-product-actions {
+    flex-direction: column;
+  }
+
+  .catalog-category {
+    padding-inline: var(--spacing-md);
+  }
+}
+

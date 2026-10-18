@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Знайомство зі Смаженою Кавою: ідея проєкту, увага до зерна та свобода знаходити власний кавовий смак." />
+    <title>Про нас — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/about.css" />
+  </head>
+  <body class="catalog-page about-page">
+    <a class="skip-link" href="#about-content">Перейти до основного вмісту</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a class="navigation-link-current" href="about.html" aria-current="page">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a class="navigation-link-current" href="about.html" aria-current="page">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="about-content" tabindex="-1">
+      <div class="container about-breadcrumbs">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Про нас</span></li></ol>
+        </nav>
+      </div>
+
+      <section class="about-hero" aria-labelledby="about-hero-title">
+        <div class="container about-hero-layout">
+          <div class="about-hero-copy">
+            <p class="eyebrow">Про Смажену Каву</p>
+            <h1 id="about-hero-title">Кава з характером. Смак, який обираєш ти.</h1>
+            <p class="about-hero-intro">У кожного своя улюблена чашка. Ми створюємо простір, де можна познайомитися із зерном, обрати смаковий напрям і знайти власне поєднання.</p>
+            <div class="actions about-hero-actions">
+              <a class="button" href="catalog.html">Обрати каву <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+              <a class="button button-secondary" href="constructor.html">Створити мікс</a>
+            </div>
+          </div>
+          <figure class="about-hero-media">
+            <!-- Ілюстративне фото передає настрій проєкту; це не документальне фото команди чи виробництва. -->
+            <img src="assets/images/about/coffee-workshop.webp" alt="Ілюстрація кавової майстерні: руки з тацею обсмажених зерен біля мідного ростера" width="1536" height="1024" decoding="async" />
+            <figcaption>Зерно. Тепло. Увага до деталей.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="about-story" aria-labelledby="about-story-title">
+        <div class="container about-story-layout">
+          <figure class="about-story-photo">
+            <img src="assets/images/coffee/ethiopia-guji.webp" alt="Кавові зерна світлого обсмаження у чаші" width="1536" height="1024" loading="lazy" decoding="async" />
+          </figure>
+          <div class="about-story-copy">
+            <p class="eyebrow">Наша ідея</p>
+            <h2 id="about-story-title">Усе починається зі смаку.</h2>
+            <p>Комусь до вподоби шоколадна глибина еспресо. Комусь — квіткові ноти й легкість фільтра. А іноді хочеться спробувати щось зовсім нове. Ця різниця й робить каву цікавою.</p>
+            <p>Ідея Смаженої Кави — допомогти розібратися в цих відтінках без зайвої складності. Почати з одного сорту або дослідити пропорції міксу: шлях обираєш ти.</p>
+            <div class="about-story-note">Кава для твого ритму.<br />Смак, до якого хочеться повертатися.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-values" aria-labelledby="about-values-title">
+        <div class="container">
+          <div class="about-section-heading">
+            <p class="eyebrow">Що для нас важливо</p>
+            <h2 id="about-values-title">Уважність до зерна.<br />Свобода для тебе.</h2>
+            <p>Від першого знайомства із зерном до улюбленої чашки.</p>
+          </div>
+          <ul class="about-principles" role="list">
+            <li class="about-principle">
+              <img src="assets/icons/freshness.svg" alt="" width="285" height="349" loading="lazy" />
+              <h3>Смак у деталях</h3>
+              <p>Походження, обробка й обсмаження допомагають зрозуміти характер зерна. Тому в каталозі поруч із назвою є смакові ноти та основні характеристики.</p>
+            </li>
+            <li class="about-principle">
+              <img src="assets/icons/personalization.svg" alt="" width="343" height="374" loading="lazy" />
+              <h3>Свобода поєднувати</h3>
+              <p>Один сорт може стати щоденним фаворитом, а кілька — початком нового рецепта. Конструктор дає простір для дослідження власного балансу.</p>
+            </li>
+            <li class="about-principle">
+              <img src="assets/icons/transparency.svg" alt="" width="337" height="373" loading="lazy" />
+              <h3>Зрозумілий вибір</h3>
+              <p>Говоримо про каву через відчуття: солодкість, кислотність, тіло й аромат. Так легше знайти свій напрям, навіть якщо знайомство із зерном тільки починається.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="about-paths" aria-labelledby="about-paths-title">
+        <div class="container about-path-layout">
+          <div class="about-section-heading">
+            <p class="eyebrow">Твоя наступна чашка</p>
+            <h2 id="about-paths-title">Знайди свій шлях до чашки.</h2>
+            <p>Можна почати з цікавості до зерна, своїх звичок або бажання поекспериментувати.</p>
+          </div>
+          <ol class="about-path-list" role="list">
+            <li>
+              <a class="about-path-link" href="catalog.html">
+                <span class="about-path-number" aria-hidden="true">01</span>
+                <div class="about-path-copy">
+                  <h3>Познайомся із зерном</h3>
+                  <p>Переглянь каталог і порівняй сорти за смаковими нотами та профілем обсмаження.</p>
+                </div>
+                <span class="about-path-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right icon"></i></span>
+              </a>
+            </li>
+            <li>
+              <a class="about-path-link" href="quiz.html">
+                <span class="about-path-number" aria-hidden="true">02</span>
+                <div class="about-path-copy">
+                  <h3>Придивись до своїх звичок</h3>
+                  <p>Відкрий Quiz-підбір: спосіб заварювання та улюблені відчуття — добра відправна точка.</p>
+                </div>
+                <span class="about-path-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right icon"></i></span>
+              </a>
+            </li>
+            <li>
+              <a class="about-path-link" href="constructor.html">
+                <span class="about-path-number" aria-hidden="true">03</span>
+                <div class="about-path-copy">
+                  <h3>Досліди власне поєднання</h3>
+                  <p>Познайомся з конструктором і продумай пропорції майбутнього кавового міксу.</p>
+                </div>
+                <span class="about-path-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right icon"></i></span>
+              </a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="about-final" aria-labelledby="about-cta-title">
+        <div class="container">
+          <div class="about-cta">
+            <div class="about-cta-copy">
+              <p class="eyebrow">Почнемо з цікавості</p>
+              <h2 id="about-cta-title">З чого почнеться твоя наступна чашка?</h2>
+              <p class="about-cta-description">Знайомий шоколадний смак чи нові фруктові ноти? Поглянь на зерна — можливо, серед них уже є твій фаворит.</p>
+              <div class="actions">
+                <a class="button about-cta-primary" href="catalog.html">Переглянути каву <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+                <a class="button about-cta-secondary" href="quiz.html">Відкрити Quiz-підбір</a>
+              </div>
+            </div>
+            <img class="about-cta-watermark" src="assets/images/logo.svg" alt="" width="254" height="274" loading="lazy" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html" aria-current="page">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

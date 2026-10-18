@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Каталог Смаженої Кави: моносорти й основи для власного міксу. Обирай походження та профіль обсмаження." />
+    <title>Каталог кави — сторінка 2 — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+  </head>
+  <body class="catalog-page">
+    <a class="skip-link" href="#catalog-content">Перейти до каталогу</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a class="navigation-link-current" href="catalog.html" aria-current="true">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a class="navigation-link-current" href="catalog.html" aria-current="true">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="catalog-content">
+      <div class="container catalog-heading">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol>
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><span aria-current="page">Сторінка 2</span></li>
+          </ol>
+        </nav>
+        <p class="eyebrow">Каталог кави</p>
+        <h1>Уся кава</h1>
+        <p class="catalog-intro">Моносорти й основи для власного міксу.</p>
+      </div>
+      <section class="container catalog-listing" aria-labelledby="catalog-list-title">
+        <h2 class="visually-hidden" id="catalog-list-title">Каталог кавових зерен</h2>
+        <!-- HTML/CSS-версія: картки відкривають сторінку товару; обране, мікс і замовлення очікують наступного етапу. Розширені характеристики й наявність — навчальні дані для майбутньої інтеграції. -->
+        <p class="visually-hidden" id="catalog-controls-description">Фільтрація та сортування поки недоступні. У каталозі 12 товарів, до дев’яти на сторінці.</p>
+        <form class="catalog-controls" aria-label="Параметри каталогу" aria-describedby="catalog-controls-description">
+          <fieldset class="catalog-categories" disabled>
+            <legend class="visually-hidden">Вид зерна</legend>
+            <button class="catalog-category catalog-category-current" type="button" aria-pressed="true">Зерно обсмажене</button>
+            <button class="catalog-category" type="button" aria-pressed="false">Зерно зелене</button>
+          </fieldset>
+          <fieldset class="catalog-filters" disabled>
+            <legend class="visually-hidden">Фільтри та сортування</legend>
+            <div class="catalog-filter">
+              <label class="visually-hidden" for="filter-origin">Походження</label>
+              <select id="filter-origin" name="origin">
+                <option value="">Походження</option>
+                <option value="ethiopia">Ефіопія</option>
+                <option value="colombia">Колумбія</option>
+                <option value="brazil">Бразилія</option>
+                <option value="kenya">Кенія</option>
+                <option value="guatemala">Гватемала</option>
+                <option value="costa-rica">Коста-Рика</option>
+                <option value="rwanda">Руанда</option>
+                <option value="peru">Перу</option>
+                <option value="honduras">Гондурас</option>
+                <option value="nicaragua">Нікарагуа</option>
+                <option value="el-salvador">Сальвадор</option>
+                <option value="indonesia">Індонезія</option>
+              </select>
+              <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
+            </div>
+            <div class="catalog-filter">
+              <label class="visually-hidden" for="filter-roast">Обсмаження</label>
+              <select id="filter-roast" name="roast">
+                <option value="">Обсмаження</option>
+                <option value="light">Світле</option>
+                <option value="medium">Середнє</option>
+                <option value="dark">Темне</option>
+              </select>
+              <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
+            </div>
+            <div class="catalog-filter">
+              <label class="visually-hidden" for="filter-profile">Профіль</label>
+              <select id="filter-profile" name="profile">
+                <option value="">Профіль</option>
+                <option value="floral">Квітковий</option>
+                <option value="fruity">Фруктовий</option>
+                <option value="chocolate">Шоколадний</option>
+                <option value="nutty">Горіховий</option>
+              </select>
+              <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
+            </div>
+            <div class="catalog-filter">
+              <label class="visually-hidden" for="filter-price">Ціна</label>
+              <select id="filter-price" name="price">
+                <option value="">Ціна</option>
+                <option value="under-350">До 350 ₴</option>
+                <option value="350-400">350–400 ₴</option>
+                <option value="over-400">Понад 400 ₴</option>
+              </select>
+              <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
+            </div>
+            <div class="catalog-filter catalog-sorting">
+              <label class="visually-hidden" for="catalog-sort">Сортування</label>
+              <select id="catalog-sort" name="sort">
+                <option value="">Сортування</option>
+                <option value="price-ascending">Спочатку дешевші</option>
+                <option value="price-descending">Спочатку дорожчі</option>
+                <option value="name">За назвою</option>
+              </select>
+              <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
+            </div>
+          </fieldset>
+        </form>
+        <p class="muted catalog-count">Товари 10–12 із 12</p>
+        <!-- Демонстраційне розширення асортименту. Фото ілюструють обсмаження. -->
+        <ul class="cards catalog-grid" role="list" aria-label="Товари другої сторінки">
+            <li>
+              <article class="card product-card catalog-product" aria-labelledby="nicaragua-jinotega-title">
+                <div class="product-media">
+                  <span class="product-badge">Single origin</span>
+                  <a class="product-media-link" href="products/nicaragua-jinotega.html" aria-label="Нікарагуа Jinotega — детальніше"><img src="assets/images/coffee/colombia-huila.webp" alt="Кавові зерна середнього обсмаження" width="1536" height="1024" loading="lazy" decoding="async" /></a>
+                </div>
+                <div class="catalog-product-heading">
+                  <div class="catalog-product-heading-copy">
+                    <p class="eyebrow">Нікарагуа · JINOTEGA</p>
+                    <h3 id="nicaragua-jinotega-title"><a class="product-title-link" href="products/nicaragua-jinotega.html">Нікарагуа Jinotega</a></h3>
+                  </div>
+                  <button class="product-favorite" type="button" disabled aria-label="Додати каву «Нікарагуа Jinotega» до обраного"><i class="fa-regular fa-heart icon" aria-hidden="true"></i></button>
+                </div>
+                <p class="catalog-product-notes">Шоколад, мигдаль і тростинний цукор. Насичений солодкий профіль із помірною кислотністю.</p>
+                <dl class="catalog-product-specs">
+                  <div><dt>Обробка</dt><dd>Natural</dd></div>
+                  <div><dt>Обсмаження</dt><dd>Omni · medium</dd></div>
+                  <div><dt>Кислотність</dt><dd>Помірна</dd></div>
+                </dl>
+                <div class="catalog-product-price">
+                  <p class="price">від 350 ₴</p>
+                  <span class="muted">250 г · в наявності</span>
+                </div>
+                <div class="catalog-product-actions">
+                  <a class="button button-secondary" href="products/nicaragua-jinotega.html#product-purchase">Купити</a>
+                  <button class="button" type="button" disabled>Додати до міксу</button>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card product-card catalog-product" aria-labelledby="el-salvador-apaneca-title">
+                <div class="product-media">
+                  <span class="product-badge">Single origin</span>
+                  <a class="product-media-link" href="products/el-salvador-apaneca.html" aria-label="Сальвадор Apaneca — детальніше"><img src="assets/images/coffee/colombia-huila.webp" alt="Кавові зерна середнього обсмаження" width="1536" height="1024" loading="lazy" decoding="async" /></a>
+                </div>
+                <div class="catalog-product-heading">
+                  <div class="catalog-product-heading-copy">
+                    <p class="eyebrow">Сальвадор · APANECA</p>
+                    <h3 id="el-salvador-apaneca-title"><a class="product-title-link" href="products/el-salvador-apaneca.html">Сальвадор Apaneca</a></h3>
+                  </div>
+                  <button class="product-favorite" type="button" disabled aria-label="Додати каву «Сальвадор Apaneca» до обраного"><i class="fa-regular fa-heart icon" aria-hidden="true"></i></button>
+                </div>
+                <p class="catalog-product-notes">Мед, червоне яблуко й фундук. Шовковисте тіло та м’який солодкий післясмак.</p>
+                <dl class="catalog-product-specs">
+                  <div><dt>Обробка</dt><dd>Honey</dd></div>
+                  <div><dt>Обсмаження</dt><dd>Omni · medium</dd></div>
+                  <div><dt>Кислотність</dt><dd>Помірна</dd></div>
+                </dl>
+                <div class="catalog-product-price">
+                  <p class="price">від 370 ₴</p>
+                  <span class="muted">250 г · в наявності</span>
+                </div>
+                <div class="catalog-product-actions">
+                  <a class="button button-secondary" href="products/el-salvador-apaneca.html#product-purchase">Купити</a>
+                  <button class="button" type="button" disabled>Додати до міксу</button>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="card product-card catalog-product" aria-labelledby="indonesia-sumatra-title">
+                <div class="product-media">
+                  <span class="product-badge">Single origin</span>
+                  <a class="product-media-link" href="products/indonesia-sumatra.html" aria-label="Індонезія Sumatra — детальніше"><img src="assets/images/coffee/brazil-cerrado.webp" alt="Кавові зерна темного обсмаження" width="1536" height="1024" loading="lazy" decoding="async" /></a>
+                </div>
+                <div class="catalog-product-heading">
+                  <div class="catalog-product-heading-copy">
+                    <p class="eyebrow">Індонезія · SUMATRA</p>
+                    <h3 id="indonesia-sumatra-title"><a class="product-title-link" href="products/indonesia-sumatra.html">Індонезія Sumatra</a></h3>
+                  </div>
+                  <button class="product-favorite" type="button" disabled aria-label="Додати каву «Індонезія Sumatra» до обраного"><i class="fa-regular fa-heart icon" aria-hidden="true"></i></button>
+                </div>
+                <p class="catalog-product-notes">Темний шоколад, прянощі й кедровий горіх. Щільне тіло та стримана кислотність.</p>
+                <dl class="catalog-product-specs">
+                  <div><dt>Обробка</dt><dd>Wet-hulled</dd></div>
+                  <div><dt>Обсмаження</dt><dd>Espresso · dark</dd></div>
+                  <div><dt>Кислотність</dt><dd>Низька</dd></div>
+                </dl>
+                <div class="catalog-product-price">
+                  <p class="price">від 360 ₴</p>
+                  <span class="muted">250 г · в наявності</span>
+                </div>
+                <div class="catalog-product-actions">
+                  <a class="button button-secondary" href="products/indonesia-sumatra.html#product-purchase">Купити</a>
+                  <button class="button" type="button" disabled>Додати до міксу</button>
+                </div>
+              </article>
+            </li>
+        </ul>
+        <nav class="catalog-pagination" aria-label="Сторінки каталогу">
+          <ul role="list">
+            <li><a class="catalog-page-link catalog-page-direction" href="catalog.html" aria-label="Попередня сторінка"><i class="fa-solid fa-chevron-left icon" aria-hidden="true"></i><span class="catalog-page-direction-text">Назад</span></a></li>
+            <li><a class="catalog-page-link" href="catalog.html" aria-label="Сторінка 1">1</a></li>
+            <li><span class="catalog-page-link catalog-page-current" aria-current="page"><span class="visually-hidden">Сторінка </span>2</span></li>
+            <li><a class="catalog-page-link catalog-page-direction" role="link" aria-disabled="true" aria-label="Наступна сторінка"><span class="catalog-page-direction-text">Далі</span><i class="fa-solid fa-chevron-right icon" aria-hidden="true"></i></a></li>
+          </ul>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html" aria-current="true">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Вхід до акаунта Смаженої Кави для збереження рецептів і повторення замовлень." />
+    <title>Вхід до акаунта — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body class="catalog-page login-page">
+    <a class="skip-link" href="#login-content">Перейти до входу</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html" aria-current="page"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html" aria-current="page">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="login-content" tabindex="-1">
+      <div class="container catalog-heading login-heading">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Акаунт</span></li></ol>
+        </nav>
+        <p class="eyebrow">Акаунт</p>
+        <h1>Вхід</h1>
+      </div>
+      <div class="container login-layout">
+        <!-- Поля нативні; авторизація, реєстрація та відновлення пароля очікують майбутньої логіки. -->
+        <form class="card login-form" id="login-form" method="post" aria-labelledby="login-form-title" aria-describedby="login-status">
+          <p class="visually-hidden" id="login-status">Поля можна заповнити для перегляду. Вхід, реєстрація та відновлення пароля поки недоступні; введені дані нікуди не надсилаються.</p>
+          <h2 id="login-form-title">Вхід до акаунта</h2>
+          <p class="login-description">Збережіть рецепти й повторюйте замовлення в один клік.</p>
+          <div class="login-modes" role="group" aria-label="Режим форми">
+            <button class="login-mode" type="button" data-action="select-auth-mode" data-mode="login" aria-pressed="true" disabled aria-describedby="login-status">Вхід</button>
+            <button class="login-mode" type="button" data-action="select-auth-mode" data-mode="register" aria-pressed="false" disabled aria-describedby="login-status">Реєстрація</button>
+          </div>
+          <div class="login-field">
+            <label for="login-email">Email</label>
+            <input id="login-email" name="email" type="email" autocomplete="username" maxlength="254" placeholder="name@example.com" required />
+          </div>
+          <div class="login-field">
+            <label for="login-password">Пароль</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+          </div>
+          <button class="button login-submit" type="submit" data-action="login" disabled aria-describedby="login-status">Увійти</button>
+          <button class="button login-password-reset" type="button" data-action="request-password-reset" disabled aria-describedby="login-status">Забули пароль?</button>
+        </form>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

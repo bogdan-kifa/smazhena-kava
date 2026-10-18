@@ -1,0 +1,181 @@
+/* Збережені рецепти за My_Mixes_Desktop_1440 / My_Mixes_Mobile_390.
+   Спільна палітра, шрифти й компоненти — style.css та catalog.css. */
+
+/* 1. Заголовок та розділи акаунта */
+.saved-mixes-heading h1,
+.saved-mix-header h2 {
+  font-weight: var(--font-weight-medium);
+}
+
+.saved-mixes-page .header-account[aria-current="true"],
+.saved-mixes-page .catalog-mobile-menu a[aria-current="true"] {
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+}
+
+.saved-mixes-listing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-section);
+}
+
+.saved-mixes-account-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.saved-mixes-account-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 44px;
+  padding: var(--spacing-xs) 20px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-control);
+  text-decoration: none;
+}
+
+.saved-mixes-account-link[aria-current="page"] {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.saved-mixes-account-link[aria-disabled="true"] {
+  cursor: default;
+}
+
+/* 2. Grid: три колонки на десктопі, дві на планшеті, одна на телефоні */
+.saved-mixes-grid {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid);
+  gap: var(--spacing-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saved-mixes-grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+/* 3. Назва, дата й характеристики самодостатнього рецепта */
+.saved-mix-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs) var(--spacing-md);
+}
+
+.saved-mix-header h2 {
+  min-width: 0;
+  font-size: 1.625rem;
+  line-height: 1.2308;
+}
+
+.saved-mix-header time {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.4286;
+  white-space: nowrap;
+}
+
+.saved-mix-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+}
+
+.saved-mix-details > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.saved-mix-details dt {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.4286;
+}
+
+.saved-mix-details dd {
+  min-width: 0;
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+  text-align: right;
+}
+
+/* 4. Дії притиснуті до низу картки; довгі назви можуть переноситися */
+.saved-mix-actions {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-xs);
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  border-top: var(--border-default);
+}
+
+.saved-mix-actions .button {
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px var(--spacing-sm);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+}
+
+.saved-mix-repeat {
+  flex: 1;
+}
+
+.saved-mix-edit {
+  flex: none;
+}
+
+@media (min-width: 768px) {
+  .saved-mixes-grid {
+    grid-template-columns: repeat(2, var(--grid-track-fluid));
+  }
+}
+
+@media (min-width: 1200px) {
+  .saved-mixes-grid {
+    grid-template-columns: repeat(3, var(--grid-track-fluid));
+  }
+}
+
+/* 5. Мобільні розміри з макета */
+@media (width < 768px) {
+  .saved-mixes-listing {
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .saved-mix-header h2 {
+    font-size: 1.375rem;
+    line-height: 1.2728;
+  }
+}
+
+@media (width < 360px) {
+  .saved-mix-card {
+    padding: var(--spacing-md);
+  }
+
+  .saved-mix-actions {
+    flex-direction: column;
+  }
+}

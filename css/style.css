@@ -1,0 +1,1111 @@
+/* Етап 12. CSS після аудиту: HTML, вигляд і поведінку макета збережено.
+   Inter, Lora та Font Awesome підключено через <link> у index.html. */
+
+/* 1. Дизайн-токени з 04_Design_System у Figma.
+   https://www.figma.com/design/a6K1FUQBVmaIdcGnUUvFau/?node-id=40-119
+   Розміри типографіки й числові параметри тіней відтворюють візуальні зразки.
+   Резервні кольори станів та інші токени ЛР №4 збережено. */
+:root {
+  /* 1. Colors — палітра макета */
+  --color-primary: #4a2e1e;
+  --color-primary-hover: #3a2216;
+  --color-secondary: #d8c3a5;
+  --color-accent: #c97d4a;
+  --color-accent-strong: #9b5f34;
+  --color-background-dark: var(--color-primary);
+  --color-background-light: #fbf6f0;
+  --color-surface: #ffffff;
+  --color-text: #2b1d14;
+  --color-shadow-rgb: 43 29 20;
+  --color-text-muted: #6b5a4c;
+  --color-text-inverse: var(--color-surface);
+  --color-border: #e5d9c8;
+  --color-control-border: #9a8068;
+  --color-success: #5b7a4f;
+  --color-warning: #c99a3a;
+  --color-warning-strong: #8a6418;
+  --color-error: #a6432e;
+  --color-focus: var(--color-accent);
+
+  --color-background-soft: #f5ede3;
+  --color-placeholder: #ede0d0;
+
+  /* 2. Typography — Inter, Lora та іконки */
+  --font-primary: "Inter", system-ui, Arial, sans-serif;
+  --font-heading: "Lora", Georgia, serif;
+  --font-size-display: 4rem;
+  --font-size-hero: clamp(2rem, 4.5vw, var(--font-size-display));
+  --font-size-h1-desktop: 3.5rem;
+  --font-size-h2-desktop: 2.5rem;
+  --font-size-h3-desktop: 1.75rem;
+  --font-size-h1: clamp(2rem, 4vw, var(--font-size-h1-desktop));
+  --font-size-h2: clamp(1.5rem, 3vw, var(--font-size-h2-desktop));
+  --font-size-h3: clamp(1.25rem, 2vw, var(--font-size-h3-desktop));
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-caption: 0.75rem;
+  --font-size-logo: 1.375rem;
+  --font-size-card-title: 1.5rem;
+  --font-size-benefit-title: var(--font-size-body);
+  --font-size-section-compact: 2rem;
+  --letter-spacing-eyebrow: 0.08em;
+  --line-height-display: 1.05;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.6;
+  --line-height-control: 1.4;
+  --icon-size: var(--font-size-body);
+  --icon-color: currentColor;
+
+  /* 3. Spacing — шкала 4–64 px */
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-section: var(--spacing-3xl);
+  --spacing-card: var(--spacing-lg);
+
+  /* 4. Border radius and borders */
+  --radius-none: 0;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --radius-control: var(--radius-sm);
+  --radius-card: var(--radius-md);
+  --radius-container: var(--radius-lg);
+
+  --radius-media: 28px;
+  --opacity-disabled: 0.45;
+  --border-width: 1px;
+  --border-default: var(--border-width) solid var(--color-border);
+  --border-control: var(--border-width) solid var(--color-control-border);
+
+  /* 5. Shadows — рівні Subtle / Raised / Overlay */
+  --shadow-subtle: 0 2px 8px rgb(var(--color-shadow-rgb) / 4%);
+  --shadow-raised: 0 4px 16px rgb(var(--color-shadow-rgb) / 8%);
+  --shadow-overlay: 0 12px 32px rgb(var(--color-shadow-rgb) / 12%);
+  --shadow-card: var(--shadow-subtle);
+  --shadow-control-hover: var(--shadow-raised);
+
+  /* 6. Container and layout */
+  --container-width: 1200px;
+  --container-gutter-mobile: var(--spacing-md);
+  --container-gutter-tablet: var(--spacing-xl);
+  --container-gutter-desktop: var(--spacing-3xl);
+  --container-gutter: var(--container-gutter-mobile);
+  --hero-media-width: 520px;
+  --hero-copy-width: 560px;
+  --content-copy-width: 680px;
+  /* Спільні межі iframe-вставок; розміщення задають утиліти Tailwind. */
+  --embed-media-width: var(--content-copy-width);
+  --embed-media-radius: var(--radius-container);
+  --embed-media-min-height: 200px;
+  --grid-track-fluid: minmax(0, 1fr);
+  --logo-image-width: 44px;
+  --benefit-icon-size: 80px;
+
+  /* 7. Transitions */
+  --transition-duration-fast: 160ms;
+  --transition-duration-normal: 240ms;
+  --transition-easing: ease-out;
+  --transition-colors:
+    color var(--transition-duration-fast) var(--transition-easing),
+    background-color var(--transition-duration-fast) var(--transition-easing),
+    border-color var(--transition-duration-fast) var(--transition-easing);
+  --transition-shadow: box-shadow var(--transition-duration-normal) var(--transition-easing);
+}
+
+/* 2. Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.navigation-list,
+.cards {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 3. Базові стилі, типографіка та доступність */
+body {
+  color: var(--color-text);
+  background: var(--color-background-light);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  overflow-wrap: break-word;
+}
+
+.container {
+  width: calc(100% - 2 * var(--container-gutter));
+  max-width: var(--container-width);
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: var(--spacing-2xs);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page-block {
+  padding-block: var(--spacing-section);
+}
+
+.page-block-continuation {
+  padding-top: 0;
+}
+
+/* Заголовок каталогу та перехід праворуч, як у Homepage_Desktop. */
+.section-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+.section-heading-copy {
+  min-width: 0;
+}
+
+.section-heading-copy h2 + p {
+  margin-top: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+.catalog-link {
+  flex-shrink: 0;
+}
+
+.page-block > .container > h2 + p {
+  margin-top: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+.section-eyebrow {
+  margin-bottom: var(--spacing-sm);
+}
+
+.eyebrow {
+  color: var(--color-accent-strong);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.price,
+.review-author {
+  font-weight: var(--font-weight-bold);
+}
+
+.section-intro > * + * {
+  margin-top: var(--spacing-sm);
+}
+
+.section-intro > p:not(.eyebrow) {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+/* 4. Спільні компоненти: логотип, іконки, кнопки та списки навігації */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  max-width: 100%;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-logo);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.logo-image {
+  flex-shrink: 0;
+  width: var(--logo-image-width);
+  height: auto;
+  padding: var(--spacing-2xs);
+  background: var(--color-background-light);
+  border-radius: var(--radius-card);
+}
+
+.icon {
+  flex-shrink: 0;
+  font-size: var(--icon-size);
+  color: var(--icon-color);
+  line-height: 1;
+  vertical-align: -0.125em;
+}
+
+.button {
+  font-family: var(--font-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  max-width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-control);
+  transition: var(--transition-colors), var(--transition-shadow);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border: var(--border-width) solid var(--color-primary);
+  border-radius: var(--radius-control);
+  text-align: center;
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+.button:where(:not([aria-disabled="true"], :disabled)):hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-control-hover);
+}
+
+.button-secondary {
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border-color: var(--color-control-border);
+}
+
+.button-secondary:where(:not([aria-disabled="true"], :disabled)):hover {
+  background: var(--color-secondary);
+}
+
+.button:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.site-header > .container,
+.navigation-list,
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navigation-list {
+  gap: var(--spacing-md) var(--spacing-lg);
+}
+
+.navigation a,
+.footer-navigation a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  transition: var(--transition-colors);
+}
+
+.navigation a[href]:hover,
+.footer-navigation a[href]:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: var(--spacing-xs);
+}
+
+.actions {
+  gap: var(--spacing-sm);
+}
+
+/* Майбутні переходи не мають href та хибної реакції на hover. */
+a[aria-disabled="true"] {
+  cursor: default;
+}
+
+/* 5. Шапка — Flexbox */
+.site-header {
+  --logo-image-width: 48px;
+  padding-block: var(--spacing-md);
+  border-bottom: var(--border-default);
+}
+
+.site-header > .container {
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.navigation {
+  min-width: 0;
+  flex: 1;
+}
+
+.site-header .navigation-list {
+  justify-content: center;
+}
+
+.header-cta {
+  flex-shrink: 0;
+}
+
+.header-actions,
+.header-account,
+.header-cart {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions {
+  gap: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.header-account,
+.header-cart {
+  gap: var(--spacing-xs);
+  min-height: 44px;
+  font-size: var(--font-size-small);
+  text-decoration: none;
+}
+
+.header-cart {
+  min-width: 44px;
+  justify-content: center;
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  min-height: 20px;
+  padding-inline: var(--spacing-2xs);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-caption);
+}
+
+.navigation-link-current {
+  padding-block: var(--spacing-xs);
+  border-bottom: var(--border-width) solid var(--color-primary);
+}
+
+.menu-toggle,
+.mobile-navigation-item {
+  display: none;
+}
+
+/* 6. Hero — Flexbox і незмінне обрізання відео */
+.hero > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-section);
+}
+
+.hero h1 {
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-display);
+  letter-spacing: -0.02em;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--hero-copy-width);
+}
+
+.hero-text > p:not(.eyebrow) {
+  color: var(--color-text-muted);
+}
+
+.hero-text > * + * {
+  margin-top: var(--spacing-lg);
+}
+
+.hero-notes {
+  display: grid;
+  grid-template-columns: repeat(2, var(--grid-track-fluid));
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-default);
+}
+
+.hero-notes .muted {
+  font-size: var(--font-size-caption);
+}
+
+.hero-media {
+  position: relative;
+  flex: 0 1 var(--hero-media-width);
+  min-width: 0;
+  width: 100%;
+  max-width: var(--hero-media-width);
+  aspect-ratio: 24 / 25;
+  overflow: hidden;
+  border-radius: var(--radius-media);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* Кнопка завжди доступна поверх відео й не змінює розмір Hero. */
+.hero-video-toggle {
+  position: absolute;
+  inset-inline-end: var(--spacing-md);
+  inset-block-end: var(--spacing-md);
+  max-width: calc(100% - 2 * var(--spacing-md));
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-color: transparent;
+  border-radius: var(--radius-pill);
+  background: var(--color-background-light);
+  box-shadow: none;
+}
+
+/* 7. Сітка карток — Grid; вміст карток — Flexbox */
+.cards {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid);
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.cards > li {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  border: var(--border-default);
+  border-radius: var(--radius-card);
+}
+
+.card h3 {
+  font-size: var(--font-size-card-title);
+}
+
+.card > p:where(:not(.eyebrow, .step-number, .product-meta, .review-rating)) {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  border: var(--border-control);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-caption);
+  color: var(--color-primary);
+}
+
+.card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  align-self: flex-start;
+  margin-top: auto;
+  color: var(--color-accent-strong);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.card > a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--spacing-2xs);
+}
+
+/* 8. Переваги */
+.benefits {
+  background: var(--color-background-soft);
+}
+
+.benefits > .container {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) var(--grid-track-fluid);
+  align-items: start;
+  gap: var(--spacing-xl);
+}
+
+.benefits h2 {
+  font-size: min(var(--font-size-h2), var(--font-size-section-compact));
+}
+
+.benefits .cards {
+  margin-top: 0;
+}
+
+.benefits .card {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.benefit-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.benefit-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  flex-shrink: 0;
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-caption);
+}
+
+.benefit-icon {
+  width: var(--benefit-icon-size);
+  height: var(--benefit-icon-size);
+  object-fit: contain;
+}
+
+.benefits h3 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-benefit-title);
+}
+
+/* 9. Товари та фотографічні ілюстрації кавових зерен */
+.product-card {
+  overflow: hidden;
+}
+
+.product-media {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid);
+  grid-template-rows: var(--grid-track-fluid);
+  min-height: 0;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  margin: calc(-1 * var(--spacing-card)) calc(-1 * var(--spacing-card)) 0;
+  background: var(--color-placeholder);
+}
+
+.product-badge {
+  grid-area: 1 / 1;
+  align-self: start;
+  justify-self: start;
+  z-index: 1;
+  margin: var(--spacing-lg);
+  padding: var(--spacing-2xs) var(--spacing-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--font-size-caption);
+  pointer-events: none;
+}
+
+.product-media img {
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Фото й назва відкривають відповідний товар; інші дії не перекриваються. */
+.product-media-link {
+  display: block;
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.product-media-link:focus-visible {
+  outline-offset: -4px;
+}
+
+.product-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-title-link:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--spacing-2xs);
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--spacing-2xs) var(--spacing-xs);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+}
+
+.product-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: auto;
+}
+
+/* Короткі картки головної: ціна та дві однакові за висотою дії. */
+.product-card > .product-start-price {
+  margin-top: auto;
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+}
+
+.product-card > .product-actions {
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: var(--spacing-xs);
+  margin-top: 0;
+}
+
+.product-card > .product-actions .button {
+  flex: 1;
+  min-width: 0;
+  padding-inline: var(--spacing-sm);
+}
+
+@media (width < 360px) {
+  .product-card > .product-actions {
+    flex-direction: column;
+  }
+}
+
+/* 10. Відгуки */
+:where(#reviews) h2 {
+  max-width: var(--content-copy-width);
+}
+
+.review-rating {
+  --icon-size: var(--font-size-small);
+  --icon-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.review-stars {
+  display: inline-flex;
+  gap: var(--spacing-2xs);
+}
+
+.review-card blockquote {
+  font-size: var(--font-size-small);
+}
+
+.review-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
+  margin-top: auto;
+  padding-top: var(--spacing-xs);
+}
+
+.review-author {
+  font-size: var(--font-size-small);
+}
+
+.review-card .muted {
+  font-size: var(--font-size-caption);
+}
+
+/* 11. CTA */
+.cta,
+.site-footer {
+  color: var(--color-text-inverse);
+  background: var(--color-background-dark);
+}
+
+.cta {
+  display: grid;
+  grid-template-columns: var(--grid-track-fluid) auto;
+  align-items: center;
+  gap: var(--spacing-md) var(--spacing-xl);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-container);
+}
+
+.cta h2,
+.cta p {
+  max-width: var(--content-copy-width);
+  grid-column: 1;
+}
+
+.cta p {
+  font-size: var(--font-size-small);
+}
+
+.cta > .button {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  color: var(--color-primary);
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.cta > .button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* 12. Підвал */
+.site-footer {
+  padding-block: var(--spacing-2xl) var(--spacing-lg);
+  font-size: var(--font-size-small);
+}
+
+.site-footer > .container {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) var(--grid-track-fluid);
+  align-items: start;
+  gap: var(--spacing-xl) var(--spacing-3xl);
+}
+
+.footer-brand {
+  max-width: 360px;
+}
+
+.footer-brand > * + * {
+  margin-top: var(--spacing-md);
+}
+
+.footer-brand > p,
+.footer-contacts,
+.copyright,
+.cta p {
+  color: var(--color-secondary);
+}
+
+.footer-contacts {
+  font-style: normal;
+}
+
+.footer-contacts > * + * {
+  margin-top: var(--spacing-xs);
+}
+
+.footer-contacts a {
+  text-decoration: none;
+}
+
+.footer-contacts a:hover {
+  text-decoration: underline;
+}
+
+.footer-navigation {
+  display: grid;
+  grid-template-columns: repeat(3, var(--grid-track-fluid));
+  gap: var(--spacing-xl);
+}
+
+.footer-heading {
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.footer-navigation a {
+  color: var(--color-secondary);
+}
+
+.footer-navigation .navigation-list {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  grid-column: 1 / -1;
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-control);
+  color: var(--color-secondary);
+  font-size: var(--font-size-caption);
+}
+
+.footer-legal {
+  gap: var(--spacing-xs) var(--spacing-md);
+}
+
+.footer-legal a {
+  text-decoration: none;
+}
+
+/* 13. Адаптивність: картки 1 / 2 / 3 колонки.
+   Брейкпойнти залишаються літералами: var() не працює в умовах @media. */
+@media (min-width: 768px) {
+  :root {
+    --container-gutter: var(--container-gutter-tablet);
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, var(--grid-track-fluid));
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --container-gutter: var(--container-gutter-desktop);
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, var(--grid-track-fluid));
+  }
+}
+
+@media (width < 1200px) {
+  .benefits > .container,
+  .site-footer > .container,
+  .cta {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+
+  .hero > .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+  }
+
+  .hero-text,
+  .hero-media {
+    flex: auto;
+  }
+
+  .benefits .cards {
+    margin-top: var(--spacing-lg);
+  }
+
+  .cta > .button {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+}
+
+@media (width < 768px) {
+  .section-heading-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .footer-navigation {
+    grid-template-columns: var(--grid-track-fluid);
+  }
+
+  .footer-legal {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cta {
+    padding: var(--spacing-lg);
+  }
+
+  .hero-notes {
+    grid-template-columns: var(--grid-track-fluid);
+    gap: var(--spacing-md);
+  }
+}
+
+/* Компактна шапка: меню розкривається в потоці без перекриття контенту. */
+@media (width < 1100px) {
+  .site-header > .container {
+    gap: var(--spacing-sm);
+  }
+
+  .site-header .logo {
+    flex: 1;
+    font-size: 1.125rem;
+  }
+
+  .header-actions {
+    gap: var(--spacing-2xs);
+    order: 1;
+  }
+
+  .header-account,
+  .header-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    order: 2;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: var(--color-primary);
+    background: transparent;
+    border: var(--border-default);
+    border-radius: var(--radius-control);
+    cursor: pointer;
+  }
+
+  .navigation {
+    flex: 1 0 100%;
+    order: 3;
+    padding-top: var(--spacing-md);
+    border-top: var(--border-default);
+  }
+
+  .site-header .navigation-list {
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .navigation a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: var(--spacing-sm);
+  }
+
+  .navigation-link-current {
+    border-bottom: 0;
+    border-radius: var(--radius-control);
+    background: var(--color-background-soft);
+  }
+
+  .navigation .button {
+    color: var(--color-text-inverse);
+  }
+
+  .mobile-navigation-item {
+    display: block;
+  }
+
+  .menu-ready .navigation {
+    display: none;
+  }
+
+  .menu-ready.menu-open .navigation {
+    display: block;
+  }
+}
+
+@media (width < 360px) {
+  .site-header .logo {
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-body);
+  }
+
+  .site-header .logo-image {
+    width: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-duration-fast: 0ms;
+    --transition-duration-normal: 0ms;
+  }
+}

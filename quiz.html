@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quiz-підбір Смаженої Кави: смаки, спосіб приготування та рекомендація кави." />
+    <title>Quiz-підбір кави — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/quiz.css" />
+  </head>
+  <body class="catalog-page quiz-page">
+    <a class="skip-link" href="#quiz-content">Перейти до основного вмісту</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a class="navigation-link-current" href="quiz.html" aria-current="page">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a class="navigation-link-current" href="quiz.html" aria-current="page">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="quiz-content" tabindex="-1">
+      <div class="container catalog-heading quiz-heading">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Quiz-підбір</span></li></ol>
+        </nav>
+        <p class="eyebrow">Питання 2 з 3</p>
+        <h1 id="quiz-question-title">Як ви заварюєте каву?</h1>
+        <p class="catalog-intro">Оберіть спосіб приготування, і ми звузимо вибір.</p>
+      </div>
+      <div class="container quiz-layout">
+        <!-- Універсальний екран запитання. Зараз показано друге питання з макета; банк запитань і послідовність підключимо з JS. -->
+        <form class="card quiz-card" id="quiz-form" data-question-id="brewing" aria-labelledby="quiz-question-title" aria-describedby="quiz-status">
+          <p class="visually-hidden" id="quiz-status">Показано початковий приклад із макета. Вибір відповідей і проходження Quiz поки недоступні.</p>
+          <ol class="quiz-progress" id="quiz-progress" role="list" aria-label="Прогрес підбору: питання 2 з 3">
+            <li class="quiz-progress-complete"><span class="visually-hidden">Питання 1: відповідь обрано</span></li>
+            <li aria-current="step"><span class="visually-hidden">Питання 2: поточне</span></li>
+            <li><span class="visually-hidden">Питання 3: попереду</span></li>
+          </ol>
+          <fieldset class="quiz-choice-group" id="quiz-answer-options" disabled>
+            <legend class="visually-hidden">Спосіб приготування кави</legend>
+            <div class="quiz-choices">
+              <input class="visually-hidden quiz-choice-input" type="radio" id="brewing-espresso" name="brewing" value="espresso" /><label class="quiz-choice-label" for="brewing-espresso"><strong>Еспресо</strong><span class="muted">Кавомашина, ріжкова кава</span></label>
+              <input class="visually-hidden quiz-choice-input" type="radio" id="brewing-filter" name="brewing" value="filter" checked /><label class="quiz-choice-label" for="brewing-filter"><strong>Фільтр</strong><span class="muted">Пуровер, V60, аеропрес</span></label>
+              <input class="visually-hidden quiz-choice-input" type="radio" id="brewing-cezve" name="brewing" value="cezve" /><label class="quiz-choice-label" for="brewing-cezve"><strong>Джезва</strong><span class="muted">Турка, кава по-східному</span></label>
+            </div>
+          </fieldset>
+          <details class="quiz-help">
+            <summary>Не впевнені? Допомога з вибором помелу. <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i></summary>
+            <ul><li>Еспресо — дрібний помел.</li><li>Фільтр — середній помел.</li><li>Джезва — дуже дрібний помел.</li></ul>
+          </details>
+          <div class="quiz-actions">
+            <button class="button quiz-button-quiet" type="button" data-action="previous-question" disabled aria-describedby="quiz-status">Назад</button>
+            <div class="quiz-actions-forward">
+              <button class="button quiz-button-quiet" type="button" data-action="skip-question" disabled aria-describedby="quiz-status">Пропустити</button>
+              <button class="button" type="button" data-action="next-question" disabled aria-describedby="quiz-status">Далі <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </form>
+        <aside class="quiz-sidebar" aria-labelledby="quiz-answers-title">
+          <div class="card quiz-card">
+            <h2 id="quiz-answers-title">Ваші відповіді</h2>
+            <dl class="quiz-answers">
+              <div><dt>Питання 1</dt><dd>Смак: фруктовий</dd></div>
+              <div><dt>Питання 2</dt><dd>Фільтр</dd></div>
+              <div><dt>Питання 3</dt><dd>не відповідали</dd></div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html" aria-current="page">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

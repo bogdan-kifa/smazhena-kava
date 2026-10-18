@@ -1,0 +1,4 @@
+/* Build with npm run build:css. Theme and source paths are in tailwind.config.js. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

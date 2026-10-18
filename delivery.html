@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Доставка та оплата Смаженої Кави: Нова пошта, кур’єр, оплата карткою або при отриманні. Безкоштовна доставка від 800 ₴." />
+    <title>Доставка та оплата — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/information.css" />
+    <link rel="stylesheet" href="css/delivery.css" />
+  </head>
+  <body class="catalog-page information-page delivery-page">
+    <a class="skip-link" href="#delivery-content">Перейти до основного вмісту</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="index.html">
+          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <span aria-hidden="true">Смажена Кава</span>
+        </a>
+        <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
+          <ul class="navigation-list" role="list">
+            <li><a href="catalog.html">Кава</a></li>
+            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="about.html">Про нас</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          </a>
+          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+        </div>
+        <!-- Нативне details відкриває мобільне меню без JavaScript. -->
+        <details class="catalog-mobile-menu">
+          <summary class="catalog-menu-summary">
+            <span class="visually-hidden">Меню навігації</span>
+            <i class="fa-solid fa-bars icon catalog-menu-open-icon" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark icon catalog-menu-close-icon" aria-hidden="true"></i>
+          </summary>
+          <nav class="navigation" aria-label="Основна мобільна навігація">
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Кава</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="delivery-content" tabindex="-1">
+      <div class="container information-heading">
+        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
+          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Доставка та оплата</span></li></ol>
+        </nav>
+        <div class="delivery-hero">
+          <div class="delivery-hero-copy">
+            <p class="eyebrow">Доставка та оплата</p>
+            <h1>Твоя кава.<br />Зручний шлях до тебе.</h1>
+            <p class="information-intro">Обери спосіб доставки та оплати, який пасує твоєму ритму. Тут зібрали основні умови, щоб усе було зрозуміло ще до замовлення.</p>
+          </div>
+          <figure class="delivery-hero-art">
+            <img src="assets/images/information/coffee-parcel.svg" width="480" height="360" alt="" decoding="async" />
+            <figcaption>Трохи кавового настрою в кожному пакунку.</figcaption>
+          </figure>
+        </div>
+        <!-- Демонстраційні умови з макета, узгоджені з кошиком та оформленням. -->
+        <div class="delivery-perk">
+          <div><p class="delivery-perk-label">Доставка за наш рахунок</p><p>Для замовлень на суму від 800 ₴.</p></div>
+          <strong class="delivery-perk-amount">від 800 ₴</strong>
+        </div>
+      </div>
+
+      <section class="info-section" aria-labelledby="delivery-methods-title">
+        <div class="container info-layout">
+          <div class="info-section-intro">
+            <p class="eyebrow">01 / Доставка</p>
+            <h2 id="delivery-methods-title">Як отримати каву</h2>
+            <p>У відділенні чи за своєю адресою — обирай зручний варіант під час оформлення.</p>
+          </div>
+          <ul class="delivery-options" role="list">
+            <li class="info-panel delivery-option">
+              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m4 8 12-6 12 6v16l-12 6-12-6V8Z"/><path d="m4 8 12 6 12-6M16 14v16M10 5l12 6v7"/></svg></span>
+              <h3>Нова пошта</h3>
+              <p>Доставка до обраного відділення. Під час оформлення вкажи місто та номер відділення.</p>
+              <dl class="delivery-facts"><div><dt>Вартість</dt><dd>За тарифом перевізника</dd></div><div><dt>Замовлення від 800 ₴</dt><dd>Безкоштовно</dd></div></dl>
+            </li>
+            <li class="info-panel delivery-option">
+              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M2 7h17v17H2V7Zm17 5h6l5 7v5H19V12Z"/><path d="M22 12v7h8"/><circle cx="8" cy="25" r="3"/><circle cx="25" cy="25" r="3"/></svg></span>
+              <h3>Кур’єром</h3>
+              <p>Доставка за вказаною адресою. Зазнач місто, вулицю, номер будинку та квартири.</p>
+              <dl class="delivery-facts"><div><dt>Вартість</dt><dd>Залежить від адреси доставки</dd></div><div><dt>Замовлення від 800 ₴</dt><dd>Безкоштовно</dd></div></dl>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="info-section delivery-payment" aria-labelledby="delivery-payment-title">
+        <div class="container info-layout">
+          <div class="info-section-intro">
+            <p class="eyebrow">02 / Оплата</p>
+            <h2 id="delivery-payment-title">Як оплатити</h2>
+            <p>Два зрозумілі варіанти — обери той, яким звик користуватися.</p>
+          </div>
+          <ul class="delivery-options" role="list">
+            <li class="info-panel delivery-option">
+              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="2" y="6" width="28" height="20" rx="3"/><path d="M2 12h28M7 20h6"/></svg></span>
+              <h3>Карткою онлайн</h3>
+              <p>Оплата банківською карткою під час оформлення замовлення.</p>
+            </li>
+            <li class="info-panel delivery-option">
+              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M7 3h18v27l-4-3-5 3-5-3-4 3V3Z"/><path d="M12 10h8M12 16h8M12 22h4"/></svg></span>
+              <h3>При отриманні</h3>
+              <p>Оплата під час отримання пакунка з кавою.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="info-section" aria-labelledby="delivery-process-title">
+        <div class="container">
+          <div class="info-section-intro delivery-process-heading">
+            <p class="eyebrow">03 / Перед замовленням</p>
+            <h2 id="delivery-process-title">Кілька простих підказок</h2>
+          </div>
+          <ol class="delivery-steps" role="list">
+            <li class="delivery-step"><span class="delivery-step-number" aria-hidden="true">01</span><h3>Перевір контакти</h3><p>Вкажи правильний номер телефону та email у формі оформлення.</p></li>
+            <li class="delivery-step"><span class="delivery-step-number" aria-hidden="true">02</span><h3>Уточни адресу</h3><p>Для відділення потрібні місто й номер. Для кур’єра — повна адреса.</p></li>
+            <li class="delivery-step"><span class="delivery-step-number" aria-hidden="true">03</span><h3>Врахуй маршрут</h3><p>Строк доставки залежить від населеного пункту та роботи перевізника.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="info-related" aria-labelledby="delivery-more-title">
+        <div class="container">
+          <div class="info-panel info-related-panel">
+            <div><h2 id="delivery-more-title">Ще є запитання?</h2><p>Зібрали відповіді про зерно, власні мікси та замовлення на сторінці FAQ.</p></div>
+            <a class="button" href="faq.html">Переглянути FAQ <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <span aria-hidden="true">Смажена Кава</span>
+          </a>
+          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+          <address class="footer-contacts">
+            <!-- Демонстраційні контакти з Figma. -->
+            <p>+38 044 000 00 00</p>
+            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
+            <p>Київ, вул. Кавова, 12</p>
+          </address>
+        </div>
+        <nav class="footer-navigation" aria-label="Навігація в підвалі">
+          <div class="footer-link-group">
+            <p class="footer-heading">Дізнатися</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="about.html">Про нас</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="delivery.html" aria-current="page">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Кава</p>
+            <ul class="navigation-list" role="list">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="constructor.html">Створити мікс</a></li>
+              <li><a href="quiz.html">Quiz-підбір</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <p class="footer-heading">Соцмережі</p>
+            <ul class="navigation-list" role="list">
+              <li><a role="link" aria-disabled="true">Instagram</a></li>
+              <li><a role="link" aria-disabled="true">Facebook</a></li>
+              <li><a role="link" aria-disabled="true">YouTube</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 Смажена Кава</p>
+          <nav aria-label="Правова інформація">
+            <ul class="navigation-list footer-legal" role="list">
+              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
+              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
+              <li><a role="link" aria-disabled="true">Умови використання</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

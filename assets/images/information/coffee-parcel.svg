@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360" fill="none">
+  <!-- Декоративна ілюстрація пакунка кави в палітрі проєкту. -->
+  <ellipse cx="242" cy="319" rx="173" ry="16" fill="#D8C3A5" opacity=".45"/>
+  <circle cx="244" cy="175" r="126" fill="#FBF6F0"/>
+  <path d="m103 160 130-64 142 62v118l-135 62-137-64V160Z" fill="#D8C3A5" stroke="#4A2E1E" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m103 160 137 62 135-64M240 222v116" stroke="#4A2E1E" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m202 112 140 64-27 13-141-63 28-14Z" fill="#C97D4A"/>
+  <path d="m315 189 27-13v42l-27 13v-42Z" fill="#9B5F34"/>
+  <path d="m171 67 64-13 63 13-10 124c-1 7-5 11-12 11h-86c-7 0-11-4-12-11L171 67Z" fill="#FBF6F0" stroke="#4A2E1E" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M172 75h125M181 88h107" stroke="#D8C3A5" stroke-width="3"/>
+  <ellipse cx="235" cy="136" rx="23" ry="32" transform="rotate(28 235 136)" fill="#4A2E1E"/>
+  <path d="M242 108c-18 17 5 33-21 53" stroke="#FBF6F0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M220 181h30" stroke="#C97D4A" stroke-width="3" stroke-linecap="round"/>
+  <path d="m126 233 72 33v37l-72-33v-37Z" fill="#FBF6F0"/>
+  <path d="m139 249 43 20m-43-8 25 12" stroke="#9B5F34" stroke-width="3" stroke-linecap="round"/>
+  <path d="m354 59 8 9 19-23" stroke="#9B5F34" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="364" cy="60" r="31" stroke="#D8C3A5" stroke-width="2"/>
+  <ellipse cx="90" cy="295" rx="10" ry="15" transform="rotate(-32 90 295)" fill="#4A2E1E"/>
+  <path d="m86 286 9 18" stroke="#D8C3A5" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="393" cy="304" rx="12" ry="17" transform="rotate(50 393 304)" fill="#9B5F34"/>
+  <path d="M402 295c-14 3-2 13-18 18" stroke="#FBF6F0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M83 102h18m-9-9v18M402 125h14m-7-7v14" stroke="#C97D4A" stroke-width="3" stroke-linecap="round"/>
+</svg>
