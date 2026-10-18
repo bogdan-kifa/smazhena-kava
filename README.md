@@ -24,3 +24,7 @@
 ## Автор
 
 Богдан Кіфа, група ПП-23.
+
+## Репозиторій
+
+https://github.com/bogdan-kifa/smazhena-kava
