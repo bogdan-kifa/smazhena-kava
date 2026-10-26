@@ -1,22 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Конструктор Смаженої Кави: сорти, вага, пропорції, обсмаження, помел і пакування твого міксу." />
+    <meta
+      name="description"
+      content="Конструктор Смаженої Кави: сорти, вага, пропорції, обсмаження, помел і пакування твого міксу."
+    />
     <title>Створи свій мікс — Смажена Кава</title>
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/icons.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/catalog.css" />
     <link rel="stylesheet" href="css/constructor.css" />
+    <link rel="stylesheet" href="css/interaction.css" />
+    <script src="js/products.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/mix.js" defer></script>
   </head>
   <body class="catalog-page mix-page">
+    <noscript
+      ><p class="shop-nojs">
+        Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.
+      </p></noscript
+    >
     <a class="skip-link" href="#mix-content">Перейти до конструктора</a>
     <header class="site-header">
       <div class="container">
         <a class="logo" href="index.html">
-          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <img
+            class="logo-image"
+            src="assets/images/logo.svg"
+            alt="Смажена Кава"
+            width="254"
+            height="274"
+          />
           <span aria-hidden="true">Смажена Кава</span>
         </a>
         <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
@@ -27,11 +45,16 @@
           </ul>
         </nav>
         <div class="header-actions">
-          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-account" href="login.html"
+            ><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a
+          >
           <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
-            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i
+            ><span class="cart-count" aria-hidden="true">2</span>
           </a>
-          <a class="button header-cta" href="constructor.html" aria-current="page">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+          <a class="button header-cta" href="constructor.html" aria-current="page"
+            >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+          ></a>
         </div>
         <!-- Нативне details відкриває мобільне меню без JavaScript. -->
         <details class="catalog-mobile-menu">
@@ -46,7 +69,11 @@
               <li><a href="quiz.html">Quiz-підбір</a></li>
               <li><a href="about.html">Про нас</a></li>
               <li><a href="login.html">Акаунт</a></li>
-              <li><a class="button" href="constructor.html" aria-current="page">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+              <li>
+                <a class="button" href="constructor.html" aria-current="page"
+                  >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+                ></a>
+              </li>
             </ul>
           </nav>
         </details>
@@ -67,27 +94,101 @@
       </div>
       <div class="container mix-layout">
         <!-- Фіксований приклад із макета. Зміни полів, розрахунки та збереження підключаються на наступному етапі з JS. -->
-        <form class="mix-form" id="mix-form" aria-label="Налаштування кавового міксу" aria-describedby="mix-form-status">
-          <p class="visually-hidden" id="mix-form-status">Показано приклад міксу з макета. Зміна параметрів, розрахунок ціни й оформлення замовлення поки недоступні.</p>
+        <form
+          class="mix-form"
+          id="mix-form"
+          aria-label="Налаштування кавового міксу"
+          aria-describedby="mix-form-status"
+        >
+          <p class="visually-hidden" id="mix-form-status">
+            Показано приклад міксу з макета. Зміна параметрів, розрахунок ціни й оформлення
+            замовлення поки недоступні.
+          </p>
           <fieldset class="mix-settings" disabled>
             <legend class="visually-hidden">Параметри кавового міксу</legend>
             <section class="card mix-step" aria-labelledby="mix-beans-title">
               <div class="mix-step-heading">
-                <h2 class="mix-step-title" id="mix-beans-title"><span class="mix-step-number mix-step-number-complete" aria-hidden="true">1</span>Зерно</h2>
+                <h2 class="mix-step-title" id="mix-beans-title">
+                  <span class="mix-step-number mix-step-number-complete" aria-hidden="true">1</span
+                  >Зерно
+                </h2>
                 <span class="muted">3 з 4 сортів</span>
               </div>
               <div class="mix-options" role="group" aria-label="Обрані сорти для налаштування">
                 <div class="mix-bean-chip mix-bean-chip-current" data-product="ethiopia-guji">
-                  <button class="mix-bean-select" type="button" aria-pressed="true">Ефіопія Guji</button>
-                  <button class="mix-bean-remove" type="button" aria-label="Прибрати сорт «Ефіопія Guji» з міксу" data-action="remove-bean"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+                  <button class="mix-bean-select" type="button" aria-pressed="true">
+                    Ефіопія Guji
+                  </button>
+                  <button
+                    class="mix-bean-remove"
+                    type="button"
+                    aria-label="Прибрати сорт «Ефіопія Guji» з міксу"
+                    data-action="remove-bean"
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="m6 6 12 12M18 6 6 18" />
+                    </svg>
+                  </button>
                 </div>
                 <div class="mix-bean-chip" data-product="kenya-nyeri">
-                  <button class="mix-bean-select" type="button" aria-pressed="false">Кенія Nyeri</button>
-                  <button class="mix-bean-remove" type="button" aria-label="Прибрати сорт «Кенія Nyeri» з міксу" data-action="remove-bean"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+                  <button class="mix-bean-select" type="button" aria-pressed="false">
+                    Кенія Nyeri
+                  </button>
+                  <button
+                    class="mix-bean-remove"
+                    type="button"
+                    aria-label="Прибрати сорт «Кенія Nyeri» з міксу"
+                    data-action="remove-bean"
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="m6 6 12 12M18 6 6 18" />
+                    </svg>
+                  </button>
                 </div>
                 <div class="mix-bean-chip" data-product="brazil-cerrado">
-                  <button class="mix-bean-select" type="button" aria-pressed="false">Бразилія Cerrado</button>
-                  <button class="mix-bean-remove" type="button" aria-label="Прибрати сорт «Бразилія Cerrado» з міксу" data-action="remove-bean"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+                  <button class="mix-bean-select" type="button" aria-pressed="false">
+                    Бразилія Cerrado
+                  </button>
+                  <button
+                    class="mix-bean-remove"
+                    type="button"
+                    aria-label="Прибрати сорт «Бразилія Cerrado» з міксу"
+                    data-action="remove-bean"
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="m6 6 12 12M18 6 6 18" />
+                    </svg>
+                  </button>
                 </div>
                 <button class="mix-chip mix-chip-add" type="button">+ Додати сорт</button>
               </div>
@@ -95,110 +196,320 @@
 
             <section class="card mix-step" aria-labelledby="mix-weight-title">
               <div class="mix-step-heading">
-                <h2 class="mix-step-title" id="mix-weight-title"><span class="mix-step-number mix-step-number-complete" aria-hidden="true">2</span>Загальна вага міксу</h2>
+                <h2 class="mix-step-title" id="mix-weight-title">
+                  <span class="mix-step-number mix-step-number-complete" aria-hidden="true">2</span
+                  >Загальна вага міксу
+                </h2>
               </div>
               <fieldset class="mix-choice-group">
                 <legend class="visually-hidden">Загальна вага міксу</legend>
                 <div class="mix-options">
-                  <input class="visually-hidden mix-option-input" type="radio" id="weight-100" name="weight" value="100" /><label class="mix-chip" for="weight-100">100 г</label>
-                  <input class="visually-hidden mix-option-input" type="radio" id="weight-200" name="weight" value="200" checked /><label class="mix-chip" for="weight-200">200 г</label>
-                  <input class="visually-hidden mix-option-input" type="radio" id="weight-500" name="weight" value="500" /><label class="mix-chip" for="weight-500">500 г</label>
-                  <input class="visually-hidden mix-option-input" type="radio" id="weight-1000" name="weight" value="1000" /><label class="mix-chip" for="weight-1000">1000 г</label>
-                  <input class="visually-hidden mix-option-input" type="radio" id="weight-2000" name="weight" value="2000" /><label class="mix-chip" for="weight-2000">2000 г</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="weight-100"
+                    name="weight"
+                    value="100"
+                  /><label class="mix-chip" for="weight-100">100 г</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="weight-200"
+                    name="weight"
+                    value="200"
+                    checked
+                  /><label class="mix-chip" for="weight-200">200 г</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="weight-500"
+                    name="weight"
+                    value="500"
+                  /><label class="mix-chip" for="weight-500">500 г</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="weight-1000"
+                    name="weight"
+                    value="1000"
+                  /><label class="mix-chip" for="weight-1000">1000 г</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="weight-2000"
+                    name="weight"
+                    value="2000"
+                  /><label class="mix-chip" for="weight-2000">2000 г</label>
                 </div>
               </fieldset>
             </section>
 
             <section class="card mix-step mix-proportions" aria-labelledby="mix-proportions-title">
               <div class="mix-step-heading">
-                <h2 class="mix-step-title" id="mix-proportions-title"><span class="mix-step-number" aria-hidden="true">3</span>Пропорції</h2>
+                <h2 class="mix-step-title" id="mix-proportions-title">
+                  <span class="mix-step-number" aria-hidden="true">3</span>Пропорції
+                </h2>
                 <span class="muted" id="mix-proportions-help">Сума має бути 100%</span>
               </div>
               <div role="group" aria-labelledby="mix-proportions-title">
                 <div class="mix-ratios">
-              <div class="mix-ratio-row" data-product="ethiopia-guji" style="--mix-ratio: 50%">
-                <label class="mix-ratio-name" for="ratio-ethiopia-guji">Ефіопія Guji</label>
-                <input class="mix-ratio-slider" type="range" id="ratio-ethiopia-guji" name="ratio-ethiopia-guji" min="0" max="100" step="1" value="50" aria-valuetext="50 відсотків" aria-describedby="mix-proportions-help" />
-                <div class="mix-percent-field">
-                  <label class="visually-hidden" for="percent-ethiopia-guji">Частка кави «Ефіопія Guji» у відсотках</label>
-                  <input type="number" id="percent-ethiopia-guji" name="percent-ethiopia-guji" min="0" max="100" step="1" value="50" aria-describedby="mix-proportions-help" /><span aria-hidden="true">%</span>
-                </div>
-              </div>
-              <div class="mix-ratio-row" data-product="kenya-nyeri" style="--mix-ratio: 30%">
-                <label class="mix-ratio-name" for="ratio-kenya-nyeri">Кенія Nyeri</label>
-                <input class="mix-ratio-slider" type="range" id="ratio-kenya-nyeri" name="ratio-kenya-nyeri" min="0" max="100" step="1" value="30" aria-valuetext="30 відсотків" aria-describedby="mix-proportions-help" />
-                <div class="mix-percent-field">
-                  <label class="visually-hidden" for="percent-kenya-nyeri">Частка кави «Кенія Nyeri» у відсотках</label>
-                  <input type="number" id="percent-kenya-nyeri" name="percent-kenya-nyeri" min="0" max="100" step="1" value="30" aria-describedby="mix-proportions-help" /><span aria-hidden="true">%</span>
-                </div>
-              </div>
-              <div class="mix-ratio-row" data-product="brazil-cerrado" style="--mix-ratio: 20%">
-                <label class="mix-ratio-name" for="ratio-brazil-cerrado">Бразилія Cerrado</label>
-                <input class="mix-ratio-slider" type="range" id="ratio-brazil-cerrado" name="ratio-brazil-cerrado" min="0" max="100" step="1" value="20" aria-valuetext="20 відсотків" aria-describedby="mix-proportions-help" />
-                <div class="mix-percent-field">
-                  <label class="visually-hidden" for="percent-brazil-cerrado">Частка кави «Бразилія Cerrado» у відсотках</label>
-                  <input type="number" id="percent-brazil-cerrado" name="percent-brazil-cerrado" min="0" max="100" step="1" value="20" aria-describedby="mix-proportions-help" /><span aria-hidden="true">%</span>
-                </div>
-              </div>
+                  <div class="mix-ratio-row" data-product="ethiopia-guji" style="--mix-ratio: 50%">
+                    <label class="mix-ratio-name" for="ratio-ethiopia-guji">Ефіопія Guji</label>
+                    <input
+                      class="mix-ratio-slider"
+                      type="range"
+                      id="ratio-ethiopia-guji"
+                      name="ratio-ethiopia-guji"
+                      min="0"
+                      max="100"
+                      step="1"
+                      value="50"
+                      aria-valuetext="50 відсотків"
+                      aria-describedby="mix-proportions-help"
+                    />
+                    <div class="mix-percent-field">
+                      <label class="visually-hidden" for="percent-ethiopia-guji"
+                        >Частка кави «Ефіопія Guji» у відсотках</label
+                      >
+                      <input
+                        type="number"
+                        id="percent-ethiopia-guji"
+                        name="percent-ethiopia-guji"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value="50"
+                        aria-describedby="mix-proportions-help"
+                      /><span aria-hidden="true">%</span>
+                    </div>
+                  </div>
+                  <div class="mix-ratio-row" data-product="kenya-nyeri" style="--mix-ratio: 30%">
+                    <label class="mix-ratio-name" for="ratio-kenya-nyeri">Кенія Nyeri</label>
+                    <input
+                      class="mix-ratio-slider"
+                      type="range"
+                      id="ratio-kenya-nyeri"
+                      name="ratio-kenya-nyeri"
+                      min="0"
+                      max="100"
+                      step="1"
+                      value="30"
+                      aria-valuetext="30 відсотків"
+                      aria-describedby="mix-proportions-help"
+                    />
+                    <div class="mix-percent-field">
+                      <label class="visually-hidden" for="percent-kenya-nyeri"
+                        >Частка кави «Кенія Nyeri» у відсотках</label
+                      >
+                      <input
+                        type="number"
+                        id="percent-kenya-nyeri"
+                        name="percent-kenya-nyeri"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value="30"
+                        aria-describedby="mix-proportions-help"
+                      /><span aria-hidden="true">%</span>
+                    </div>
+                  </div>
+                  <div class="mix-ratio-row" data-product="brazil-cerrado" style="--mix-ratio: 20%">
+                    <label class="mix-ratio-name" for="ratio-brazil-cerrado"
+                      >Бразилія Cerrado</label
+                    >
+                    <input
+                      class="mix-ratio-slider"
+                      type="range"
+                      id="ratio-brazil-cerrado"
+                      name="ratio-brazil-cerrado"
+                      min="0"
+                      max="100"
+                      step="1"
+                      value="20"
+                      aria-valuetext="20 відсотків"
+                      aria-describedby="mix-proportions-help"
+                    />
+                    <div class="mix-percent-field">
+                      <label class="visually-hidden" for="percent-brazil-cerrado"
+                        >Частка кави «Бразилія Cerrado» у відсотках</label
+                      >
+                      <input
+                        type="number"
+                        id="percent-brazil-cerrado"
+                        name="percent-brazil-cerrado"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value="20"
+                        aria-describedby="mix-proportions-help"
+                      /><span aria-hidden="true">%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="mix-total-row">
                 <span>Сума</span>
-                <span class="mix-total-badge"><i class="fa-solid fa-circle icon" aria-hidden="true"></i>100% · готово</span>
+                <span class="mix-total-badge"
+                  ><i class="fa-solid fa-circle icon" aria-hidden="true"></i>100% · готово</span
+                >
               </div>
-              
             </section>
 
             <section class="card mix-step" aria-labelledby="mix-roast-title">
               <div class="mix-step-heading">
-                <h2 class="mix-step-title" id="mix-roast-title"><span class="mix-step-number" aria-hidden="true">4</span>Обсмаження</h2>
+                <h2 class="mix-step-title" id="mix-roast-title">
+                  <span class="mix-step-number" aria-hidden="true">4</span>Обсмаження
+                </h2>
                 <span class="muted">Лише для зеленого зерна</span>
               </div>
               <div class="mix-roast-row">
                 <label for="roast-ethiopia-guji">Ефіопія Guji · зелене</label>
                 <div class="mix-roast-field">
-                  <select id="roast-ethiopia-guji" name="roast-ethiopia-guji"><option value="light" selected>Light</option><option value="medium">Medium</option><option value="dark">Dark</option></select>
+                  <select id="roast-ethiopia-guji" name="roast-ethiopia-guji">
+                    <option value="light" selected>Light</option>
+                    <option value="medium">Medium</option>
+                    <option value="dark">Dark</option>
+                  </select>
                   <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
                 </div>
               </div>
               <div class="mix-roast-row">
                 <label for="roast-kenya-nyeri">Кенія Nyeri · зелене</label>
                 <div class="mix-roast-field">
-                  <select id="roast-kenya-nyeri" name="roast-kenya-nyeri"><option value="light">Light</option><option value="medium" selected>Medium</option><option value="dark">Dark</option></select>
+                  <select id="roast-kenya-nyeri" name="roast-kenya-nyeri">
+                    <option value="light">Light</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="dark">Dark</option>
+                  </select>
                   <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="mix-roast-row"><span>Бразилія Cerrado</span><span class="muted">обсмаження вже задано</span></div>
+              <div class="mix-roast-row">
+                <span>Бразилія Cerrado</span><span class="muted">обсмаження вже задано</span>
+              </div>
             </section>
 
             <section class="card mix-step" aria-labelledby="mix-grind-title">
               <div class="mix-step-heading">
-                <h2 class="mix-step-title" id="mix-grind-title"><span class="mix-step-number" aria-hidden="true">5</span>Помел</h2>
+                <h2 class="mix-step-title" id="mix-grind-title">
+                  <span class="mix-step-number" aria-hidden="true">5</span>Помел
+                </h2>
                 <span class="muted">Один для всього міксу</span>
               </div>
               <fieldset class="mix-choice-group">
                 <legend class="visually-hidden">Помел для всього міксу</legend>
                 <div class="mix-options">
-                  <input class="visually-hidden mix-option-input" type="radio" id="grind-espresso" name="grind" value="espresso" /><label class="mix-chip" for="grind-espresso">Еспресо</label>
-                  <input class="visually-hidden mix-option-input" type="radio" id="grind-filter" name="grind" value="filter" checked /><label class="mix-chip" for="grind-filter">Фільтр</label>
-                  <input class="visually-hidden mix-option-input" type="radio" id="grind-cezve" name="grind" value="cezve" /><label class="mix-chip" for="grind-cezve">Джезва</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="grind-espresso"
+                    name="grind"
+                    value="espresso"
+                  /><label class="mix-chip" for="grind-espresso">Еспресо</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="grind-filter"
+                    name="grind"
+                    value="filter"
+                    checked
+                  /><label class="mix-chip" for="grind-filter">Фільтр</label>
+                  <input
+                    class="visually-hidden mix-option-input"
+                    type="radio"
+                    id="grind-cezve"
+                    name="grind"
+                    value="cezve"
+                  /><label class="mix-chip" for="grind-cezve">Джезва</label>
                 </div>
               </fieldset>
               <!-- Нативний summary доступний і всередині fieldset з вимкненими полями. -->
               <details class="mix-grind-help">
-                <summary>Допомога з вибором помелу <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i></summary>
-                <ul><li>Еспресо — дрібний помел.</li><li>Фільтр — середній помел.</li><li>Джезва — дуже дрібний помел.</li></ul>
+                <summary>
+                  Допомога з вибором помелу
+                  <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i>
+                </summary>
+                <ul>
+                  <li>Еспресо — дрібний помел.</li>
+                  <li>Фільтр — середній помел.</li>
+                  <li>Джезва — дуже дрібний помел.</li>
+                </ul>
               </details>
             </section>
 
             <section class="card mix-step" aria-labelledby="mix-packaging-title">
               <div class="mix-step-heading">
-                <h2 class="mix-step-title" id="mix-packaging-title"><span class="mix-step-number" aria-hidden="true">6</span>Пакування</h2>
+                <h2 class="mix-step-title" id="mix-packaging-title">
+                  <span class="mix-step-number" aria-hidden="true">6</span>Пакування
+                </h2>
               </div>
               <div class="mix-packaging-options" role="group" aria-labelledby="mix-packaging-title">
-                <input class="visually-hidden mix-option-input" type="radio" id="packaging-1" name="packaging" value="1" checked /><label class="mix-packaging-label" for="packaging-1"><strong>Тип тари 1</strong><span class="muted">+ 0 ₴</span></label>
-                <input class="visually-hidden mix-option-input" type="radio" id="packaging-2" name="packaging" value="2" /><label class="mix-packaging-label" for="packaging-2"><strong>Тип тари 2</strong><span class="muted">+ 0 ₴</span></label>
-                <input class="visually-hidden mix-option-input" type="radio" id="packaging-3" name="packaging" value="3" /><label class="mix-packaging-label" for="packaging-3"><strong>Тип тари 3</strong><span class="muted">+ 0 ₴</span></label>
+                <input
+                  class="visually-hidden mix-option-input"
+                  type="radio"
+                  id="packaging-1"
+                  name="packaging"
+                  value="1"
+                  checked
+                /><label class="mix-packaging-label" for="packaging-1"
+                  ><svg
+                    class="mix-packaging-icon"
+                    viewBox="0 0 64 64"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M16 9h32l4 46H12l4-46Z" />
+                    <path d="M17 17h30M23 9v8m18-8v8" />
+                    <circle cx="32" cy="35" r="6" /></svg
+                  ><strong>Пакет із клапаном</strong><span class="muted">+ 0 ₴</span></label
+                >
+                <input
+                  class="visually-hidden mix-option-input"
+                  type="radio"
+                  id="packaging-2"
+                  name="packaging"
+                  value="2"
+                /><label class="mix-packaging-label" for="packaging-2"
+                  ><svg
+                    class="mix-packaging-icon"
+                    viewBox="0 0 64 64"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M10 25h44v30H10zM7 17h50v8H7zM29 17v38m6-38v38" />
+                    <path d="M31 17C13 17 19 3 26 7l6 10m1 0C51 17 45 3 38 7l-6 10" /></svg
+                  ><strong>Подарункова коробка</strong><span class="muted">+ 40 ₴</span></label
+                >
+                <input
+                  class="visually-hidden mix-option-input"
+                  type="radio"
+                  id="packaging-3"
+                  name="packaging"
+                  value="3"
+                /><label class="mix-packaging-label" for="packaging-3"
+                  ><svg
+                    class="mix-packaging-icon"
+                    viewBox="0 0 64 64"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M17 14h30v7H17zM18 21h28l4 8v23l-4 4H18l-4-4V29l4-8Z" />
+                    <path d="M15 31h34M15 46h34" />
+                    <ellipse cx="32" cy="38" rx="5" ry="7" /></svg
+                  ><strong>Багаторазова банка</strong><span class="muted">+ 80 ₴</span></label
+                >
               </div>
             </section>
           </fieldset>
@@ -208,33 +519,171 @@
           <div class="card mix-summary-card">
             <h2 id="mix-summary-title">Ваш мікс</h2>
             <dl class="mix-summary-list">
-              <div><dt>Ефіопія Guji</dt><dd>50%</dd></div>
-              <div><dt>Кенія Nyeri</dt><dd>30%</dd></div>
-              <div><dt>Бразилія Cerrado</dt><dd>20%</dd></div>
+              <div>
+                <dt>Ефіопія Guji</dt>
+                <dd>50%</dd>
+              </div>
+              <div>
+                <dt>Кенія Nyeri</dt>
+                <dd>30%</dd>
+              </div>
+              <div>
+                <dt>Бразилія Cerrado</dt>
+                <dd>20%</dd>
+              </div>
             </dl>
-            
+
             <section class="mix-summary-section" aria-labelledby="mix-profile-title">
               <h3 class="mix-summary-subheading" id="mix-profile-title">Смаковий профіль</h3>
-              <div class="mix-profile-row"><span id="mix-acidity-label">Кислотність</span><meter class="mix-profile-meter" min="0" max="100" value="70" aria-labelledby="mix-acidity-label">70 зі 100</meter></div>
-              <div class="mix-profile-row"><span id="mix-sweetness-label">Солодкість</span><meter class="mix-profile-meter" min="0" max="100" value="55" aria-labelledby="mix-sweetness-label">55 зі 100</meter></div>
-              <div class="mix-profile-row"><span id="mix-bitterness-label">Гіркота</span><meter class="mix-profile-meter" min="0" max="100" value="30" aria-labelledby="mix-bitterness-label">30 зі 100</meter></div>
+              <div class="mix-profile-row">
+                <span id="mix-acidity-label">Кислотність</span
+                ><meter
+                  class="mix-profile-meter"
+                  min="0"
+                  max="100"
+                  value="70"
+                  aria-labelledby="mix-acidity-label"
+                >
+                  70 зі 100
+                </meter>
+              </div>
+              <div class="mix-profile-row">
+                <span id="mix-sweetness-label">Солодкість</span
+                ><meter
+                  class="mix-profile-meter"
+                  min="0"
+                  max="100"
+                  value="55"
+                  aria-labelledby="mix-sweetness-label"
+                >
+                  55 зі 100
+                </meter>
+              </div>
+              <div class="mix-profile-row">
+                <span id="mix-bitterness-label">Гіркота</span
+                ><meter
+                  class="mix-profile-meter"
+                  min="0"
+                  max="100"
+                  value="30"
+                  aria-labelledby="mix-bitterness-label"
+                >
+                  30 зі 100
+                </meter>
+              </div>
             </section>
             <dl class="mix-summary-list mix-summary-section">
-              <div><dt>Вага</dt><dd>200 г</dd></div>
-              <div><dt>Помел</dt><dd>Фільтр</dd></div>
-              <div><dt>Міцність</dt><dd><span class="visually-hidden">3 з 5</span><span class="mix-strength-icons" aria-hidden="true"><svg class="mix-strength-bean mix-strength-bean-filled" width="16" height="20" viewBox="0 0 20 24" aria-hidden="true" focusable="false"><ellipse cx="10" cy="12" rx="7" ry="10" /><path d="M13 3c-9 5 3 11-6 18" /></svg><svg class="mix-strength-bean mix-strength-bean-filled" width="16" height="20" viewBox="0 0 20 24" aria-hidden="true" focusable="false"><ellipse cx="10" cy="12" rx="7" ry="10" /><path d="M13 3c-9 5 3 11-6 18" /></svg><svg class="mix-strength-bean mix-strength-bean-filled" width="16" height="20" viewBox="0 0 20 24" aria-hidden="true" focusable="false"><ellipse cx="10" cy="12" rx="7" ry="10" /><path d="M13 3c-9 5 3 11-6 18" /></svg><svg class="mix-strength-bean" width="16" height="20" viewBox="0 0 20 24" aria-hidden="true" focusable="false"><ellipse cx="10" cy="12" rx="7" ry="10" /><path d="M13 3c-9 5 3 11-6 18" /></svg><svg class="mix-strength-bean" width="16" height="20" viewBox="0 0 20 24" aria-hidden="true" focusable="false"><ellipse cx="10" cy="12" rx="7" ry="10" /><path d="M13 3c-9 5 3 11-6 18" /></svg></span></dd></div>
+              <div>
+                <dt>Вага</dt>
+                <dd>200 г</dd>
+              </div>
+              <div>
+                <dt>Помел</dt>
+                <dd>Фільтр</dd>
+              </div>
+              <div>
+                <dt>Міцність</dt>
+                <dd>
+                  <span class="visually-hidden">3 з 5</span
+                  ><span class="mix-strength-icons" aria-hidden="true"
+                    ><svg
+                      class="mix-strength-bean mix-strength-bean-filled"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 20 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <ellipse cx="10" cy="12" rx="7" ry="10" />
+                      <path d="M13 3c-9 5 3 11-6 18" /></svg
+                    ><svg
+                      class="mix-strength-bean mix-strength-bean-filled"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 20 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <ellipse cx="10" cy="12" rx="7" ry="10" />
+                      <path d="M13 3c-9 5 3 11-6 18" /></svg
+                    ><svg
+                      class="mix-strength-bean mix-strength-bean-filled"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 20 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <ellipse cx="10" cy="12" rx="7" ry="10" />
+                      <path d="M13 3c-9 5 3 11-6 18" /></svg
+                    ><svg
+                      class="mix-strength-bean"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 20 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <ellipse cx="10" cy="12" rx="7" ry="10" />
+                      <path d="M13 3c-9 5 3 11-6 18" /></svg
+                    ><svg
+                      class="mix-strength-bean"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 20 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <ellipse cx="10" cy="12" rx="7" ry="10" />
+                      <path d="M13 3c-9 5 3 11-6 18" /></svg
+                  ></span>
+                </dd>
+              </div>
             </dl>
             <div class="mix-summary-section">
-              <p class="mix-delivery-row"><span id="mix-delivery-label">До безкоштовної доставки</span><span>260 ₴</span></p>
+              <p class="mix-delivery-row">
+                <span id="mix-delivery-label">До безкоштовної доставки</span><span>260 ₴</span>
+              </p>
               <!-- 540 з 800 = 67,5%; показник узгоджений із сумою та залишком із макета. -->
-              <progress class="mix-delivery-progress" max="800" value="540" aria-labelledby="mix-delivery-label">540 з 800 ₴</progress>
-              <p class="mix-price-row" id="mix-price"><span>Разом</span><strong class="mix-price">540 ₴</strong></p>
+              <progress
+                class="mix-delivery-progress"
+                max="800"
+                value="540"
+                aria-labelledby="mix-delivery-label"
+              >
+                540 з 800 ₴
+              </progress>
+              <p class="mix-price-row" id="mix-price">
+                <span>Разом</span><strong class="mix-price">540 ₴</strong>
+              </p>
             </div>
             <div class="mix-summary-actions">
-              <button class="button mix-cart-button" type="button" disabled aria-describedby="mix-form-status">Додати в кошик</button>
-              <button class="button button-secondary" type="button" disabled aria-describedby="mix-form-status mix-account-hint">Зберегти мікс</button>
+              <button
+                class="button mix-cart-button"
+                type="button"
+                disabled
+                aria-describedby="mix-form-status"
+              >
+                Додати в кошик
+              </button>
+              <button
+                class="button button-secondary"
+                type="button"
+                disabled
+                aria-describedby="mix-form-status mix-account-hint"
+              >
+                Зберегти мікс
+              </button>
               <p class="muted" id="mix-account-hint">Для збереження потрібен акаунт</p>
-              <button class="button mix-reset" type="reset" form="mix-form" disabled aria-describedby="mix-form-status">Почати спочатку</button>
+              <button
+                class="button mix-reset"
+                type="reset"
+                form="mix-form"
+                disabled
+                aria-describedby="mix-form-status"
+              >
+                Почати спочатку
+              </button>
             </div>
           </div>
         </aside>
@@ -245,7 +694,13 @@
       <div class="container">
         <div class="footer-brand">
           <a class="logo" href="index.html">
-            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+            <img
+              class="logo-image"
+              src="assets/images/logo.svg"
+              alt="Смажена Кава"
+              width="254"
+              height="274"
+            />
             <span aria-hidden="true">Смажена Кава</span>
           </a>
           <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
@@ -253,7 +708,7 @@
             <!-- Демонстраційні контакти з Figma. -->
             <p>+38 044 000 00 00</p>
             <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Київ, вул. Кавова, 12</p>
+            <p>Львів, площа Ринок · демолокація</p>
           </address>
         </div>
         <nav class="footer-navigation" aria-label="Навігація в підвалі">

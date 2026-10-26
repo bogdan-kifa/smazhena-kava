@@ -430,3 +430,8 @@
     transform: none;
   }
 }
+
+/* Дрібний текст на теплому фоні потребує контрасту щонайменше 4.5:1. */
+.about-story .eyebrow {
+  color: var(--color-primary);
+}

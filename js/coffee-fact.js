@@ -68,8 +68,9 @@
   function shortExcerpt(article) {
     const paragraphs = article.extract.split(/\n+/).filter((part) => part.trim());
     // Ці абзаци дають короткі факти без довгих вступів з етимологією.
-    const paragraph =
-      paragraphs[article.title === "Еспресо" || article.title === "Ристрето" ? 1 : 0];
+    const preferredIndex = article.title === "Еспресо" || article.title === "Ристрето" ? 1 : 0;
+    // Структура вступу API може змінитися: за відсутності другого абзацу беремо перший.
+    const paragraph = paragraphs[preferredIndex] || paragraphs[0];
     if (!paragraph) throw new Error("Missing selected paragraph");
     const excerpt = paragraph.replace(/\s+/g, " ").trim();
     const sentences = [];

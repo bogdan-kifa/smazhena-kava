@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="css/icons.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/interaction.css" />
+    <script src="js/products.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/catalog.js" defer></script>
   </head>
   <body class="catalog-page">
+    <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
     <a class="skip-link" href="#catalog-content">Перейти до каталогу</a>
     <header class="site-header">
       <div class="container">
@@ -63,12 +68,13 @@
         </nav>
         <p class="eyebrow">Каталог кави</p>
         <h1>Уся кава</h1>
-        <p class="catalog-intro">Моносорти й основи для власного міксу.</p>
+        <p class="catalog-intro">12 обсмажених і 2 зелені сорти для чашки та власного міксу.</p>
       </div>
       <section class="container catalog-listing" aria-labelledby="catalog-list-title">
         <h2 class="visually-hidden" id="catalog-list-title">Каталог кавових зерен</h2>
         <!-- HTML/CSS-версія: картки відкривають сторінку товару; обране, мікс і замовлення очікують наступного етапу. Розширені характеристики й наявність — навчальні дані для майбутньої інтеграції. -->
-        <p class="visually-hidden" id="catalog-controls-description">Фільтрація та сортування поки недоступні. У каталозі 12 товарів, до дев’яти на сторінці.</p>
+        <p class="visually-hidden" id="catalog-controls-description">У каталозі 12 обсмажених сортів і 2 зелені. Пошук та фільтри вмикаються після завантаження сторінки.</p>
+        <p class="shop-assortment-note">Асортимент і ціни демонстраційні. Зелене зерно можна купити без обсмаження або обрати обсмаження на сторінці сорту.</p>
         <form class="catalog-controls" aria-label="Параметри каталогу" aria-describedby="catalog-controls-description">
           <fieldset class="catalog-categories" disabled>
             <legend class="visually-hidden">Вид зерна</legend>
@@ -232,10 +238,10 @@
         </ul>
         <nav class="catalog-pagination" aria-label="Сторінки каталогу">
           <ul role="list">
-            <li><a class="catalog-page-link catalog-page-direction" href="catalog.html" aria-label="Попередня сторінка"><i class="fa-solid fa-chevron-left icon" aria-hidden="true"></i><span class="catalog-page-direction-text">Назад</span></a></li>
+            <li><a class="catalog-page-link catalog-page-direction" href="catalog.html" aria-label="Назад — попередня сторінка"><i class="fa-solid fa-chevron-left icon" aria-hidden="true"></i><span class="catalog-page-direction-text">Назад</span></a></li>
             <li><a class="catalog-page-link" href="catalog.html" aria-label="Сторінка 1">1</a></li>
             <li><span class="catalog-page-link catalog-page-current" aria-current="page"><span class="visually-hidden">Сторінка </span>2</span></li>
-            <li><a class="catalog-page-link catalog-page-direction" role="link" aria-disabled="true" aria-label="Наступна сторінка"><span class="catalog-page-direction-text">Далі</span><i class="fa-solid fa-chevron-right icon" aria-hidden="true"></i></a></li>
+            <li><a class="catalog-page-link catalog-page-direction" role="link" aria-disabled="true" aria-label="Далі — наступна сторінка"><span class="catalog-page-direction-text">Далі</span><i class="fa-solid fa-chevron-right icon" aria-hidden="true"></i></a></li>
           </ul>
         </nav>
       </section>
@@ -253,7 +259,7 @@
             <!-- Демонстраційні контакти з Figma. -->
             <p>+38 044 000 00 00</p>
             <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Київ, вул. Кавова, 12</p>
+            <p>Львів, площа Ринок · демолокація</p>
           </address>
         </div>
         <nav class="footer-navigation" aria-label="Навігація в підвалі">
