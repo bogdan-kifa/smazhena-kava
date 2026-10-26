@@ -79,6 +79,21 @@
   opacity: 1;
 }
 
+.checkout-field input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.checkout-field-error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+
+.checkout-order-actions {
+  gap: var(--spacing-sm);
+}
+
 /* 3. Доставка, оплата й гостьове оформлення: реальні radio/checkbox.
    Вибір цих параметрів чекає майбутніх розрахунків і логіки JS. */
 .checkout-choice-group {

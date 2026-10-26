@@ -328,3 +328,8 @@
     padding-inline: var(--spacing-md);
   }
 }
+
+/* Дрібний текст на теплому фоні потребує контрасту щонайменше 4.5:1. */
+.product-origin .eyebrow {
+  color: var(--color-primary);
+}

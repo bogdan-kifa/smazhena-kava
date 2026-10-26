@@ -190,3 +190,8 @@
     gap: var(--spacing-lg);
   }
 }
+
+/* Дрібний текст на теплому фоні потребує контрасту щонайменше 4.5:1. */
+.delivery-payment .eyebrow {
+  color: var(--color-primary);
+}
