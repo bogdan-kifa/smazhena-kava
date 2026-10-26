@@ -1,4 +1,4 @@
-/* Дані 12 наявних товарів; ціна в копійках за 250 г. */
+/* Демонстраційний асортимент; ціна в копійках за 250 г. */
 window.COFFEE_PRODUCTS = [
   {
     id: "ethiopia-guji",
@@ -173,5 +173,37 @@ window.COFFEE_PRODUCTS = [
     processing: "Wet-hulled",
     acidity: "Низька",
     strength: 4,
+  },
+  {
+    id: "ethiopia-guji-green",
+    name: "Ефіопія Guji · зелене зерно",
+    category: "green",
+    price: 28000,
+    origin: "ethiopia",
+    originLabel: "Ефіопія, Guji",
+    roast: "green",
+    profiles: ["floral", "fruity"],
+    notes:
+      "Орієнтир після світлого обсмаження: квіткові ноти, цитрус і персик. Зелене зерно потребує обсмаження перед заварюванням.",
+    image: "assets/images/coffee/green-ethiopia.svg",
+    processing: "Washed",
+    acidity: "Залежить від обсмаження",
+    strength: 0,
+  },
+  {
+    id: "brazil-cerrado-green",
+    name: "Бразилія Cerrado · зелене зерно",
+    category: "green",
+    price: 22000,
+    origin: "brazil",
+    originLabel: "Бразилія, Cerrado",
+    roast: "green",
+    profiles: ["chocolate", "nutty"],
+    notes:
+      "Орієнтир після середнього обсмаження: горіх, какао та карамель. Зелене зерно потребує обсмаження перед заварюванням.",
+    image: "assets/images/coffee/green-brazil.svg",
+    processing: "Natural",
+    acidity: "Залежить від обсмаження",
+    strength: 0,
   },
 ];

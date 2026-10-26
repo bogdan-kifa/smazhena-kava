@@ -193,7 +193,7 @@
       : answer.strength === "light"
         ? 6 - p.strength
         : 3 - Math.abs(3 - p.strength));
-  const ranked = [...S.products].sort((a, b) => score(b) - score(a));
+  const ranked = S.products.filter((p) => !S.isGreen(p)).sort((a, b) => score(b) - score(a));
   let index = 0;
   const selected = new URLSearchParams(location.search).get("product");
   if (ranked.some((p) => p.id === selected)) index = ranked.findIndex((p) => p.id === selected);

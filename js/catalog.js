@@ -52,7 +52,7 @@
   form.prepend(search);
   form.append(extra);
   document.getElementById("catalog-controls-description").textContent =
-    "Пошук та фільтри охоплюють усі 12 сортів. До дев’яти товарів на сторінці. Зеленого зерна в поточному асортименті немає.";
+    "У каталозі 12 обсмажених і 2 зелені сорти. Оберіть вид зерна; пошук та фільтри працюють для обраного виду. До дев’яти товарів на сторінці.";
   count.setAttribute("role", "status");
   count.setAttribute("aria-live", "polite");
   count.tabIndex = -1;
@@ -130,7 +130,10 @@
         n(
           "div",
           { class: "product-media" },
-          n("span", { class: "product-badge", text: "Single origin" }),
+          n("span", {
+            class: "product-badge",
+            text: S.isGreen(p) ? "Зелене зерно" : "Single origin",
+          }),
           n(
             "a",
             {
@@ -172,7 +175,7 @@
           "dl",
           { class: "catalog-product-specs" },
           spec("Обробка", p.processing),
-          spec("Обсмаження", { light: "Світле", medium: "Середнє", dark: "Темне" }[p.roast]),
+          spec("Обсмаження", S.isGreen(p) ? "Необсмажене" : S.roasts[p.roast]),
           spec("Кислотність", p.acidity),
         ),
         n(
@@ -201,6 +204,10 @@
     );
   }
   function render() {
+    if (options.category === "green") options.roast = "";
+    form.elements.roast.disabled = options.category === "green";
+    form.elements.roast.value = options.roast;
+    form.elements.roast.title = options.category === "green" ? "Зелене зерно ще не обсмажене" : "";
     const active = document.activeElement,
       focus = active?.closest("[data-favorite],[data-add-bean],[data-buy-product]"),
       focusAttribute =
@@ -212,26 +219,24 @@
       focusPosition = focus ? [...grid.querySelectorAll(`[${focusAttribute}]`)].indexOf(focus) : -1,
       state = S.get();
     favoriteSnapshot = JSON.stringify(state.favorites);
-    let list =
-      options.category === "green"
-        ? []
-        : S.products.filter((p) => {
-            const query = options.q.toLocaleLowerCase("uk");
-            return (
-              (!query ||
-                `${p.name} ${p.originLabel} ${p.notes}`.toLocaleLowerCase("uk").includes(query)) &&
-              (!options.origin || p.origin === options.origin) &&
-              (!options.roast || p.roast === options.roast) &&
-              (!options.profile || p.profiles.includes(options.profile)) &&
-              (!options.favorites || state.favorites.includes(p.id)) &&
-              (!options.price ||
-                (options.price === "under-350"
-                  ? p.price < 35000
-                  : options.price === "350-400"
-                    ? p.price >= 35000 && p.price <= 40000
-                    : p.price > 40000))
-            );
-          });
+    let list = S.products.filter((p) => {
+      const query = options.q.toLocaleLowerCase("uk");
+      return (
+        S.isGreen(p) === (options.category === "green") &&
+        (!query ||
+          `${p.name} ${p.originLabel} ${p.notes}`.toLocaleLowerCase("uk").includes(query)) &&
+        (!options.origin || p.origin === options.origin) &&
+        (!options.roast || p.roast === options.roast) &&
+        (!options.profile || p.profiles.includes(options.profile)) &&
+        (!options.favorites || state.favorites.includes(p.id)) &&
+        (!options.price ||
+          (options.price === "under-350"
+            ? p.price < 35000
+            : options.price === "350-400"
+              ? p.price >= 35000 && p.price <= 40000
+              : p.price > 40000))
+      );
+    });
     if (options.sort === "price-ascending") list.sort((a, b) => a.price - b.price);
     if (options.sort === "price-descending") list.sort((a, b) => b.price - a.price);
     if (options.sort === "name") list.sort((a, b) => a.name.localeCompare(b.name, "uk"));

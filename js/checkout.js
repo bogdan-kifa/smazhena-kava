@@ -31,7 +31,7 @@
     function itemLink(item) {
       const link = n("a", {
         href: S.url(item.type === "product" ? `products/${item.id}.html` : "constructor.html"),
-        text: `${S.name(item)} · ${item.type === "product" ? item.weight : item.mix.weight} г × ${item.qty}`,
+        text: `${S.name(item)} · ${item.type === "product" ? item.weight : item.mix.weight} г × ${item.qty} · ${S.itemDetails(item)}`,
       });
       if (item.type === "mix")
         link.addEventListener("click", async (event) => {
@@ -222,7 +222,12 @@
   document.getElementById("confirmation-order-title").textContent = `Приклад ${order.id}`;
   const pair = (label, value) => n("div", {}, n("dt", { text: label }), n("dd", { text: value }));
   details.append(
-    ...order.items.map((i) => pair(`${i.name} · ${i.weight} г × ${i.qty}`, S.money(i.total))),
+    ...order.items.map((i) =>
+      pair(
+        `${i.name} · ${i.weight} г × ${i.qty}${i.details ? ` · ${i.details}` : ""}`,
+        S.money(i.total),
+      ),
+    ),
     pair("Доставка", order.total >= 80000 ? "Безкоштовно" : "За тарифом перевізника"),
     pair("Разом за товари", S.money(order.total)),
   );

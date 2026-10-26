@@ -102,6 +102,7 @@
                 pair("Склад", S.composition(m)),
                 pair("Вага", `${m.weight} г`),
                 pair("Помел", S.grinds[m.grind]),
+                pair("Пакування", S.packagingText(m)),
                 pair("Вартість", S.money(S.mixPrice(m))),
               ),
               n("div", { class: "saved-mix-actions" }, repeat, edit, remove),
@@ -207,7 +208,7 @@
     ),
     n("p", {
       class: "muted",
-      text: "Для наявних обсмажених сортів профіль уже заданий. Він зберігається у складі міксу.",
+      text: "Для зеленого зерна оберіть обсмаження — воно включене у вартість. Для готового зерна профіль уже заданий. Вага означає готовий мікс.",
     }),
     n("div", { id: "mix-roast-list" }),
   );
@@ -321,7 +322,7 @@
     lists[1].replaceChildren(
       pair("Вага", `${m.weight} г`),
       pair("Помел", S.grinds[m.grind]),
-      pair("Пакування", `Тип тари ${m.packaging} · без доплати`),
+      pair("Пакування", S.packagingText(m)),
       pair("Міцність", strength(m, ready)),
     );
     const activeBeans = m.beans.filter((bean) => bean.ratio > 0);
@@ -370,7 +371,15 @@
     const icons = strengthTemplate.cloneNode(true);
     const rating = ready
       ? Math.round(
-          m.beans.reduce((sum, bean) => sum + S.byId.get(bean.id).strength * bean.ratio, 0) / 100,
+          m.beans.reduce(
+            (sum, bean) =>
+              sum +
+              (S.isGreen(S.byId.get(bean.id))
+                ? { light: 2, medium: 3, dark: 4 }[S.beanRoast(bean)]
+                : S.byId.get(bean.id).strength) *
+                bean.ratio,
+            0,
+          ) / 100,
         )
       : 0;
     icons
@@ -497,12 +506,33 @@
       rows.append(row);
     });
     document.getElementById("mix-roast-list").replaceChildren(
-      ...m.beans.map((b) =>
-        n("p", {
-          class: "muted",
-          text: `${S.byId.get(b.id).name} · ${{ light: "світле", medium: "середнє", dark: "темне" }[S.byId.get(b.id).roast]}`,
-        }),
-      ),
+      ...m.beans.map((b) => {
+        const p = S.byId.get(b.id);
+        if (!S.isGreen(p))
+          return n("p", {
+            class: "muted",
+            text: `${p.name} · ${S.roasts[p.roast].toLocaleLowerCase("uk")}`,
+          });
+        const roast = n(
+          "select",
+          { id: `roast-${b.id}`, "data-roast": b.id },
+          Object.entries(S.roasts).map(([value, text]) => n("option", { value, text })),
+        );
+        roast.value = S.beanRoast(b);
+        roast.addEventListener("change", async () => {
+          const value = roast.value;
+          await setDraft((draft) => {
+            const bean = draft.beans.find((entry) => entry.id === b.id);
+            if (bean && Object.hasOwn(S.roasts, value)) bean.roast = value;
+          });
+        });
+        return n(
+          "div",
+          { class: "mix-roast-row" },
+          n("label", { for: `roast-${b.id}`, text: p.name }),
+          roast,
+        );
+      }),
     );
     for (const name of ["weight", "grind", "packaging"])
       form

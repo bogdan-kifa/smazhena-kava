@@ -41,6 +41,40 @@
   color: var(--color-text);
   font: inherit;
 }
+.shop-purchase-option {
+  display: grid;
+  gap: 8px;
+  margin-block: 16px;
+}
+.shop-purchase-option label {
+  font-weight: 600;
+}
+.shop-purchase-option select,
+.mix-roast-row > select {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+.shop-assortment-note {
+  margin-block: 16px;
+  max-width: 72ch;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+.catalog-count {
+  scroll-margin-block: 12px;
+}
+.mix-packaging-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+}
 .shop-catalog-tools {
   display: flex;
   align-items: center;

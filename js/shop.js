@@ -7,6 +7,15 @@
   const key = "smazhena-kava:shop:v1";
   const weights = [100, 200, 250, 500, 1000, 2000];
   const grinds = { beans: "У зернах", espresso: "Еспресо", filter: "Фільтр", cezve: "Джезва" };
+  const roasts = { light: "Світле", medium: "Середнє", dark: "Темне" };
+  const packaging = {
+    1: { name: "Пакет із клапаном", price: 0 },
+    2: { name: "Подарункова коробка", price: 4000 },
+    3: { name: "Багаторазова банка", price: 8000 },
+  };
+  const isGreen = (product) => product?.category === "green";
+  const beanRoast = (bean) =>
+    isGreen(byId.get(bean.id)) ? bean.roast || "medium" : byId.get(bean.id).roast;
   const copy = (v) => JSON.parse(JSON.stringify(v));
   const emptyMix = () => ({
     id: "",
@@ -32,7 +41,13 @@
     const beans = (Array.isArray(value.beans) ? value.beans : [])
       .filter((b) => b && byId.has(b.id) && !seen.has(b.id) && seen.add(b.id))
       .slice(0, 4)
-      .map((b) => ({ id: b.id, ratio: integer(b.ratio, 0, 100, 0) }));
+      .map((b) => ({
+        id: b.id,
+        ratio: integer(b.ratio, 0, 100, 0),
+        ...(isGreen(byId.get(b.id))
+          ? { roast: Object.hasOwn(roasts, b.roast) ? b.roast : "medium" }
+          : {}),
+      }));
     return {
       id: typeof value.id === "string" && /^[\w-]{1,80}$/.test(value.id) ? value.id : "",
       name:
@@ -88,7 +103,13 @@
     if (!Number.isSafeInteger(total) || total !== value.total) return null;
     return {
       id: value.id,
-      items: items.map(({ name, weight, qty, total }) => ({ name, weight, qty, total })),
+      items: items.map(({ name, weight, qty, total, details }) => ({
+        name,
+        weight,
+        qty,
+        total,
+        ...(typeof details === "string" ? { details: details.slice(0, 600) } : {}),
+      })),
       total,
       delivery: value.delivery === "courier" ? "courier" : "post",
       created: isoDate(value.created),
@@ -100,12 +121,16 @@
     for (const item of (Array.isArray(v.cart) ? v.cart : []).slice(0, 50)) {
       if (!item || typeof item !== "object") continue;
       if (item.type === "product" && byId.has(item.id) && [250, 500, 1000].includes(item.weight)) {
-        const grind = Object.hasOwn(grinds, item.grind) ? item.grind : "beans";
+        const green = isGreen(byId.get(item.id));
+        const roast = green && Object.hasOwn(roasts, item.roast) ? item.roast : "raw";
+        const grind =
+          !(green && roast === "raw") && Object.hasOwn(grinds, item.grind) ? item.grind : "beans";
         const entry = {
           type: "product",
           id: item.id,
           weight: item.weight,
           grind,
+          ...(green ? { roast } : {}),
           qty: integer(item.qty, 1, 99, 1),
         };
         const existing = cart.find(
@@ -113,7 +138,8 @@
             x.type === "product" &&
             x.id === entry.id &&
             x.weight === entry.weight &&
-            x.grind === entry.grind,
+            x.grind === entry.grind &&
+            x.roast === entry.roast,
         );
         if (existing) existing.qty = Math.min(99, existing.qty + entry.qty);
         else cart.push(entry);
@@ -278,6 +304,7 @@
         id: "DEMO-" + uid().slice(0, 8).toUpperCase(),
         items: current.cart.map((item) => ({
           name: name(item),
+          details: itemDetails(item),
           weight: item.type === "product" ? item.weight : item.mix.weight,
           qty: item.qty,
           total: unit(item) * item.qty,
@@ -315,19 +342,35 @@
       style: "currency",
       currency: "UAH",
       maximumFractionDigits: cents % 100 ? 2 : 0,
-    }).format(cents / 100);
+    })
+      .format(cents / 100)
+      .replace(/грн\.?/u, "₴");
   const productPrice = (p, weight = 250) => Math.round((p.price * weight) / 250);
   const mixPrice = (m) =>
     Math.round(
       (m.beans.reduce((s, b) => s + (byId.get(b.id).price * b.ratio) / 100, 0) * m.weight) / 250,
-    );
+    ) + (packaging[m.packaging]?.price || 0);
   const lineKey = (item) =>
-    item.type === "product" ? `p:${item.id}:${item.weight}:${item.grind}` : `m:${item.mix.id}`;
+    item.type === "product"
+      ? `p:${item.id}:${item.weight}:${item.grind}${isGreen(byId.get(item.id)) ? `:${item.roast || "raw"}` : ""}`
+      : `m:${item.mix.id}`;
   const unit = (item) =>
     item.type === "product" ? productPrice(byId.get(item.id), item.weight) : mixPrice(item.mix);
   const total = () => state.cart.reduce((s, i) => s + unit(i) * i.qty, 0);
   const name = (item) => (item.type === "product" ? byId.get(item.id).name : item.mix.name);
-  const composition = (m) => m.beans.map((b) => `${byId.get(b.id).name} ${b.ratio}%`).join(" · ");
+  const composition = (m) =>
+    m.beans
+      .map(
+        (b) =>
+          `${byId.get(b.id).name} ${b.ratio}%${isGreen(byId.get(b.id)) ? ` (${roasts[beanRoast(b)].toLocaleLowerCase("uk")} обсмаження)` : ""}`,
+      )
+      .join(" · ");
+  const packagingText = (m) =>
+    `${packaging[m.packaging]?.name || packaging["1"].name}${packaging[m.packaging]?.price ? ` (+${money(packaging[m.packaging].price)})` : " · без доплати"}`;
+  const itemDetails = (item) =>
+    item.type === "product"
+      ? `${isGreen(byId.get(item.id)) ? (item.roast && item.roast !== "raw" ? `${roasts[item.roast]} обсмаження · ` : "Без обсмаження · ") : ""}${grinds[item.grind]}`
+      : `${composition(item.mix)} · ${grinds[item.mix.grind]} · ${packagingText(item.mix)}`;
   let noticeTimer;
   function notify(text, link) {
     let box = document.getElementById("shop-notice");
@@ -348,7 +391,7 @@
       if (!box.contains(document.activeElement)) box.hidden = true;
     }, 6500);
   }
-  async function addProduct(id, weight = 250, grind = "beans", qty = 1) {
+  async function addProduct(id, weight = 250, grind = "beans", qty = 1, roast = "raw") {
     if (
       !byId.has(id) ||
       ![250, 500, 1000].includes(weight) ||
@@ -358,7 +401,16 @@
       !Object.hasOwn(grinds, grind)
     )
       return false;
-    const candidate = { type: "product", id, weight, grind, qty };
+    const green = isGreen(byId.get(id));
+    if (green && roast !== "raw" && !Object.hasOwn(roasts, roast)) return false;
+    const candidate = {
+      type: "product",
+      id,
+      weight,
+      grind: green && roast === "raw" ? "beans" : grind,
+      qty,
+      ...(green ? { roast } : {}),
+    };
     let ok = true;
     const persisted = await update((s) => {
       const existing = s.cart.find((i) => lineKey(i) === lineKey(candidate));
@@ -388,7 +440,7 @@
     );
     return ok;
   }
-  async function addBean(id) {
+  async function addBean(id, roast = "medium") {
     if (!byId.has(id)) return false;
     let message;
     let added = false;
@@ -401,7 +453,13 @@
         message = "До міксу можна додати до чотирьох сортів.";
         return false;
       }
-      s.draft.beans.push({ id, ratio: 0 });
+      s.draft.beans.push({
+        id,
+        ratio: 0,
+        ...(isGreen(byId.get(id))
+          ? { roast: Object.hasOwn(roasts, roast) ? roast : "medium" }
+          : {}),
+      });
       added = true;
       message = "Сорт додано до міксу.";
     });
@@ -451,6 +509,12 @@
     products,
     byId,
     grinds,
+    roasts,
+    packaging,
+    packagingText,
+    itemDetails,
+    isGreen,
+    beanRoast,
     root,
     url,
     node,
@@ -557,7 +621,46 @@
         .querySelectorAll("fieldset[disabled],button[disabled]")
         .forEach((e) => (e.disabled = false));
       const status = document.getElementById("product-purchase-status");
-      status.textContent = "Оберіть вагу. Купівля додає каву до локального кошика, без оплати.";
+      status.textContent = isGreen(p)
+        ? "Оберіть зелене зерно або обсмаження без доплати. Помел доступний для обсмаженого зерна. Ціни й характеристики демонстраційні."
+        : "Оберіть вагу та помел. Купівля додає каву до кошика.";
+      status.classList.remove("visually-hidden");
+      const grindSelect = node(
+        "select",
+        { id: "product-grind", name: "grind" },
+        Object.entries(grinds).map(([value, text]) => node("option", { value, text })),
+      );
+      const grindField = node(
+        "div",
+        { class: "shop-purchase-option" },
+        node("label", { for: "product-grind", text: "Помел" }),
+        grindSelect,
+      );
+      purchase.querySelector(".product-weight").after(grindField);
+      let roastSelect;
+      if (isGreen(p)) {
+        roastSelect = node(
+          "select",
+          { id: "product-roast", name: "roast" },
+          node("option", { value: "raw", text: "Без обсмаження · зелене зерно" }),
+          Object.entries(roasts).map(([value, text]) =>
+            node("option", { value, text: `${text} · без доплати` }),
+          ),
+        );
+        grindField.before(
+          node(
+            "div",
+            { class: "shop-purchase-option" },
+            node("label", { for: "product-roast", text: "Обсмаження" }),
+            roastSelect,
+          ),
+        );
+        grindSelect.disabled = true;
+        roastSelect.addEventListener("change", () => {
+          grindSelect.disabled = roastSelect.value === "raw";
+          if (grindSelect.disabled) grindSelect.value = "beans";
+        });
+      }
       const buttons = purchase.querySelectorAll(".product-purchase-actions button");
       const weight = () => Number(purchase.querySelector('[name="weight"]:checked')?.value) || 250;
       const price = () =>
@@ -571,9 +674,10 @@
       price();
       purchase.addEventListener("submit", (e) => e.preventDefault());
       buttons[0].addEventListener("click", async () => {
-        if (await addProduct(id, weight())) location.href = url("cart.html");
+        if (await addProduct(id, weight(), grindSelect.value, 1, roastSelect?.value || "raw"))
+          location.href = url("cart.html");
       });
-      buttons[1].addEventListener("click", () => addBean(id));
+      buttons[1].addEventListener("click", () => addBean(id, roastSelect?.value || "medium"));
     }
   }
   document

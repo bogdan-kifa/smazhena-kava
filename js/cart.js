@@ -144,8 +144,8 @@
           class: "muted",
           text:
             item.type === "product"
-              ? `${item.weight} г · ${S.grinds[item.grind]}`
-              : `${item.mix.weight} г · ${S.composition(item.mix)} · ${S.grinds[item.mix.grind]}`,
+              ? `${item.weight} г · ${S.itemDetails(item)}`
+              : `${item.mix.weight} г · ${S.composition(item.mix)} · ${S.grinds[item.mix.grind]} · ${S.packagingText(item.mix)}`,
         }),
         n(
           "div",

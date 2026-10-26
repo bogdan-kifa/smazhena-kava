@@ -16,7 +16,7 @@
           .replace(".html", ""),
       ),
     );
-  for (const p of S.products.filter((p) => !shown.has(p.id)).slice(0, 3)) {
+  for (const p of S.products.filter((p) => !S.isGreen(p) && !shown.has(p.id)).slice(0, 3)) {
     const li = originals[0].cloneNode(true),
       card = li.querySelector("article"),
       heading = li.querySelector("h3"),
