@@ -1,8 +1,8 @@
 {
-  "name": "smazhena-kava-lab-07",
+  "name": "smazhena-kava",
   "version": "1.0.0",
   "private": true,
-  "description": "Смажена Кава — ЛР №7: проєктування та реалізація повноцінного лендингу",
+  "description": "Смажена Кава — сайт кавового бренду з каталогом зерна, конструктором міксу та підбором кави за смаком.",
   "scripts": {
     "format": "prettier --write \"*.html\" \"products/*.html\" \"css/*.css\" \"js/*.js\"",
     "build:css": "tailwindcss -i css/tailwind.input.css -o css/tailwind.css --minify",
@@ -12,5 +12,21 @@
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
     "tailwindcss": "3.4.17"
-  }
+  },
+  "author": "Богдан Кіфа",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bogdan-kifa/smazhena-kava.git"
+  },
+  "homepage": "https://bogdan-kifa.github.io/smazhena-kava/",
+  "bugs": {
+    "url": "https://github.com/bogdan-kifa/smazhena-kava/issues"
+  },
+  "keywords": [
+    "coffee",
+    "ecommerce",
+    "vanilla-javascript",
+    "tailwindcss",
+    "responsive-design"
+  ]
 }

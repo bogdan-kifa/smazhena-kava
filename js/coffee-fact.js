@@ -1,4 +1,4 @@
-/* ЛР №7: довідка із зовнішнього MediaWiki API; бізнес-логіка магазину не змінюється. */
+/* Кавовий факт дня: довідкова інформація із зовнішнього MediaWiki API. */
 (() => {
   const widget = document.getElementById("coffee-fact");
   if (!widget) return;
