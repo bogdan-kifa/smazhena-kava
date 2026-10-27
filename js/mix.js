@@ -295,6 +295,53 @@
   totalBadge.setAttribute("role", "status");
   totalBadge.setAttribute("aria-live", "polite");
   totalBadge.setAttribute("aria-atomic", "true");
+  const ratioSection = document.getElementById("mix-proportions-title").closest("section");
+  const ratioRows = ratioSection.querySelector(".mix-ratios");
+  ratioSection.classList.add("mix-proportions-enhanced");
+  const ratioControls = new Map();
+  const ratioColors = new Map();
+  const composition = n("div", {
+    class: "mix-composition",
+    role: "group",
+    "aria-label": "Склад міксу",
+  });
+  const compositionEmpty = n("span", {
+    class: "mix-composition-empty",
+    "aria-hidden": "true",
+    text: "Оберіть частки сортів",
+  });
+  composition.append(compositionEmpty);
+  const totalRow = totalBadge.closest(".mix-total-row");
+  totalRow.querySelector("span:first-child").textContent = "Разом";
+  ratioRows.before(n("div", { class: "mix-ratio-overview" }, totalRow, composition));
+  const equalizeButton = n("button", {
+    type: "button",
+    class: "button button-secondary mix-equalize",
+    text: "Поділити порівну",
+    "aria-describedby": "mix-ratio-actions-help",
+  });
+  ratioRows.after(
+    n(
+      "div",
+      { class: "mix-ratio-footer" },
+      equalizeButton,
+      n("p", {
+        id: "mix-ratio-actions-help",
+        class: "mix-ratio-actions-help",
+        text: "Кожен повзунок змінює лише свій сорт.",
+      }),
+    ),
+  );
+  equalizeButton.addEventListener("click", async () => {
+    await editRatios((draft) => {
+      if (!draft.beans.length) return;
+      const share = Math.floor(100 / draft.beans.length),
+        remainder = 100 % draft.beans.length;
+      draft.beans.forEach((bean, index) => {
+        bean.ratio = share + (index < remainder ? 1 : 0);
+      });
+    });
+  });
   document.querySelector(".mix-summary-actions").append(
     n("a", {
       class: "shop-text-link",
@@ -351,6 +398,7 @@
       ready = S.validMix(m),
       total = ready ? S.mixPrice(m) : 0,
       percentage = m.beans.reduce((sum, bean) => sum + bean.ratio, 0);
+    updateRatioTools(m);
     const taste = S.mixTaste(m);
     for (const entry of tasteRows) {
       entry.meter.hidden = !taste;
@@ -461,7 +509,7 @@
     if (!S.get().draft.beans.some((b) => b.id === id)) return;
     if (!Number.isInteger(value) || value < 0 || value > 100) {
       S.notify("Вкажіть ціле число від 0 до 100.");
-      renderFields();
+      syncRatioInputs(id);
       return;
     }
     const scheduled = scheduledRatios.get(id);
@@ -488,6 +536,82 @@
     slider.setAttribute("aria-valuetext", `${target.ratio} відсотків`);
     slider.closest(".mix-ratio-row").style.setProperty("--mix-ratio", `${target.ratio}%`);
     summary();
+  }
+  function syncRatioInputs(id = null) {
+    const beans = S.get().draft.beans;
+    if (beans.length !== ratioControls.size || beans.some((bean) => !ratioControls.has(bean.id))) {
+      const activeId = document.activeElement?.id;
+      renderFields();
+      (document.getElementById(activeId) || select)?.focus({ preventScroll: true });
+      return;
+    }
+    for (const bean of beans) {
+      if (id && bean.id !== id) continue;
+      const slider = document.getElementById(`ratio-${bean.id}`),
+        number = document.getElementById(`percent-${bean.id}`);
+      if (!slider || !number) continue;
+      slider.value = number.value = bean.ratio;
+      slider.setAttribute("aria-valuetext", `${bean.ratio} відсотків`);
+      slider.closest(".mix-ratio-row").style.setProperty("--mix-ratio", `${bean.ratio}%`);
+    }
+  }
+  async function editRatios(change) {
+    const ok = await setDraft(change);
+    syncRatioInputs();
+    return ok;
+  }
+  async function balanceRatio(id) {
+    let message = "";
+    await editRatios((draft) => {
+      const bean = draft.beans.find((entry) => entry.id === id);
+      if (!bean) return;
+      const remaining =
+        100 - draft.beans.reduce((sum, entry) => sum + (entry.id === id ? 0 : entry.ratio), 0);
+      if (remaining < 0 || remaining > 100) {
+        message = "Інші сорти вже перевищують 100%. Спочатку зменште їхні частки.";
+        return;
+      }
+      bean.ratio = remaining;
+    });
+    if (message) S.notify(message);
+  }
+  function updateRatioTools(m) {
+    const total = m.beans.reduce((sum, bean) => sum + bean.ratio, 0);
+    const visible = m.beans.filter((bean) => bean.ratio > 0);
+    const gaps = Math.max(0, visible.length - 1) * 4;
+    compositionEmpty.hidden = visible.length > 0;
+    composition.setAttribute(
+      "aria-label",
+      `Склад міксу: ${m.beans.map((bean) => `${S.byId.get(bean.id).name} ${bean.ratio}%`).join(", ") || "сортів ще немає"}. Сума ${total}%.`,
+    );
+    equalizeButton.disabled = !m.beans.length;
+    for (const bean of m.beans) {
+      const controls = ratioControls.get(bean.id);
+      if (!controls) continue;
+      const remaining = 100 - (total - bean.ratio);
+      controls.minus.disabled = bean.ratio === 0;
+      controls.plus.disabled = bean.ratio === 100;
+      controls.balance.disabled = remaining < 0 || remaining > 100 || remaining === bean.ratio;
+      const balanceText = total > 100 ? "Зняти надлишок" : "Залишок сюди";
+      controls.balance.textContent = balanceText;
+      controls.balance.setAttribute(
+        "aria-label",
+        `${balanceText}: ${S.byId.get(bean.id).name}. Довести суму до 100%`,
+      );
+      controls.segment.hidden = bean.ratio === 0;
+      const share = bean.ratio / Math.max(100, total);
+      controls.segment.style.width = `calc(${share * 100}% - ${share * gaps}px)`;
+      controls.segment.textContent = bean.ratio >= 10 ? `${bean.ratio}%` : "";
+      controls.segment.setAttribute(
+        "aria-label",
+        `${S.byId.get(bean.id).name}: ${bean.ratio}%. Налаштувати частку`,
+      );
+      controls.segment.classList.toggle("mix-composition-first", visible[0]?.id === bean.id);
+      controls.segment.classList.toggle(
+        "mix-composition-last",
+        visible[visible.length - 1]?.id === bean.id,
+      );
+    }
   }
   function renderFields() {
     const m = S.get().draft;
@@ -519,8 +643,19 @@
     });
     if (!m.beans.length)
       options.append(n("p", { class: "muted", text: "Обраних сортів ще немає." }));
-    const rows = document.querySelector(".mix-ratios");
+    const rows = ratioRows;
     rows.replaceChildren();
+    ratioControls.clear();
+    composition.replaceChildren(compositionEmpty);
+    for (const id of ratioColors.keys())
+      if (!m.beans.some((bean) => bean.id === id)) ratioColors.delete(id);
+    for (const bean of m.beans)
+      if (!ratioColors.has(bean.id)) {
+        ratioColors.set(
+          bean.id,
+          [0, 1, 2, 3].find((color) => ![...ratioColors.values()].includes(color)),
+        );
+      }
     m.beans.forEach((b) => {
       const p = S.byId.get(b.id),
         slider = n("input", {
@@ -550,17 +685,87 @@
         if (Number.isInteger(value) && value >= 0 && value <= 100) ratio(b.id, value);
       });
       number.addEventListener("change", () => ratio(b.id, number.valueAsNumber));
+      const minus = n("button", {
+        id: `ratio-minus-${b.id}`,
+        type: "button",
+        class: "mix-ratio-step",
+        text: "−",
+        "aria-label": `Зменшити частку ${p.name} на 1%`,
+        "data-ratio-step": "minus",
+      });
+      const plus = n("button", {
+        id: `ratio-plus-${b.id}`,
+        type: "button",
+        class: "mix-ratio-step",
+        text: "+",
+        "aria-label": `Збільшити частку ${p.name} на 1%`,
+        "data-ratio-step": "plus",
+      });
+      for (const [button, delta] of [
+        [minus, -1],
+        [plus, 1],
+      ])
+        button.addEventListener("click", () =>
+          editRatios((draft) => {
+            const bean = draft.beans.find((entry) => entry.id === b.id);
+            if (bean) bean.ratio = Math.max(0, Math.min(100, bean.ratio + delta));
+          }),
+        );
+      const balance = n("button", {
+        id: `ratio-balance-${b.id}`,
+        type: "button",
+        class: "mix-ratio-balance",
+        text: "Залишок сюди",
+        "data-balance-bean": b.id,
+      });
+      balance.addEventListener("click", () => balanceRatio(b.id));
+      const color = ratioColors.get(b.id);
+      const segment = n("button", {
+        type: "button",
+        class: "mix-composition-segment",
+        "data-color": color,
+        "data-ratio-bean": b.id,
+      });
+      segment.addEventListener("click", () => {
+        slider.scrollIntoView({
+          block: "nearest",
+          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+        });
+        slider.focus({ preventScroll: true });
+      });
+      composition.append(segment);
+      ratioControls.set(b.id, { minus, plus, balance, segment });
       const row = n(
         "div",
         { class: "mix-ratio-row" },
-        n("label", { class: "mix-ratio-name", for: `ratio-${b.id}`, text: p.name }),
-        slider,
         n(
           "div",
-          { class: "mix-percent-field" },
-          number,
-          n("span", { "aria-hidden": "true", text: "%" }),
+          { class: "mix-ratio-head" },
+          n(
+            "label",
+            { class: "mix-ratio-name", for: `ratio-${b.id}` },
+            n("span", {
+              class: "mix-ratio-swatch",
+              "data-color": color,
+              "aria-hidden": "true",
+              text: String.fromCharCode(65 + color),
+            }),
+            n("span", { text: p.name }),
+          ),
+          n(
+            "div",
+            { class: "mix-ratio-stepper", role: "group", "aria-label": `Частка: ${p.name}` },
+            minus,
+            n(
+              "div",
+              { class: "mix-percent-field" },
+              number,
+              n("span", { "aria-hidden": "true", text: "%" }),
+            ),
+            plus,
+          ),
         ),
+        n("div", { class: "mix-ratio-adjust" }, slider, balance),
       );
       row.style.setProperty("--mix-ratio", `${b.ratio}%`);
       rows.append(row);
