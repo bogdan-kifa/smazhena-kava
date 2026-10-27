@@ -209,7 +209,11 @@
 .mix-ratio-slider::-webkit-slider-runnable-track {
   height: var(--spacing-xs);
   border-radius: var(--radius-pill);
-  background: linear-gradient(to right, var(--color-primary) 0 var(--mix-ratio), var(--color-border) var(--mix-ratio) 100%);
+  background: linear-gradient(
+    to right,
+    var(--color-primary) 0 var(--mix-ratio),
+    var(--color-border) var(--mix-ratio) 100%
+  );
 }
 
 .mix-ratio-slider::-webkit-slider-thumb {
@@ -484,11 +488,36 @@
 
 .mix-profile-row {
   display: grid;
-  grid-template-columns: minmax(0, 96px) var(--grid-track-fluid);
+  grid-template-columns: minmax(0, 88px) var(--grid-track-fluid) 48px;
   align-items: center;
   gap: var(--spacing-sm);
   color: var(--color-text-muted);
   font-size: var(--font-size-small);
+}
+.mix-profile-chart {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+.mix-profile-track {
+  min-width: 0;
+}
+.mix-profile-empty {
+  display: block;
+  height: var(--spacing-xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+.mix-profile-value {
+  color: var(--color-text);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-caption);
+  white-space: nowrap;
+}
+.mix-profile-help,
+.mix-profile-status {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-body);
 }
 
 .mix-profile-meter,

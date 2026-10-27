@@ -214,10 +214,45 @@
   );
   const profile = document.getElementById("mix-profile-title").parentElement;
   const strengthTemplate = document.querySelector(".mix-strength-icons").cloneNode(true);
+  const tasteRows = Object.entries(S.tasteDimensions).map(([key, label]) => {
+    const labelId = `mix-${key}-label`;
+    const meter = n("meter", {
+      class: "mix-profile-meter",
+      id: `mix-${key}-meter`,
+      min: 0,
+      max: 100,
+      value: 0,
+      "aria-labelledby": labelId,
+      "aria-describedby": "mix-profile-help",
+      hidden: true,
+    });
+    const empty = n("span", { class: "mix-profile-empty", "aria-hidden": "true" });
+    const value = n("span", { class: "mix-profile-value", "aria-hidden": "true", text: "—" });
+    const row = n(
+      "div",
+      { class: "mix-profile-row" },
+      n("span", { id: labelId, text: label }),
+      n("div", { class: "mix-profile-track" }, meter, empty),
+      value,
+    );
+    return { key, meter, empty, value, row };
+  });
+  const tasteStatus = n("p", { id: "mix-profile-status", class: "mix-profile-status muted" });
   profile.replaceChildren(
     n("h3", { id: "mix-profile-title", class: "mix-summary-subheading", text: "Смаковий профіль" }),
+    n(
+      "div",
+      { class: "mix-profile-chart", id: "mix-profile-chart" },
+      tasteRows.map((entry) => entry.row),
+    ),
+    tasteStatus,
+    n("p", {
+      id: "mix-profile-help",
+      class: "mix-profile-help muted",
+      text: "Орієнтовна оцінка за складом і обсмаженням. 0–100 — відносна шкала, не результат вимірювання.",
+    }),
+    n("h4", { class: "mix-summary-subheading", text: "Смакові ноти" }),
     n("ul", { class: "mix-flavor-notes", id: "mix-notes" }),
-    n("p", { class: "muted", text: "Орієнтир за описами обраних сортів." }),
   );
   const buttons = document.querySelectorAll(".mix-summary-actions button");
   buttons.forEach((b) => (b.disabled = false));
@@ -315,6 +350,27 @@
       ready = S.validMix(m),
       total = ready ? S.mixPrice(m) : 0,
       percentage = m.beans.reduce((sum, bean) => sum + bean.ratio, 0);
+    const taste = S.mixTaste(m);
+    for (const entry of tasteRows) {
+      entry.meter.hidden = !taste;
+      entry.empty.hidden = Boolean(taste);
+      entry.value.textContent = taste ? `${taste[entry.key]}/100` : "—";
+      if (taste) {
+        entry.meter.value = taste[entry.key];
+        entry.meter.textContent = `${taste[entry.key]} зі 100`;
+        entry.meter.setAttribute("aria-valuetext", `${taste[entry.key]} зі 100, орієнтовна оцінка`);
+      } else {
+        entry.meter.value = 0;
+        entry.meter.textContent = "Оцінка недоступна";
+        entry.meter.removeAttribute("aria-valuetext");
+      }
+    }
+    tasteStatus.hidden = Boolean(taste);
+    tasteStatus.textContent = !m.beans.length
+      ? "Додайте зерно та встановіть суму часток 100%, щоб побачити профіль."
+      : !ready
+        ? `Сума часток — ${percentage}%. Профіль з’явиться при сумі 100%.`
+        : "Для обраного складу ще немає оцінок смаку.";
     const pair = (key, value) => n("div", {}, n("dt", { text: key }), n("dd", {}, value));
     const lists = document.querySelectorAll(".mix-summary-list");
     lists[0].replaceChildren(...m.beans.map((b) => pair(S.byId.get(b.id).name, `${b.ratio}%`)));
@@ -330,11 +386,12 @@
       ...(activeBeans.length
         ? activeBeans.map((bean) => {
             const p = S.byId.get(bean.id);
+            const notes = S.isGreen(p) ? p.notesByRoast?.[S.beanRoast(bean)] || p.notes : p.notes;
             return n(
               "li",
               {},
               n("strong", { text: p.name }),
-              n("span", { text: p.notes.split(".")[0] }),
+              n("span", { text: notes.split(".")[0] }),
             );
           })
         : [n("li", { text: "Додайте сорт і встановіть його частку." })]),
