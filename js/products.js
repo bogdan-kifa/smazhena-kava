@@ -1,7 +1,9 @@
-/* Демонстраційний асортимент; ціна в копійках за 250 г. */
+/* Демонстраційний асортимент; ціна в копійках за 250 г.
+   taste/tasteByRoast — відносні оцінки 0–100 для моделі профілю, не результати вимірювань. */
 window.COFFEE_PRODUCTS = [
   {
     id: "ethiopia-guji",
+    taste: { acidity: 90, sweetness: 70, bitterness: 20 },
     name: "Ефіопія Guji",
     price: 36000,
     origin: "ethiopia",
@@ -17,6 +19,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "colombia-huila",
+    taste: { acidity: 60, sweetness: 80, bitterness: 50 },
     name: "Колумбія Huila",
     price: 32000,
     origin: "colombia",
@@ -32,6 +35,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "brazil-cerrado",
+    taste: { acidity: 30, sweetness: 80, bitterness: 70 },
     name: "Бразилія Cerrado",
     price: 29000,
     origin: "brazil",
@@ -46,6 +50,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "kenya-nyeri",
+    taste: { acidity: 90, sweetness: 60, bitterness: 30 },
     name: "Кенія Nyeri",
     price: 41000,
     origin: "kenya",
@@ -61,6 +66,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "guatemala-antigua",
+    taste: { acidity: 60, sweetness: 70, bitterness: 50 },
     name: "Гватемала Antigua",
     price: 34000,
     origin: "guatemala",
@@ -76,6 +82,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "costa-rica-tarrazu",
+    taste: { acidity: 60, sweetness: 90, bitterness: 40 },
     name: "Коста-Рика Tarrazú",
     price: 38000,
     origin: "costa-rica",
@@ -90,6 +97,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "rwanda-nyamasheke",
+    taste: { acidity: 80, sweetness: 70, bitterness: 30 },
     name: "Руанда Nyamasheke",
     price: 39000,
     origin: "rwanda",
@@ -105,6 +113,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "peru-cajamarca",
+    taste: { acidity: 50, sweetness: 80, bitterness: 40 },
     name: "Перу Cajamarca",
     price: 33000,
     origin: "peru",
@@ -119,6 +128,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "honduras-marcala",
+    taste: { acidity: 60, sweetness: 80, bitterness: 50 },
     name: "Гондурас Marcala",
     price: 31000,
     origin: "honduras",
@@ -133,6 +143,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "nicaragua-jinotega",
+    taste: { acidity: 50, sweetness: 80, bitterness: 50 },
     name: "Нікарагуа Jinotega",
     price: 35000,
     origin: "nicaragua",
@@ -148,6 +159,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "el-salvador-apaneca",
+    taste: { acidity: 50, sweetness: 90, bitterness: 40 },
     name: "Сальвадор Apaneca",
     price: 37000,
     origin: "el-salvador",
@@ -162,6 +174,7 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "indonesia-sumatra",
+    taste: { acidity: 30, sweetness: 60, bitterness: 80 },
     name: "Індонезія Sumatra",
     price: 36000,
     origin: "indonesia",
@@ -176,6 +189,16 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "ethiopia-guji-green",
+    notesByRoast: {
+      light: "Квіткові ноти, цитрус і персик; яскравіша кислотність та легка гіркота.",
+      medium: "Стиглі фрукти й карамель; м’якша кислотність і солодший баланс.",
+      dark: "Какао й темна карамель; стриманіша кислотність та виразніша гіркота.",
+    },
+    tasteByRoast: {
+      light: { acidity: 90, sweetness: 70, bitterness: 20 },
+      medium: { acidity: 70, sweetness: 80, bitterness: 50 },
+      dark: { acidity: 50, sweetness: 70, bitterness: 80 },
+    },
     name: "Ефіопія Guji · зелене зерно",
     category: "green",
     price: 28000,
@@ -192,6 +215,16 @@ window.COFFEE_PRODUCTS = [
   },
   {
     id: "brazil-cerrado-green",
+    notesByRoast: {
+      light: "Горіх і легкі фруктові ноти; помірна кислотність та легка гіркота.",
+      medium: "Горіх, какао та карамель; м’яка кислотність і виразна солодкість.",
+      dark: "Фундук і темний шоколад; низька кислотність та насиченіша гіркота.",
+    },
+    tasteByRoast: {
+      light: { acidity: 50, sweetness: 70, bitterness: 30 },
+      medium: { acidity: 40, sweetness: 90, bitterness: 50 },
+      dark: { acidity: 30, sweetness: 80, bitterness: 70 },
+    },
     name: "Бразилія Cerrado · зелене зерно",
     category: "green",
     price: 22000,

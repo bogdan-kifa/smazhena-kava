@@ -350,6 +350,35 @@
     Math.round(
       (m.beans.reduce((s, b) => s + (byId.get(b.id).price * b.ratio) / 100, 0) * m.weight) / 250,
     ) + (packaging[m.packaging]?.price || 0);
+  const tasteDimensions = {
+    acidity: "Кислотність",
+    sweetness: "Солодкість",
+    bitterness: "Гіркота",
+  };
+  // Weighted illustrative scores; preserve the draft and never scale incomplete proportions to 100%.
+  function mixTaste(m) {
+    if (
+      !m ||
+      !Array.isArray(m.beans) ||
+      !m.beans.every((bean) => bean && typeof bean === "object") ||
+      !validMix(m)
+    )
+      return null;
+    const result = Object.fromEntries(Object.keys(tasteDimensions).map((key) => [key, 0]));
+    for (const bean of m.beans) {
+      if (bean.ratio === 0) continue;
+      const product = byId.get(bean.id);
+      const scores = isGreen(product) ? product.tasteByRoast?.[beanRoast(bean)] : product?.taste;
+      if (!scores) return null;
+      for (const key of Object.keys(tasteDimensions)) {
+        if (!Number.isFinite(scores[key]) || scores[key] < 0 || scores[key] > 100) return null;
+        result[key] += (scores[key] * bean.ratio) / 100;
+      }
+    }
+    return Object.fromEntries(
+      Object.entries(result).map(([key, value]) => [key, Math.round(value)]),
+    );
+  }
   const lineKey = (item) =>
     item.type === "product"
       ? `p:${item.id}:${item.weight}:${item.grind}${isGreen(byId.get(item.id)) ? `:${item.roast || "raw"}` : ""}`
@@ -526,6 +555,8 @@
     emptyMix,
     productPrice,
     mixPrice,
+    mixTaste,
+    tasteDimensions,
     lineKey,
     unit,
     total,
