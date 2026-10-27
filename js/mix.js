@@ -214,13 +214,14 @@
   );
   const profile = document.getElementById("mix-profile-title").parentElement;
   const strengthTemplate = document.querySelector(".mix-strength-icons").cloneNode(true);
+  const formatTaste = new Intl.NumberFormat("uk-UA", { maximumFractionDigits: 1 });
   const tasteRows = Object.entries(S.tasteDimensions).map(([key, label]) => {
     const labelId = `mix-${key}-label`;
     const meter = n("meter", {
       class: "mix-profile-meter",
       id: `mix-${key}-meter`,
       min: 0,
-      max: 100,
+      max: 10,
       value: 0,
       "aria-labelledby": labelId,
       "aria-describedby": "mix-profile-help",
@@ -249,7 +250,7 @@
     n("p", {
       id: "mix-profile-help",
       class: "mix-profile-help muted",
-      text: "Орієнтовна оцінка за складом і обсмаженням. 0–100 — відносна шкала, не результат вимірювання.",
+      text: "Орієнтовна оцінка за складом і обсмаженням. 0–10 — відносна шкала, не результат вимірювання.",
     }),
     n("h4", { class: "mix-summary-subheading", text: "Смакові ноти" }),
     n("ul", { class: "mix-flavor-notes", id: "mix-notes" }),
@@ -354,11 +355,13 @@
     for (const entry of tasteRows) {
       entry.meter.hidden = !taste;
       entry.empty.hidden = Boolean(taste);
-      entry.value.textContent = taste ? `${taste[entry.key]}/100` : "—";
+      const value = taste ? taste[entry.key] / 10 : null;
+      const valueText = taste ? `${formatTaste.format(value)} з 10` : "—";
+      entry.value.textContent = valueText;
       if (taste) {
-        entry.meter.value = taste[entry.key];
-        entry.meter.textContent = `${taste[entry.key]} зі 100`;
-        entry.meter.setAttribute("aria-valuetext", `${taste[entry.key]} зі 100, орієнтовна оцінка`);
+        entry.meter.value = value;
+        entry.meter.textContent = valueText;
+        entry.meter.setAttribute("aria-valuetext", `${valueText}, орієнтовна оцінка`);
       } else {
         entry.meter.value = 0;
         entry.meter.textContent = "Оцінка недоступна";
