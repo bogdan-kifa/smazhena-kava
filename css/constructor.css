@@ -488,7 +488,7 @@
 
 .mix-profile-row {
   display: grid;
-  grid-template-columns: minmax(0, 88px) var(--grid-track-fluid) 48px;
+  grid-template-columns: minmax(0, 88px) var(--grid-track-fluid) 60px;
   align-items: center;
   gap: var(--spacing-sm);
   color: var(--color-text-muted);
