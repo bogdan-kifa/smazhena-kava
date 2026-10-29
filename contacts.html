@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Контакти — Смажена Кава</title>
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/contacts.css" />
+    <script src="js/validation.js" defer></script>
+  </head>
+  <body>
+    <main id="contacts-content" class="container mx-auto max-w-3xl py-8 sm:py-12">
+      <a class="mb-6 inline-flex min-h-11 items-center gap-3 rounded-control font-heading font-semibold text-brand no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" href="index.html"><img src="assets/images/logo.svg" alt="" width="36" height="40" />Смажена Кава</a>
+      <h1 class="mb-3 font-heading text-heading-1">Контакти</h1>
+      <p class="mb-8 max-w-copy text-brand-muted">Маєте запитання про каву, мікси чи доставку? Напишіть нам.</p>
+      <form class="grid grid-cols-1 gap-6 rounded-container border border-solid border-brand-border bg-brand-surface p-5 shadow-card sm:p-8 md:grid-cols-2" id="feedbackForm" action="contacts.html" method="post" aria-labelledby="feedback-title">
+        <h2 class="font-heading text-heading-3 md:col-span-2" id="feedback-title">Напишіть нам</h2>
+
+        <div class="mo-contact-field min-w-0 space-y-2">
+          <label class="block text-sm font-medium text-brand-text" for="username">Ім’я (обов’язково)</label>
+          <input class="mo-contact-control block min-h-12 w-full rounded-control border border-solid border-brand-control bg-brand-surface px-3 py-3 font-sans text-base text-brand-text hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" type="text" id="username" name="name" autocomplete="name" minlength="2" maxlength="80" required aria-describedby="nameError" />
+          <p class="text-sm font-medium text-brand-error" id="nameError" hidden>Введіть ім’я — щонайменше 2 символи.</p>
+        </div>
+
+        <div class="mo-contact-field min-w-0 space-y-2">
+          <label class="block text-sm font-medium text-brand-text" for="email">Електронна пошта (обов’язково)</label>
+          <input class="mo-contact-control block min-h-12 w-full rounded-control border border-solid border-brand-control bg-brand-surface px-3 py-3 font-sans text-base text-brand-text hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" type="email" id="email" name="email" autocomplete="email" maxlength="254" required aria-describedby="emailError" />
+          <p class="text-sm font-medium text-brand-error" id="emailError" hidden>Введіть коректну електронну адресу.</p>
+        </div>
+
+        <div class="mo-contact-field min-w-0 space-y-2 md:col-span-2">
+          <label class="block text-sm font-medium text-brand-text" for="phone">Телефон (обов’язково)</label>
+          <input class="mo-contact-control block min-h-12 w-full rounded-control border border-solid border-brand-control bg-brand-surface px-3 py-3 font-sans text-base text-brand-text hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" pattern="\+380[0-9]{9}" required aria-describedby="phoneHint phoneError" />
+          <p class="text-sm text-brand-muted" id="phoneHint">Формат: +380XXXXXXXXX, наприклад +380501234567.</p>
+          <p class="text-sm font-medium text-brand-error" id="phoneError" hidden>Введіть номер у форматі +380XXXXXXXXX.</p>
+        </div>
+
+        <div class="mo-contact-field min-w-0 space-y-2 md:col-span-2">
+          <label class="block text-sm font-medium text-brand-text" for="message">Повідомлення (обов’язково)</label>
+          <textarea class="mo-contact-control block min-h-40 w-full resize-y rounded-control border border-solid border-brand-control bg-brand-surface px-3 py-3 font-sans text-base text-brand-text hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" id="message" name="message" rows="6" minlength="10" maxlength="2000" required aria-describedby="messageHint messageError"></textarea>
+          <p class="text-sm text-brand-muted" id="messageHint">Від 10 до 2000 символів.</p>
+          <p class="text-sm font-medium text-brand-error" id="messageError" hidden>Напишіть повідомлення — щонайменше 10 символів.</p>
+        </div>
+
+        <div class="mo-contact-field min-w-0 space-y-2 md:col-span-2">
+          <input class="mo-contact-agreement float-left mt-3 h-5 w-5 cursor-pointer rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" type="checkbox" id="agreement" name="agreement" value="accepted" required aria-describedby="agreementError" />
+          <label class="flex min-h-12 cursor-pointer items-center pl-8 text-sm text-brand-text" for="agreement">Погоджуюся з політикою конфіденційності (обов’язково)</label>
+          <p class="text-sm font-medium text-brand-error" id="agreementError" hidden>Підтвердьте згоду з політикою конфіденційності.</p>
+        </div>
+
+        <button class="min-h-12 w-full cursor-pointer rounded-control border border-solid border-brand bg-brand px-6 py-3 font-sans text-base font-semibold text-brand-surface hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand md:col-span-2 md:justify-self-end md:w-auto motion-safe:transition-transform motion-safe:hover:-translate-y-0.5" type="submit" id="feedbackSubmit" name="submit">Надіслати</button>
+      </form>
+    </main>
+    <dialog id="successModal" class="mo-contact-modal rounded-container border border-solid border-brand-border bg-brand-surface p-0 text-brand-text shadow-overlay" aria-labelledby="success-title" aria-describedby="success-description">
+      <div class="space-y-5 p-6 sm:p-8">
+        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand-success" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6" /></svg>
+        </div>
+        <h2 id="success-title" class="font-heading text-heading-3">Дякуємо! Форму перевірено.</h2>
+        <p id="success-description" class="text-brand-muted">Це демонстрація успішного надсилання. Дані пройшли перевірку у браузері, але не передавалися на сервер.</p>
+        <button id="closeModalBtn" type="button" class="min-h-12 w-full cursor-pointer rounded-control border border-solid border-brand bg-brand px-6 py-3 font-sans text-base font-semibold text-brand-surface hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" autofocus>Закрити</button>
+      </div>
+    </dialog>
+  </body>
+</html>

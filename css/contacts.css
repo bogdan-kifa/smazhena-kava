@@ -1,0 +1,23 @@
+/* Only visual states: validation logic is added in a later laboratory stage. */
+.mo-contact-agreement { accent-color: var(--color-primary); }
+.mo-contact-field[data-state="error"] .mo-contact-control,
+.mo-contact-control[aria-invalid="true"] { border-color: var(--color-error); }
+.mo-contact-field[data-state="success"] .mo-contact-control { border-color: var(--color-success); }
+.mo-contact-field[data-state="error"] label { color: var(--color-error); }
+.mo-contact-field[data-state="success"] label::after {
+  content: " ✓";
+  color: var(--color-success);
+}
+.mo-contact-field[data-state="error"] .mo-contact-agreement { outline: 2px solid var(--color-error); outline-offset: 2px; }
+
+/* Native modal stays centered and scrolls within short mobile viewports. */
+.mo-contact-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(480px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+}
+.mo-contact-modal::backdrop { background: rgb(var(--color-shadow-rgb) / 55%); }
+html:has(.mo-contact-modal[open]) { overflow: hidden; }

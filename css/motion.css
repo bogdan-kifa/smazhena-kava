@@ -518,3 +518,33 @@
 @media (max-width: 767px) {
   .mo-ready .mo-top { display: none !important; }
 }
+
+/* Desktop cart: a quiet outline and a separate, compact quantity. */
+@media (min-width: 1101px) {
+  .mo-ready .mo-header a.mo-cart {
+    min-height: 44px;
+    padding: 10px 12px;
+    gap: 8px;
+    border: var(--border-default);
+    background: transparent;
+  }
+  .mo-ready .mo-header a.mo-cart:hover {
+    border-color: var(--color-control-border);
+    background: var(--color-background-soft);
+  }
+  .mo-header .mo-cart-icon { order: -1; font-size: 16px; }
+  .mo-header .mo-cart > span:not(.mo-cart-caption) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: var(--radius-pill);
+    background: var(--color-background-soft);
+    color: var(--color-primary);
+    font-size: 11px;
+    line-height: 1;
+    font-weight: var(--font-weight-semibold);
+  }
+}
