@@ -19,6 +19,8 @@
     message: "messageError", agreement: "agreementError",
   };
   const interacted = new Set();
+  // Для імені й повідомлення рахуємо кодові точки Unicode.
+  // HTML maxlength не застосовується: він рахує одиниці UTF-16.
   const length = (value) => Array.from(value).length;
 
   // Колір доповнюється текстом, aria-invalid і доступним повідомленням.
@@ -189,7 +191,8 @@
     Object.keys(fields).forEach(clearError);
   });
 
-  // Власні повідомлення працюють після підключення JS;
-  // без JS залишаються стандартні HTML-обмеження required/minlength/pattern.
+  // Активуємо кнопку лише після успішного встановлення всіх обробників.
+  // Без JavaScript вона залишається вимкненою: POST-запит не виконується.
   form.noValidate = true;
+  submitButton.disabled = false;
 })();
