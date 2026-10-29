@@ -1,0 +1,22 @@
+/* Product detail taste profile matches the catalogue's 0–10 scores and five segments. */
+.mo-product-profile { display: grid; gap: 12px; padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); }
+.mo-product-profile-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.mo-product-profile-header h3 { margin: 0; font-family: var(--font-primary); font-size: 17px; line-height: 1.4; font-weight: 600; }
+.mo-product-profile-scale { display: inline-flex; gap: 12px; align-items: center; color: var(--color-text-muted); font-size: 12px; white-space: nowrap; }
+.mo-product-profile-basis { font-size: 12px; line-height: 1.5; color: var(--color-text-muted); }
+.mo-product-profile-row { display: grid; grid-template-columns: 110px minmax(0,1fr) 32px; align-items: center; gap: 14px; font-size: 14px; line-height: 1.5; color: var(--color-text-muted); }
+.mo-product-profile-pips { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); min-width: 0; gap: 4px; }
+.mo-product-profile-pips > span { display: block; height: 8px; border-radius: 3px; background: linear-gradient(90deg,var(--mo-profile-tone) var(--mo-pip-fill),var(--color-border) var(--mo-pip-fill)); }
+.mo-product-profile-row[data-mo-metric="acidity"] { --mo-profile-tone: var(--color-accent); }
+.mo-product-profile-row[data-mo-metric="sweetness"] { --mo-profile-tone: var(--color-success); }
+.mo-product-profile-row[data-mo-metric="bitterness"], .mo-product-profile-row[data-mo-metric="strength"] { --mo-profile-tone: var(--color-primary); }
+.mo-product-profile-value { text-align: right; font-weight: 600; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.mo-product-profile [hidden] { display: none; }
+@media(max-width:767px) {
+ .mo-product-profile { padding: 16px; gap: 10px; }
+ .mo-product-profile-header h3 { font-size: 16px; }
+ .mo-product-profile-row { grid-template-columns: 94px minmax(0,1fr) 25px; gap: 9px; font-size: 13px; }
+ .mo-product-profile-pips { gap: 3px; }
+}
+.mo-product-profile-row[data-mo-metric="strength"] { --mo-profile-tone: var(--mo-strength-tone); }
+.mo-product-profile-row[data-mo-metric="bitterness"] { --mo-profile-tone: var(--mo-bitterness-tone); }

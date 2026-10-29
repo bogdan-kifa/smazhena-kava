@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Доставка та оплата Смаженої Кави: Нова пошта, кур’єр, оплата карткою або при отриманні. Безкоштовна доставка від 800 ₴." />
+    <meta
+      name="description"
+      content="Доставка Смаженої Кави Новою поштою, Укрпоштою й кур’єром. Строки обсмаження, відстеження та оплата. Безкоштовна доставка від 800 ₴."
+    />
     <title>Доставка та оплата — Смажена Кава</title>
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/icons.css" />
@@ -14,14 +17,79 @@
     <link rel="stylesheet" href="css/interaction.css" />
     <script src="js/products.js" defer></script>
     <script src="js/shop.js" defer></script>
+    <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/delivery-motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+    <script src="js/motion.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/delivery.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Коли відправлять мою каву?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Обсмажуємо й пакуємо протягом 1–2 робочих днів після підтвердження замовлення. Передаємо посилку перевізнику наступного робочого дня після готовності. Зелене зерно не потребує обсмаження. Строк отримання залежить від маршруту та роботи перевізника."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Як відстежити відправлення?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Після відправлення надішлемо номер накладної. Введіть його в офіційному трекінгу Нової пошти або Укрпошти. Якщо номер не надійшов, зверніться до підтримки з номером замовлення."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Що робити, якщо посилка пошкоджена або товар не той?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Огляньте пакунок при отриманні. За наявності пошкоджень попросіть працівника перевізника зафіксувати їх, збережіть паковання й зробіть фото. Надішліть підтримці номер замовлення, фото та опис проблеми — узгодимо заміну або повернення коштів після перевірки."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Як узгодити повернення чи обмін?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Напишіть підтримці номер замовлення та причину звернення перед зворотним відправленням. Умови залежать від стану товару й обставин: питання якості, пошкодження або помилки комплектації розглядаємо окремо. Адресу та спосіб повернення погодимо з вами."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Чи є доставка за кордон і що покриває безкоштовна доставка?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Зараз доставляємо лише Україною. Від 800 ₴ вартості товарів беремо на себе доставку до відділення або кур’єром. Можлива комісія за післяплату не входить у цю пропозицію; її умови уточнюйте у перевізника."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body class="catalog-page information-page delivery-page">
-    <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
+    <noscript
+      ><p class="shop-nojs">
+        Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.
+      </p></noscript
+    >
     <a class="skip-link" href="#delivery-content">Перейти до основного вмісту</a>
     <header class="site-header">
       <div class="container">
         <a class="logo" href="index.html">
-          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <img
+            class="logo-image"
+            src="assets/images/logo.svg"
+            alt="Смажена Кава"
+            width="254"
+            height="274"
+          />
           <span aria-hidden="true">Смажена Кава</span>
         </a>
         <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
@@ -32,11 +100,16 @@
           </ul>
         </nav>
         <div class="header-actions">
-          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-account" href="login.html"
+            ><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a
+          >
           <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
-            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i
+            ><span class="cart-count" aria-hidden="true">2</span>
           </a>
-          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+          <a class="button header-cta" href="constructor.html"
+            >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+          ></a>
         </div>
         <!-- Нативне details відкриває мобільне меню без JavaScript. -->
         <details class="catalog-mobile-menu">
@@ -51,156 +124,660 @@
               <li><a href="quiz.html">Quiz-підбір</a></li>
               <li><a href="about.html">Про нас</a></li>
               <li><a href="login.html">Акаунт</a></li>
-              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+              <li>
+                <a class="button" href="constructor.html"
+                  >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+                ></a>
+              </li>
             </ul>
           </nav>
         </details>
       </div>
     </header>
 
-    <main id="delivery-content" tabindex="-1">
+    <main id="delivery-content" class="mo-delivery-page" tabindex="-1">
       <div class="container information-heading">
         <nav class="breadcrumbs" aria-label="Шлях до сторінки">
-          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Доставка та оплата</span></li></ol>
+          <ol>
+            <li><a href="index.html">Головна</a></li>
+            <li><span aria-current="page">Доставка та оплата</span></li>
+          </ol>
         </nav>
-        <div class="delivery-hero">
-          <div class="delivery-hero-copy">
-            <p class="eyebrow">Доставка та оплата</p>
-            <h1>Твоя кава.<br />Зручний шлях до тебе.</h1>
-            <p class="information-intro">Обери спосіб доставки та оплати, який пасує твоєму ритму. Тут зібрали основні умови, щоб усе було зрозуміло ще до замовлення.</p>
+        <div class="delivery-hero mo-delivery-hero">
+          <div>
+            <h1>Доставка та оплата</h1>
+            <p class="information-intro">
+              Свіжообсмажена кава — з нашої майстерні до вашої чашки. Обсмажуємо під замовлення й
+              доставляємо по Україні Новою поштою, Укрпоштою або кур’єром.
+            </p>
+            <a class="mo-delivery-text-link" href="#mo-delivery-methods-title"
+              >Обрати спосіб доставки ↓</a
+            >
           </div>
-          <figure class="delivery-hero-art">
-            <img src="assets/images/information/coffee-parcel.svg" width="480" height="360" alt="" decoding="async" />
-            <figcaption>Трохи кавового настрою в кожному пакунку.</figcaption>
+          <figure class="delivery-hero-art mo-delivery-art">
+            <img
+              src="assets/images/information/coffee-parcel.svg"
+              width="480"
+              height="360"
+              alt="Пакунок кави, готовий до відправлення"
+              decoding="async"
+            />
           </figure>
         </div>
-        <!-- Демонстраційні умови з макета, узгоджені з кошиком та оформленням. -->
-        <div class="delivery-perk">
-          <div><p class="delivery-perk-label">Доставка за наш рахунок</p><p>Для замовлень на суму від 800 ₴.</p></div>
-          <strong class="delivery-perk-amount">від 800 ₴</strong>
-        </div>
+        <section class="mo-delivery-perk" aria-labelledby="mo-delivery-perk-title">
+          <div class="mo-delivery-perk-copy">
+            <h2 id="mo-delivery-perk-title">Доставку беремо на себе</h2>
+            <p>Для замовлень від <strong>800&nbsp;₴</strong> по Україні.</p>
+            <p
+              class="mo-delivery-progress-copy"
+              id="mo-delivery-progress-copy"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              Додайте каву в кошик — покажемо, скільки залишилось до безкоштовної доставки.
+            </p>
+            <div
+              class="mo-delivery-progress"
+              id="mo-delivery-progress"
+              role="progressbar"
+              aria-label="Сума до безкоштовної доставки"
+              aria-valuemin="0"
+              aria-valuemax="800"
+              aria-valuenow="0"
+            >
+              <span id="mo-delivery-progress-fill"></span>
+            </div>
+          </div>
+          <div class="mo-delivery-perk-actions">
+            <strong class="mo-delivery-perk-amount"
+              >від <span id="mo-delivery-threshold">800</span>&nbsp;₴</strong
+            ><a class="button button-secondary mo-delivery-catalog" href="catalog.html"
+              >Обрати каву →</a
+            >
+            <div id="mo-delivery-suggestion" hidden>
+              <p id="mo-delivery-suggestion-name"></p>
+              <button type="button" id="mo-delivery-add" class="mo-delivery-add">
+                Додати 250 г
+              </button>
+            </div>
+          </div>
+        </section>
+        <ul class="mo-delivery-trust" role="list">
+          <li>✓ Обсмажуємо під замовлення</li>
+          <li>✓ Дата обсмаження на пакованні</li>
+          <li>✓ Підтримка в Telegram</li>
+        </ul>
       </div>
-
-      <section class="info-section" aria-labelledby="delivery-methods-title">
+      <section class="info-section" aria-labelledby="mo-delivery-methods-title">
         <div class="container info-layout">
           <div class="info-section-intro">
             <p class="eyebrow">01 / Доставка</p>
-            <h2 id="delivery-methods-title">Як отримати каву</h2>
-            <p>У відділенні чи за своєю адресою — обирай зручний варіант під час оформлення.</p>
+            <h2 id="mo-delivery-methods-title">Оберіть, як отримати</h2>
+            <p>
+              Строки нижче — орієнтир після відправлення, без часу на обсмаження. Доступність
+              доставки й точну дату перевіряйте для свого маршруту.
+            </p>
+            <p class="mo-delivery-route-note">
+              <a
+                href="https://novaposhta.ua/onlineorder/estimatedate"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Строки Нової пошти<span class="visually-hidden">, у новій вкладці</span> ↗</a
+              >
+              ·
+              <a
+                href="https://www.ukrposhta.ua/ua/terminy-ukrposhta-ekspres"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Строки Укрпошти<span class="visually-hidden">, у новій вкладці</span> ↗</a
+              >
+            </p>
           </div>
-          <ul class="delivery-options" role="list">
-            <li class="info-panel delivery-option">
-              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m4 8 12-6 12 6v16l-12 6-12-6V8Z"/><path d="m4 8 12 6 12-6M16 14v16M10 5l12 6v7"/></svg></span>
+          <div class="mo-delivery-methods">
+            <div class="mo-delivery-tabs" id="mo-delivery-tabs" hidden>
+              <button id="mo-delivery-tab-0" type="button">Нова пошта</button
+              ><button id="mo-delivery-tab-1" type="button">Укрпошта</button
+              ><button id="mo-delivery-tab-2" type="button">Кур’єр</button>
+            </div>
+            <article id="mo-delivery-panel-0" class="mo-delivery-panel" aria-label="Нова пошта">
               <h3>Нова пошта</h3>
-              <p>Доставка до обраного відділення. Під час оформлення вкажи місто та номер відділення.</p>
-              <dl class="delivery-facts"><div><dt>Вартість</dt><dd>За тарифом перевізника</dd></div><div><dt>Замовлення від 800 ₴</dt><dd>Безкоштовно</dd></div></dl>
-            </li>
-            <li class="info-panel delivery-option">
-              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M2 7h17v17H2V7Zm17 5h6l5 7v5H19V12Z"/><path d="M22 12v7h8"/><circle cx="8" cy="25" r="3"/><circle cx="25" cy="25" r="3"/></svg></span>
-              <h3>Кур’єром</h3>
-              <p>Доставка за вказаною адресою. Зазнач місто, вулицю, номер будинку та квартири.</p>
-              <dl class="delivery-facts"><div><dt>Вартість</dt><dd>Залежить від адреси доставки</dd></div><div><dt>Замовлення від 800 ₴</dt><dd>Безкоштовно</dd></div></dl>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="info-section delivery-payment" aria-labelledby="delivery-payment-title">
-        <div class="container info-layout">
-          <div class="info-section-intro">
-            <p class="eyebrow">02 / Оплата</p>
-            <h2 id="delivery-payment-title">Як оплатити</h2>
-            <p>Зараз доступний демонстраційний сценарій оформлення. Реальна оплата та відправлення ще не підключені.</p>
+              <p class="mo-delivery-eta">Орієнтовно 1–3 дні <span>після відправлення</span></p>
+              <dl class="mo-delivery-facts">
+                <div>
+                  <dt>Вартість</dt>
+                  <dd>За тарифом перевізника; точна сума залежить від маршруту та ваги.</dd>
+                </div>
+                <div>
+                  <dt>Що вказати</dt>
+                  <dd>Місто, номер відділення та телефон отримувача.</dd>
+                </div>
+                <div>
+                  <dt>Від 800&nbsp;₴</dt>
+                  <dd>Доставку оплачуємо ми.</dd>
+                </div>
+              </dl>
+              <div class="mo-delivery-links">
+                <a
+                  href="https://novaposhta.ua/shipping-cost/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Розрахувати вартість<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                ><a
+                  href="https://tracking.novaposhta.ua/#/uk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Відстежити посилку<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                >
+              </div>
+            </article>
+            <article id="mo-delivery-panel-1" class="mo-delivery-panel" aria-label="Укрпошта">
+              <h3>Укрпошта</h3>
+              <p class="mo-delivery-eta">Орієнтовно 3–6 днів <span>після відправлення</span></p>
+              <dl class="mo-delivery-facts">
+                <div>
+                  <dt>Вартість</dt>
+                  <dd>За тарифом перевізника; точна сума залежить від маршруту та ваги.</dd>
+                </div>
+                <div>
+                  <dt>Що вказати</dt>
+                  <dd>Місто, п’ятизначний поштовий індекс відділення та телефон отримувача.</dd>
+                </div>
+                <div>
+                  <dt>Від 800&nbsp;₴</dt>
+                  <dd>Доставку оплачуємо ми.</dd>
+                </div>
+              </dl>
+              <div class="mo-delivery-links">
+                <a href="https://calc.ukrposhta.ua/" target="_blank" rel="noopener noreferrer"
+                  >Розрахувати вартість<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                ><a href="https://track.ukrposhta.ua/" target="_blank" rel="noopener noreferrer"
+                  >Відстежити посилку<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                >
+              </div>
+            </article>
+            <article id="mo-delivery-panel-2" class="mo-delivery-panel" aria-label="Кур’єр">
+              <h3>Кур’єр</h3>
+              <p class="mo-delivery-eta">Орієнтовно 1–3 дні <span>після відправлення</span></p>
+              <dl class="mo-delivery-facts">
+                <div>
+                  <dt>Вартість</dt>
+                  <dd>За тарифом перевізника; точна сума залежить від маршруту та ваги.</dd>
+                </div>
+                <div>
+                  <dt>Що вказати</dt>
+                  <dd>
+                    Місто, вулиця, будинок, квартира та телефон отримувача. Кур’єрська доставка
+                    Нової пошти.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Від 800&nbsp;₴</dt>
+                  <dd>Доставку оплачуємо ми.</dd>
+                </div>
+              </dl>
+              <div class="mo-delivery-links">
+                <a
+                  href="https://novaposhta.ua/shipping-cost/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Розрахувати вартість<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                ><a
+                  href="https://tracking.novaposhta.ua/#/uk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Відстежити посилку<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                >
+              </div>
+            </article>
           </div>
-          <ul class="delivery-options" role="list">
-            <li class="info-panel delivery-option">
-              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="2" y="6" width="28" height="20" rx="3"/><path d="M2 12h28M7 20h6"/></svg></span>
-              <h3>Карткою онлайн</h3>
-              <p>Запланована можливість. Зараз платіжна система не підключена й кошти не списуються.</p>
-            </li>
-            <li class="info-panel delivery-option">
-              <span class="delivery-option-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M7 3h18v27l-4-3-5 3-5-3-4 3V3Z"/><path d="M12 10h8M12 16h8M12 22h4"/></svg></span>
-              <h3>При отриманні</h3>
-              <p>Цей варіант можна обрати в демонстрації. Реальне замовлення та відправлення не створюються.</p>
-            </li>
-          </ul>
         </div>
       </section>
-
-      <section class="info-section" aria-labelledby="delivery-process-title">
+      <section class="info-section mo-delivery-process" aria-labelledby="mo-delivery-process-title">
         <div class="container">
-          <div class="info-section-intro delivery-process-heading">
-            <p class="eyebrow">03 / Перед замовленням</p>
-            <h2 id="delivery-process-title">Кілька простих підказок</h2>
-          </div>
-          <ol class="delivery-steps" role="list">
-            <li class="delivery-step"><span class="delivery-step-number" aria-hidden="true">01</span><h3>Перевір контакти</h3><p>Вкажи правильний номер телефону та email у формі оформлення.</p></li>
-            <li class="delivery-step"><span class="delivery-step-number" aria-hidden="true">02</span><h3>Уточни адресу</h3><p>Для відділення потрібні місто й номер. Для кур’єра — повна адреса.</p></li>
-            <li class="delivery-step"><span class="delivery-step-number" aria-hidden="true">03</span><h3>Врахуй маршрут</h3><p>Строк доставки залежить від населеного пункту та роботи перевізника.</p></li>
+          <p class="eyebrow">02 / Від зерна до дверей</p>
+          <h2 id="mo-delivery-process-title">Кожен пакунок має свій шлях</h2>
+          <p class="mo-delivery-process-intro">
+            На обсмаження й пакування разом потрібно 1–2 робочі дні. Якщо обрали зелене зерно без
+            обсмаження, цей етап пропускаємо.
+          </p>
+          <ol class="mo-delivery-timeline" role="list">
+            <li>
+              <span class="mo-delivery-step-icon" aria-hidden="true">✓</span>
+              <p class="mo-delivery-step-time">Після оформлення</p>
+              <h3>Замовлення</h3>
+              <p>Перевіряємо склад, контакти й адресу отримувача.</p>
+            </li>
+            <li>
+              <span class="mo-delivery-step-icon" aria-hidden="true">♨</span>
+              <p class="mo-delivery-step-time">1–2 робочі дні разом</p>
+              <h3>Обсмаження</h3>
+              <p>Готуємо обраний профіль для вашого зерна.</p>
+            </li>
+            <li>
+              <span class="mo-delivery-step-icon" aria-hidden="true">◇</span>
+              <p class="mo-delivery-step-time">У день готовності</p>
+              <h3>Пакування</h3>
+              <p>Захищаємо каву від вологи й указуємо дату обсмаження.</p>
+            </li>
+            <li>
+              <span class="mo-delivery-step-icon" aria-hidden="true">→</span>
+              <p class="mo-delivery-step-time">Наступного робочого дня</p>
+              <h3>Відправлення</h3>
+              <p>Передаємо посилку перевізнику й надсилаємо номер накладної.</p>
+            </li>
+            <li>
+              <span class="mo-delivery-step-icon" aria-hidden="true">⌂</span>
+              <p class="mo-delivery-step-time">За строком перевізника</p>
+              <h3>Отримання</h3>
+              <p>Огляньте пакунок — і можна готувати першу чашку.</p>
+            </li>
           </ol>
         </div>
       </section>
-
-      <section class="info-related" aria-labelledby="delivery-more-title">
-        <div class="container">
-          <div class="info-panel info-related-panel">
-            <div><h2 id="delivery-more-title">Ще є запитання?</h2><p>Зібрали відповіді про зерно, власні мікси та замовлення на сторінці FAQ.</p></div>
-            <a class="button" href="faq.html">Переглянути FAQ <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+      <section class="info-section" aria-labelledby="mo-delivery-payment-title">
+        <div class="container info-layout">
+          <div class="info-section-intro">
+            <p class="eyebrow">03 / Оплата</p>
+            <h2 id="mo-delivery-payment-title">Зручний спосіб оплати</h2>
+            <p>
+              Оформлення зараз працює як попередній перегляд: кошти не списуються, реальне
+              відправлення не створюється.
+            </p>
+          </div>
+          <div class="mo-delivery-payments">
+            <article class="info-panel mo-delivery-payment">
+              <span class="mo-delivery-payment-icon" aria-hidden="true">₴</span>
+              <h3>При отриманні</h3>
+              <p>
+                Цей спосіб можна обрати під час оформлення. Комісія за післяплату визначається
+                перевізником окремо.
+              </p>
+            </article>
+            <article class="info-panel mo-delivery-payment">
+              <span class="mo-delivery-payment-icon" aria-hidden="true">▭</span>
+              <h3>Карткою онлайн</h3>
+              <p>Додамо після підключення платіжної системи.</p>
+              <span class="mo-delivery-soon">Незабаром</span>
+            </article>
           </div>
         </div>
       </section>
+      <section class="info-section mo-delivery-faq-section" aria-labelledby="mo-delivery-faq-title">
+        <div class="container info-layout">
+          <div class="info-section-intro">
+            <p class="eyebrow">04 / Важливі деталі</p>
+            <h2 id="mo-delivery-faq-title">Питання перед замовленням</h2>
+            <p>Строки, відстеження й допомога, якщо щось пішло не так.</p>
+            <a class="mo-delivery-text-link" href="faq.html">Усі питання та відповіді →</a>
+          </div>
+          <div class="mo-delivery-faq">
+            <details>
+              <summary>Коли відправлять мою каву?<span aria-hidden="true">+</span></summary>
+              <div class="mo-delivery-answer">
+                <p>
+                  Обсмажуємо й пакуємо протягом 1–2 робочих днів після підтвердження замовлення.
+                  Передаємо посилку перевізнику наступного робочого дня після готовності. Зелене
+                  зерно не потребує обсмаження. Строк отримання залежить від маршруту та роботи
+                  перевізника.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Як відстежити відправлення?<span aria-hidden="true">+</span></summary>
+              <div class="mo-delivery-answer">
+                <p>
+                  Після відправлення надішлемо номер накладної. Введіть його в офіційному трекінгу
+                  Нової пошти або Укрпошти. Якщо номер не надійшов, зверніться до підтримки з
+                  номером замовлення.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>
+                Що робити, якщо посилка пошкоджена або товар не той?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div class="mo-delivery-answer">
+                <p>
+                  Огляньте пакунок при отриманні. За наявності пошкоджень попросіть працівника
+                  перевізника зафіксувати їх, збережіть паковання й зробіть фото. Надішліть
+                  підтримці номер замовлення, фото та опис проблеми — узгодимо заміну або повернення
+                  коштів після перевірки.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Як узгодити повернення чи обмін?<span aria-hidden="true">+</span></summary>
+              <div class="mo-delivery-answer">
+                <p>
+                  Напишіть підтримці номер замовлення та причину звернення перед зворотним
+                  відправленням. Умови залежать від стану товару й обставин: питання якості,
+                  пошкодження або помилки комплектації розглядаємо окремо. Адресу та спосіб
+                  повернення погодимо з вами.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>
+                Чи є доставка за кордон і що покриває безкоштовна доставка?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div class="mo-delivery-answer">
+                <p>
+                  Зараз доставляємо лише Україною. Від 800 ₴ вартості товарів беремо на себе
+                  доставку до відділення або кур’єром. Можлива комісія за післяплату не входить у цю
+                  пропозицію; її умови уточнюйте у перевізника.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="info-related" aria-labelledby="mo-delivery-contact-title">
+        <div class="container">
+          <div class="info-panel mo-delivery-contact">
+            <div>
+              <h2 id="mo-delivery-contact-title">Наступна зупинка — ваша чашка</h2>
+              <p>Обирайте каву, а якщо потрібна допомога — ми на зв’язку.</p>
+              <div class="mo-delivery-links">
+                <a
+                  href="https://t.me/smazhenakava_example"
+                  id="mo-delivery-telegram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Написати в Telegram<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                ><a href="tel:+380320000000" id="mo-delivery-phone">Зателефонувати</a>
+              </div>
+            </div>
+            <a class="button" href="catalog.html">Обрати каву →</a>
+          </div>
+        </div>
+      </section>
+      <div class="mo-delivery-mobile" id="mo-delivery-mobile" hidden>
+        <div>
+          <span>До безкоштовної доставки</span><strong id="mo-delivery-mobile-amount"></strong>
+        </div>
+        <a class="button" href="checkout.html">Оформити →</a>
+      </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
-            <span aria-hidden="true">Смажена Кава</span>
-          </a>
-          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
-          <address class="footer-contacts">
-            <!-- Демонстраційні контакти з Figma. -->
-            <p>+38 044 000 00 00</p>
-            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Львів, площа Ринок · демолокація</p>
-          </address>
-        </div>
-        <nav class="footer-navigation" aria-label="Навігація в підвалі">
-          <div class="footer-link-group">
-            <p class="footer-heading">Дізнатися</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="about.html">Про нас</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="delivery.html" aria-current="page">Доставка та оплата</a></li>
-            </ul>
+        <section
+          class="mo-footer-newsletter"
+          aria-labelledby="mo-footer-news-title"
+          data-mo-footer-reveal
+        >
+          <div>
+            <h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2>
+            <p>Нові зерна, кавові поради й пропозиції — на пошту.</p>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Кава</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Каталог</a></li>
-              <li><a href="constructor.html">Створити мікс</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
-            </ul>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe">
+              <input
+                id="mo-footer-email"
+                name="newsletter-email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                maxlength="254"
+                placeholder="name@example.com"
+                aria-describedby="mo-footer-subscribe-note mo-footer-email-error"
+              /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">
+                Підписатися
+              </button>
+            </div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">
+              Підписка буде доступна незабаром.
+            </p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"
+              ><img
+                src="assets/images/logo.svg"
+                alt=""
+                width="254"
+                height="274"
+                loading="lazy"
+                decoding="async"
+              /><span>Смажена Кава</span></a
+            >
+            <p class="mo-footer-tagline">
+              Крафтова кава, яку можна налаштувати під свій смак і ритм.
+            </p>
+            <address class="mo-footer-address">
+              <span data-mo-footer-address>Львів, площа Ринок</span
+              ><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span>
+            </address>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Соцмережі</p>
-            <ul class="navigation-list" role="list">
-              <li><a role="link" aria-disabled="true">Instagram</a></li>
-              <li><a role="link" aria-disabled="true">Facebook</a></li>
-              <li><a role="link" aria-disabled="true">YouTube</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="footer-bottom">
-          <p class="copyright">© 2026 Смажена Кава</p>
-          <nav aria-label="Правова інформація">
-            <ul class="navigation-list footer-legal" role="list">
-              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
-              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
-              <li><a role="link" aria-disabled="true">Умови використання</a></li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div>
+              <h2>Дізнатися</h2>
+              <ul role="list">
+                <li><a class="mo-footer-link" href="about.html">Про нас</a></li>
+                <li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li>
+                <li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li>
+              </ul>
+            </div>
+            <div>
+              <h2>Кава</h2>
+              <ul role="list">
+                <li><a class="mo-footer-link" href="catalog.html">Каталог</a></li>
+                <li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li>
+                <li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li>
+                <li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li>
+              </ul>
+            </div>
           </nav>
+          <section
+            class="mo-footer-contacts"
+            aria-labelledby="mo-footer-contact-title"
+            data-mo-footer-reveal
+          >
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address>
+              <a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone
+                >+38 (032) 000-00-00</a
+              ><a
+                class="mo-footer-link"
+                href="mailto:hello@smazhenakava.example"
+                data-mo-footer-email
+                >hello@smazhenakava.example</a
+              >
+            </address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери">
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="instagram"
+                  href="https://www.instagram.com/smazhena.kava.example/"
+                  aria-label="Instagram, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="facebook"
+                  href="https://www.facebook.com/smazhena.kava.example/"
+                  aria-label="Facebook, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"
+                    /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="youtube"
+                  href="https://www.youtube.com/@smazhenakava-example"
+                  aria-label="YouTube, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="2" y="5" width="20" height="14" rx="4" />
+                    <path d="m10 9 5 3-5 3V9Z" /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="telegram"
+                  href="https://t.me/smazhenakava_example"
+                  aria-label="Telegram, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9" /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="viber"
+                  href="viber://chat?number=%2B380320000000"
+                  aria-label="Viber, відкрити Viber"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"
+                    />
+                    <path
+                      d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"
+                    /></svg
+                ></a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення">
+          <span
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z" />
+              <circle cx="6" cy="18" r="2" />
+              <circle cx="18" cy="18" r="2" /></svg
+            >Доставка по Україні · Нова пошта / Укрпошта</span
+          ><span
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)" />
+              <path d="M16 4c-10 5 2 9-8 16" /></svg
+            >Обсмажуємо під замовлення</span
+          ><span
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4" /></svg
+            >Оплата при отриманні</span
+          >
+        </div>
+        <div class="mo-footer-divider" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)" />
+            <path d="M16 4c-10 5 2 9-8 16" />
+          </svg>
+        </div>
+        <div class="mo-footer-bottom">
+          <p>© <span data-mo-footer-year>2026</span> Смажена Кава</p>
+          <div class="mo-footer-legal" aria-label="Правова інформація">
+            <span>Політика конфіденційності</span><span>Публічна оферта</span
+            ><span>Умови використання</span>
+          </div>
+          <button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m5 12 7-7 7 7M12 5v15" />
+            </svg>
+          </button>
         </div>
       </div>
     </footer>

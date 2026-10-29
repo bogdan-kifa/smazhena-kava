@@ -1,15 +1,22 @@
 <!doctype html>
+
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Свіжообсмажена кава: створи свій мікс | Смажена Кава</title>
+
     <meta
       name="description"
       content="Шукаєте ідеальну каву? Створіть власний мікс у конструкторі або пройдіть квіз для підбору. Свіжообсмажена кава з доставкою по Україні. Замовляйте зараз!"
     />
+
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+
     <!-- Ті самі Google Fonts та Font Awesome збережені локально; Tailwind зібрано заздалегідь. -->
+
     <link
       rel="preload"
       href="assets/fonts/lora-cyrillic.woff2"
@@ -17,6 +24,7 @@
       type="font/woff2"
       crossorigin
     />
+
     <link
       rel="preload"
       href="assets/fonts/inter-cyrillic.woff2"
@@ -24,27 +32,64 @@
       type="font/woff2"
       crossorigin
     />
+
     <link rel="preload" href="assets/images/hero-coffee.webp" as="image" fetchpriority="high" />
+
     <link rel="stylesheet" href="css/fonts.css" />
+
     <link rel="stylesheet" href="css/icons.css" />
+
     <link rel="stylesheet" href="css/style.css" />
+
     <link rel="stylesheet" href="css/tailwind.css" />
+
     <script src="js/hero-video.js" defer></script>
+
+    <script src="js/coffee-facts.js" defer></script>
+
     <script src="js/coffee-fact.js" defer></script>
+
     <script src="js/media-embeds.js" defer></script>
+
     <link rel="stylesheet" href="css/interaction.css" />
+
+    <link rel="stylesheet" href="css/home-reasons.css" />
+
     <script src="js/products.js" defer></script>
+
     <script src="js/shop.js" defer></script>
+
     <script src="js/carousel.js" defer></script>
+
+    <script src="js/reviews.js" defer></script>
+
+    <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/coffee-fact-motion.css" />
+    <link rel="stylesheet" href="css/coffee-world-motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+
+    <script src="js/motion.js" defer></script>
+
+    <script src="js/coffee-world.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
   </head>
+
   <body>
-    <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
+    <noscript
+      ><p class="shop-nojs">
+        Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.
+      </p></noscript
+    >
+
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-lg focus:bg-brand-background focus:px-4 focus:py-3 focus:font-sans focus:text-sm focus:font-semibold focus:text-brand focus:no-underline focus:shadow-overlay focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
       >Перейти до вмісту</a
     >
+
     <!-- Шапка та nav позначають вступну частину й основну навігацію. -->
+
     <header
       id="site-header"
       data-component="header"
@@ -66,10 +111,12 @@
             width="254"
             height="274"
           />
+
           <span class="whitespace-nowrap" aria-hidden="true">Смажена Кава</span>
         </a>
 
         <!-- До md навігація міститься у нативному меню; від md показується цей рядок. -->
+
         <nav
           id="desktop-navigation"
           class="hidden min-w-0 flex-1 justify-center md:flex"
@@ -83,6 +130,7 @@
                 >Кава</a
               >
             </li>
+
             <li>
               <a
                 class="flex min-h-11 items-center rounded-lg py-2 text-sm font-medium text-brand-text no-underline transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none md:px-2 lg:px-3"
@@ -90,6 +138,7 @@
                 >Quiz-підбір</a
               >
             </li>
+
             <li>
               <a
                 class="flex min-h-11 items-center rounded-lg py-2 text-sm font-medium text-brand-text no-underline transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none md:px-2 lg:px-3"
@@ -120,11 +169,15 @@
               focusable="false"
             >
               <circle cx="12" cy="8" r="3" />
+
               <path d="M5 21v-2a7 7 0 0 1 14 0v2" />
             </svg>
+
             <span class="hidden xl:inline">Акаунт</span>
           </a>
+
           <!-- Кількість успадкована від демонстраційного кошика; динаміка буде пізніше. -->
+
           <a
             class="inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-lg text-brand-text no-underline transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none"
             href="cart.html"
@@ -144,18 +197,22 @@
               focusable="false"
             >
               <path d="M5 8h14l-1.5 12h-11L5 8Z" />
+
               <path d="M9 8V6a3 3 0 0 1 6 0v2" />
             </svg>
+
             <span
               class="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand px-1 text-xs font-medium leading-5 text-brand-background"
               aria-hidden="true"
               >2</span
             >
           </a>
+
           <a
             class="hidden min-h-12 items-center justify-center gap-2 rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-sm font-semibold leading-5 text-brand-background no-underline transition-colors hover:border-brand-hover hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:bg-brand-hover motion-reduce:transition-none md:inline-flex lg:px-5 lg:text-base lg:leading-5"
             href="constructor.html"
             >Створити мікс
+
             <svg
               class="h-4 w-4 shrink-0"
               width="24"
@@ -174,12 +231,14 @@
         </div>
 
         <!-- details/summary керує відкриттям без JavaScript; від md весь компонент приховано. -->
+
         <details class="group basis-full md:hidden">
           <summary
             class="absolute right-0 top-0 flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-solid border-brand-border bg-transparent text-brand transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none narrow:top-1 [&::-webkit-details-marker]:hidden"
             aria-controls="mobile-navigation"
           >
             <span class="sr-only">Меню навігації</span>
+
             <svg
               class="h-4 w-4 group-open:hidden"
               width="24"
@@ -195,6 +254,7 @@
             >
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
+
             <svg
               class="hidden h-4 w-4 group-open:block"
               width="24"
@@ -211,6 +271,7 @@
               <path d="m6 6 12 12M18 6 6 18" />
             </svg>
           </summary>
+
           <nav
             id="mobile-navigation"
             class="mt-4 border-0 border-t border-solid border-brand-border pt-4"
@@ -224,6 +285,7 @@
                   >Кава</a
                 >
               </li>
+
               <li>
                 <a
                   class="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium text-brand-text no-underline transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none"
@@ -231,6 +293,7 @@
                   >Quiz-підбір</a
                 >
               </li>
+
               <li>
                 <a
                   class="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium text-brand-text no-underline transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none"
@@ -238,6 +301,7 @@
                   >Про нас</a
                 >
               </li>
+
               <li>
                 <a
                   class="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium text-brand-text no-underline transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none"
@@ -245,11 +309,13 @@
                   >Акаунт</a
                 >
               </li>
+
               <li>
                 <a
                   class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-sm font-semibold leading-5 text-brand-background no-underline transition-colors hover:border-brand-hover hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:bg-brand-hover motion-reduce:transition-none lg:px-5 lg:text-base lg:leading-5"
                   href="constructor.html"
                   >Створити мікс
+
                   <svg
                     class="h-4 w-4 shrink-0"
                     width="24"
@@ -273,6 +339,7 @@
     </header>
 
     <!-- Один main містить основний контент; кожна section має тематичний заголовок. -->
+
     <main id="main-content" class="page-content focus:outline-none" tabindex="-1">
       <section class="py-12 md:py-16" id="hero" aria-labelledby="hero-title">
         <div
@@ -284,36 +351,43 @@
             >
               Персональний кавовий мікс
             </p>
+
             <h1 id="hero-title" class="font-heading text-hero font-semibold">
               Створи каву, яка підходить саме тобі
             </h1>
+
             <p class="text-brand-muted">
               Свіжообсмажена кава за твоїм рецептом. Обирай зерно, обсмаження та помел — у
               конструкторі або через квіз-підбір.
             </p>
+
             <div class="flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center">
               <a
                 class="inline-flex min-h-12 w-full max-w-full cursor-pointer items-center justify-center gap-2 rounded-control border border-solid border-brand bg-brand px-6 py-3 text-center font-sans text-base font-semibold text-brand-background no-underline transition-brand duration-brand ease-out hover:bg-brand-hover hover:shadow-card-hover focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none md:w-auto"
                 href="constructor.html"
                 >Створити свій мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
               ></a>
+
               <a
                 class="inline-flex min-h-12 w-full max-w-full cursor-pointer items-center justify-center gap-2 rounded-control border border-solid border-brand-control bg-brand-surface px-6 py-3 text-center font-sans text-base font-semibold text-brand no-underline transition-brand duration-brand ease-out hover:bg-brand-secondary hover:shadow-card-hover focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none md:w-auto"
                 href="quiz.html"
                 >Підібрати за 3 кліки</a
               >
             </div>
+
             <div
               class="grid grid-cols-1 gap-4 border-0 border-t border-solid border-brand-border pt-6 md:grid-cols-2 md:gap-6"
             >
               <p class="text-caption text-brand-muted">
                 Для експериментаторів: зерно, пропорції, профіль обсмаження.
               </p>
+
               <p class="text-caption text-brand-muted">
                 Для швидкого вибору: смак, спосіб заварювання, бюджет.
               </p>
             </div>
           </div>
+
           <div
             class="relative aspect-hero w-full min-w-0 max-w-hero-media flex-auto overflow-hidden rounded-media wide:flex-hero"
           >
@@ -329,11 +403,14 @@
               aria-label="Кавові зерна поєднуються у персональний мікс"
             >
               <source src="assets/videos/hero-coffee.mp4" type="video/mp4" />
+
               <p>
                 Ваш браузер не підтримує відео.
+
                 <a href="assets/videos/hero-coffee.mp4">Відкрити відео кавового міксу</a>.
               </p>
             </video>
+
             <button
               class="hero-video-toggle inline-flex cursor-pointer items-center justify-center gap-2 border border-solid text-center font-sans text-control font-semibold text-brand no-underline transition-brand duration-brand ease-out hover:bg-brand-secondary hover:shadow-card-hover focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand focus-visible:ring-4 focus-visible:ring-brand-background motion-reduce:transition-none"
               type="button"
@@ -341,84 +418,177 @@
               hidden
             >
               <i class="fa-solid fa-play icon" aria-hidden="true"></i>
+
               <span class="hero-video-toggle-label sr-only">Відтворити відео</span>
             </button>
           </div>
         </div>
       </section>
 
-      <section class="py-16" id="options" aria-labelledby="options-title">
+      <section class="home-reasons" id="options" aria-labelledby="options-title">
         <div class="container">
-          <p
-            class="mb-3 font-sans text-caption font-bold uppercase tracking-eyebrow text-brand-accent-strong"
-          >
-            Два шляхи — один точний смак
-          </p>
+          <p class="home-reasons-eyebrow">Кава під твій смак</p>
+
           <h2 id="options-title" class="font-heading text-heading-2 font-semibold">
-            Обирай рівень контролю
+            Три причини обрати нас
           </h2>
-          <p class="mt-3 text-brand-muted">
-            Створи власне поєднання сортів або почни зі смакових уподобань. Склад і вартість — без
-            прихованих деталей.
+
+          <p class="home-reasons-intro">
+            Збери сорти сам або почни зі смаку. Склад і ціна завжди на виду.
           </p>
-          <!-- Пов'язані можливості сервісу утворюють список. -->
-          <ul
-            class="m-0 mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
-            role="list"
-          >
-            <li
-              class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-            >
-              <p
-                class="inline-flex h-8 w-8 items-center justify-center self-start rounded-full border border-solid border-brand-control text-caption text-brand"
-              >
-                01
-              </p>
-              <h3 class="font-heading text-card-title font-semibold">Конструктор міксу</h3>
-              <p class="text-body-sm text-brand-muted">
-                Обирай сорти, пропорції та профіль обсмаження для власного поєднання смаків.
-              </p>
+
+          <ul class="home-reasons-grid" role="list">
+            <li>
               <a
+                class="home-reason-card"
                 href="constructor.html"
-                class="mt-auto inline-flex min-h-11 min-w-11 items-center gap-2 self-start text-body-sm font-semibold text-brand-accent-strong no-underline underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
-                >Відкрити конструктор <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
-              ></a>
-            </li>
-            <li
-              class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-            >
-              <p
-                class="inline-flex h-8 w-8 items-center justify-center self-start rounded-full border border-solid border-brand-control text-caption text-brand"
+                aria-labelledby="reason-mix-title"
+                aria-describedby="reason-mix-description"
               >
-                02
-              </p>
-              <h3 class="font-heading text-card-title font-semibold">Quiz-підбір</h3>
-              <p class="text-body-sm text-brand-muted">
-                Почни зі смаку, способу заварювання та бюджету, щоб звузити вибір кави.
-              </p>
+                <span class="home-reason-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  >
+                    <path d="M3 7h5m4 0h9M3 17h11m4 0h3" />
+
+                    <circle cx="10" cy="7" r="2" />
+
+                    <circle cx="16" cy="17" r="2" /></svg
+                ></span>
+
+                <h3 id="reason-mix-title">Конструктор міксу</h3>
+
+                <p class="home-reason-description" id="reason-mix-description">
+                  Обирай сорти, пропорції та профіль обсмаження для власного поєднання смаків.
+                </p>
+
+                <div class="home-reason-preview reason-mix-preview" aria-hidden="true">
+                  <span class="reason-preview-caption">Пропорції на твій смак</span>
+
+                  <div class="reason-preview-slider">
+                    <span>Бразилія</span
+                    ><span
+                      class="reason-preview-track"
+                      style="--fill: 50%; --track-color: #4a2e1e"
+                    ></span
+                    ><span>50%</span>
+                  </div>
+
+                  <div class="reason-preview-slider">
+                    <span>Ефіопія</span
+                    ><span
+                      class="reason-preview-track"
+                      style="--fill: 30%; --track-color: #a36036"
+                    ></span
+                    ><span>30%</span>
+                  </div>
+
+                  <div class="reason-preview-slider">
+                    <span>Колумбія</span
+                    ><span
+                      class="reason-preview-track"
+                      style="--fill: 20%; --track-color: #5b7a4f"
+                    ></span
+                    ><span>20%</span>
+                  </div>
+                </div>
+
+                <span class="home-reason-action"
+                  >Зібрати мікс <span class="home-reason-arrow" aria-hidden="true">→</span></span
+                >
+              </a>
+            </li>
+
+            <li>
               <a
+                class="home-reason-card"
                 href="quiz.html"
-                class="mt-auto inline-flex min-h-11 min-w-11 items-center gap-2 self-start text-body-sm font-semibold text-brand-accent-strong no-underline underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
-                >Пройти quiz <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
-              ></a>
-            </li>
-            <li
-              class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-            >
-              <p
-                class="inline-flex h-8 w-8 items-center justify-center self-start rounded-full border border-solid border-brand-control text-caption text-brand"
+                aria-labelledby="reason-quiz-title"
+                aria-describedby="reason-quiz-description"
               >
-                03
-              </p>
-              <h3 class="font-heading text-card-title font-semibold">Прозора вартість</h3>
-              <p class="text-body-sm text-brand-muted">
-                Склад, вага та обсмаження — основа зрозумілої вартості твого міксу.
-              </p>
+                <span class="home-reason-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+
+                    <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 3h.01" /></svg
+                ></span>
+
+                <h3 id="reason-quiz-title">Квіз-підбір</h3>
+
+                <p class="home-reason-description" id="reason-quiz-description">
+                  Розкажи про улюблені смаки, спосіб приготування та міцність — ми підкажемо каву.
+                </p>
+
+                <div class="home-reason-preview reason-quiz-preview" aria-hidden="true">
+                  <span class="reason-preview-caption">Кілька запитань про твою каву</span>
+
+                  <div><span class="reason-preview-check">✓</span> Як готуєш?</div>
+
+                  <div><span class="reason-preview-check">✓</span> Які смаки любиш?</div>
+
+                  <div><span class="reason-preview-check">✓</span> Яку міцність обираєш?</div>
+                </div>
+
+                <span class="home-reason-action"
+                  >Підібрати каву <span class="home-reason-arrow" aria-hidden="true">→</span></span
+                >
+              </a>
+            </li>
+
+            <li>
               <a
-                href="constructor.html#mix-price"
-                class="mt-auto inline-flex min-h-11 min-w-11 items-center gap-2 self-start text-body-sm font-semibold text-brand-accent-strong no-underline underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
-                >Переглянути вартість <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
-              ></a>
+                class="home-reason-card"
+                href="catalog.html"
+                aria-labelledby="reason-price-title"
+                aria-describedby="reason-price-description"
+              >
+                <span class="home-reason-icon" aria-hidden="true"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3ZM9 7h6M9 11h6M9 15h3" /></svg
+                ></span>
+
+                <h3 id="reason-price-title">Прозора вартість</h3>
+
+                <p class="home-reason-description" id="reason-price-description">
+                  Порівнюй сорти та ціни в каталозі. Для кожного зерна видно вартість за 250 г і 100
+                  г.
+                </p>
+
+                <div class="home-reason-preview reason-price-preview" aria-hidden="true">
+                  <span class="reason-preview-caption">Ціна зрозуміла одразу</span>
+
+                  <div><span>За 250 г</span><span class="reason-receipt-line"></span></div>
+
+                  <div><span>За 100 г</span><span class="reason-receipt-line"></span></div>
+
+                  <div class="reason-receipt-total">
+                    <span>Порівнюй та обирай</span><span class="reason-receipt-currency">₴</span>
+                  </div>
+                </div>
+
+                <span class="home-reason-action"
+                  >Переглянути ціни
+
+                  <span class="home-reason-arrow" aria-hidden="true">→</span></span
+                >
+              </a>
             </li>
           </ul>
         </div>
@@ -430,14 +600,17 @@
             <p class="font-sans text-caption font-bold uppercase tracking-eyebrow text-brand">
               Без компромісів
             </p>
+
             <h2 id="benefits-title" class="font-heading text-heading-compact font-semibold">
               Знаєш, що саме п’єш
             </h2>
+
             <p class="text-body-sm text-brand-muted">
               Від ферми до чашки показуємо ключові дані кожного зерна та обсмажуємо під твоє
               замовлення.
             </p>
           </div>
+
           <ul
             class="m-0 mt-6 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3 wide:mt-0"
             role="list"
@@ -449,6 +622,7 @@
                   aria-hidden="true"
                   >01</span
                 >
+
                 <img
                   class="h-20 w-20 object-contain"
                   src="assets/icons/freshness.svg"
@@ -459,12 +633,15 @@
                   decoding="async"
                 />
               </div>
+
               <h3 class="font-sans text-base font-semibold leading-heading">Свіжість</h3>
+
               <p class="text-body-sm text-brand-muted">
                 Обсмажуємо малими партіями. На пакованні точна дата обсмаження, а не лише термін
                 придатності.
               </p>
             </li>
+
             <li class="flex min-w-0 flex-1 flex-col gap-4">
               <div class="flex items-center gap-6">
                 <span
@@ -472,6 +649,7 @@
                   aria-hidden="true"
                   >02</span
                 >
+
                 <img
                   class="h-20 w-20 object-contain"
                   src="assets/icons/personalization.svg"
@@ -482,11 +660,14 @@
                   decoding="async"
                 />
               </div>
+
               <h3 class="font-sans text-base font-semibold leading-heading">Персоналізація</h3>
+
               <p class="text-body-sm text-brand-muted">
                 Поєднуй сорти, обирай пропорції та ступінь обсмаження під власний смак.
               </p>
             </li>
+
             <li class="flex min-w-0 flex-1 flex-col gap-4">
               <div class="flex items-center gap-6">
                 <span
@@ -494,6 +675,7 @@
                   aria-hidden="true"
                   >03</span
                 >
+
                 <img
                   class="h-20 w-20 object-contain"
                   src="assets/icons/transparency.svg"
@@ -504,7 +686,9 @@
                   decoding="async"
                 />
               </div>
+
               <h3 class="font-sans text-base font-semibold leading-heading">Прозорість</h3>
+
               <p class="text-body-sm text-brand-muted">
                 Країна, регіон, ферма, висота та метод обробки кожного компонента завжди відкриті.
               </p>
@@ -514,6 +698,7 @@
       </section>
 
       <!-- Тематичне відео пояснює вплив обсмаження на смак кави. -->
+
       <section class="py-12 md:py-16" id="coffee-guide" aria-labelledby="coffee-guide-title">
         <div class="container grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div class="min-w-0 space-y-4">
@@ -522,13 +707,16 @@
             >
               Від зерна до смаку
             </p>
+
             <h2 id="coffee-guide-title" class="font-heading text-heading-compact font-semibold">
               Як обсмаження змінює каву
             </h2>
+
             <p class="text-brand-muted">
               Перш ніж обрати зерно, дізнайся більше про його обсмаження. Відео допоможе
               розібратися, як формується смак майбутньої чашки.
             </p>
+
             <a
               href="catalog.html"
               class="inline-flex min-h-11 items-center gap-2 rounded-sm font-semibold text-brand-accent-strong underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
@@ -536,8 +724,10 @@
               Перейти до кави <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i>
             </a>
           </div>
+
           <figure class="m-0 w-full min-w-0 max-w-embed-media justify-self-center">
             <!-- aspect-video задає 16/9; min-height зберігає мінімум 200 px для YouTube. -->
+
             <div
               class="relative aspect-video min-h-embed-media w-full overflow-hidden rounded-embed-media bg-brand shadow-card"
             >
@@ -555,18 +745,23 @@
                   loading="lazy"
                   decoding="async"
                 />
+
                 <span
                   class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10"
                   aria-hidden="true"
                 ></span>
+
                 <span
                   class="relative inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-background text-brand shadow-overlay transition-brand duration-normal group-hover:bg-brand-secondary group-focus-visible:bg-brand-secondary motion-reduce:transition-none"
                   aria-hidden="true"
-                ><i class="fa-solid fa-play text-xl"></i></span>
+                  ><i class="fa-solid fa-play text-xl"></i
+                ></span>
+
                 <span class="absolute bottom-6 left-6 right-6 text-base font-semibold">
                   Переглянути відео<span class="sr-only"> про обсмаження кави</span>
                 </span>
               </button>
+
               <template id="coffee-video-template"
                 ><iframe
                   id="coffee-guide-video"
@@ -588,8 +783,10 @@
                 ></iframe
               ></template>
             </div>
+
             <figcaption class="mt-3 text-caption text-brand-muted">
               James Hoffmann · Coffee Roasting Explained · англійською.
+
               <a
                 href="https://www.youtube.com/watch?v=N6BJVM5tvnw"
                 target="_blank"
@@ -604,93 +801,73 @@
       </section>
 
       <aside class="container pb-8" id="coffee-fact" aria-labelledby="coffee-fact-heading">
-        <div
-          class="rounded-container border border-solid border-brand-border bg-brand-soft p-6 md:p-8"
-        >
-          <div class="flex flex-wrap items-start justify-between gap-4">
-            <div class="flex min-w-0 items-center gap-3">
-              <span
-                class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand text-brand-background"
-                aria-hidden="true"
+        <div class="mo-fact-card">
+          <div class="mo-fact-header">
+            <span class="mo-fact-icon" aria-hidden="true"
+              ><svg
+                viewBox="0 0 40 40"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                <i class="fa-solid fa-mug-hot text-xl"></i>
-              </span>
-              <div class="min-w-0">
-                <p class="font-sans text-caption font-bold uppercase tracking-eyebrow text-brand">
-                  Хвилинка про каву
-                </p>
-                <h2 id="coffee-fact-heading" class="font-heading text-heading-3 font-semibold">
-                  Кавовий факт дня
-                </h2>
+                <path class="mo-fact-steam" d="M14 13c-4-3 2-4-1-7" />
+
+                <path class="mo-fact-steam" d="M21 13c-4-3 2-4-1-7" />
+
+                <path d="M10 19h19v6a9 9 0 0 1-18 0v-6Zm19 1h2a4 4 0 0 1 0 8h-3M8 35h24" /></svg
+            ></span>
+
+            <div class="mo-fact-heading-group">
+              <div class="mo-fact-kicker">
+                <span>Хвилинка про каву</span
+                ><time
+                  id="coffee-fact-date"
+                  class="mo-fact-date"
+                  title="Новий факт щодня за київським часом"
+                  hidden
+                ></time>
               </div>
+
+              <h2 id="coffee-fact-heading">Кавовий факт дня</h2>
             </div>
-            <time
-              id="coffee-fact-date"
-              class="text-body-sm text-brand-muted"
-              datetime="2026-10-18"
-              hidden
-            ></time>
           </div>
+
           <div
             id="coffee-fact-content"
-            class="mt-6 min-h-48 sm:min-h-28 lg:min-h-20"
-            aria-busy="false"
-          >
-            <h3 id="coffee-fact-topic" class="mb-3 font-heading text-xl font-semibold">
-              Щодня — нова кавова тема
-            </h3>
-            <blockquote class="m-0">
-              <p id="coffee-fact-text" class="text-body-sm leading-6 text-brand-text">
-                Дізнавайся більше про зерно, напої та способи заварювання.
-              </p>
-            </blockquote>
-          </div>
-          <div class="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-            <a
-              id="coffee-fact-source"
-              href="https://uk.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B2%D0%B0"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex min-h-11 items-center gap-2 rounded-sm text-body-sm font-semibold text-brand underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
-            >
-              Читати у Вікіпедії
-              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i
-              ><span class="sr-only">у новій вкладці</span>
-            </a>
-            <p class="text-caption text-brand-muted">
-              Уривок, скорочено ·
-              <a
-                href="https://creativecommons.org/licenses/by-sa/4.0/deed.uk"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex min-h-11 items-center rounded-sm text-brand underline underline-offset-4 hover:text-brand focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
-                >CC BY-SA 4.0<span class="sr-only">, умови ліцензії у новій вкладці</span></a
-              >
-            </p>
-          </div>
-          <p
-            id="coffee-fact-status"
-            class="mt-2 text-caption text-brand-muted"
-            role="status"
+            class="mo-fact-content"
             aria-live="polite"
             aria-atomic="true"
           >
-            Нова тема щодня за київським часом.
-          </p>
-          <button
-            id="coffee-fact-retry"
-            type="button"
-            hidden
-            class="mt-3 min-h-11 cursor-pointer rounded-control border border-solid border-brand-control bg-brand-surface px-4 py-2 font-sans text-body-sm font-semibold text-brand transition-colors hover:bg-brand-secondary focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand disabled:cursor-wait motion-reduce:transition-none"
-          >
-            Спробувати ще раз
-          </button>
-          <noscript
-            ><p class="mt-3 text-body-sm text-brand-muted">
-              Для автоматичного факту дня увімкни JavaScript. Кавові довідки доступні за посиланням
-              на Вікіпедію вище.
-            </p></noscript
-          >
+            <h3 id="coffee-fact-topic">Зерно, яке насправді є насіниною</h3>
+
+            <p id="coffee-fact-text">
+              Кавові зерна ховаються всередині плодів, схожих на вишні. Ми обсмажуємо й заварюємо
+              саме насіння, а не м’якоть.
+            </p>
+          </div>
+
+          <div class="mo-fact-footer">
+            <a
+              id="coffee-fact-source"
+              href="https://www.aboutcoffee.org/origins/what-is-coffee/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Джерело: NCA, у новій вкладці"
+              ><span id="coffee-fact-source-label">Джерело: NCA</span
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M14 3h7v7m0-7L10 14M10 4H4v16h16v-6" /></svg></a
+            ><span>Авторський текст</span>
+          </div>
         </div>
       </aside>
 
@@ -705,20 +882,25 @@
               >
                 Моно-сорти та основи
               </p>
+
               <h2 id="coffee-title" class="font-heading text-heading-2 font-semibold">
                 Почни з перевірених зерен
               </h2>
+
               <p class="mt-3 text-brand-muted">
                 Спробуй окремо або додай як основу власного рецепта.
               </p>
             </div>
+
             <a
               class="inline-flex max-w-full shrink-0 cursor-pointer items-center justify-center gap-2 rounded-control border border-solid border-brand-control bg-brand-surface px-6 py-3 text-center font-sans text-control font-semibold text-brand no-underline transition-brand duration-brand ease-out hover:bg-brand-secondary hover:shadow-card-hover focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none"
               href="catalog.html"
               >Переглянути всю каву</a
             >
           </div>
+
           <!-- article описує самодостатню пропозицію товару. -->
+
           <ul
             data-component="coffee-grid"
             class="m-0 mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
@@ -738,25 +920,27 @@
                   >
                     <img
                       class="block h-full w-full object-cover transition-transform duration-normal group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-                      src="assets/images/coffee/ethiopia-guji.webp"
+                      src="assets/images/coffee/ethiopia-guji-packaging.webp"
                       srcset="
-                        assets/images/coffee/ethiopia-guji-480.webp   480w,
-                        assets/images/coffee/ethiopia-guji.webp       768w,
-                        assets/images/coffee/ethiopia-guji-1200.webp 1200w
+                        assets/images/coffee/responsive/ethiopia-guji-packaging-400.webp  400w,
+                        assets/images/coffee/responsive/ethiopia-guji-packaging-800.webp  800w,
+                        assets/images/coffee/ethiopia-guji-packaging.webp                1536w
                       "
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      alt="Кавові зерна світлого обсмаження"
+                      alt="Ілюстративна упаковка: Ефіопія Guji"
                       width="768"
                       height="512"
                       loading="lazy"
                       decoding="async"
                     />
                   </a>
+
                   <span
                     class="pointer-events-none absolute left-4 top-4 rounded-full bg-brand-surface px-3 py-1 text-xs font-medium leading-5 text-brand"
                     >Single origin</span
                   >
                 </div>
+
                 <div class="flex flex-1 flex-col gap-3 p-4 md:p-6">
                   <p
                     class="m-0 flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 text-xs"
@@ -764,8 +948,10 @@
                     <span class="font-semibold uppercase tracking-eyebrow text-brand-accent-strong"
                       >Ефіопія</span
                     >
+
                     <span class="text-brand-muted">Світле обсмаження</span>
                   </p>
+
                   <h3 id="coffee-ethiopia-guji-title" class="m-0 font-heading text-2xl font-medium">
                     <a
                       class="inline-flex min-h-11 items-center rounded-sm text-brand-text no-underline underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
@@ -773,13 +959,16 @@
                       >Ефіопія Guji</a
                     >
                   </h3>
+
                   <p class="m-0 text-sm leading-relaxed text-brand-muted">
                     Жасмин, бергамот, персик. Яскрава кислотність і чайне тіло.
                   </p>
+
                   <div class="mt-auto pt-2">
                     <p data-card-price class="m-0 text-base font-semibold text-brand-text">
                       від 360 ₴
                     </p>
+
                     <div
                       data-card-actions
                       class="mt-4 flex flex-col items-stretch gap-2 xl:flex-row"
@@ -789,6 +978,7 @@
                         href="products/ethiopia-guji.html#product-purchase"
                         >Купити</a
                       >
+
                       <button
                         class="inline-flex min-h-12 w-full min-w-0 flex-1 items-center justify-center rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-center font-sans text-sm font-semibold text-brand-background transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand enabled:hover:border-brand-hover enabled:hover:bg-brand-hover enabled:active:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-disabled motion-reduce:transition-none xl:w-auto"
                         type="button"
@@ -802,6 +992,7 @@
                 </div>
               </article>
             </li>
+
             <li class="min-w-0">
               <article
                 data-component="coffee-card"
@@ -816,25 +1007,27 @@
                   >
                     <img
                       class="block h-full w-full object-cover transition-transform duration-normal group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-                      src="assets/images/coffee/colombia-huila.webp"
+                      src="assets/images/coffee/colombia-huila-packaging.webp"
                       srcset="
-                        assets/images/coffee/colombia-huila-480.webp   480w,
-                        assets/images/coffee/colombia-huila.webp       768w,
-                        assets/images/coffee/colombia-huila-1200.webp 1200w
+                        assets/images/coffee/responsive/colombia-huila-packaging-400.webp  400w,
+                        assets/images/coffee/responsive/colombia-huila-packaging-800.webp  800w,
+                        assets/images/coffee/colombia-huila-packaging.webp                1536w
                       "
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      alt="Кавові зерна середнього обсмаження"
+                      alt="Ілюстративна упаковка: Колумбія Huila"
                       width="768"
                       height="512"
                       loading="lazy"
                       decoding="async"
                     />
                   </a>
+
                   <span
                     class="pointer-events-none absolute left-4 top-4 rounded-full bg-brand-surface px-3 py-1 text-xs font-medium leading-5 text-brand"
                     >Single origin</span
                   >
                 </div>
+
                 <div class="flex flex-1 flex-col gap-3 p-4 md:p-6">
                   <p
                     class="m-0 flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 text-xs"
@@ -842,8 +1035,10 @@
                     <span class="font-semibold uppercase tracking-eyebrow text-brand-accent-strong"
                       >Колумбія</span
                     >
+
                     <span class="text-brand-muted">Середнє обсмаження</span>
                   </p>
+
                   <h3
                     id="coffee-colombia-huila-title"
                     class="m-0 font-heading text-2xl font-medium"
@@ -854,13 +1049,16 @@
                       >Колумбія Huila</a
                     >
                   </h3>
+
                   <p class="m-0 text-sm leading-relaxed text-brand-muted">
                     Карамель, червоне яблуко, какао. Збалансований щоденний профіль.
                   </p>
+
                   <div class="mt-auto pt-2">
                     <p data-card-price class="m-0 text-base font-semibold text-brand-text">
                       від 320 ₴
                     </p>
+
                     <div
                       data-card-actions
                       class="mt-4 flex flex-col items-stretch gap-2 xl:flex-row"
@@ -870,6 +1068,7 @@
                         href="products/colombia-huila.html#product-purchase"
                         >Купити</a
                       >
+
                       <button
                         class="inline-flex min-h-12 w-full min-w-0 flex-1 items-center justify-center rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-center font-sans text-sm font-semibold text-brand-background transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand enabled:hover:border-brand-hover enabled:hover:bg-brand-hover enabled:active:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-disabled motion-reduce:transition-none xl:w-auto"
                         type="button"
@@ -883,6 +1082,7 @@
                 </div>
               </article>
             </li>
+
             <li class="min-w-0">
               <article
                 data-component="coffee-card"
@@ -897,25 +1097,27 @@
                   >
                     <img
                       class="block h-full w-full object-cover transition-transform duration-normal group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-                      src="assets/images/coffee/brazil-cerrado.webp"
+                      src="assets/images/coffee/brazil-cerrado-packaging.webp"
                       srcset="
-                        assets/images/coffee/brazil-cerrado-480.webp   480w,
-                        assets/images/coffee/brazil-cerrado.webp       768w,
-                        assets/images/coffee/brazil-cerrado-1200.webp 1200w
+                        assets/images/coffee/responsive/brazil-cerrado-packaging-400.webp  400w,
+                        assets/images/coffee/responsive/brazil-cerrado-packaging-800.webp  800w,
+                        assets/images/coffee/brazil-cerrado-packaging.webp                1536w
                       "
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      alt="Кавові зерна темного обсмаження"
+                      alt="Ілюстративна упаковка: Бразилія Cerrado"
                       width="768"
                       height="512"
                       loading="lazy"
                       decoding="async"
                     />
                   </a>
+
                   <span
                     class="pointer-events-none absolute left-4 top-4 rounded-full bg-brand-surface px-3 py-1 text-xs font-medium leading-5 text-brand"
                     >Single origin</span
                   >
                 </div>
+
                 <div class="flex flex-1 flex-col gap-3 p-4 md:p-6">
                   <p
                     class="m-0 flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 text-xs"
@@ -923,8 +1125,10 @@
                     <span class="font-semibold uppercase tracking-eyebrow text-brand-accent-strong"
                       >Бразилія</span
                     >
+
                     <span class="text-brand-muted">Темне обсмаження</span>
                   </p>
+
                   <h3
                     id="coffee-brazil-cerrado-title"
                     class="m-0 font-heading text-2xl font-medium"
@@ -935,13 +1139,16 @@
                       >Бразилія Cerrado</a
                     >
                   </h3>
+
                   <p class="m-0 text-sm leading-relaxed text-brand-muted">
                     Фундук, шоколад, сухофрукти. Щільне солодке еспресо.
                   </p>
+
                   <div class="mt-auto pt-2">
                     <p data-card-price class="m-0 text-base font-semibold text-brand-text">
                       від 290 ₴
                     </p>
+
                     <div
                       data-card-actions
                       class="mt-4 flex flex-col items-stretch gap-2 xl:flex-row"
@@ -951,6 +1158,7 @@
                         href="products/brazil-cerrado.html#product-purchase"
                         >Купити</a
                       >
+
                       <button
                         class="inline-flex min-h-12 w-full min-w-0 flex-1 items-center justify-center rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-center font-sans text-sm font-semibold text-brand-background transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand enabled:hover:border-brand-hover enabled:hover:bg-brand-hover enabled:active:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-disabled motion-reduce:transition-none xl:w-auto"
                         type="button"
@@ -965,6 +1173,7 @@
               </article>
             </li>
           </ul>
+
           <p id="mix-action-note" class="m-0 mt-4 text-sm leading-6 text-brand-muted">
             Додавання до міксу буде доступне пізніше.
           </p>
@@ -978,15 +1187,22 @@
           >
             Демонстраційні відгуки
           </p>
+
           <h2 id="reviews-title" class="max-w-copy font-heading text-heading-2 font-semibold">
             Враження від персонального підбору
           </h2>
+
           <p id="reviews-note" class="mt-3 max-w-copy text-body-sm text-brand-muted">
             Приклади відгуків для демонстрації макета.
           </p>
+
           <!-- blockquote містить цитату; figcaption пов'язує її з автором. -->
+
           <ul
-            class="m-0 mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
+            class="m-0 mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3 shop-carousel relative"
+            id="home-reviews-carousel"
+            tabindex="0"
+            aria-label="Відгуки з горизонтальним гортанням"
             role="list"
           >
             <li class="flex min-w-0 flex-col">
@@ -1003,18 +1219,22 @@
                     ><i class="fa-solid fa-star icon" aria-hidden="true"></i
                   ></span>
                 </p>
+
                 <blockquote class="text-body-sm">
                   <p>
                     «Зібрала мікс із двох сортів за п’ять хвилин, а наступного разу повторила
                     замовлення в один клік.»
                   </p>
                 </blockquote>
+
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
                   <p class="text-body-sm font-bold">Олена</p>
+
                   <p class="text-caption text-brand-muted">Мікс «Ранок» · фільтр</p>
                 </figcaption>
               </figure>
             </li>
+
             <li class="flex min-w-0 flex-col">
               <figure
                 class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
@@ -1029,15 +1249,19 @@
                     ><i class="fa-solid fa-star icon" aria-hidden="true"></i
                   ></span>
                 </p>
+
                 <blockquote class="text-body-sm">
                   <p>«Подобається, що на пакуванні є дата обсмаження і видно, звідки зерно.»</p>
                 </blockquote>
+
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
                   <p class="text-body-sm font-bold">Андрій</p>
+
                   <p class="text-caption text-brand-muted">Ефіопія Guji · еспресо</p>
                 </figcaption>
               </figure>
             </li>
+
             <li class="flex min-w-0 flex-col">
               <figure
                 class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
@@ -1052,83 +1276,414 @@
                     ><i class="fa-solid fa-star icon" aria-hidden="true"></i
                   ></span>
                 </p>
+
                 <blockquote class="text-body-sm">
                   <p>
-                    «Не знала, що обрати, тому пройшла quiz. Рекомендація потрапила точно в смак.»
+                    «Не знала, що обрати, тому пройшла квіз. Рекомендація потрапила точно в смак.»
                   </p>
                 </blockquote>
+
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
                   <p class="text-body-sm font-bold">Марія</p>
-                  <p class="text-caption text-brand-muted">Quiz-підбір · джезва</p>
+
+                  <p class="text-caption text-brand-muted">Квіз-підбір · джезва</p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="flex min-w-0 flex-col">
+              <figure
+                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
+              >
+                <p class="review-rating">
+                  <span class="sr-only">Оцінка: 5 із 5</span
+                  ><span class="inline-flex gap-1" aria-hidden="true"
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                  ></span>
+                </p>
+
+                <blockquote class="text-body-sm">
+                  <p>
+                    «Сподобався шоколадно-горіховий смак. З молоком виходить м’яка чашка без зайвої
+                    кислинки.»
+                  </p>
+                </blockquote>
+
+                <figcaption class="mt-auto flex flex-col gap-1 pt-2">
+                  <p class="text-body-sm font-bold">Ірина</p>
+
+                  <p class="text-caption text-brand-muted">Бразилія Cerrado · еспресо</p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="flex min-w-0 flex-col">
+              <figure
+                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
+              >
+                <p class="review-rating">
+                  <span class="sr-only">Оцінка: 5 із 5</span
+                  ><span class="inline-flex gap-1" aria-hidden="true"
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                  ></span>
+                </p>
+
+                <blockquote class="text-body-sm">
+                  <p>
+                    «Шукав каву на щодень. У Huila відчуваю карамель і трохи яблука — саме той
+                    баланс, який люблю.»
+                  </p>
+                </blockquote>
+
+                <figcaption class="mt-auto flex flex-col gap-1 pt-2">
+                  <p class="text-body-sm font-bold">Дмитро</p>
+
+                  <p class="text-caption text-brand-muted">Колумбія Huila · фільтр</p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="flex min-w-0 flex-col">
+              <figure
+                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
+              >
+                <p class="review-rating">
+                  <span class="sr-only">Оцінка: 5 із 5</span
+                  ><span class="inline-flex gap-1" aria-hidden="true"
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                  ></span>
+                </p>
+
+                <blockquote class="text-body-sm">
+                  <p>
+                    «Зручно підібрати склад і пакування в одному місці. Зібрала для подарунка мікс
+                    із солодкими нотами.»
+                  </p>
+                </blockquote>
+
+                <figcaption class="mt-auto flex flex-col gap-1 pt-2">
+                  <p class="text-body-sm font-bold">Софія</p>
+
+                  <p class="text-caption text-brand-muted">Власний мікс · подарункова коробка</p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="flex min-w-0 flex-col">
+              <figure
+                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
+              >
+                <p class="review-rating">
+                  <span class="sr-only">Оцінка: 5 із 5</span
+                  ><span class="inline-flex gap-1" aria-hidden="true"
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                  ></span>
+                </p>
+
+                <blockquote class="text-body-sm">
+                  <p>
+                    «Люблю легку каву з квітковим ароматом. Цей сорт хочеться пити повільно й
+                    пробувати, як смак змінюється під час охолодження.»
+                  </p>
+                </blockquote>
+
+                <figcaption class="mt-auto flex flex-col gap-1 pt-2">
+                  <p class="text-body-sm font-bold">Максим</p>
+
+                  <p class="text-caption text-brand-muted">Ефіопія Yirgacheffe · фільтр</p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="flex min-w-0 flex-col">
+              <figure
+                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
+              >
+                <p class="review-rating">
+                  <span class="sr-only">Оцінка: 5 із 5</span
+                  ><span class="inline-flex gap-1" aria-hidden="true"
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                  ></span>
+                </p>
+
+                <blockquote class="text-body-sm">
+                  <p>
+                    «Подобається можливість обрати обсмаження зеленого зерна. Почала із середнього,
+                    а наступного разу спробую світле.»
+                  </p>
+                </blockquote>
+
+                <figcaption class="mt-auto flex flex-col gap-1 pt-2">
+                  <p class="text-body-sm font-bold">Катерина</p>
+
+                  <p class="text-caption text-brand-muted">Бразилія Cerrado · зелене зерно</p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="flex min-w-0 flex-col">
+              <figure
+                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
+              >
+                <p class="review-rating">
+                  <span class="sr-only">Оцінка: 5 із 5</span
+                  ><span class="inline-flex gap-1" aria-hidden="true"
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
+                  ></span>
+                </p>
+
+                <blockquote class="text-body-sm">
+                  <p>
+                    «Спробував кілька пропорцій Бразилії та Колумбії. Найбільше сподобався мікс із
+                    насиченим шоколадним смаком.»
+                  </p>
+                </blockquote>
+
+                <figcaption class="mt-auto flex flex-col gap-1 pt-2">
+                  <p class="text-body-sm font-bold">Тарас</p>
+
+                  <p class="text-caption text-brand-muted">Власний мікс · джезва</p>
                 </figcaption>
               </figure>
             </li>
           </ul>
+
+          <div class="shop-carousel-controls" id="reviews-controls" hidden>
+            <span
+              class="muted"
+              id="reviews-position"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></span>
+
+            <div class="actions">
+              <button
+                class="button button-secondary"
+                id="reviews-previous"
+                type="button"
+                aria-label="Попередні відгуки"
+                aria-controls="home-reviews-carousel"
+                disabled
+              >
+                ←
+              </button>
+
+              <button
+                class="button button-secondary"
+                id="reviews-next"
+                type="button"
+                aria-label="Наступні відгуки"
+                aria-controls="home-reviews-carousel"
+              >
+                →
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Демонстраційна локація обрана користувачем; Google Maps працює у власному iframe. -->
-      <section class="pb-16 pt-0" id="location" aria-labelledby="location-title">
-        <div class="container grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-          <div class="min-w-0 space-y-4">
+      <section class="mo-world container" id="coffee-world" aria-labelledby="mo-world-title">
+        <div class="mo-world-heading">
+          <div>
+            <p class="mo-world-eyebrow">Від країни до чашки</p>
+            <h2 id="mo-world-title">Досліджуй світ кави</h2>
+            <p class="mo-world-intro">Обери вид і відкрий країни, де його вирощують.</p>
+          </div>
+          <span class="mo-world-period" id="mo-world-period">2025/26 · оцінка USDA</span>
+        </div>
+        <div class="mo-world-filters" role="group" aria-label="Вид кави">
+
+          <button
+            type="button"
+            class="mo-world-chip"
+            data-mo-species="arabica"
+            aria-pressed="false"
+            disabled
+          >
+            Арабіка
+          </button>
+          <button
+            type="button"
+            class="mo-world-chip"
+            data-mo-species="robusta"
+            aria-pressed="false"
+            disabled
+          >
+            Робуста
+          </button>
+          <button
+            type="button"
+            class="mo-world-chip"
+            data-mo-species="liberica"
+            aria-pressed="false"
+            disabled
+          >
+            Ліберіка
+          </button>
+          <button
+            type="button"
+            class="mo-world-chip"
+            data-mo-species="excelsa"
+            aria-pressed="false"
+            disabled
+          >
+            Ексельза
+          </button>
+
+        </div>
+
+        <div class="mo-world-profile" id="mo-world-profile"></div><div class="mo-world-layout">
+          <div class="mo-world-map-panel">
+            <div class="mo-world-map-toolbar">
+              <select id="mo-world-country" hidden disabled><option value="">Країни</option></select>
+              <div class="mo-world-zoom" role="group" aria-label="Масштаб карти">
+                <button type="button" id="mo-world-minus" aria-label="Зменшити карту" disabled><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h10"/></svg></button
+                ><button type="button" id="mo-world-plus" aria-label="Збільшити карту" disabled><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h10M9 4v10"/></svg></button
+                ><button type="button" id="mo-world-reset" aria-label="Показати весь світ" disabled><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7V3h4M11 3h4v4M15 11v4h-4M7 15H3v-4"/></svg></button>
+              </div>
+            </div>
+            <div class="mo-world-stage" id="mo-world-stage">
+              <p id="mo-world-loading" role="status">Карта країн вирощування кави</p>
+            </div>
+            <button type="button" id="mo-world-retry" class="mo-world-button" hidden>
+              Спробувати ще раз
+            </button>
+            <div class="mo-world-legend" id="mo-world-legend"></div>
+            <p class="mo-world-map-hint">
+              Натисни на країну або обери її зі списку. На збільшеній карті можна перетягувати
+              зображення.
+            </p>
             <p
-              class="font-sans text-caption font-bold uppercase tracking-eyebrow text-brand-accent-strong"
+              class="mo-world-count"
+              id="mo-world-count"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></p>
+            <button
+              type="button"
+              class="mo-world-button mo-world-mobile-detail"
+              id="mo-world-show-country"
+              hidden
             >
-              Локація проєкту
-            </p>
-            <h2 id="location-title" class="font-heading text-heading-2 font-semibold">
-              Площа Ринок, Львів
-            </h2>
-            <p id="location-note" class="text-brand-muted">
-              Демонстраційна точка проєкту в центрі Львова. На карті можна роздивитися площу й
-              сусідні вулиці або відкрити локацію в Google Maps.
-            </p>
+              Про обрану країну
+            </button>
+          </div>
+          <div class="mo-world-country-home" id="mo-world-country-home">
+            <div class="mo-world-country-card" id="mo-world-country-card">
+              <h3 id="mo-world-country-title" tabindex="-1">Кава починається тут</h3>
+              <p>Обери країну, щоб побачити її кавовий профіль.</p>
+            </div>
+          </div>
+        </div>
+        <details class="mo-world-sources"><summary>Про дані та джерела</summary>
+          <p id="mo-world-method">
+            Обсяги — оцінка USDA за сезон 2025/26, опублікована в липні 2026. Для ліберіки й
+            ексельзи показано підтверджені приклади вирощування без оцінки обсягу.
+          </p>
+          <p>
+            Сірий колір: у добірці немає окремих даних про цей вид. Висота — орієнтир для виду, не
+            вимірювання ферми.
+          </p>
+          <p>
+            Джерела:
             <a
-              href="https://www.google.com/maps/search/?api=1&amp;query=Rynok%20Square%2C%20Lviv%2C%20Ukraine"
+              href="https://apps.fas.usda.gov/psdonline/circulars/coffee.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex min-h-11 items-center gap-2 rounded-sm font-semibold text-brand-accent-strong underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-brand"
+              >USDA FAS</a
             >
-              Відкрити Google Maps
-              <i class="fa-solid fa-arrow-up-right-from-square icon" aria-hidden="true"></i>
-              <span class="sr-only">у новій вкладці</span>
-            </a>
-          </div>
-          <figure class="m-0 w-full min-w-0 max-w-embed-media justify-self-center">
-            <div
-              class="relative aspect-video min-h-embed-media w-full overflow-hidden rounded-embed-media bg-brand-soft shadow-card ring-1 ring-brand-border"
+            ·
+            <a
+              href="https://www.kew.org/science/our-science/projects/excelsa-and-Liberica-coffee-development"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Kew</a
             >
-              <button
-                type="button"
-                data-embed="location-map-template"
-                class="absolute inset-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-3 border-0 bg-brand-soft px-6 py-4 text-center font-sans text-brand transition-colors hover:bg-brand-secondary focus-visible:outline focus-visible:outline-focus focus-visible:-outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none"
-              >
-                <span
-                  class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-solid border-brand-control"
-                  aria-hidden="true"
-                  ><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i
-                ></span>
-                <span class="text-base font-semibold">Показати інтерактивну карту</span>
-                <span class="text-caption text-brand-muted">Google Maps · площа Ринок, Львів</span>
-              </button>
-              <template id="location-map-template"
-                ><iframe
-                  id="location-map"
-                  class="absolute inset-0 block h-full w-full border-0 focus-visible:outline focus-visible:outline-focus focus-visible:-outline-offset-4 focus-visible:outline-brand"
-                  src="https://www.google.com/maps?q=Rynok%20Square%2C%20Lviv%2C%20Ukraine&amp;z=16&amp;output=embed"
-                  title="Google Maps — площа Ринок у Львові, демонстраційна локація"
-                  aria-describedby="location-note"
-                  loading="eager"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe
-              ></template>
-            </div>
-            <figcaption class="mt-3 text-caption text-brand-muted">
-              Площа Ринок, Львів · демонстраційна локація.
-            </figcaption>
-          </figure>
-        </div>
+            ·
+            <a
+              href="https://sca.coffee/sca-news/25/issue-25-insight-liberica-excelsa-y8bx2"
+              target="_blank"
+              rel="noopener noreferrer"
+              >SCA</a
+            >
+            ·
+            <a
+              href="https://www.naturalearthdata.com/about/terms-of-use/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Карта: Natural Earth</a
+            >
+            ·
+            <a
+              href="https://www.aboutcoffee.org/beans/varieties/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Види: NCA</a
+            >
+            ·
+            <a
+              href="https://www.kaffeeverband.de/kaffeewissen/kaffeezubereitung"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Висоти: Deutscher Kaffeeverband</a
+            >
+            ·
+            <a
+              href="https://varieties.worldcoffeeresearch.org/arabica/varieties"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Арабіка: WCR</a
+            >
+          </p>
+        </details>
+        <dialog class="mo-world-sheet" id="mo-world-sheet" aria-labelledby="mo-world-country-title">
+          <button
+            class="mo-world-sheet-close"
+            type="button"
+            id="mo-world-close"
+            aria-label="Закрити картку країни"
+          >
+            ×
+          </button>
+          <div id="mo-world-sheet-content"></div>
+        </dialog>
+        <noscript
+          ><p>
+            Для інтерактивної карти увімкни JavaScript. Дані виробництва доступні у
+            <a
+              href="https://apps.fas.usda.gov/psdonline/circulars/coffee.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              >звіті USDA FAS</a
+            >.
+          </p></noscript
+        >
       </section>
 
       <section class="pb-12 pt-0 md:pb-16" id="mix" aria-labelledby="mix-title">
@@ -1142,9 +1697,11 @@
             >
               Створи свій мікс — чашку за чашкою, саме під себе
             </h2>
+
             <p class="col-start-1 max-w-copy text-body-sm text-brand-secondary">
               Обери базове зерно та баланс смаку — для кави, яка підходить саме тобі.
             </p>
+
             <a
               class="col-start-1 row-auto inline-flex min-h-12 w-full max-w-full cursor-pointer items-center justify-center gap-2 justify-self-start rounded-control border border-solid border-brand-secondary bg-brand-secondary px-6 py-3 text-center font-sans text-base font-semibold text-brand no-underline transition-brand duration-brand ease-out hover:border-brand-accent hover:bg-brand-accent hover:text-brand-text hover:shadow-card-hover focus-visible:shadow-card-hover focus-visible:outline focus-visible:outline-focus focus-visible:outline-offset-4 focus-visible:outline-white active:border-brand-secondary active:bg-brand-secondary motion-reduce:transition-none md:w-auto wide:col-start-2 wide:row-span-2 wide:row-start-1 wide:justify-self-auto"
               href="constructor.html"
@@ -1156,218 +1713,37 @@
     </main>
 
     <!-- Самостійний компонент: сітка та оформлення побудовані утилітами Tailwind. -->
-    <footer
-      data-component="footer"
-      class="box-border bg-brand px-4 pb-6 pt-12 font-sans text-sm leading-6 text-brand-background md:px-8 xl:px-16 [&_*]:box-border"
-    >
-      <div class="mx-auto w-full max-w-site">
-        <div
-          data-footer-grid
-          class="grid grid-cols-1 items-start gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-4"
-        >
-          <div class="min-w-0">
-            <a
-              class="inline-flex min-h-11 items-center gap-3 rounded-sm font-heading text-lg font-semibold text-brand-background no-underline transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-              href="index.html"
-            >
-              <img
-                class="block h-auto w-11 shrink-0 brightness-0 invert"
-                src="assets/images/logo.svg"
-                alt="Смажена Кава"
-                width="254"
-                height="274"
-                loading="lazy"
-                decoding="async"
-              />
-              <span aria-hidden="true">Смажена Кава</span>
-            </a>
-            <p class="m-0 mt-4 max-w-sm text-brand-secondary">
-              Крафтова кава, яку можна налаштувати під свій смак і ритм.
-            </p>
+
+    <footer class="site-footer mo-footer" data-component="footer">
+      <div class="container">
+        <section class="mo-footer-newsletter" aria-labelledby="mo-footer-news-title" data-mo-footer-reveal>
+          <div><h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2><p>Нові зерна, кавові поради й пропозиції — на пошту.</p></div>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe"><input id="mo-footer-email" name="newsletter-email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@example.com" aria-describedby="mo-footer-subscribe-note mo-footer-email-error" /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">Підписатися</button></div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">Підписка буде доступна незабаром.</p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"><img src="assets/images/logo.svg" alt="" width="254" height="274" loading="lazy" decoding="async" /><span>Смажена Кава</span></a>
+            <p class="mo-footer-tagline">Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+            <address class="mo-footer-address"><span data-mo-footer-address>Львів, площа Ринок</span><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span></address>
           </div>
-          <nav class="min-w-0" aria-labelledby="footer-learn-title">
-            <h2
-              id="footer-learn-title"
-              class="m-0 mb-3 font-sans text-base font-semibold text-brand-background"
-            >
-              Дізнатися
-            </h2>
-            <ul class="m-0 flex list-none flex-col p-0" role="list">
-              <li>
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="about.html"
-                  >Про нас</a
-                >
-              </li>
-              <li>
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="faq.html"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="delivery.html"
-                  >Доставка та оплата</a
-                >
-              </li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div><h2>Дізнатися</h2><ul role="list"><li><a class="mo-footer-link" href="about.html">Про нас</a></li><li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li><li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li></ul></div>
+            <div><h2>Кава</h2><ul role="list"><li><a class="mo-footer-link" href="catalog.html">Каталог</a></li><li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li><li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li><li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li></ul></div>
           </nav>
-          <nav class="min-w-0" aria-labelledby="footer-coffee-title">
-            <h2
-              id="footer-coffee-title"
-              class="m-0 mb-3 font-sans text-base font-semibold text-brand-background"
-            >
-              Кава
-            </h2>
-            <ul class="m-0 flex list-none flex-col p-0" role="list">
-              <li>
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="catalog.html"
-                  >Каталог</a
-                >
-              </li>
-              <li>
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="constructor.html"
-                  >Створити мікс</a
-                >
-              </li>
-              <li>
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="quiz.html"
-                  >Quiz-підбір</a
-                >
-              </li>
-            </ul>
-          </nav>
-          <section class="min-w-0" aria-labelledby="footer-contact-title">
-            <h2
-              id="footer-contact-title"
-              class="m-0 mb-3 font-sans text-base font-semibold text-brand-background"
-            >
-              Контакти та соцмережі
-            </h2>
-            <!-- Демонстраційні контакти з Figma; перед публікацією замінити на справжні. -->
-            <address class="not-italic text-brand-secondary">
-              <p class="m-0">+38 044 000 00 00</p>
-              <p class="m-0">
-                <a
-                  class="inline-flex min-h-11 min-w-11 items-center break-all rounded-sm text-brand-secondary no-underline underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  href="mailto:hello@smazhenakava.ua"
-                  >hello@smazhenakava.ua</a
-                >
-              </p>
-              <p class="m-0">
-                <a
-                  href="#location"
-                  class="inline-flex min-h-11 items-center rounded-sm text-brand-secondary no-underline underline-offset-4 hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-                >
-                  Львів, площа Ринок · демолокація
-                </a>
-              </p>
-            </address>
-            <!-- Соціальні профілі ще не надано: ці елементи поки неактивні. -->
-            <ul
-              class="m-0 mt-3 flex list-none flex-col p-0"
-              role="list"
-              aria-label="Соціальні мережі"
-            >
-              <li>
-                <span
-                  class="inline-flex min-h-11 cursor-default items-center gap-3 text-brand-secondary"
-                  ><svg
-                    class="h-5 w-5 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <rect x="3" y="3" width="18" height="18" rx="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" /></svg
-                  >Instagram</span
-                >
-              </li>
-              <li>
-                <span
-                  class="inline-flex min-h-11 cursor-default items-center gap-3 text-brand-secondary"
-                  ><svg
-                    class="h-5 w-5 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      d="M14 21v-8h3l.5-4H14V7c0-1.2.4-2 2-2h2V1.5A22 22 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v8"
-                    /></svg
-                  >Facebook</span
-                >
-              </li>
-              <li>
-                <span
-                  class="inline-flex min-h-11 cursor-default items-center gap-3 text-brand-secondary"
-                  ><svg
-                    class="h-5 w-5 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <rect x="2" y="5" width="20" height="14" rx="4" />
-                    <path d="m10 9 5 3-5 3z" /></svg
-                  >YouTube</span
-                >
-              </li>
-            </ul>
+          <section class="mo-footer-contacts" aria-labelledby="mo-footer-contact-title" data-mo-footer-reveal>
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address><a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone>+38 (032) 000-00-00</a><a class="mo-footer-link" href="mailto:hello@smazhenakava.example" data-mo-footer-email>hello@smazhenakava.example</a></address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери"><li><a class="mo-footer-social" data-mo-footer-social="instagram" href="https://www.instagram.com/smazhena.kava.example/" aria-label="Instagram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="facebook" href="https://www.facebook.com/smazhena.kava.example/" aria-label="Facebook, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="youtube" href="https://www.youtube.com/@smazhenakava-example" aria-label="YouTube, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="telegram" href="https://t.me/smazhenakava_example" aria-label="Telegram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="viber" href="viber://chat?number=%2B380320000000" aria-label="Viber, відкрити Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"/><path d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"/></svg></a></li></ul>
           </section>
         </div>
-        <div
-          class="mt-8 flex flex-col gap-3 border-0 border-t border-solid border-white/20 pt-6 text-xs leading-5 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-6"
-        >
-          <p class="m-0 text-brand-secondary">© 2026 Смажена Кава</p>
-          <div role="group" aria-label="Правова інформація">
-            <ul
-              class="m-0 flex list-none flex-col gap-x-6 p-0 sm:flex-row sm:flex-wrap"
-              role="list"
-            >
-              <li>
-                <span class="inline-flex min-h-11 items-center text-brand-secondary"
-                  >Політика конфіденційності</span
-                >
-              </li>
-              <li>
-                <span class="inline-flex min-h-11 items-center text-brand-secondary"
-                  >Публічна оферта</span
-                >
-              </li>
-              <li>
-                <span class="inline-flex min-h-11 items-center text-brand-secondary"
-                  >Умови використання</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Доставка по Україні · Нова пошта / Укрпошта</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg>Обсмажуємо під замовлення</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4"/></svg>Оплата при отриманні</span></div>
+        <div class="mo-footer-divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg></div>
+        <div class="mo-footer-bottom"><p>© <span data-mo-footer-year>2026</span> Смажена Кава</p><div class="mo-footer-legal" aria-label="Правова інформація"><span>Політика конфіденційності</span><span>Публічна оферта</span><span>Умови використання</span></div><button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></div>
       </div>
     </footer>
   </body>

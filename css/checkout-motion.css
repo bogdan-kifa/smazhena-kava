@@ -1,0 +1,3 @@
+/* Checkout-only carrier hint. */
+.mo-delivery-help { font-size:13px; line-height:1.5; color:var(--color-text-muted); }
+.checkout-page input[name="delivery"] + .checkout-option-label { cursor:pointer; }

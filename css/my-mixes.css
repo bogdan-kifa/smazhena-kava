@@ -1,181 +1,513 @@
-/* Збережені рецепти за My_Mixes_Desktop_1440 / My_Mixes_Mobile_390.
-   Спільна палітра, шрифти й компоненти — style.css та catalog.css. */
-
-/* 1. Заголовок та розділи акаунта */
+/* Saved mixes: page presentation and prepared states for later lab integrations. */
 .saved-mixes-heading h1,
 .saved-mix-header h2 {
   font-weight: var(--font-weight-medium);
 }
-
-.saved-mixes-page .header-account[aria-current="true"],
-.saved-mixes-page .catalog-mobile-menu a[aria-current="true"] {
-  border-radius: var(--radius-control);
-  background: var(--color-background-soft);
-}
-
 .saved-mixes-listing {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-  padding-top: var(--spacing-xl);
-  padding-bottom: var(--spacing-section);
+  gap: 24px;
+  padding-block: 32px 64px;
 }
-
 .saved-mixes-account-navigation {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
+  gap: 10px;
 }
-
 .saved-mixes-account-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   max-width: 100%;
   min-height: 44px;
-  padding: var(--spacing-xs) 20px;
+  padding: 10px 18px;
   border: var(--border-control);
   border-radius: var(--radius-control);
   color: var(--color-text);
   background: var(--color-surface);
-  font-size: 0.9375rem;
+  font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-control);
   text-decoration: none;
 }
-
 .saved-mixes-account-link[aria-current="page"] {
   color: var(--color-text-inverse);
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
-
-.saved-mixes-account-link[aria-disabled="true"] {
-  cursor: default;
+.saved-mixes-account-link.is-future {
+  border-style: dashed;
+  border-color: var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
 }
-
-/* 2. Grid: три колонки на десктопі, дві на планшеті, одна на телефоні */
+.saved-soon {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: var(--color-background-soft);
+  color: var(--color-text-muted);
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+.saved-tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  min-height: 22px;
+  padding-inline: 5px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 99px;
+  font-size: var(--font-size-caption);
+  font-variant-numeric: tabular-nums;
+}
+.saved-local-notice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid #d8bf9c;
+  border-radius: var(--radius-card);
+  background: #faf1e4;
+  color: var(--color-primary);
+}
+.saved-notice-icon {
+  font-size: 24px;
+  align-self: flex-start;
+  flex: none;
+}
+.saved-local-notice > p {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--font-size-small);
+  line-height: 1.55;
+}
+.saved-export-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.saved-export-action .button {
+  min-height: 44px;
+  font-size: var(--font-size-small);
+  padding: 10px 16px;
+}
+.saved-export-action .button:disabled {
+  color: var(--color-text-muted);
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--color-control-border);
+  cursor: not-allowed;
+}
+.saved-mixes-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+.saved-sort-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.saved-sort-field select {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.saved-mixes-empty {
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  gap: 18px;
+}
+.saved-empty-illustration {
+  flex: none;
+  display: block;
+  color: var(--color-primary);
+}
+.saved-mixes-empty h2 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: var(--font-weight-medium);
+}
+.saved-mixes-empty > p {
+  max-width: 520px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.saved-empty-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+.saved-empty-actions .button {
+  min-height: 48px;
+}
 .saved-mixes-grid {
   display: grid;
-  grid-template-columns: var(--grid-track-fluid);
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-
 .saved-mixes-grid > li {
   display: flex;
   min-width: 0;
 }
-
-/* 3. Назва, дата й характеристики самодостатнього рецепта */
+.saved-mix-card {
+  width: 100%;
+  min-width: 0;
+  gap: 16px;
+  padding: 22px;
+}
 .saved-mix-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs) var(--spacing-md);
+  gap: 12px;
 }
-
-.saved-mix-header h2 {
+.saved-mix-heading-copy {
   min-width: 0;
-  font-size: 1.625rem;
-  line-height: 1.2308;
+  display: grid;
+  gap: 6px;
 }
-
-.saved-mix-header time {
+.saved-mix-header h2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.saved-mix-date {
   color: var(--color-text-muted);
-  font-size: var(--font-size-small);
-  line-height: 1.4286;
-  white-space: nowrap;
+  font-size: var(--font-size-caption);
+  line-height: 1.5;
 }
-
-.saved-mix-details {
+.saved-mix-title-tools {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  margin: 0;
+  gap: 6px;
+  flex: none;
 }
-
-.saved-mix-details > div {
+.saved-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+.saved-icon-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.saved-icon-button:hover:not(:disabled) {
+  background: var(--color-background-soft);
+  border-color: var(--color-primary);
+}
+.saved-icon-button:disabled {
+  border-style: dashed;
+  color: var(--color-text-muted);
+  background: transparent;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.saved-future-button {
+  padding: 3px 8px 15px;
+}
+.saved-future-label {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  right: 0;
+  font-size: 8px;
+  line-height: 1.2;
+  color: var(--color-text-muted);
+}
+.saved-mixes-page [data-color="0"] {
+  --mix-segment: var(--color-primary);
+  --mix-segment-text: var(--color-surface);
+}
+.saved-mixes-page [data-color="1"] {
+  --mix-segment: var(--color-accent-strong);
+  --mix-segment-text: var(--color-surface);
+}
+.saved-mixes-page [data-color="2"] {
+  --mix-segment: var(--color-success);
+  --mix-segment-text: var(--color-surface);
+}
+.saved-mixes-page [data-color="3"] {
+  --mix-segment: var(--color-secondary);
+  --mix-segment-text: var(--color-text);
+}
+.saved-composition-bar {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+}
+.saved-composition-bar > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--mix-segment);
+  color: var(--mix-segment-text);
+  border-inline-end: 2px solid var(--color-surface);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+}
+.saved-composition-bar > span:last-child {
+  border-inline-end: 0;
+}
+.saved-composition-legend {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.saved-composition-legend > li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--font-size-small);
+  line-height: 1.45;
+}
+.saved-composition-letter {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-xs);
+  background: var(--mix-segment);
+  color: var(--mix-segment-text);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+}
+.saved-bean-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.saved-composition-legend strong {
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+.saved-mix-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.saved-mix-chips > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-height: 32px;
+  padding: 5px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--color-background-soft);
+  font-size: var(--font-size-caption);
+  line-height: 1.45;
+  color: var(--color-primary);
+}
+.saved-mix-chips .saved-icon {
+  width: 15px;
+  height: 17px;
+}
+.saved-mix-chips > li > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.saved-mix-price-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--spacing-md);
-}
-
-.saved-mix-details dt {
-  flex-shrink: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-small);
-  line-height: 1.4286;
-}
-
-.saved-mix-details dd {
-  min-width: 0;
-  margin: 0;
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.5;
-  text-align: right;
-}
-
-/* 4. Дії притиснуті до низу картки; довгі назви можуть переноситися */
-.saved-mix-actions {
-  display: flex;
-  align-items: stretch;
-  gap: var(--spacing-xs);
+  gap: 10px;
+  flex-wrap: wrap;
   margin-top: auto;
-  padding-top: var(--spacing-md);
+  padding-top: 4px;
+}
+.saved-mix-price {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: var(--font-weight-semibold);
+}
+.saved-order-count {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+.saved-mix-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid #e7c887;
+  border-radius: var(--radius-control);
+  background: #fff5df;
+  color: #6b4216;
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+.saved-mix-warning .saved-icon {
+  width: 18px;
+  height: 20px;
+}
+.saved-mix-warning.is-error {
+  border-color: var(--color-error);
+  background: var(--color-background-soft);
+  color: var(--color-error);
+}
+.saved-mix-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(3, 44px);
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
   border-top: var(--border-default);
 }
-
-.saved-mix-actions .button {
-  min-width: 0;
-  min-height: 48px;
-  padding: 10px var(--spacing-sm);
-  font-size: var(--font-size-body);
-  line-height: 1.5;
-}
-
 .saved-mix-repeat {
-  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: var(--font-size-small);
 }
-
-.saved-mix-edit {
-  flex: none;
+.saved-mix-repeat:disabled {
+  color: var(--color-text-muted);
+  background: var(--color-background-soft);
+  border-color: var(--color-border);
+  cursor: not-allowed;
 }
-
-@media (min-width: 768px) {
+.saved-undo-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+  color: var(--color-primary);
+}
+.saved-rename-form {
+  display: grid;
+  gap: 10px;
+}
+.saved-rename-form input {
+  min-height: 44px;
+  padding: 10px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  font: inherit;
+}
+.saved-icon-button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+@media (width<1200px) {
   .saved-mixes-grid {
-    grid-template-columns: repeat(2, var(--grid-track-fluid));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .saved-local-notice {
+    flex-wrap: wrap;
+  }
+  .saved-local-notice > p {
+    flex-basis: calc(100% - 42px);
+  }
+  .saved-export-action {
+    margin-inline-start: 38px;
   }
 }
-
-@media (min-width: 1200px) {
+@media (width<768px) {
   .saved-mixes-grid {
-    grid-template-columns: repeat(3, var(--grid-track-fluid));
+    grid-template-columns: minmax(0, 1fr);
   }
-}
-
-/* 5. Мобільні розміри з макета */
-@media (width < 768px) {
   .saved-mixes-listing {
-    padding-bottom: var(--spacing-2xl);
+    gap: 20px;
+    padding-block: 24px 40px;
   }
-
+  .saved-mixes-account-link {
+    padding: 9px 12px;
+    gap: 8px;
+  }
+  .saved-mix-card {
+    padding: 20px;
+  }
   .saved-mix-header h2 {
     font-size: 1.375rem;
-    line-height: 1.2728;
+  }
+  .saved-mixes-empty {
+    padding: 32px 20px;
+  }
+  .saved-mixes-empty h2 {
+    font-size: 1.5rem;
+  }
+  .saved-local-notice {
+    padding: 16px;
+  }
+  .saved-sort-field {
+    gap: 8px;
   }
 }
-
-@media (width < 360px) {
+@media (width<360px) {
   .saved-mix-card {
-    padding: var(--spacing-md);
+    padding: 16px;
   }
-
-  .saved-mix-actions {
+  .saved-mix-header {
+    flex-wrap: wrap;
+  }
+  .saved-mix-title-tools {
+    margin-inline-start: auto;
+  }
+  .saved-empty-actions {
+    width: 100%;
     flex-direction: column;
+  }
+  .saved-empty-actions .button {
+    width: 100%;
+  }
+  .saved-export-action {
+    margin-inline-start: 0;
+  }
+  .saved-mix-actions {
+    gap: 6px;
+  }
+  .saved-mix-repeat {
+    padding-inline: 8px;
+  }
+  .saved-sort-field label {
+    flex-basis: 100%;
   }
 }

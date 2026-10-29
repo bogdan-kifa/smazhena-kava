@@ -7,16 +7,22 @@
       name="description"
       content="Відповіді на часті запитання про кавові зерна, обсмаження, власний мікс, доставку та оплату."
     />
-    <title>Часті запитання — Смажена Кава</title>
+    <title>Запитання й відповіді — Смажена Кава</title>
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/icons.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/catalog.css" />
     <link rel="stylesheet" href="css/information.css" />
-    <link rel="stylesheet" href="css/faq.css" />
     <link rel="stylesheet" href="css/interaction.css" />
     <script src="js/products.js" defer></script>
     <script src="js/shop.js" defer></script>
+    <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/faq-motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+    <script src="js/motion.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/faq.js" defer></script>
   </head>
   <body class="catalog-page information-page faq-page">
     <noscript
@@ -80,307 +86,1450 @@
       </div>
     </header>
 
-    <main id="faq-content" tabindex="-1">
-      <div class="container information-heading">
+    <main id="faq-content" class="mo-faq-page" tabindex="-1">
+      <div class="container information-heading mo-faq-heading">
         <nav class="breadcrumbs" aria-label="Шлях до сторінки">
           <ol>
             <li><a href="index.html">Головна</a></li>
-            <li><span aria-current="page">FAQ</span></li>
+            <li><span aria-current="page">Запитання й відповіді</span></li>
           </ol>
         </nav>
         <p class="eyebrow">Часті запитання</p>
         <h1>Трохи більше про каву.</h1>
         <p class="information-intro">
-          Від першого знайомства із зерном до власного поєднання. Зібрали відповіді, які допоможуть
-          обрати свій смаковий напрям.
+          Від вибору зерна до отримання пакунка. Знайдіть коротку відповідь і перейдіть до
+          потрібного кроку.
         </p>
-        <nav class="faq-category-navigation" aria-label="Категорії запитань">
-          <ul class="faq-category-list" role="list">
-            <li><a href="#faq-coffee">Зерно та смак</a></li>
-            <li><a href="#faq-mix">Власний мікс</a></li>
-            <li><a href="#faq-order">Замовлення</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <section class="info-section faq-section" id="faq-coffee" aria-labelledby="faq-coffee-title">
-        <div class="container info-layout">
-          <div class="faq-section-heading">
-            <p class="eyebrow">01 · Знайомство із зерном</p>
-            <h2 id="faq-coffee-title">Зерно та смак</h2>
-            <p>Кілька орієнтирів, щоб знайти каву, до якої хочеться повертатися.</p>
-          </div>
-          <div class="faq-questions">
-            <!-- Нативні details/summary доступні з клавіатури та працюють без JavaScript. -->
-            <details class="faq-question" open>
-              <summary>Як обрати каву, якщо я лише починаю?</summary>
-              <div class="faq-answer">
-                <p>
-                  Почни зі способу заварювання та знайомих смаків. Якщо любиш шоколад і горіхи,
-                  придивись до відповідних нот у картках. Для фруктових і квіткових відтінків шукай
-                  зерно з таким описом.
-                </p>
-                <p>
-                  У <a href="catalog.html">каталозі</a> можна порівняти походження, обробку та
-                  обсмаження. Смакові ноти — це орієнтири, а результат у чашці також залежить від
-                  води, помелу й рецепта.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Кислотність і міцність — це одне й те саме?</summary>
-              <div class="faq-answer">
-                <p>
-                  Кислотність описує смак: наприклад, цитрусову свіжість або ягідні відтінки.
-                  Міцність чашки зазвичай пов’язана з концентрацією напою та співвідношенням кави й
-                  води.
-                </p>
-                <p>
-                  Це різні характеристики: кава з помітною кислотністю може бути легкою або
-                  насиченою залежно від приготування. Інтенсивність смаку також не визначає
-                  кількість кофеїну.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Чим відрізняється обсмаження для фільтра й еспресо?</summary>
-              <div class="faq-answer">
-                <p>
-                  Профіль для фільтра часто підкреслює легкість, фруктові та квіткові ноти. Профіль
-                  для еспресо зазвичай орієнтований на баланс, солодкість і насиченіше тіло за
-                  короткого заварювання.
-                </p>
-                <p>
-                  Це корисна підказка для вибору, а не суворе правило. Зерно можна спробувати
-                  різними способами, коригуючи помел і рецепт під свій смак.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Як зберігати каву після відкриття?</summary>
-              <div class="faq-answer">
-                <p>
-                  Щільно закривай паковання або використовуй герметичну ємність. Зберігай зерно в
-                  сухому, прохолодному місці без прямого сонця, подалі від плити та виразних
-                  сторонніх запахів.
-                </p>
-                <p>
-                  Для щоденного використання холодильник небажаний через вологу, запахи й перепади
-                  температури. Мели невелику порцію безпосередньо перед заварюванням.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="info-section faq-section" id="faq-mix" aria-labelledby="faq-mix-title">
-        <div class="container info-layout">
-          <div class="faq-section-heading">
-            <p class="eyebrow">02 · Простір для поєднань</p>
-            <h2 id="faq-mix-title">Власний мікс</h2>
-            <p>Від улюбленого сорту до балансу кількох зерен.</p>
-          </div>
-          <div class="faq-questions">
-            <details class="faq-question">
-              <summary>Що таке кавовий мікс?</summary>
-              <div class="faq-answer">
-                <p>
-                  Це поєднання кількох кавових зерен у певних пропорціях. Один компонент може
-                  додавати шоколадну основу й тіло, інший — фруктову яскравість або аромат.
-                </p>
-                <p>
-                  Мікс не обов’язково кращий за один сорт: він дає інший спосіб дослідити смак.
-                  Можна почати з улюбленого зерна й поступово продумати доповнення.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>З чого почати власне поєднання?</summary>
-              <div class="faq-answer">
-                <p>
-                  Обери основний смаковий напрям і два-три зерна, які його підтримують. Для початку
-                  зручно зробити один сорт основою, а решту — невеликими доповненнями; сума часток
-                  має становити 100%.
-                </p>
-                <p>
-                  У <a href="constructor.html">конструкторі міксу</a> є приклад поєднання та його
-                  характеристик. Це відправна точка для знайомства з пропорціями.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Чи є один універсальний рецепт для міксу?</summary>
-              <div class="faq-answer">
-                <p>
-                  Ні, усе залежить від смаків компонентів і способу заварювання. Спочатку спробуй
-                  базовий рецепт для свого обладнання, а далі змінюй один параметр за раз: помел,
-                  кількість кави або воду.
-                </p>
-                <p>
-                  Нотатки про рецепт і відчуття у чашці допомагають знайти поєднання, яке
-                  подобається саме тобі.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="info-section faq-section" id="faq-order" aria-labelledby="faq-order-title">
-        <div class="container info-layout">
-          <div class="faq-section-heading">
-            <p class="eyebrow">03 · Корисні деталі</p>
-            <h2 id="faq-order-title">Замовлення</h2>
-            <p>Де знайти інформацію про вибір, доставку та оплату.</p>
-          </div>
-          <div class="faq-questions">
-            <details class="faq-question">
-              <summary>Де подивитися характеристики кави?</summary>
-              <div class="faq-answer">
-                <p>
-                  У картці в <a href="catalog.html">каталозі</a> є короткий опис зерна, обробка,
-                  профіль обсмаження й кислотність. Відкрий окрему сторінку кави, щоб дізнатися
-                  більше про її смаковий характер.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Які є варіанти доставки й оплати?</summary>
-              <div class="faq-answer">
-                <p>
-                  У демонстрації можна обрати Нову пошту або кур’єра та оплату при отриманні. За
-                  умовами прикладу доставка від 800 ₴ безкоштовна. Реальні замовлення й карткова
-                  оплата ще недоступні.
-                </p>
-                <p>
-                  Усі варіанти зібрані на сторінці <a href="delivery.html">«Доставка та оплата»</a>.
-                  Там також пояснено, від чого залежить вартість доставки.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Як дізнатися, яка кава мені підійде?</summary>
-              <div class="faq-answer">
-                <p>
-                  Зважай на спосіб заварювання, улюблені смакові ноти й бажану насиченість. Порівняй
-                  кілька сортів у каталозі та почни з того, чий опис найближчий до твоїх уподобань.
-                </p>
-                <p>
-                  Також можна познайомитися з <a href="quiz.html">Quiz-підбором</a>: запитання про
-                  кавові звички допомагають сформулювати, що саме хочеться знайти у чашці.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Чи можна обрати обсмаження зеленого зерна?</summary>
-              <div class="faq-answer">
-                <p>
-                  Так. На сторінці зеленого сорту можна залишити зерно необсмаженим або обрати
-                  світле, середнє чи темне обсмаження без доплати. Помел доступний для обсмаженого
-                  зерна. У конструкторі профіль обирається окремо для кожного зеленого складника.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Скільки коштує пакування міксу?</summary>
-              <div class="faq-answer">
-                <p>
-                  Пакет із клапаном входить у вартість. Подарункова коробка додає 40 ₴, багаторазова
-                  банка — 80 ₴ за одну одиницю міксу, незалежно від ваги. При зміні кількості в
-                  кошику доплата враховується для кожної одиниці.
-                </p>
-              </div>
-            </details>
-            <details class="faq-question">
-              <summary>Де зберігаються мої рецепти?</summary>
-              <div class="faq-answer">
-                <p>
-                  У розділі <a href="my-mixes.html">«Мої мікси»</a> зберігаються рецепти цього
-                  браузера. Вхід до акаунта ще недоступний, тому дані не синхронізуються між
-                  пристроями. Після очищення даних сайту рецепти можуть зникнути.
-                </p>
-              </div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="info-section faq-next" aria-labelledby="faq-next-title">
-        <div class="container">
-          <div class="info-panel faq-next-panel">
-            <div>
-              <p class="eyebrow">Наступний крок</p>
-              <h2 id="faq-next-title">Тепер — до своєї чашки.</h2>
-              <p>Познайомся із зерном або переглянь деталі доставки перед вибором.</p>
+        <div class="mo-faq-tools" id="mo-faq-tools" hidden>
+          <div class="mo-faq-search" role="search">
+            <label for="mo-faq-search">Що хочете дізнатися?</label>
+            <div class="mo-faq-search-field">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                aria-hidden="true"
+              >
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="m16 16 5 5" /></svg
+              ><input
+                id="mo-faq-search"
+                type="search"
+                maxlength="120"
+                placeholder="Наприклад: помел або доставка"
+                autocomplete="off"
+                aria-controls="mo-faq-results"
+              /><button type="button" id="mo-faq-search-clear" aria-label="Очистити пошук" hidden>
+                ×
+              </button>
             </div>
-            <div class="actions">
-              <a class="button" href="catalog.html"
-                >Переглянути каву <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
-              ></a>
-              <a class="button button-secondary" href="delivery.html">Доставка та оплата</a>
+          </div>
+          <div class="mo-faq-toolbar">
+            <p id="mo-faq-result-count" aria-live="polite" aria-atomic="true">
+              20 запитань у 3 розділах
+            </p>
+            <div>
+              <button type="button" id="mo-faq-expand">Розгорнути всі</button
+              ><button type="button" id="mo-faq-collapse">Згорнути всі</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="mo-faq-nav" aria-label="Категорії запитань">
+        <div class="container">
+          <ul role="list">
+            <li>
+              <a href="#faq-coffee" data-mo-faq-category="faq-coffee"
+                >Зерно та смак<span class="mo-faq-category-count">8</span></a
+              >
+            </li>
+            <li>
+              <a href="#faq-mix" data-mo-faq-category="faq-mix"
+                >Власний мікс<span class="mo-faq-category-count">5</span></a
+              >
+            </li>
+            <li>
+              <a href="#faq-order" data-mo-faq-category="faq-order"
+                >Замовлення<span class="mo-faq-category-count">7</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="mo-faq-empty" id="mo-faq-empty" hidden>
+          <h2>Не знайшли збігів</h2>
+          <p>Спробуйте коротше слово: «помел», «мікс» або «доставка».</p>
+          <button type="button" id="mo-faq-reset" class="button button-secondary">
+            Очистити пошук
+          </button>
+        </div>
+      </div>
+      <div id="mo-faq-results">
+        <section
+          class="info-section mo-faq-section"
+          id="faq-coffee"
+          aria-labelledby="faq-coffee-title"
+        >
+          <div class="container info-layout">
+            <div class="mo-faq-section-heading">
+              <p class="eyebrow">01 / Зерно та смак</p>
+              <h2 id="faq-coffee-title">Зерно та смак</h2>
+              <p>Вибір кави, помел і звички, що допомагають зберегти аромат.</p>
+            </div>
+            <div class="mo-faq-questions">
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-choose">
+                  <summary>
+                    <span data-mo-faq-title>Як обрати каву, якщо я лише починаю?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Почніть зі способу приготування й улюблених смаків.</strong>
+                      </p>
+                      <p>
+                        Квіз запропонує три сорти за вашими відповідями. У каталозі можна порівняти
+                        ноти, обсмаження та орієнтовні шкали кислотності, солодкості, гіркоти й
+                        міцності.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="quiz.html"
+                        >Пройти квіз <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-choose-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-choose-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-acidity">
+                  <summary>
+                    <span data-mo-faq-title>Кислотність і міцність — це одне й те саме?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Ні. Яскрава кислотність може поєднуватися і з делікатним, і з насиченим
+                          смаком.</strong
+                        >
+                      </p>
+                      <p>
+                        Кислотність — це смакова свіжість, наприклад цитрусова чи ягідна. Міцність
+                        на наших шкалах описує орієнтовну інтенсивність смаку, а не кількість
+                        кофеїну. Концентрація готового напою також залежить від кількості кави й
+                        води.
+                      </p>
+                      <div
+                        class="mo-faq-axes"
+                        role="img"
+                        aria-label="Кислотність та інтенсивність смаку — окремі характеристики: кожна має свою шкалу від низької до високої. Це пояснювальна схема, не оцінка сорту."
+                      >
+                        <div>
+                          <strong>Кислотність</strong
+                          ><span class="mo-faq-axis mo-faq-axis-acidity"><i></i></span
+                          ><small>М’яка ↔ яскрава</small>
+                        </div>
+                        <div>
+                          <strong>Інтенсивність</strong
+                          ><span class="mo-faq-axis mo-faq-axis-strength"><i></i></span
+                          ><small>Делікатна ↔ насичена</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-acidity-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-acidity-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-roast">
+                  <summary>
+                    <span data-mo-faq-title
+                      >Чим відрізняється обсмаження для фільтра й еспресо?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Світліші профілі частіше підкреслюють фруктовість, темніші — насиченість
+                          і гіркоту.</strong
+                        >
+                      </p>
+                      <p>
+                        Це орієнтир, а не обмеження: те саме зерно можна готувати різними способами.
+                        Для еспресо часто обирають середнє або темне обсмаження, для фільтра —
+                        світле або середнє.
+                      </p>
+                      <div
+                        class="mo-faq-roast"
+                        aria-label="Орієнтири обсмаження: світле, середнє, темне"
+                      >
+                        <div class="mo-faq-roast-track" aria-hidden="true"></div>
+                        <div class="mo-faq-roast-labels">
+                          <span>Світле<br /><small>Частіше для фільтра</small></span
+                          ><span>Середнє<br /><small>Баланс смаку</small></span
+                          ><span>Темне<br /><small>Насиченіший смак</small></span>
+                        </div>
+                      </div>
+                      <a class="button button-secondary mo-faq-cta" href="catalog.html"
+                        >Переглянути каву <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-roast-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-roast-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-storage">
+                  <summary>
+                    <span data-mo-faq-title>Як зберігати каву після відкриття?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Щільно закривайте паковання й тримайте каву в сухій темній шафі.</strong
+                        >
+                      </p>
+                      <p>
+                        Уникайте тепла, прямих сонячних променів і сторонніх запахів. Для щоденного
+                        використання холодильник не підходить через вологу й перепади температури.
+                        Меліть порцію перед заварюванням.
+                      </p>
+                      <ul class="mo-faq-checklist" role="list">
+                        <li><span aria-hidden="true">✓</span> Сухо</li>
+                        <li><span aria-hidden="true">✓</span> Темно</li>
+                        <li><span aria-hidden="true">✓</span> Герметично</li>
+                        <li><span aria-hidden="true">×</span> Не в холодильник</li>
+                      </ul>
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-storage-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-storage-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-freshness">
+                  <summary>
+                    <span data-mo-faq-title>Скільки часу зерно зберігає свіжий смак?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Орієнтуйтеся на перші 2–3 тижні після обсмаження для яскравого
+                          аромату.</strong
+                        >
+                      </p>
+                      <p>
+                        Це смаковий орієнтир, не строк придатності. Смак змінюється залежно від
+                        обсмаження, паковання й зберігання; дату обсмаження та строк придатності
+                        перевіряйте на пакованні. Краще купувати невеликі порції й молоти перед
+                        приготуванням.
+                      </p>
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-freshness-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-freshness-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-grind">
+                  <summary>
+                    <span data-mo-faq-title>Який помел обрати?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Обирайте помел під свій спосіб приготування.</strong>
+                      </p>
+                      <p>
+                        Власникам млинка зручно купувати зерном і молоти перед чашкою. Для готового
+                        помелу скористайтеся орієнтирами нижче; точне налаштування залежить від
+                        обладнання й рецепта.
+                      </p>
+                      <ul class="mo-faq-grinds" role="list">
+                        <li><strong>Фільтр</strong><span>Середній</span></li>
+                        <li><strong>Еспресо</strong><span>Дрібний</span></li>
+                        <li><strong>Джезва</strong><span>Дуже дрібний</span></li>
+                      </ul>
+                      <a class="button button-secondary mo-faq-cta" href="catalog.html"
+                        >Обрати каву <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-grind-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-grind-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-green">
+                  <summary>
+                    <span data-mo-faq-title>Що таке зелене зерно і чи можна його обсмажити?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Це необсмажена кава. У нас можна замовити її сирою або з обраним
+                          обсмаженням.</strong
+                        >
+                      </p>
+                      <p>
+                        На сторінці зеленого сорту доступні світле, середнє й темне обсмаження без
+                        доплати. Для сирого зерна помел недоступний. У міксі обсмаження обирається
+                        окремо для кожного зеленого складника.
+                      </p>
+                      <a
+                        class="button button-secondary mo-faq-cta"
+                        href="catalog.html?category=green"
+                        >Переглянути зелене зерно <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-green-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-green-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-decaf">
+                  <summary>
+                    <span data-mo-faq-title>Чи є кава без кофеїну?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Ні. Усі сорти в нашому асортименті містять кофеїн.</strong>
+                      </p>
+                      <p>
+                        Шкала міцності 0–10 описує інтенсивність смаку, а не кількість кофеїну. Кава
+                        з делікатним смаком також містить кофеїн; для вибору безкофеїнової кави
+                        потрібна окрема позначка «Без кофеїну» на пакованні.
+                      </p>
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-decaf-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-decaf-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="info-section mo-faq-section" id="faq-mix" aria-labelledby="faq-mix-title">
+          <div class="container info-layout">
+            <div class="mo-faq-section-heading">
+              <p class="eyebrow">02 / Власний мікс</p>
+              <h2 id="faq-mix-title">Власний мікс</h2>
+              <p>Склад, пропорції, вага та пакування вашого поєднання.</p>
+            </div>
+            <div class="mo-faq-questions">
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-mix-meaning">
+                  <summary>
+                    <span data-mo-faq-title>Що таке кавовий мікс?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Це один або кілька сортів кави в обраних вами пропорціях.</strong>
+                      </p>
+                      <p>
+                        Один сорт може стати основою, інший — додати фруктовий або шоколадний
+                        акцент. Почніть зі знайомого зерна й змінюйте поєднання під свій смак.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="constructor.html"
+                        >Відкрити конструктор <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-mix-meaning-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-mix-meaning-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-proportions">
+                  <summary>
+                    <span data-mo-faq-title>Скільки сортів можна додати й як обрати частки?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>До чотирьох сортів, а сума часток має дорівнювати 100%.</strong>
+                      </p>
+                      <p>
+                        Додайте зерно, налаштуйте повзунки або натисніть «Поділити порівну». Кнопка
+                        «Залишок сюди» допоможе доповнити суму до 100%. Смаковий профіль покаже
+                        орієнтовний результат.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="constructor.html"
+                        >Зібрати мікс <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-proportions-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-proportions-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-mix-weight">
+                  <summary>
+                    <span data-mo-faq-title>Яка мінімальна вага міксу та скільки його готують?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Мінімальна вага — 100 г; на обсмаження й пакування потрібно 1–2 робочі
+                          дні.</strong
+                        >
+                      </p>
+                      <p>
+                        Це загальна вага всього міксу. Відправляємо наступного робочого дня після
+                        готовності; далі діє строк перевізника. Якщо всі компоненти вже обсмажені,
+                        повторно їх не обсмажуємо.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="delivery.html"
+                        >Умови доставки <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-mix-weight-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-mix-weight-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-packaging">
+                  <summary>
+                    <span data-mo-faq-title>Чи є подарункове пакування й скільки воно коштує?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Так. Оберіть пакет із клапаном, подарункову коробку або багаторазову
+                          банку.</strong
+                        >
+                      </p>
+                      <p>
+                        Доплата рахується за одну упаковку міксу, незалежно від його ваги. За
+                        кількох одиниць у кошику вона враховується для кожної. Поточні суми наведено
+                        нижче та в конструкторі до додавання в кошик.
+                      </p>
+                      <ul class="mo-faq-packs" role="list">
+                        <li data-mo-faq-pack="1">
+                          <strong>Пакет із клапаном</strong><span>Без доплати</span>
+                        </li>
+                        <li data-mo-faq-pack="2">
+                          <strong>Подарункова коробка</strong><span>Доплата в конструкторі</span>
+                        </li>
+                        <li data-mo-faq-pack="3">
+                          <strong>Багаторазова банка</strong><span>Доплата в конструкторі</span>
+                        </li>
+                      </ul>
+                      <a class="button button-secondary mo-faq-cta" href="constructor.html"
+                        >Обрати пакування <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-packaging-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-packaging-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-save">
+                  <summary>
+                    <span data-mo-faq-title>Як зберегти мікс і повторити його пізніше?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Для збереження міксу потрібен акаунт.</strong>
+                      </p>
+                      <p>
+                        Натисніть «Зберегти мікс» у конструкторі, увійдіть до акаунта та вкажіть
+                        назву поєднання. Свої збережені поєднання шукайте в розділі «Мої мікси», щоб
+                        відкрити склад і повторити замовлення.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="constructor.html"
+                        >Відкрити конструктор <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-save-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-save-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section
+          class="info-section mo-faq-section"
+          id="faq-order"
+          aria-labelledby="faq-order-title"
+        >
+          <div class="container info-layout">
+            <div class="mo-faq-section-heading">
+              <p class="eyebrow">03 / Замовлення</p>
+              <h2 id="faq-order-title">Замовлення</h2>
+              <p>Доставка, оплата й підтримка, якщо потрібна допомога.</p>
+            </div>
+            <div class="mo-faq-questions">
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-shipping">
+                  <summary>
+                    <span data-mo-faq-title>Які є способи доставки і коли вона безкоштовна?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Нова пошта, Укрпошта або кур’єр. Доставка по Україні безкоштовна від 800
+                          ₴.</strong
+                        >
+                      </p>
+                      <p>
+                        До цього порогу вартість залежить від маршруту та ваги; перевірте офіційний
+                        калькулятор на сторінці доставки. Комісія за післяплату, якщо вона є, не
+                        входить у безкоштовну доставку. За кордон зараз не відправляємо.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="delivery.html"
+                        >Доставка та оплата <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-shipping-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-shipping-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-dispatch">
+                  <summary>
+                    <span data-mo-faq-title>Коли відправите каву і за скільки вона дійде?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Обсмаження й пакування — 1–2 робочі дні; відправлення — наступного
+                          робочого дня після готовності.</strong
+                        >
+                      </p>
+                      <p>
+                        Після відправлення орієнтир для Нової пошти й кур’єра — 1–3 дні, Укрпошти —
+                        3–6 днів. Це приблизні строки: точна дата залежить від маршруту та роботи
+                        перевізника. Зелене зерно без обсмаження пропускає етап обсмаження.
+                      </p>
+                      <a
+                        class="button button-secondary mo-faq-cta"
+                        href="delivery.html#mo-delivery-methods-title"
+                        >Перевірити спосіб доставки <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-dispatch-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-dispatch-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-tracking">
+                  <summary>
+                    <span data-mo-faq-title>Як відстежити замовлення?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Відстежуйте посилку за номером накладної на сайті перевізника.</strong
+                        >
+                      </p>
+                      <p>
+                        Номер накладної надсилаємо після передачі пакунка перевізнику. Відкрийте
+                        трекінг Нової пошти або Укрпошти й уведіть цей номер. Якщо не отримали його
+                        або статус не змінюється, зверніться до підтримки з номером замовлення.
+                      </p>
+                      <a
+                        href="https://tracking.novaposhta.ua/#/uk/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Трекінг Нової пошти<span class="visually-hidden">, у новій вкладці</span>
+                        ↗</a
+                      >
+                      ·
+                      <a
+                        href="https://track.ukrposhta.ua/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Трекінг Укрпошти<span class="visually-hidden">, у новій вкладці</span> ↗</a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-tracking-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-tracking-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-returns">
+                  <summary>
+                    <span data-mo-faq-title>Як узгодити повернення або обмін?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Спершу напишіть підтримці номер замовлення та причину звернення.</strong
+                        >
+                      </p>
+                      <p>
+                        Умови залежать від стану товару й обставин. Питання якості, пошкодження або
+                        помилки комплектації розглядаємо окремо; адресу та спосіб зворотного
+                        відправлення погодимо з вами. Не надсилайте пакунок назад без узгодження.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="#mo-faq-support-title"
+                        >Зв’язатися з нами <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-returns-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-returns-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-damage">
+                  <summary>
+                    <span data-mo-faq-title
+                      >Що робити, якщо посилка пошкоджена або товар не той?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong
+                          >Огляньте пакунок при отриманні, зафіксуйте проблему та зверніться до
+                          підтримки.</strong
+                        >
+                      </p>
+                      <p>
+                        Попросіть працівника перевізника зафіксувати пошкодження. Збережіть
+                        паковання й зробіть фото. Надішліть номер замовлення, фото та опис — після
+                        перевірки узгодимо заміну або повернення коштів.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="#mo-faq-support-title"
+                        >Повідомити про проблему <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-damage-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-damage-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-payment">
+                  <summary>
+                    <span data-mo-faq-title>Як оплатити замовлення?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Оплачуйте замовлення при отриманні.</strong>
+                      </p>
+                      <p>
+                        Оберіть цей спосіб під час оформлення. Вартість товарів видно в кошику до
+                        підтвердження замовлення. Можлива комісія за післяплату визначається
+                        перевізником окремо й не входить у пропозицію безкоштовної доставки.
+                      </p>
+                      <a
+                        class="button button-secondary mo-faq-cta"
+                        href="delivery.html#mo-delivery-payment-title"
+                        >Переглянути способи оплати <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-payment-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-payment-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+              <article class="mo-faq-item">
+                <details class="mo-faq-question" id="faq-wholesale">
+                  <summary>
+                    <span data-mo-faq-title>Чи можна замовити каву оптом?</span
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div class="mo-faq-answer">
+                    <div data-mo-faq-content>
+                      <p class="mo-faq-lead">
+                        <strong>Такі замовлення обговорюємо індивідуально — напишіть нам.</strong>
+                      </p>
+                      <p>
+                        Укажіть потрібний обсяг, зерно або бажаний смак, формат пакування й
+                        очікувану дату отримання. Узгодимо можливість, вартість та строки до
+                        оформлення. Мінімальний обсяг і знижки наперед не встановлюємо.
+                      </p>
+                      <a class="button button-secondary mo-faq-cta" href="#mo-faq-support-title"
+                        >Обговорити замовлення <span aria-hidden="true">→</span></a
+                      >
+                    </div>
+                    <div class="mo-faq-helpful" data-mo-faq-helpful hidden>
+                      <p id="faq-wholesale-help">Чи була відповідь корисною?</p>
+                      <div role="group" aria-labelledby="faq-wholesale-help">
+                        <button type="button" data-mo-faq-vote="yes" aria-pressed="false">
+                          Так</button
+                        ><button type="button" data-mo-faq-vote="no" aria-pressed="false">
+                          Ні
+                        </button>
+                      </div>
+                      <span class="mo-faq-vote-note" aria-live="polite"></span>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section class="mo-faq-support" aria-labelledby="mo-faq-support-title">
+        <div class="container">
+          <div class="info-panel mo-faq-support-card">
+            <div>
+              <p class="eyebrow">Ми на зв’язку</p>
+              <h2 id="mo-faq-support-title" tabindex="-1">Не знайшли відповідь?</h2>
+              <p>Напишіть, що хочете уточнити. Для питання про замовлення додайте його номер.</p>
+              <div class="mo-faq-support-actions">
+                <a
+                  class="button mo-faq-contact"
+                  id="mo-faq-telegram"
+                  href="https://t.me/smazhenakava_example"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m3 10 18-7-4 18-6-6-4 3 1-6 9-6-6 9" /></svg
+                  ><span
+                    >Написати в Telegram<span class="visually-hidden">, у новій вкладці</span></span
+                  ></a
+                >
+                <a
+                  class="button button-secondary mo-faq-contact"
+                  id="mo-faq-phone"
+                  href="tel:+380320000000"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m7 3 3 5-2 2a15 15 0 0 0 6 6l2-2 5 3-1 3c-1 2-5 1-9-2S2 10 3 6l1-3h3Z"
+                    /></svg
+                  ><span>Зателефонувати</span></a
+                >
+                <a
+                  class="button button-secondary mo-faq-contact mo-faq-email"
+                  id="mo-faq-email"
+                  href="mailto:hello@smazhenakava.example"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" /></svg
+                  ><span>Написати на пошту</span></a
+                >
+              </div>
+            </div>
+            <div class="mo-faq-support-extra">
+              <p>Усе зрозуміло?</p>
+              <a class="button button-secondary mo-faq-cta" href="catalog.html"
+                >Переглянути каву <span aria-hidden="true">→</span></a
+              >
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img
-              class="logo-image"
-              src="assets/images/logo.svg"
-              alt="Смажена Кава"
-              width="254"
-              height="274"
-            />
-            <span aria-hidden="true">Смажена Кава</span>
-          </a>
-          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
-          <address class="footer-contacts">
-            <!-- Демонстраційні контакти з Figma. -->
-            <p>+38 044 000 00 00</p>
-            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Львів, площа Ринок · демолокація</p>
-          </address>
-        </div>
-        <nav class="footer-navigation" aria-label="Навігація в підвалі">
-          <div class="footer-link-group">
-            <p class="footer-heading">Дізнатися</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="about.html">Про нас</a></li>
-              <li><a href="faq.html" aria-current="page">FAQ</a></li>
-              <li><a href="delivery.html">Доставка та оплата</a></li>
-            </ul>
+        <section
+          class="mo-footer-newsletter"
+          aria-labelledby="mo-footer-news-title"
+          data-mo-footer-reveal
+        >
+          <div>
+            <h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2>
+            <p>Нові зерна, кавові поради й пропозиції — на пошту.</p>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Кава</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Каталог</a></li>
-              <li><a href="constructor.html">Створити мікс</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
-            </ul>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe">
+              <input
+                id="mo-footer-email"
+                name="newsletter-email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                maxlength="254"
+                placeholder="name@example.com"
+                aria-describedby="mo-footer-subscribe-note mo-footer-email-error"
+              /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">
+                Підписатися
+              </button>
+            </div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">
+              Підписка буде доступна незабаром.
+            </p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"
+              ><img
+                src="assets/images/logo.svg"
+                alt=""
+                width="254"
+                height="274"
+                loading="lazy"
+                decoding="async"
+              /><span>Смажена Кава</span></a
+            >
+            <p class="mo-footer-tagline">
+              Крафтова кава, яку можна налаштувати під свій смак і ритм.
+            </p>
+            <address class="mo-footer-address">
+              <span data-mo-footer-address>Львів, площа Ринок</span
+              ><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span>
+            </address>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Соцмережі</p>
-            <ul class="navigation-list" role="list">
-              <li><a role="link" aria-disabled="true">Instagram</a></li>
-              <li><a role="link" aria-disabled="true">Facebook</a></li>
-              <li><a role="link" aria-disabled="true">YouTube</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="footer-bottom">
-          <p class="copyright">© 2026 Смажена Кава</p>
-          <nav aria-label="Правова інформація">
-            <ul class="navigation-list footer-legal" role="list">
-              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
-              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
-              <li><a role="link" aria-disabled="true">Умови використання</a></li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div>
+              <h2>Дізнатися</h2>
+              <ul role="list">
+                <li><a class="mo-footer-link" href="about.html">Про нас</a></li>
+                <li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li>
+                <li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li>
+              </ul>
+            </div>
+            <div>
+              <h2>Кава</h2>
+              <ul role="list">
+                <li><a class="mo-footer-link" href="catalog.html">Каталог</a></li>
+                <li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li>
+                <li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li>
+                <li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li>
+              </ul>
+            </div>
           </nav>
+          <section
+            class="mo-footer-contacts"
+            aria-labelledby="mo-footer-contact-title"
+            data-mo-footer-reveal
+          >
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address>
+              <a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone
+                >+38 (032) 000-00-00</a
+              ><a
+                class="mo-footer-link"
+                href="mailto:hello@smazhenakava.example"
+                data-mo-footer-email
+                >hello@smazhenakava.example</a
+              >
+            </address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери">
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="instagram"
+                  href="https://www.instagram.com/smazhena.kava.example/"
+                  aria-label="Instagram, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="facebook"
+                  href="https://www.facebook.com/smazhena.kava.example/"
+                  aria-label="Facebook, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"
+                    /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="youtube"
+                  href="https://www.youtube.com/@smazhenakava-example"
+                  aria-label="YouTube, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="2" y="5" width="20" height="14" rx="4" />
+                    <path d="m10 9 5 3-5 3V9Z" /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="telegram"
+                  href="https://t.me/smazhenakava_example"
+                  aria-label="Telegram, у новій вкладці"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9" /></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="mo-footer-social"
+                  data-mo-footer-social="viber"
+                  href="viber://chat?number=%2B380320000000"
+                  aria-label="Viber, відкрити Viber"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"
+                    />
+                    <path
+                      d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"
+                    /></svg
+                ></a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення">
+          <span
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z" />
+              <circle cx="6" cy="18" r="2" />
+              <circle cx="18" cy="18" r="2" /></svg
+            >Доставка по Україні · Нова пошта / Укрпошта</span
+          ><span
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)" />
+              <path d="M16 4c-10 5 2 9-8 16" /></svg
+            >Обсмажуємо під замовлення</span
+          ><span
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4" /></svg
+            >Оплата при отриманні</span
+          >
+        </div>
+        <div class="mo-footer-divider" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)" />
+            <path d="M16 4c-10 5 2 9-8 16" />
+          </svg>
+        </div>
+        <div class="mo-footer-bottom">
+          <p>© <span data-mo-footer-year>2026</span> Смажена Кава</p>
+          <div class="mo-footer-legal" aria-label="Правова інформація">
+            <span>Політика конфіденційності</span><span>Публічна оферта</span
+            ><span>Умови використання</span>
+          </div>
+          <button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m5 12 7-7 7 7M12 5v15" />
+            </svg>
+          </button>
         </div>
       </div>
     </footer>

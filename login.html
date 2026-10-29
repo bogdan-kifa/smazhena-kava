@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Вхід до акаунта Смаженої Кави для збереження рецептів і повторення замовлень." />
+    <meta
+      name="description"
+      content="Вхід до акаунта Смаженої Кави для збереження рецептів і повторення замовлень."
+    />
     <title>Вхід до акаунта — Смажена Кава</title>
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/icons.css" />
@@ -11,31 +14,55 @@
     <link rel="stylesheet" href="css/catalog.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/interaction.css" />
+    <link rel="stylesheet" href="css/account.css" />
     <script src="js/products.js" defer></script>
     <script src="js/shop.js" defer></script>
+    <script src="js/account.js" defer></script>
+    <script src="js/auth-ui.js" defer></script>
+    <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/auth-motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+    <script src="js/motion.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
   </head>
   <body class="catalog-page login-page">
-    <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
+    <noscript
+      ><p class="shop-nojs">
+        Увімкніть JavaScript для перемикання вкладок і показу пароля.
+      </p></noscript
+    >
     <a class="skip-link" href="#login-content">Перейти до входу</a>
     <header class="site-header">
       <div class="container">
         <a class="logo" href="index.html">
-          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <img
+            class="logo-image"
+            src="assets/images/logo.svg"
+            alt="Смажена Кава"
+            width="254"
+            height="274"
+          />
           <span aria-hidden="true">Смажена Кава</span>
         </a>
         <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
           <ul class="navigation-list" role="list">
-            <li><a href="catalog.html">Кава</a></li>
-            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="quiz.html">Квіз-підбір</a></li>
             <li><a href="about.html">Про нас</a></li>
           </ul>
         </nav>
         <div class="header-actions">
-          <a class="header-account" href="login.html" aria-current="page"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
-          <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
-            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+          <a class="header-account" href="login.html" aria-current="page"
+            ><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a
+          >
+          <a class="header-cart" href="cart.html" aria-label="Кошик порожній">
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i
+            ><span class="cart-count" aria-hidden="true">0</span>
           </a>
-          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+          <a class="button header-cta" href="constructor.html"
+            >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+          ></a>
         </div>
         <!-- Нативне details відкриває мобільне меню без JavaScript. -->
         <details class="catalog-mobile-menu">
@@ -46,100 +73,328 @@
           </summary>
           <nav class="navigation" aria-label="Основна мобільна навігація">
             <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Кава</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="quiz.html">Квіз-підбір</a></li>
               <li><a href="about.html">Про нас</a></li>
               <li><a href="login.html" aria-current="page">Акаунт</a></li>
-              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+              <li>
+                <a class="button" href="constructor.html"
+                  >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+                ></a>
+              </li>
             </ul>
           </nav>
         </details>
       </div>
     </header>
 
-    <main id="login-content" tabindex="-1">
-      <div class="container catalog-heading login-heading">
-        <nav class="breadcrumbs" aria-label="Шлях до сторінки">
-          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Акаунт</span></li></ol>
-        </nav>
-        <p class="eyebrow">Акаунт</p>
-        <h1>Вхід</h1>
-      </div>
-      <div class="container login-layout">
-        <!-- Поля нативні; авторизація, реєстрація та відновлення пароля очікують майбутньої логіки. -->
-        <form class="card login-form" id="login-form" method="post" aria-labelledby="login-form-title" aria-describedby="login-status">
-          <p class="visually-hidden" id="login-status">Поля можна заповнити для перегляду. Вхід, реєстрація та відновлення пароля поки недоступні; введені дані нікуди не надсилаються.</p>
-          <h2 id="login-form-title">Вхід до акаунта</h2>
-          <p class="login-description">Збережіть рецепти й повторюйте замовлення в один клік.</p>
-          <div class="login-modes" role="group" aria-label="Режим форми">
-            <button class="login-mode" type="button" data-action="select-auth-mode" data-mode="login" aria-pressed="true" disabled aria-describedby="login-status">Вхід</button>
-            <button class="login-mode" type="button" data-action="select-auth-mode" data-mode="register" aria-pressed="false" disabled aria-describedby="login-status">Реєстрація</button>
+    <main id="login-content" class="mo-auth-main" tabindex="-1">
+      <div class="container mo-auth-layout">
+        <div class="mo-auth-intro">
+          <h1 id="mo-auth-title">Твоя кава.<br /> Твої мікси.</h1>
+          <p class="mo-auth-lead">Улюблені поєднання завжди під рукою.</p>
+          <ul class="mo-auth-benefits" aria-label="Можливості акаунта">
+            <li>
+              <span class="mo-auth-benefit-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M8 3H5v18h14V3h-3M9 2h6v4H9zM8 11h8M8 15h6" /></svg
+              ></span>
+              <div>
+                <strong>Твої мікси</strong>
+                <p>Зберігай вдалі поєднання й повторюй замовлення в один клік.</p>
+              </div>
+            </li>
+            <li>
+              <span class="mo-auth-benefit-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 8a9 9 0 1 1-1 7M4 3v5h5M12 7v5l3 2" /></svg
+              ></span>
+              <div>
+                <strong>Історія замовлень</strong>
+                <p>Повертайся до кави, яка сподобалася.</p>
+              </div>
+            </li>
+            <li>
+              <span class="mo-auth-benefit-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z" /></svg
+              ></span>
+              <div>
+                <strong>Швидше оформлення</strong>
+                <p>Менше повторного введення даних для наступної покупки.</p>
+              </div>
+            </li>
+          </ul>
+          <div class="mo-auth-art" aria-hidden="true">
+            <span class="mo-auth-art-orbit"></span
+            ><img src="assets/images/logo.svg" width="254" height="274" alt="" /><span
+              class="mo-auth-art-caption"
+              >Твій смак — у кожній чашці</span
+            >
           </div>
-          <div class="login-field">
-            <label for="login-email">Email</label>
-            <input id="login-email" name="email" type="email" autocomplete="username" maxlength="254" placeholder="name@example.com" required />
+        </div>
+        <form
+          id="login-form"
+          class="mo-auth-form"
+          data-mo-auth
+          method="post"
+          novalidate
+          aria-label="Вхід або реєстрація"
+          aria-describedby="mo-auth-availability"
+        >
+          <div class="mo-auth-tabs" role="tablist" aria-label="Вхід або реєстрація">
+            <span class="mo-auth-tab-slider" aria-hidden="true"></span>
+            <button
+              type="button"
+              id="mo-auth-tab-login"
+              class="mo-auth-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="mo-auth-panel"
+              data-mo-mode="login"
+              disabled
+            >
+              Вхід
+            </button>
+            <button
+              type="button"
+              id="mo-auth-tab-register"
+              class="mo-auth-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="mo-auth-panel"
+              data-mo-mode="register"
+              tabindex="-1"
+              disabled
+            >
+              Реєстрація
+            </button>
           </div>
-          <div class="login-field">
-            <label for="login-password">Пароль</label>
-            <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+          <div
+            id="mo-auth-panel"
+            class="mo-auth-panel"
+            role="tabpanel"
+            aria-labelledby="mo-auth-tab-login"
+          >
+            <div class="mo-auth-field" data-mo-register hidden>
+              <label for="mo-auth-name">Ім’я</label>
+              <input
+                id="mo-auth-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                maxlength="80"
+                placeholder="Як до тебе звертатися?"
+                aria-describedby="mo-auth-name-error"
+                disabled
+              />
+              <p id="mo-auth-name-error" class="mo-auth-error" aria-live="polite" hidden></p>
+            </div>
+            <div class="mo-auth-field">
+              <label for="mo-auth-email">Електронна пошта</label>
+              <input
+                id="mo-auth-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                autocapitalize="none"
+                spellcheck="false"
+                maxlength="254"
+                placeholder="name@example.com"
+                required
+                aria-describedby="mo-auth-email-error"
+              />
+              <p id="mo-auth-email-error" class="mo-auth-error" aria-live="polite" hidden></p>
+            </div>
+            <div class="mo-auth-field">
+              <label for="mo-auth-password">Пароль</label>
+              <div class="mo-auth-password-wrap">
+                <input
+                  id="mo-auth-password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  maxlength="128"
+                  placeholder="Введи пароль"
+                  required
+                  aria-describedby="mo-auth-password-hint mo-auth-password-error"
+                />
+                <button
+                  class="mo-auth-eye"
+                  type="button"
+                  data-mo-toggle="mo-auth-password"
+                  aria-label="Показати пароль"
+                  aria-pressed="false"
+                  aria-controls="mo-auth-password"
+                  hidden
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
+                    <circle cx="12" cy="12" r="3" />
+                    <path class="mo-auth-eye-slash" d="m4 3 16 18" />
+                  </svg>
+                </button>
+              </div>
+              <div id="mo-auth-password-hint" class="mo-auth-password-hint" hidden>
+                <span id="mo-auth-rule-length">Щонайменше 8 символів</span
+                ><span id="mo-auth-rule-mix">Літера та цифра</span>
+              </div>
+              <p id="mo-auth-password-error" class="mo-auth-error" aria-live="polite" hidden></p>
+              <button
+                class="mo-auth-forgot"
+                type="button"
+                data-mo-login
+                disabled
+                aria-describedby="mo-auth-availability"
+              >
+                Забули пароль?
+              </button>
+            </div>
+            <div class="mo-auth-field" data-mo-register hidden>
+              <label for="mo-auth-confirm">Повтори пароль</label>
+              <div class="mo-auth-password-wrap">
+                <input
+                  id="mo-auth-confirm"
+                  name="password-confirm"
+                  type="password"
+                  autocomplete="new-password"
+                  maxlength="128"
+                  placeholder="Ще раз той самий пароль"
+                  aria-describedby="mo-auth-confirm-error"
+                  disabled
+                />
+                <button
+                  class="mo-auth-eye"
+                  type="button"
+                  data-mo-toggle="mo-auth-confirm"
+                  aria-label="Показати повторений пароль"
+                  aria-pressed="false"
+                  aria-controls="mo-auth-confirm"
+                  hidden
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
+                    <circle cx="12" cy="12" r="3" />
+                    <path class="mo-auth-eye-slash" d="m4 3 16 18" />
+                  </svg>
+                </button>
+              </div>
+              <p id="mo-auth-confirm-error" class="mo-auth-error" aria-live="polite" hidden></p>
+            </div>
+            <div class="mo-auth-consent" data-mo-register hidden>
+              <label for="mo-auth-consent"
+                ><input
+                  id="mo-auth-consent"
+                  name="consent"
+                  type="checkbox"
+                  aria-describedby="mo-auth-consent-error"
+                  disabled
+                /><span
+                  >Погоджуюся з умовами використання та політикою конфіденційності.</span
+                ></label
+              >
+              <p id="mo-auth-consent-error" class="mo-auth-error" aria-live="polite" hidden></p>
+            </div>
           </div>
-          <button class="button login-submit" type="submit" data-action="login" disabled aria-describedby="login-status">Увійти</button>
-          <button class="button login-password-reset" type="button" data-action="request-password-reset" disabled aria-describedby="login-status">Забули пароль?</button>
+          <div class="mo-auth-submit-slot">
+            <div class="mo-auth-submit-wrap">
+              <button
+                type="submit"
+                class="button mo-auth-submit"
+                id="mo-auth-submit"
+                disabled
+                aria-describedby="mo-auth-availability"
+              >
+                Увійти
+              </button>
+            </div>
+          </div>
+          <p id="mo-auth-availability" class="mo-auth-availability">
+            Вхід і реєстрація будуть доступні незабаром.
+          </p>
+          <div class="mo-auth-divider"><span>або</span></div>
+          <div class="mo-auth-alternatives">
+            <button
+              type="button"
+              class="mo-auth-alternative"
+              disabled
+              aria-describedby="mo-auth-availability"
+            >
+              <span class="mo-auth-google" aria-hidden="true">G</span
+              ><span>Увійти через Google</span>
+            </button>
+            <button
+              type="button"
+              class="mo-auth-alternative"
+              disabled
+              aria-describedby="mo-auth-availability"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 6 9 7 9-7" /></svg
+              ><span>Посилання на пошту</span>
+            </button>
+          </div>
+          <a href="catalog.html" id="mo-auth-guest" class="mo-auth-guest"
+            >Обрати каву без реєстрації <span aria-hidden="true">→</span></a
+          >
+          <a href="constructor.html" id="mo-auth-return" class="mo-auth-return" hidden
+            >← Повернутися до міксу</a
+          >
+          <p id="mo-auth-feedback" class="visually-hidden" role="status" aria-live="polite"></p>
         </form>
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
-            <span aria-hidden="true">Смажена Кава</span>
-          </a>
-          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
-          <address class="footer-contacts">
-            <!-- Демонстраційні контакти з Figma. -->
-            <p>+38 044 000 00 00</p>
-            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Львів, площа Ринок · демолокація</p>
-          </address>
-        </div>
-        <nav class="footer-navigation" aria-label="Навігація в підвалі">
-          <div class="footer-link-group">
-            <p class="footer-heading">Дізнатися</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="about.html">Про нас</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="delivery.html">Доставка та оплата</a></li>
-            </ul>
+        <section class="mo-footer-newsletter" aria-labelledby="mo-footer-news-title" data-mo-footer-reveal>
+          <div><h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2><p>Нові зерна, кавові поради й пропозиції — на пошту.</p></div>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe"><input id="mo-footer-email" name="newsletter-email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@example.com" aria-describedby="mo-footer-subscribe-note mo-footer-email-error" /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">Підписатися</button></div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">Підписка буде доступна незабаром.</p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"><img src="assets/images/logo.svg" alt="" width="254" height="274" loading="lazy" decoding="async" /><span>Смажена Кава</span></a>
+            <p class="mo-footer-tagline">Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+            <address class="mo-footer-address"><span data-mo-footer-address>Львів, площа Ринок</span><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span></address>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Кава</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Каталог</a></li>
-              <li><a href="constructor.html">Створити мікс</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
-            </ul>
-          </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Соцмережі</p>
-            <ul class="navigation-list" role="list">
-              <li><a role="link" aria-disabled="true">Instagram</a></li>
-              <li><a role="link" aria-disabled="true">Facebook</a></li>
-              <li><a role="link" aria-disabled="true">YouTube</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="footer-bottom">
-          <p class="copyright">© 2026 Смажена Кава</p>
-          <nav aria-label="Правова інформація">
-            <ul class="navigation-list footer-legal" role="list">
-              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
-              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
-              <li><a role="link" aria-disabled="true">Умови використання</a></li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div><h2>Дізнатися</h2><ul role="list"><li><a class="mo-footer-link" href="about.html">Про нас</a></li><li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li><li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li></ul></div>
+            <div><h2>Кава</h2><ul role="list"><li><a class="mo-footer-link" href="catalog.html">Каталог</a></li><li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li><li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li><li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li></ul></div>
           </nav>
+          <section class="mo-footer-contacts" aria-labelledby="mo-footer-contact-title" data-mo-footer-reveal>
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address><a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone>+38 (032) 000-00-00</a><a class="mo-footer-link" href="mailto:hello@smazhenakava.example" data-mo-footer-email>hello@smazhenakava.example</a></address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери"><li><a class="mo-footer-social" data-mo-footer-social="instagram" href="https://www.instagram.com/smazhena.kava.example/" aria-label="Instagram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="facebook" href="https://www.facebook.com/smazhena.kava.example/" aria-label="Facebook, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="youtube" href="https://www.youtube.com/@smazhenakava-example" aria-label="YouTube, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="telegram" href="https://t.me/smazhenakava_example" aria-label="Telegram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="viber" href="viber://chat?number=%2B380320000000" aria-label="Viber, відкрити Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"/><path d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"/></svg></a></li></ul>
+          </section>
         </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Доставка по Україні · Нова пошта / Укрпошта</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg>Обсмажуємо під замовлення</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4"/></svg>Оплата при отриманні</span></div>
+        <div class="mo-footer-divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg></div>
+        <div class="mo-footer-bottom"><p>© <span data-mo-footer-year>2026</span> Смажена Кава</p><div class="mo-footer-legal" aria-label="Правова інформація"><span>Політика конфіденційності</span><span>Публічна оферта</span><span>Умови використання</span></div><button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></div>
       </div>
     </footer>
   </body>

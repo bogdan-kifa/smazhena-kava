@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Збережені рецепти Смаженої Кави: склад, вага, помел і повторення улюблених міксів." />
+    <meta
+      name="description"
+      content="Мої мікси Смаженої Кави: склад, вага, помел і повторення улюблених поєднань."
+    />
     <title>Мої мікси — Смажена Кава</title>
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/icons.css" />
@@ -13,30 +16,55 @@
     <link rel="stylesheet" href="css/interaction.css" />
     <script src="js/products.js" defer></script>
     <script src="js/shop.js" defer></script>
-    <script src="js/mix.js" defer></script>
+    <script src="js/saved-mixes.js" defer></script>
+      <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+    <script src="js/motion.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
   </head>
   <body class="catalog-page saved-mixes-page">
-    <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
-    <a class="skip-link" href="#saved-mixes-content">Перейти до збережених рецептів</a>
+    <noscript
+      ><p class="shop-nojs">
+        Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.
+      </p></noscript
+    >
+    <a class="skip-link" href="#saved-mixes-content">Перейти до моїх міксів</a>
     <header class="site-header">
       <div class="container">
         <a class="logo" href="index.html">
-          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <img
+            class="logo-image"
+            src="assets/images/logo.svg"
+            alt="Смажена Кава"
+            width="254"
+            height="274"
+          />
           <span aria-hidden="true">Смажена Кава</span>
         </a>
         <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
           <ul class="navigation-list" role="list">
             <li><a href="catalog.html">Кава</a></li>
-            <li><a href="quiz.html">Quiz-підбір</a></li>
+            <li><a href="quiz.html">Квіз-підбір</a></li>
+            <li>
+              <a class="navigation-link-current" href="my-mixes.html" aria-current="page"
+                >Мої мікси</a
+              >
+            </li>
             <li><a href="about.html">Про нас</a></li>
           </ul>
         </nav>
         <div class="header-actions">
-          <a class="header-account" href="login.html" aria-current="true"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-account" href="login.html"
+            ><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a
+          >
           <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
-            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i
+            ><span class="cart-count" aria-hidden="true">2</span>
           </a>
-          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+          <a class="button header-cta" href="constructor.html"
+            >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+          ></a>
         </div>
         <!-- Нативне details відкриває мобільне меню без JavaScript. -->
         <details class="catalog-mobile-menu">
@@ -48,10 +76,19 @@
           <nav class="navigation" aria-label="Основна мобільна навігація">
             <ul class="navigation-list" role="list">
               <li><a href="catalog.html">Кава</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
+              <li><a href="quiz.html">Квіз-підбір</a></li>
+              <li>
+                <a class="navigation-link-current" href="my-mixes.html" aria-current="page"
+                  >Мої мікси</a
+                >
+              </li>
               <li><a href="about.html">Про нас</a></li>
-              <li><a href="login.html" aria-current="true">Акаунт</a></li>
-              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+              <li><a href="login.html">Акаунт</a></li>
+              <li>
+                <a class="button" href="constructor.html"
+                  >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+                ></a>
+              </li>
             </ul>
           </nav>
         </details>
@@ -61,126 +98,146 @@
     <main id="saved-mixes-content" tabindex="-1">
       <div class="container catalog-heading saved-mixes-heading">
         <nav class="breadcrumbs" aria-label="Шлях до сторінки">
-          <ol><li><a href="index.html">Головна</a></li><li><a href="login.html">Акаунт</a></li><li><span aria-current="page">Мої мікси</span></li></ol>
+          <ol>
+            <li><a href="index.html">Головна</a></li>
+            <li><span aria-current="page">Мої мікси</span></li>
+          </ol>
         </nav>
-        <p class="eyebrow">Мої мікси</p>
-        <h1 id="saved-mixes-title">Збережені рецепти</h1>
+        <h1 id="saved-mixes-title">Мої мікси</h1>
+        <p class="catalog-intro">Ваші збережені склади кави — в одному місці.</p>
       </div>
-      <section class="container saved-mixes-listing" aria-labelledby="saved-mixes-title" aria-describedby="saved-mixes-status">
-        <!-- Статичні рецепти з My_Mixes. Реальний список, повторення й редагування підключимо після авторизації. -->
-        <p class="visually-hidden" id="saved-mixes-status">Це приклад збережених рецептів із макета, не дані реального акаунта. Повторне замовлення й редагування поки недоступні.</p>
-        <nav class="saved-mixes-account-navigation" aria-label="Розділи акаунта">
-          <a class="saved-mixes-account-link" href="my-mixes.html" aria-current="page">Мої мікси</a>
-          <a class="saved-mixes-account-link" role="link" aria-disabled="true">Історія замовлень</a>
-          <a class="saved-mixes-account-link" role="link" aria-disabled="true">Профіль</a>
+      <section class="container saved-mixes-listing" aria-labelledby="saved-mixes-title">
+        <nav class="saved-mixes-account-navigation" aria-label="Розділи">
+          <a class="saved-mixes-account-link" href="my-mixes.html" aria-current="page"
+            >Мої мікси <span class="saved-tab-count" id="saved-tab-count">0</span></a
+          >
+          <span class="saved-mixes-account-link is-future"
+            >Історія замовлень <span class="saved-soon">Скоро</span></span
+          >
+          <span class="saved-mixes-account-link is-future"
+            >Профіль <span class="saved-soon">Скоро</span></span
+          >
         </nav>
-        <ul class="saved-mixes-grid" role="list">
-          <li>
-            <article class="card saved-mix-card" data-mix-id="morning" aria-labelledby="saved-mix-morning-title">
-              <header class="saved-mix-header">
-                <h2 id="saved-mix-morning-title">Ранок</h2>
-                <time datetime="2026-09-12" aria-label="Дата збереження: 12.09.2026">12.09.2026</time>
-              </header>
-              <dl class="saved-mix-details">
-                <div class="saved-mix-composition"><dt>Склад</dt><dd>Guji&nbsp;50% · Nyeri&nbsp;30% · Cerrado&nbsp;20%</dd></div>
-                <div><dt>Вага</dt><dd>200 г</dd></div>
-                <div><dt>Помел</dt><dd>Фільтр</dd></div>
-              </dl>
-              <div class="saved-mix-actions">
-                <button class="button saved-mix-repeat" type="button" data-action="repeat-mix-order" data-mix-id="morning" disabled aria-describedby="saved-mixes-status" aria-label="Повторити замовлення міксу «Ранок»">Повторити замовлення</button>
-                <button class="button button-secondary saved-mix-edit" type="button" data-action="edit-saved-mix" data-mix-id="morning" disabled aria-describedby="saved-mixes-status" aria-label="Редагувати мікс «Ранок»">Редагувати</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card saved-mix-card" data-mix-id="evening" aria-labelledby="saved-mix-evening-title">
-              <header class="saved-mix-header">
-                <h2 id="saved-mix-evening-title">Вечір</h2>
-                <time datetime="2026-09-03" aria-label="Дата збереження: 03.09.2026">03.09.2026</time>
-              </header>
-              <dl class="saved-mix-details">
-                <div class="saved-mix-composition"><dt>Склад</dt><dd>Huila&nbsp;60% · Cerrado&nbsp;40%</dd></div>
-                <div><dt>Вага</dt><dd>200 г</dd></div>
-                <div><dt>Помел</dt><dd>Фільтр</dd></div>
-              </dl>
-              <div class="saved-mix-actions">
-                <button class="button saved-mix-repeat" type="button" data-action="repeat-mix-order" data-mix-id="evening" disabled aria-describedby="saved-mixes-status" aria-label="Повторити замовлення міксу «Вечір»">Повторити замовлення</button>
-                <button class="button button-secondary saved-mix-edit" type="button" data-action="edit-saved-mix" data-mix-id="evening" disabled aria-describedby="saved-mixes-status" aria-label="Редагувати мікс «Вечір»">Редагувати</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card saved-mix-card" data-mix-id="friends" aria-labelledby="saved-mix-friends-title">
-              <header class="saved-mix-header">
-                <h2 id="saved-mix-friends-title">Для друзів</h2>
-                <time datetime="2026-08-21" aria-label="Дата збереження: 21.08.2026">21.08.2026</time>
-              </header>
-              <dl class="saved-mix-details">
-                <div class="saved-mix-composition"><dt>Склад</dt><dd>Nyeri&nbsp;100%</dd></div>
-                <div><dt>Вага</dt><dd>200 г</dd></div>
-                <div><dt>Помел</dt><dd>Фільтр</dd></div>
-              </dl>
-              <div class="saved-mix-actions">
-                <button class="button saved-mix-repeat" type="button" data-action="repeat-mix-order" data-mix-id="friends" disabled aria-describedby="saved-mixes-status" aria-label="Повторити замовлення міксу «Для друзів»">Повторити замовлення</button>
-                <button class="button button-secondary saved-mix-edit" type="button" data-action="edit-saved-mix" data-mix-id="friends" disabled aria-describedby="saved-mixes-status" aria-label="Редагувати мікс «Для друзів»">Редагувати</button>
-              </div>
-            </article>
-          </li>
-        </ul>
+        <div class="saved-local-notice" id="saved-local-notice" hidden>
+          <span class="saved-notice-icon" aria-hidden="true">ⓘ</span>
+          <p id="saved-mixes-status">
+            Мікси зберігаються лише в цьому браузері. Якщо очистити дані сайту, вони зникнуть.
+          </p>
+          <div class="saved-export-action">
+            <button
+              type="button"
+              class="button button-secondary"
+              disabled
+              aria-describedby="saved-export-help"
+            >
+              Зберегти копію</button
+            ><span class="saved-soon" id="saved-export-help">Експорт — скоро</span>
+          </div>
+        </div>
+        <div class="saved-mixes-toolbar" id="saved-mixes-toolbar" hidden>
+          <p id="saved-count-label" role="status" aria-live="polite" aria-atomic="true">0 міксів</p>
+          <div class="saved-sort-field" id="saved-sort-field" hidden>
+            <label for="saved-sort">Сортувати</label
+            ><select id="saved-sort" disabled aria-describedby="saved-sort-help">
+              <option selected>Оберіть порядок</option>
+              <option>Нові спочатку</option>
+              <option>За ціною</option>
+              <option>За назвою</option></select
+            ><span class="saved-soon" id="saved-sort-help">Скоро</span>
+          </div>
+        </div>
+        <div class="card saved-mixes-empty" id="saved-mixes-empty">
+          <svg
+            class="saved-empty-illustration"
+            width="104"
+            height="104"
+            viewBox="0 0 104 104"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="52" cy="52" r="52" fill="var(--color-background-soft)" />
+            <g
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            >
+              <path d="M32 20h40l5 64H27zM33 31h38M40 20v11m24-11v11" />
+              <ellipse cx="52" cy="58" rx="9" ry="13" />
+              <path d="M56 47c-11 6 4 14-8 23" />
+            </g>
+          </svg>
+          <h2>Тут з’являться ваші мікси</h2>
+          <p>
+            Тримайте улюблені поєднання під рукою: повертайтеся до складу, змінюйте його в
+            конструкторі та повторюйте мікс.
+          </p>
+          <div class="saved-empty-actions">
+            <a class="button" href="constructor.html">Створити мікс</a
+            ><a class="button button-secondary" href="quiz.html">Пройти квіз</a>
+          </div>
+        </div>
+        <ul class="saved-mixes-grid" role="list" hidden></ul>
+        <!-- Prepared interface states; actions are connected in later laboratory work. -->
+        <template id="saved-undo-template"
+          ><div class="saved-undo-status" role="status" aria-live="polite">
+            <span>Мікс видалено.</span
+            ><button type="button" class="button button-secondary" disabled>
+              Скасувати <span class="saved-soon">Скоро</span>
+            </button>
+          </div></template
+        >
+        <template id="saved-rename-template"
+          ><form class="saved-rename-form">
+            <label for="saved-new-name">Назва міксу</label
+            ><input id="saved-new-name" type="text" maxlength="60" /><button
+              class="button"
+              type="submit"
+              disabled
+            >
+              Зберегти назву <span class="saved-soon">Скоро</span>
+            </button>
+          </form></template
+        >
+        <noscript
+          ><p class="shop-nojs">
+            Увімкніть JavaScript, щоб побачити мікси, збережені в цьому браузері.
+          </p></noscript
+        >
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
-            <span aria-hidden="true">Смажена Кава</span>
-          </a>
-          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
-          <address class="footer-contacts">
-            <!-- Демонстраційні контакти з Figma. -->
-            <p>+38 044 000 00 00</p>
-            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Львів, площа Ринок · демолокація</p>
-          </address>
-        </div>
-        <nav class="footer-navigation" aria-label="Навігація в підвалі">
-          <div class="footer-link-group">
-            <p class="footer-heading">Дізнатися</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="about.html">Про нас</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="delivery.html">Доставка та оплата</a></li>
-            </ul>
+        <section class="mo-footer-newsletter" aria-labelledby="mo-footer-news-title" data-mo-footer-reveal>
+          <div><h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2><p>Нові зерна, кавові поради й пропозиції — на пошту.</p></div>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe"><input id="mo-footer-email" name="newsletter-email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@example.com" aria-describedby="mo-footer-subscribe-note mo-footer-email-error" /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">Підписатися</button></div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">Підписка буде доступна незабаром.</p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"><img src="assets/images/logo.svg" alt="" width="254" height="274" loading="lazy" decoding="async" /><span>Смажена Кава</span></a>
+            <p class="mo-footer-tagline">Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+            <address class="mo-footer-address"><span data-mo-footer-address>Львів, площа Ринок</span><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span></address>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Кава</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Каталог</a></li>
-              <li><a href="constructor.html">Створити мікс</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
-            </ul>
-          </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Соцмережі</p>
-            <ul class="navigation-list" role="list">
-              <li><a role="link" aria-disabled="true">Instagram</a></li>
-              <li><a role="link" aria-disabled="true">Facebook</a></li>
-              <li><a role="link" aria-disabled="true">YouTube</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="footer-bottom">
-          <p class="copyright">© 2026 Смажена Кава</p>
-          <nav aria-label="Правова інформація">
-            <ul class="navigation-list footer-legal" role="list">
-              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
-              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
-              <li><a role="link" aria-disabled="true">Умови використання</a></li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div><h2>Дізнатися</h2><ul role="list"><li><a class="mo-footer-link" href="about.html">Про нас</a></li><li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li><li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li></ul></div>
+            <div><h2>Кава</h2><ul role="list"><li><a class="mo-footer-link" href="catalog.html">Каталог</a></li><li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li><li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li><li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li></ul></div>
           </nav>
+          <section class="mo-footer-contacts" aria-labelledby="mo-footer-contact-title" data-mo-footer-reveal>
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address><a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone>+38 (032) 000-00-00</a><a class="mo-footer-link" href="mailto:hello@smazhenakava.example" data-mo-footer-email>hello@smazhenakava.example</a></address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери"><li><a class="mo-footer-social" data-mo-footer-social="instagram" href="https://www.instagram.com/smazhena.kava.example/" aria-label="Instagram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="facebook" href="https://www.facebook.com/smazhena.kava.example/" aria-label="Facebook, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="youtube" href="https://www.youtube.com/@smazhenakava-example" aria-label="YouTube, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="telegram" href="https://t.me/smazhenakava_example" aria-label="Telegram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="viber" href="viber://chat?number=%2B380320000000" aria-label="Viber, відкрити Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"/><path d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"/></svg></a></li></ul>
+          </section>
         </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Доставка по Україні · Нова пошта / Укрпошта</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg>Обсмажуємо під замовлення</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4"/></svg>Оплата при отриманні</span></div>
+        <div class="mo-footer-divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg></div>
+        <div class="mo-footer-bottom"><p>© <span data-mo-footer-year>2026</span> Смажена Кава</p><div class="mo-footer-legal" aria-label="Правова інформація"><span>Політика конфіденційності</span><span>Публічна оферта</span><span>Умови використання</span></div><button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></div>
       </div>
     </footer>
   </body>

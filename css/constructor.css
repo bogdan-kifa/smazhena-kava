@@ -70,17 +70,20 @@
   width: var(--spacing-xl);
   height: var(--spacing-xl);
   border: var(--border-control);
-  border-radius: var(--radius-pill);
+  border-color: var(--color-primary);
+  border-radius: var(--radius-control);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
   font-family: var(--font-primary);
   font-size: var(--font-size-caption);
   font-weight: var(--font-weight-semibold);
 }
 
-.mix-step-number-complete {
-  color: var(--color-text-inverse);
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  border-radius: var(--radius-control);
+.mix-proportions .mix-step-number {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-control-border);
+  border-radius: var(--radius-pill);
 }
 
 /* 2. Вибрані сорти, вага та помел: справжні елементи форми */
@@ -307,6 +310,53 @@
 }
 
 /* 4. Обсмаження, нативна допомога з помелу, пакування */
+.mix-roast-description {
+  font-size: var(--font-size-small);
+  line-height: 1.6;
+}
+#mix-roast-list {
+  display: grid;
+}
+.mix-roast-item {
+  padding-block: var(--spacing-md);
+  border-bottom: var(--border-default);
+}
+.mix-roast-item:first-child {
+  padding-top: 0;
+}
+.mix-roast-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.mix-roast-label {
+  display: grid;
+  gap: var(--spacing-2xs);
+}
+.mix-roast-name {
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.45;
+}
+.mix-roast-meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+}
+.mix-roast-fixed {
+  justify-self: end;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  background: var(--color-background-soft);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+}
+@media (width < 768px) {
+  .mix-roast-fixed {
+    justify-self: start;
+  }
+}
+
 .mix-roast-row {
   display: grid;
   grid-template-columns: var(--grid-track-fluid) minmax(0, 200px);
@@ -336,6 +386,11 @@
   -webkit-text-fill-color: var(--color-text);
 }
 
+.mix-roast-item .mix-roast-field select {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+}
+
 .mix-roast-field .icon {
   position: absolute;
   inset-inline-end: var(--spacing-md);
@@ -344,60 +399,101 @@
   pointer-events: none;
 }
 
-.mix-grind-help {
-  color: var(--color-text-muted);
+.mix-grind-note {
   font-size: var(--font-size-small);
 }
-
-.mix-grind-help summary {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  min-height: 44px;
-  cursor: pointer;
-  list-style: none;
-}
-
-.mix-grind-help summary::-webkit-details-marker {
-  display: none;
-}
-
-.mix-grind-help[open] summary .icon {
-  transform: rotate(180deg);
-}
-
-.mix-grind-help ul {
-  margin: var(--spacing-xs) 0 0;
-  padding-inline-start: var(--spacing-lg);
-}
-
+.mix-grind-options,
 .mix-packaging-options {
   display: grid;
   grid-template-columns: repeat(3, var(--grid-track-fluid));
   gap: var(--spacing-md);
 }
-
+.mix-grind-label,
+.mix-packaging-label {
+  position: relative;
+  min-width: 0;
+  border: var(--border-control);
+  border-radius: var(--radius-card);
+  color: var(--color-text);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+.mix-grind-label {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  min-height: 104px;
+  padding: 18px 44px 18px 18px;
+}
+.mix-grind-label strong,
+.mix-packaging-label strong {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+}
+.mix-choice-description {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  line-height: 1.5;
+}
+.mix-choice-mark {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: var(--border-default);
+  border-radius: var(--radius-pill);
+  color: transparent;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
 .mix-packaging-label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: var(--spacing-2xs);
-  min-width: 0;
-  min-height: 90px;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 188px;
   padding: 20px;
-  border: var(--border-control);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  cursor: default;
 }
-
 .mix-packaging-label strong {
-  font-weight: var(--font-weight-semibold);
+  padding-right: 4px;
 }
-
-.mix-option-input:checked + .mix-packaging-label {
-  border: 2px solid var(--color-primary);
+.mix-packaging-price {
+  display: inline-flex;
+  margin-top: auto;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  color: var(--color-primary);
   background: var(--color-background-soft);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+}
+.mix-option-input:checked + .mix-grind-label,
+.mix-option-input:checked + .mix-packaging-label {
+  border-color: var(--color-primary);
+  background: var(--color-background-soft);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+.mix-option-input:checked + label .mix-choice-mark {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.mix-option-input:checked + label .mix-packaging-price {
+  background: var(--color-surface);
+}
+.mix-grind-label:hover,
+.mix-packaging-label:hover {
+  border-color: var(--color-primary);
+}
+.mix-option-input:focus-visible + .mix-grind-label,
+.mix-option-input:focus-visible + .mix-packaging-label {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 /* 5. Підсумок: DL для значень, meter для профілю, progress для доставки */
@@ -438,7 +534,17 @@
   font-weight: var(--font-weight-semibold);
 }
 
-/* Міцність читається як «3 з 5», а візуально подана зернами. */
+.mix-summary-list > .mix-summary-packaging {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+.mix-summary-packaging dd {
+  margin-inline-start: auto;
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+}
+
+/* Міцність читається як «6 з 10», а візуально подана зернами. */
 .mix-strength-icons {
   display: inline-flex;
   align-items: center;
@@ -479,14 +585,23 @@
 
 .mix-summary-card .mix-summary-subheading {
   font-family: var(--font-primary);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-caption);
+  color: var(--color-primary);
+  font-size: 1rem;
   font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-eyebrow);
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.mix-summary-card > .mix-summary-list:first-of-type dt {
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}
+.mix-summary-card .mix-flavor-notes strong {
+  margin-bottom: var(--spacing-2xs);
+  font-weight: var(--font-weight-semibold);
 }
 
-.mix-profile-row {
+.mix-profile-row,
+.mix-profile-strength {
   display: grid;
   grid-template-columns: minmax(0, 88px) var(--grid-track-fluid) 60px;
   align-items: center;
@@ -497,6 +612,24 @@
 .mix-profile-chart {
   display: grid;
   gap: var(--spacing-sm);
+}
+.mix-profile-strength > span:nth-child(2) {
+  min-width: 0;
+}
+.mix-profile-strength .mix-strength-value {
+  display: flex;
+}
+.mix-profile-strength .mix-strength-icons {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: clamp(1px, 0.2vw, 2px);
+  width: 100%;
+  max-width: 100%;
+}
+.mix-profile-strength .mix-strength-bean {
+  min-width: 0;
+  width: 100%;
+  height: auto;
 }
 .mix-profile-track {
   min-width: 0;
@@ -509,6 +642,7 @@
 }
 .mix-profile-value {
   color: var(--color-text);
+  font-weight: var(--font-weight-medium);
   text-align: right;
   font-variant-numeric: tabular-nums;
   font-size: var(--font-size-caption);
@@ -620,8 +754,33 @@
   }
 
   .mix-roast-row,
+  .mix-grind-options,
   .mix-packaging-options {
     grid-template-columns: var(--grid-track-fluid);
+  }
+  .mix-grind-label {
+    min-height: 88px;
+  }
+  .mix-packaging-label {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 8px;
+    min-height: 112px;
+    padding: 16px 44px 16px 16px;
+  }
+  .mix-packaging-label .mix-packaging-icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .mix-packaging-label strong,
+  .mix-packaging-price {
+    grid-column: 2;
+  }
+  .mix-packaging-price {
+    justify-self: start;
+    margin-top: 0;
   }
 }
 
@@ -655,19 +814,19 @@
   border-radius: var(--radius-control);
   background: var(--color-background-soft);
 }
-.mix-proportions-enhanced [data-color="0"] {
+.mix-page [data-color="0"] {
   --mix-segment: var(--color-primary);
   --mix-segment-text: var(--color-surface);
 }
-.mix-proportions-enhanced [data-color="1"] {
+.mix-page [data-color="1"] {
   --mix-segment: var(--color-accent-strong);
   --mix-segment-text: var(--color-surface);
 }
-.mix-proportions-enhanced [data-color="2"] {
+.mix-page [data-color="2"] {
   --mix-segment: var(--color-success);
   --mix-segment-text: var(--color-surface);
 }
-.mix-proportions-enhanced [data-color="3"] {
+.mix-page [data-color="3"] {
   --mix-segment: var(--color-secondary);
   --mix-segment-text: var(--color-text);
 }
@@ -791,28 +950,35 @@
   text-align: center;
 }
 .mix-ratio-balance {
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 2;
   justify-self: end;
-  min-height: 32px;
-  padding: 4px 0;
-  border: 0;
-  background: transparent;
+  width: 138px;
+  min-height: 44px;
+  margin-top: var(--spacing-xs);
+  padding: 8px 10px;
+  border: var(--border-control);
+  border-color: var(--color-control-border);
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
   color: var(--color-primary);
   font: inherit;
   font-size: var(--font-size-caption);
-  text-align: right;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
   cursor: pointer;
 }
 .mix-ratio-balance:disabled {
-  opacity: var(--opacity-disabled);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
   cursor: not-allowed;
 }
 .mix-ratio-step:hover:not(:disabled) {
   background: var(--color-border);
 }
 .mix-ratio-balance:hover:not(:disabled) {
-  text-decoration: underline;
+  background: var(--color-secondary);
 }
 .mix-ratio-step:focus-visible,
 .mix-ratio-balance:focus-visible,
@@ -823,21 +989,15 @@
 .mix-ratio-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
 }
 .mix-equalize {
+  width: 220px;
   max-width: 100%;
   font-size: var(--font-size-small);
-}
-.mix-ratio-actions-help {
-  flex: 1 1 180px;
-  min-width: 0;
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-caption);
 }
 @media (width < 700px) {
   .mix-proportions-enhanced .mix-ratio-row {
@@ -863,7 +1023,8 @@
     width: auto;
   }
   .mix-ratio-balance {
-    flex: 0 0 88px;
+    flex: 0 0 138px;
+    margin-top: 0;
     min-height: 44px;
   }
 }

@@ -1,0 +1,124 @@
+.account-dialog {
+  width: min(460px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 24px;
+  overflow: auto;
+  border: var(--border-default);
+  border-radius: var(--radius-container);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 20px 70px rgb(43 29 20 / 20%);
+}
+.account-dialog::backdrop {
+  background: rgb(43 29 20 / 46%);
+}
+.account-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.account-dialog-header h2 {
+  margin: 0;
+  font-size: 1.65rem;
+  line-height: 1.25;
+}
+.account-dialog-close {
+  flex: 0 0 44px;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-background-soft);
+  font: inherit;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+.account-dialog p {
+  margin-block: 0 16px;
+}
+.account-dialog-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.account-dialog-actions .button {
+  width: 100%;
+  text-align: center;
+}
+.account-dialog-quiet {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: var(--font-size-small);
+  cursor: pointer;
+}
+.account-field {
+  display: grid;
+  gap: 8px;
+}
+.account-field label {
+  font-weight: var(--font-weight-semibold);
+}
+.account-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1rem;
+}
+.account-field input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+.account-error {
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+}
+.account-recipe-summary {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  overflow-wrap: anywhere;
+}
+.account-preparation-note {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+.account-return-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 16px;
+  color: var(--color-primary);
+}
+.login-mode:not(:disabled) {
+  cursor: pointer;
+}
+.account-dialog button:focus-visible,
+.account-dialog input:focus-visible,
+.account-dialog a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+@media (width < 400px) {
+  .account-dialog {
+    padding: 18px;
+  }
+  .account-dialog-header h2 {
+    font-size: 1.4rem;
+  }
+}

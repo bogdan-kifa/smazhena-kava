@@ -19,5 +19,6 @@
   "inlineFold.regex": "(class)=\"([^\"]{80,})\"",
   "inlineFold.regexGroup": 2,
   "inlineFold.autoFold": true,
-  "inlineFold.unfoldOnLineSelect": true
+  "inlineFold.unfoldOnLineSelect": true,
+  "liveServer.settings.port": 5501
 }
