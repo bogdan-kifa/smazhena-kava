@@ -14,8 +14,21 @@
     3: { name: "Багаторазова банка", price: 8000 },
   };
   const isGreen = (product) => product?.category === "green";
+  // Shared illustrative method preferences; no beans are excluded by this hint.
+  const brewingMethods = (product) =>
+    isGreen(product)
+      ? []
+      : product.roast === "light"
+        ? ["filter"]
+        : product.roast === "dark"
+          ? ["espresso", "cezve"]
+          : ["espresso", "filter", "cezve"];
   const beanRoast = (bean) =>
     isGreen(byId.get(bean.id)) ? bean.roast || "medium" : byId.get(bean.id).roast;
+  const beanStrength = (bean) => {
+    const product = byId.get(bean.id);
+    return isGreen(product) ? product.strengthByRoast?.[beanRoast(bean)] ?? 0 : product?.strength ?? 0;
+  };
   const copy = (v) => JSON.parse(JSON.stringify(v));
   const emptyMix = () => ({
     id: "",
@@ -35,6 +48,24 @@
     typeof value === "string" && value.length <= 35 && Number.isFinite(Date.parse(value))
       ? new Date(value).toISOString()
       : "";
+  function withBeanSlots(beans) {
+    const used = new Set();
+    const planned = beans.map((bean) => {
+      if (Number.isInteger(bean.slot) && bean.slot >= 0 && bean.slot < 4 && !used.has(bean.slot)) {
+        used.add(bean.slot);
+        return bean.slot;
+      }
+      return null;
+    });
+    return beans
+      .map((bean, index) => {
+        const slot = planned[index] ?? [0, 1, 2, 3].find((value) => !used.has(value));
+        used.add(slot);
+        return { ...bean, slot };
+      })
+      .sort((a, b) => a.slot - b.slot);
+  }
+  const beanFamily = (product) => `${product.origin}:${product.variantOf || product.id}`;
   function mix(value) {
     if (!value || typeof value !== "object") return emptyMix();
     const seen = new Set();
@@ -44,6 +75,7 @@
       .map((b) => ({
         id: b.id,
         ratio: integer(b.ratio, 0, 100, 0),
+        slot: b.slot,
         ...(isGreen(byId.get(b.id))
           ? { roast: Object.hasOwn(roasts, b.roast) ? b.roast : "medium" }
           : {}),
@@ -52,7 +84,7 @@
       id: typeof value.id === "string" && /^[\w-]{1,80}$/.test(value.id) ? value.id : "",
       name:
         typeof value.name === "string" ? value.name.trim().slice(0, 60) || "Мій мікс" : "Мій мікс",
-      beans,
+      beans: withBeanSlots(beans),
       weight: weights.includes(value.weight) ? value.weight : 200,
       grind: Object.hasOwn(grinds, value.grind) ? value.grind : "filter",
       packaging: ["1", "2", "3"].includes(value.packaging) ? value.packaging : "1",
@@ -73,7 +105,7 @@
     const m = recipe(value);
     return JSON.stringify([
       m.name,
-      [...m.beans].sort((a, b) => a.id.localeCompare(b.id)),
+      [...m.beans].sort((a, b) => a.id.localeCompare(b.id)).map(({ slot, ...bean }) => bean),
       m.weight,
       m.grind,
       m.packaging,
@@ -111,7 +143,7 @@
         ...(typeof details === "string" ? { details: details.slice(0, 600) } : {}),
       })),
       total,
-      delivery: value.delivery === "courier" ? "courier" : "post",
+      delivery: value.delivery === "ukrposhta" ? "ukrposhta" : value.delivery === "courier" ? "courier" : "post",
       created: isoDate(value.created),
     };
   }
@@ -400,25 +432,166 @@
     item.type === "product"
       ? `${isGreen(byId.get(item.id)) ? (item.roast && item.roast !== "raw" ? `${roasts[item.roast]} обсмаження · ` : "Без обсмаження · ") : ""}${grinds[item.grind]}`
       : `${composition(item.mix)} · ${grinds[item.mix.grind]} · ${packagingText(item.mix)}`;
-  let noticeTimer;
-  function notify(text, link) {
-    let box = document.getElementById("shop-notice");
-    if (!box) {
-      box = node("div", {
-        id: "shop-notice",
-        class: "shop-notice",
-        role: "status",
-        "aria-live": "polite",
-      });
-      document.body.append(box);
+  let noticeBox,
+    noticeMessage,
+    noticeAction,
+    noticeClose,
+    noticeIcon,
+    noticeProgress,
+    noticeAnnouncer;
+  let noticeTimer,
+    noticeExitTimer,
+    noticeStarted = 0,
+    noticeRemaining = 2000;
+  let noticeHovered = false,
+    noticeClosing = false,
+    noticeOpener = null;
+  const noticeMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  function stopNoticeClock() {
+    if (noticeTimer) {
+      clearTimeout(noticeTimer);
+      noticeTimer = null;
+      noticeRemaining = Math.max(0, noticeRemaining - (performance.now() - noticeStarted));
     }
-    box.replaceChildren(node("span", { text }));
-    if (link) box.append(node("a", { href: url(link.href), text: link.text }));
-    box.hidden = false;
-    clearTimeout(noticeTimer);
+    if (noticeProgress) noticeProgress.style.animationPlayState = "paused";
+  }
+  function dismissNotice() {
+    if (!noticeBox || noticeBox.hidden || noticeClosing) return;
+    stopNoticeClock();
+    noticeClosing = true;
+    noticeBox.classList.add("is-leaving");
+    if (
+      noticeBox.contains(document.activeElement) &&
+      noticeOpener?.isConnected &&
+      !noticeOpener.disabled
+    )
+      noticeOpener.focus({ preventScroll: true });
+    const finish = () => {
+      noticeBox.hidden = true;
+      noticeBox.classList.remove("is-entering", "is-leaving");
+      noticeAnnouncer.textContent = "";
+      noticeClosing = false;
+    };
+    if (noticeMotion.matches) finish();
+    else noticeExitTimer = setTimeout(finish, 170);
+  }
+  function resumeNoticeClock() {
+    if (
+      !noticeBox ||
+      noticeBox.hidden ||
+      noticeClosing ||
+      noticeHovered ||
+      noticeBox.contains(document.activeElement)
+    )
+      return;
+    if (noticeTimer) return;
+    if (noticeRemaining <= 0) {
+      dismissNotice();
+      return;
+    }
+    noticeStarted = performance.now();
     noticeTimer = setTimeout(() => {
-      if (!box.contains(document.activeElement)) box.hidden = true;
-    }, 6500);
+      noticeTimer = null;
+      noticeRemaining = 0;
+      dismissNotice();
+    }, noticeRemaining);
+    noticeProgress.style.animationPlayState = "running";
+  }
+  function createNotice() {
+    if (noticeBox) return;
+    noticeMessage = node("p", { class: "shop-notice-message" });
+    noticeAnnouncer = node("p", {
+      class: "visually-hidden",
+      role: "status",
+      "aria-live": "polite",
+      "aria-atomic": "true",
+    });
+    noticeAction = node("a", { class: "shop-notice-action", hidden: true });
+    noticeClose = node(
+      "button",
+      { class: "shop-notice-close", type: "button", "aria-label": "Закрити повідомлення" },
+      node("span", { "aria-hidden": "true", text: "×" }),
+    );
+    noticeClose.addEventListener("click", dismissNotice);
+    noticeIcon = node("span", { class: "shop-notice-icon", "aria-hidden": "true" });
+    noticeProgress = node("span", { class: "shop-notice-progress-fill" });
+    noticeBox = node(
+      "div",
+      { id: "shop-notice", class: "shop-notice", hidden: true },
+      noticeIcon,
+      node("div", { class: "shop-notice-content" }, noticeMessage, noticeAction),
+      noticeClose,
+      node("span", { class: "shop-notice-progress", "aria-hidden": "true" }, noticeProgress),
+    );
+    noticeBox.addEventListener("pointerenter", () => {
+      noticeHovered = true;
+      stopNoticeClock();
+    });
+    noticeBox.addEventListener("pointerleave", () => {
+      noticeHovered = false;
+      resumeNoticeClock();
+    });
+    noticeBox.addEventListener("focusin", stopNoticeClock);
+    noticeBox.addEventListener("focusout", () => queueMicrotask(resumeNoticeClock));
+    document.body.append(noticeBox, noticeAnnouncer);
+  }
+  function notify(text, link, kind = "info") {
+    createNotice();
+    stopNoticeClock();
+    clearTimeout(noticeExitTimer);
+    if (!noticeBox.contains(document.activeElement)) noticeOpener = document.activeElement;
+    const restoreCloseFocus =
+      noticeBox.contains(document.activeElement) && document.activeElement === noticeAction;
+    const message = String(text ?? "");
+    const tone = message.startsWith("Не вдалося")
+      ? "error"
+      : ["success", "warning", "error", "info"].includes(kind)
+        ? kind
+        : "info";
+    noticeBox.dataset.tone = tone;
+    noticeMessage.textContent = message;
+    noticeAnnouncer.textContent = message;
+    noticeAction.hidden = !link;
+    if (link) {
+      noticeAction.href = url(link.href);
+      noticeAction.textContent = link.text;
+    } else {
+      noticeAction.removeAttribute("href");
+      noticeAction.textContent = "";
+    }
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    for (const [key, value] of Object.entries({
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": 2,
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      focusable: "false",
+    }))
+      svg.setAttribute(key, value);
+    const path = document.createElementNS(svg.namespaceURI, "path");
+    path.setAttribute(
+      "d",
+      tone === "success"
+        ? "m5 12 4 4L19 6"
+        : tone === "warning" || tone === "error"
+          ? "M12 5v9m0 4h.01"
+          : "M12 10v8m0-12h.01",
+    );
+    svg.append(path);
+    noticeIcon.replaceChildren(svg);
+    noticeRemaining = 2000;
+    noticeClosing = false;
+    noticeBox.classList.remove("is-entering", "is-leaving");
+    noticeBox.hidden = false;
+    // A new message restarts the entrance and lifetime bar, never an old exit callback.
+    void noticeBox.offsetWidth;
+    noticeBox.classList.add("is-entering");
+    window.dispatchEvent(new CustomEvent("coffee:notice"));
+    noticeHovered = noticeBox.matches(":hover");
+    if (restoreCloseFocus) noticeClose.focus({ preventScroll: true });
+    resumeNoticeClock();
   }
   async function addProduct(id, weight = 250, grind = "beans", qty = 1, roast = "raw") {
     if (
@@ -466,6 +639,7 @@
     notify(
       ok ? "Каву додано до кошика." : "Досягнуто ліміт кількості товарів.",
       ok ? { href: "cart.html", text: "Відкрити кошик" } : null,
+      ok ? "success" : "warning",
     );
     return ok;
   }
@@ -485,6 +659,7 @@
       s.draft.beans.push({
         id,
         ratio: 0,
+        slot: [0, 1, 2, 3].find((slot) => !s.draft.beans.some((bean) => bean.slot === slot)),
         ...(isGreen(byId.get(id))
           ? { roast: Object.hasOwn(roasts, roast) ? roast : "medium" }
           : {}),
@@ -495,9 +670,13 @@
     if (added && !persisted)
       message =
         "Сорт додано лише на цій сторінці. Браузер не дозволяє зберегти вибір для переходу.";
+    if (persisted && added && document.getElementById("mix-form")) return true;
     notify(
       message,
-      persisted && added ? { href: "constructor.html", text: "Відкрити конструктор" } : null,
+      persisted && added && !document.getElementById("catalog-mix-tray")
+        ? { href: "constructor.html", text: "Відкрити конструктор" }
+        : null,
+      persisted && added ? "success" : "warning",
     );
     return persisted && added;
   }
@@ -531,7 +710,8 @@
       notify("Не вдалося зберегти мікс у кошику. Дозвольте сховище браузера та повторіть дію.");
       return false;
     }
-    if (ok) notify("Мікс додано до кошика.", { href: "cart.html", text: "Відкрити кошик" });
+    if (ok)
+      notify("Мікс додано до кошика.", { href: "cart.html", text: "Відкрити кошик" }, "success");
     return ok;
   }
   window.CoffeeShop = {
@@ -543,7 +723,10 @@
     packagingText,
     itemDetails,
     isGreen,
+    brewingMethods,
     beanRoast,
+    beanStrength,
+    beanFamily,
     root,
     url,
     node,
@@ -576,6 +759,11 @@
     }
   });
   function badges() {
+    for (const link of document.querySelectorAll('header a[href$="my-mixes.html"]')) {
+      const suffix = state.saved.length ? ` · ${state.saved.length}` : "";
+      if (link.textContent !== `Мої мікси${suffix}`) link.textContent = `Мої мікси${suffix}`;
+      if (location.pathname.endsWith("/my-mixes.html")) link.setAttribute("aria-current", "page");
+    }
     const count = state.cart.reduce((s, i) => s + i.qty, 0);
     for (const a of document.querySelectorAll('header a[href$="cart.html"]')) {
       a.setAttribute("aria-label", `Кошик: ${count} товарів`);
@@ -608,7 +796,7 @@
   window.addEventListener("coffee:change", badges);
   document.addEventListener("click", async (e) => {
     const b = e.target.closest("[data-favorite],[data-add-bean],[data-buy-product]");
-    if (!b || b.disabled) return;
+    if (!b || b.disabled || b.getAttribute("aria-disabled") === "true") return;
     if (b.dataset.favorite) {
       const id = b.dataset.favorite;
       if (!byId.has(id)) return;
@@ -715,7 +903,7 @@
     .querySelector("#mix-action-note")
     ?.replaceChildren("Додавайте сорти до міксу, а вагу й пропорції налаштовуйте у конструкторі.");
   const catalogFooterLink = document.querySelector('footer a[href$="catalog.html"]');
-  if (catalogFooterLink?.closest("ul")) {
+  if (catalogFooterLink?.closest("ul") && !catalogFooterLink.closest("ul").querySelector('a[href$="my-mixes.html"]')) {
     catalogFooterLink.closest("ul").append(
       node(
         "li",
@@ -729,7 +917,10 @@
     );
   }
   // Швидкі переходи до локальних рецептів та обраного без імітації акаунта.
-  for (const nav of document.querySelectorAll("header details nav ul")) {
+  for (const nav of document.querySelectorAll(
+    "header .catalog-desktop-navigation ul,header details nav ul",
+  )) {
+    if (nav.querySelector('a[href$="my-mixes.html"]')) continue;
     nav.append(
       node(
         "li",
@@ -738,27 +929,11 @@
       ),
     );
   }
-  if (document.querySelector(".login-form")) {
-    document.querySelector(".login-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      notify("Серверну авторизацію ще не підключено.");
-    });
-    document.querySelector(".login-description").textContent =
-      "Вхід до акаунта ще недоступний. Рецепти вже можна зберігати в цьому браузері.";
-    document.querySelector(".login-form").before(
-      node(
-        "div",
-        { class: "shop-empty" },
-        node("p", {
-          text: "Вхід і реєстрація ще недоступні. Зберігати мікси в цьому браузері можна без акаунта.",
-        }),
-        node("a", {
-          class: "button button-secondary",
-          href: url("my-mixes.html"),
-          text: "Відкрити мої мікси",
-        }),
-      ),
-    );
+  for (const link of document.querySelectorAll('a[href$="quiz.html"]')) {
+    for (const child of link.childNodes) {
+      if (child.nodeType === Node.TEXT_NODE)
+        child.textContent = child.textContent.replace(/Quiz/g, "Квіз");
+    }
   }
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape")
@@ -767,6 +942,7 @@
         d.querySelector("summary")?.focus();
       });
   });
+  createNotice();
   badges();
   storageNotice();
 })();

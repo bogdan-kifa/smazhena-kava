@@ -14,6 +14,12 @@
     <script src="js/products.js" defer></script>
     <script src="js/shop.js" defer></script>
     <script src="js/checkout.js" defer></script>
+      <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/checkout-motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+    <script src="js/motion.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
   </head>
   <body class="catalog-page checkout-page">
     <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
@@ -97,12 +103,14 @@
               <legend class="visually-hidden">Спосіб доставки</legend>
               <div class="checkout-options">
                 <input class="visually-hidden checkout-option-input" id="delivery-nova-poshta" name="delivery" type="radio" value="nova-poshta" checked /><label class="checkout-option-label" for="delivery-nova-poshta">Нова пошта</label>
+                <input class="visually-hidden checkout-option-input" id="delivery-ukrposhta" name="delivery" type="radio" value="ukrposhta" /><label class="checkout-option-label" for="delivery-ukrposhta">Укрпошта</label>
                 <input class="visually-hidden checkout-option-input" id="delivery-courier" name="delivery" type="radio" value="courier" /><label class="checkout-option-label" for="delivery-courier">Кур’єр</label>
               </div>
             </fieldset>
             <div class="checkout-field">
               <label for="delivery-address">Адреса або відділення</label>
-              <input id="delivery-address" name="delivery-address" type="text" autocomplete="off" maxlength="200" placeholder="Місто, відділення" required aria-describedby="delivery-address-error" />
+              <input id="delivery-address" name="delivery-address" type="text" autocomplete="off" maxlength="200" placeholder="Місто, відділення" required aria-describedby="mo-delivery-address-help delivery-address-error" />
+              <p id="mo-delivery-address-help" class="mo-delivery-help">Укажіть місто та номер відділення Нової пошти.</p>
               <p class="checkout-field-error" id="delivery-address-error" hidden></p>
             </div>
           </section>
@@ -140,57 +148,36 @@
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
-            <span aria-hidden="true">Смажена Кава</span>
-          </a>
-          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
-          <address class="footer-contacts">
-            <!-- Демонстраційні контакти з Figma. -->
-            <p>+38 044 000 00 00</p>
-            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Львів, площа Ринок · демолокація</p>
-          </address>
-        </div>
-        <nav class="footer-navigation" aria-label="Навігація в підвалі">
-          <div class="footer-link-group">
-            <p class="footer-heading">Дізнатися</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="about.html">Про нас</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="delivery.html">Доставка та оплата</a></li>
-            </ul>
+        <section class="mo-footer-newsletter" aria-labelledby="mo-footer-news-title" data-mo-footer-reveal>
+          <div><h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2><p>Нові зерна, кавові поради й пропозиції — на пошту.</p></div>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe"><input id="mo-footer-email" name="newsletter-email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@example.com" aria-describedby="mo-footer-subscribe-note mo-footer-email-error" /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">Підписатися</button></div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">Підписка буде доступна незабаром.</p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"><img src="assets/images/logo.svg" alt="" width="254" height="274" loading="lazy" decoding="async" /><span>Смажена Кава</span></a>
+            <p class="mo-footer-tagline">Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+            <address class="mo-footer-address"><span data-mo-footer-address>Львів, площа Ринок</span><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span></address>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Кава</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Каталог</a></li>
-              <li><a href="constructor.html">Створити мікс</a></li>
-              <li><a href="quiz.html">Quiz-підбір</a></li>
-            </ul>
-          </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Соцмережі</p>
-            <ul class="navigation-list" role="list">
-              <li><a role="link" aria-disabled="true">Instagram</a></li>
-              <li><a role="link" aria-disabled="true">Facebook</a></li>
-              <li><a role="link" aria-disabled="true">YouTube</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="footer-bottom">
-          <p class="copyright">© 2026 Смажена Кава</p>
-          <nav aria-label="Правова інформація">
-            <ul class="navigation-list footer-legal" role="list">
-              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
-              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
-              <li><a role="link" aria-disabled="true">Умови використання</a></li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div><h2>Дізнатися</h2><ul role="list"><li><a class="mo-footer-link" href="about.html">Про нас</a></li><li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li><li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li></ul></div>
+            <div><h2>Кава</h2><ul role="list"><li><a class="mo-footer-link" href="catalog.html">Каталог</a></li><li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li><li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li><li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li></ul></div>
           </nav>
+          <section class="mo-footer-contacts" aria-labelledby="mo-footer-contact-title" data-mo-footer-reveal>
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address><a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone>+38 (032) 000-00-00</a><a class="mo-footer-link" href="mailto:hello@smazhenakava.example" data-mo-footer-email>hello@smazhenakava.example</a></address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери"><li><a class="mo-footer-social" data-mo-footer-social="instagram" href="https://www.instagram.com/smazhena.kava.example/" aria-label="Instagram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="facebook" href="https://www.facebook.com/smazhena.kava.example/" aria-label="Facebook, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="youtube" href="https://www.youtube.com/@smazhenakava-example" aria-label="YouTube, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="telegram" href="https://t.me/smazhenakava_example" aria-label="Telegram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="viber" href="viber://chat?number=%2B380320000000" aria-label="Viber, відкрити Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"/><path d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"/></svg></a></li></ul>
+          </section>
         </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Доставка по Україні · Нова пошта / Укрпошта</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg>Обсмажуємо під замовлення</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4"/></svg>Оплата при отриманні</span></div>
+        <div class="mo-footer-divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg></div>
+        <div class="mo-footer-bottom"><p>© <span data-mo-footer-year>2026</span> Смажена Кава</p><div class="mo-footer-legal" aria-label="Правова інформація"><span>Політика конфіденційності</span><span>Публічна оферта</span><span>Умови використання</span></div><button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></div>
       </div>
     </footer>
   </body>

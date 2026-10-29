@@ -100,7 +100,10 @@
         else if (normalize)
           field.value = phone.startsWith("0") ? `+38${phone}` : `+${phone.replace(/^\+/, "")}`;
       } else if (field.id === "delivery-address") {
-        if (value.length < 5 || !/\p{L}/u.test(value) || !/\d/.test(value))
+        if (form.querySelector('[name="delivery"]:checked').value === "ukrposhta") {
+          if (!/\p{L}/u.test(value) || !/(?:^|\D)\d{5}(?!\d)/.test(value))
+            message = "Укажіть місто та п’ятизначний поштовий індекс відділення Укрпошти.";
+        } else if (value.length < 5 || !/\p{L}/u.test(value) || !/\d/.test(value))
           message =
             form.querySelector('[name="delivery"]:checked').value === "courier"
               ? "Укажіть місто, вулицю та номер будинку."
@@ -116,16 +119,38 @@
         submitMessage.hidden = true;
       });
     });
-    document.querySelectorAll('[name="delivery"]').forEach((i) =>
-      i.addEventListener("change", () => {
-        const input = document.getElementById("delivery-address");
-        input.placeholder =
-          i.value === "courier" && i.checked
-            ? "Місто, вулиця, будинок, квартира"
-            : "Місто та номер відділення";
-        if (input.hasAttribute("aria-invalid")) validateField(input);
+    function updateDelivery() {
+      const method = form.querySelector('[name="delivery"]:checked').value;
+      const input = document.getElementById("delivery-address");
+      const labels = {
+        "nova-poshta": [
+          "Місто та відділення Нової пошти",
+          "Місто, номер відділення",
+          "Укажіть місто та номер відділення Нової пошти.",
+        ],
+        ukrposhta: [
+          "Місто та індекс відділення Укрпошти",
+          "Місто, поштовий індекс відділення",
+          "Укажіть місто та п’ятизначний індекс відділення Укрпошти.",
+        ],
+        courier: [
+          "Адреса доставки",
+          "Місто, вулиця, будинок, квартира",
+          "Укажіть місто, вулицю, будинок і квартиру, якщо вона є.",
+        ],
+      };
+      const [label, placeholder, help] = labels[method] || labels["nova-poshta"];
+      form.querySelector('label[for="delivery-address"]').textContent = label;
+      input.placeholder = placeholder;
+      document.getElementById("mo-delivery-address-help").textContent = help;
+      if (input.value.trim() || input.hasAttribute("aria-invalid")) validateField(input);
+    }
+    document.querySelectorAll('[name="delivery"]').forEach((input) =>
+      input.addEventListener("change", () => {
+        if (input.checked) updateDelivery();
       }),
     );
+    updateDelivery();
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (submitting) return;
@@ -227,6 +252,12 @@
         `${i.name} · ${i.weight} г × ${i.qty}${i.details ? ` · ${i.details}` : ""}`,
         S.money(i.total),
       ),
+    ),
+    pair(
+      "Спосіб доставки",
+      { post: "Нова пошта", "nova-poshta": "Нова пошта", ukrposhta: "Укрпошта", courier: "Кур’єр" }[
+        order.delivery
+      ] || "Нова пошта",
     ),
     pair("Доставка", order.total >= 80000 ? "Безкоштовно" : "За тарифом перевізника"),
     pair("Разом за товари", S.money(order.total)),

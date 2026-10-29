@@ -1,0 +1,182 @@
+.mix-taste-profile .mix-profile-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.mix-profile-estimate {
+  flex: none;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  background: var(--color-background-soft);
+  font-size: var(--font-size-caption);
+}
+.mix-profile-notice {
+  margin: 0;
+  padding: 10px 12px;
+  border: var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+.mix-taste-profile .mix-profile-chart {
+  gap: 12px;
+}
+.mix-taste-profile .mix-profile-row,
+.mix-taste-profile .mix-profile-strength,
+.mix-taste-profile .mix-profile-scale {
+  display: grid;
+  grid-template-columns: minmax(0, 88px) minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 12px;
+}
+.mix-profile-label {
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  min-height: 42px;
+}
+.mix-profile-level {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  line-height: 1.4;
+}
+.mix-taste-profile [data-profile-dimension="acidity"] {
+  --profile-tone: var(--color-accent);
+}
+.mix-taste-profile [data-profile-dimension="sweetness"] {
+  --profile-tone: var(--color-success);
+}
+.mix-taste-profile [data-profile-dimension="bitterness"] {
+  --profile-tone: var(--color-primary);
+}
+.mix-profile-meter-cell {
+  position: relative;
+  min-width: 0;
+}
+.mix-taste-profile .mix-profile-meter.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+.mix-taste-profile .mix-profile-track {
+  position: relative;
+  display: block;
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+.mix-profile-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--profile-tone);
+}
+.mix-profile-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-surface);
+  opacity: 0.9;
+}
+.mix-taste-profile.is-empty .mix-profile-track {
+  border: 1px dashed var(--color-control-border);
+  background: transparent;
+}
+.mix-taste-profile.is-empty .mix-profile-fill,
+.mix-taste-profile.is-empty .mix-profile-tick {
+  visibility: hidden;
+}
+.mix-taste-profile.is-empty .mix-strength-icons {
+  opacity: 0.3;
+}
+.mix-taste-profile .mix-profile-value {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+}
+.mix-taste-profile .mix-profile-strength .mix-strength-value {
+  justify-content: center;
+}
+.mix-taste-profile .mix-profile-strength .mix-strength-icons {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 16px));
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  max-width: 178px;
+}
+.mix-taste-profile .mix-profile-strength .mix-strength-bean {
+  width: 100%;
+  height: auto;
+}
+.mix-taste-profile.is-empty .mix-profile-value {
+  color: var(--color-text-muted);
+}
+.mix-profile-scale {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.mix-profile-scale-marks {
+  position: relative;
+  min-width: 0;
+  height: 16px;
+}
+.mix-profile-scale-marks > span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.mix-profile-scale-range {
+  text-align: right;
+}
+.mix-profile-description {
+  margin: 0;
+  padding-top: 16px;
+  border-top: var(--border-default);
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  line-height: 1.55;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mix-taste-profile:not(.is-empty) .mix-profile-fill {
+    transition: width 500ms ease;
+  }
+}
+
+.mix-profile-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.mix-profile-notice > .icon {
+  flex: none;
+  margin-top: 3px;
+  color: var(--color-primary);
+}
+.mix-profile-notice-copy {
+  display: grid;
+  gap: 2px;
+}
+.mix-taste-profile.is-empty .mix-profile-track {
+  background: var(--color-background-soft);
+  box-shadow: inset 0 0 0 2px var(--color-surface);
+}
+.mix-taste-profile.is-empty .mix-profile-tick {
+  visibility: visible;
+  opacity: 0.8;
+}
+.mix-taste-profile.is-empty .mix-strength-icons {
+  opacity: 0.55;
+}
+.mix-profile-description[data-placeholder="true"] {
+  color: var(--color-text-muted);
+}

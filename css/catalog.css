@@ -120,7 +120,7 @@
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-control);
   opacity: 1;
-  cursor: default;
+  cursor: pointer;
 }
 
 .catalog-category-current {
@@ -162,7 +162,7 @@
   line-height: var(--line-height-control);
   opacity: 1;
   -webkit-text-fill-color: var(--color-text);
-  cursor: default;
+  cursor: pointer;
 }
 
 .catalog-filter .icon {
@@ -232,7 +232,12 @@
   color: var(--color-primary);
   background: var(--color-surface);
   opacity: 1;
-  cursor: default;
+  cursor: pointer;
+}
+.catalog-category:disabled,
+.catalog-filter select:disabled,
+.product-favorite:disabled {
+  cursor: not-allowed;
 }
 
 .catalog-product h3 {
@@ -455,7 +460,6 @@
   .catalog-sorting {
     grid-column: auto;
   }
-
 }
 
 @media (width < 360px) {
@@ -471,4 +475,3 @@
     padding-inline: var(--spacing-md);
   }
 }
-

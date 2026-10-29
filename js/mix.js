@@ -2,268 +2,53 @@
   "use strict";
   const S = window.CoffeeShop,
     { node: n } = S;
-  const savedList = document.querySelector(".saved-mixes-grid");
-  if (savedList) {
-    document.getElementById("saved-mixes-status").textContent =
-      "Рецепти зберігаються локально у цьому браузері, без реєстрації та синхронізації з акаунтом.";
-    document.getElementById("saved-mixes-status").classList.remove("visually-hidden");
-    const render = () => {
-      const active = document.activeElement;
-      const activeCard = active?.closest("[data-recipe-id]");
-      const previousCards = [...savedList.querySelectorAll("[data-recipe-id]")];
-      const focus = savedList.contains(active)
-        ? {
-            id: activeCard?.dataset.recipeId,
-            index: previousCards.indexOf(activeCard),
-            action: active.dataset.recipeAction,
-          }
-        : null;
-      savedList.replaceChildren();
-      const saved = S.get().saved;
-      if (!saved.length)
-        savedList.append(
-          n(
-            "li",
-            { class: "shop-empty" },
-            n("p", { text: "Збережених міксів ще немає." }),
-            n("a", { class: "button", href: S.url("constructor.html"), text: "Створити мікс" }),
-          ),
-        );
-      saved.forEach((m, index) => {
-        const repeat = n("button", {
-          class: "button saved-mix-repeat",
-          type: "button",
-          "data-recipe-action": "repeat",
-          text: "Додати в кошик",
-        });
-        repeat.addEventListener("click", async () => {
-          if (repeat.getAttribute("aria-busy") === "true") return;
-          repeat.setAttribute("aria-busy", "true");
-          try {
-            await S.addMix(m);
-          } finally {
-            repeat.setAttribute("aria-busy", "false");
-          }
-        });
-        const edit = n("button", {
-          class: "button button-secondary saved-mix-edit",
-          type: "button",
-          "data-recipe-action": "edit",
-          text: "Редагувати",
-        });
-        edit.addEventListener("click", async () => {
-          const ok = await S.update((s) => {
-            const current = s.saved.find((saved) => saved.id === m.id);
-            if (!current) return false;
-            s.draft = current;
-          });
-          if (ok) location.href = S.url("constructor.html");
-          else
-            S.notify(
-              "Не вдалося відкрити рецепт: браузер не зберіг вибір. Дозвольте сховище та спробуйте ще раз.",
-            );
-        });
-        const remove = n("button", {
-          class: "button button-secondary",
-          type: "button",
-          "data-recipe-action": "remove",
-          "aria-label": `Видалити рецепт «${m.name}»`,
-          text: "Видалити",
-        });
-        remove.addEventListener("click", async () => {
-          const ok = await S.update((s) => {
-            s.saved = s.saved.filter((x) => x.id !== m.id);
-          });
-          S.notify(
-            ok ? "Рецепт видалено." : "Не вдалося видалити рецепт. Браузер не зберіг зміни.",
-          );
-        });
-        const pair = (key, value) => n("div", {}, n("dt", { text: key }), n("dd", { text: value }));
-        savedList.append(
-          n(
-            "li",
-            {},
-            n(
-              "article",
-              {
-                class: "card saved-mix-card",
-                "aria-labelledby": `saved-${index}`,
-                "data-recipe-id": m.id,
-              },
-              n(
-                "header",
-                { class: "saved-mix-header" },
-                n("h2", { id: `saved-${index}`, text: m.name }),
-                recipeDate(m),
-              ),
-              n(
-                "dl",
-                { class: "saved-mix-details" },
-                pair("Склад", S.composition(m)),
-                pair("Вага", `${m.weight} г`),
-                pair("Помел", S.grinds[m.grind]),
-                pair("Пакування", S.packagingText(m)),
-                pair("Вартість", S.money(S.mixPrice(m))),
-              ),
-              n("div", { class: "saved-mix-actions" }, repeat, edit, remove),
-            ),
-          ),
-        );
-      });
-      if (focus) {
-        const cards = [...savedList.querySelectorAll("[data-recipe-id]")];
-        const card =
-          cards.find((item) => item.dataset.recipeId === focus.id) ||
-          cards[Math.min(Math.max(0, focus.index), cards.length - 1)];
-        const next =
-          card?.querySelector(`[data-recipe-action="${focus.action}"]`) ||
-          card?.querySelector("button,a") ||
-          savedList.querySelector("button,a");
-        next?.focus({ preventScroll: true });
-      }
-    };
-    function recipeDate(m) {
-      const key = m.updatedAt && m.updatedAt !== m.createdAt ? "updatedAt" : "createdAt";
-      const value = m[key];
-      if (!value || !Number.isFinite(Date.parse(value)))
-        return n("p", { class: "muted saved-mix-date", text: "Дата збереження невідома" });
-      return n(
-        "p",
-        { class: "muted saved-mix-date" },
-        `${key === "updatedAt" ? "Оновлено" : "Збережено"} `,
-        n("time", {
-          datetime: value,
-          title: new Intl.DateTimeFormat("uk-UA", { dateStyle: "long", timeStyle: "short" }).format(
-            new Date(value),
-          ),
-          text: new Intl.DateTimeFormat("uk-UA", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          }).format(new Date(value)),
-        }),
-      );
-    }
-    window.addEventListener("coffee:change", (event) => {
-      if (!event.detail?.changed || event.detail.changed.includes("saved")) render();
-    });
-    render();
-    return;
-  }
   const form = document.getElementById("mix-form");
   if (!form) return;
   form.querySelector(".mix-settings").disabled = false;
   form.addEventListener("submit", (e) => e.preventDefault());
-  document.getElementById("mix-account-hint").textContent = "Збереження локальне, без акаунта.";
   const status = document.getElementById("mix-form-status");
   status.textContent =
     "До чотирьох сортів. Налаштуйте частки кожного сорту окремо, щоб у сумі було рівно 100%. Тоді можна зберегти мікс або додати його до кошика.";
-  status.classList.remove("visually-hidden");
+  status.classList.add("visually-hidden");
   const options = form.querySelector(".mix-options");
-  const add = n(
-    "div",
-    { class: "shop-mix-picker" },
-    n("label", { for: "mix-add-product", text: "Додати сорт до міксу" }),
-  );
-  const select = n(
-    "select",
-    { id: "mix-add-product" },
-    n("option", { value: "", text: "Оберіть каву" }),
-    S.products.map((p) => n("option", { value: p.id, text: p.name })),
-  );
-  const addButton = n("button", {
-    type: "button",
-    class: "button button-secondary",
-    text: "Додати сорт",
-  });
-  addButton.addEventListener("click", async () => {
-    if (select.value) {
-      addButton.disabled = true;
-      await S.addBean(select.value);
+  const beanPicker = window.CoffeeBeanPicker.mount({
+    after: options,
+    onChange: ({ persisted, storageFailed }) => {
+      beanSlots.clearError();
+      if (storageFailed) persistence(false);
+      else if (persisted) persistence(true);
       renderFields();
-      select.value = "";
-    }
+    },
   });
-  add.append(select, addButton);
-  options.after(add);
-  const nameField = n(
-    "div",
-    { class: "checkout-field" },
-    n("label", { for: "mix-name", text: "Назва міксу" }),
-  );
-  const nameInput = n("input", {
-    id: "mix-name",
-    type: "text",
-    maxlength: 60,
-    value: S.get().draft.name,
+  const beanSlots = window.CoffeeMixCustomizer.mountBeans({
+    options,
+    mutate: (change) => setDraft(change),
+    render: () => renderFields(),
+    focus: () => beanPicker.focusTrigger(),
   });
-  nameField.append(nameInput);
-  status.after(nameField);
-  const roastSection = form.querySelector('[aria-labelledby="mix-roast-title"]');
-  roastSection.replaceChildren(
-    n(
-      "div",
-      { class: "mix-step-heading" },
-      n("h2", { id: "mix-roast-title", class: "mix-step-title", text: "4 Обсмаження" }),
-    ),
-    n("p", {
-      class: "muted",
-      text: "Для зеленого зерна оберіть обсмаження — воно включене у вартість. Для готового зерна профіль уже заданий. Вага означає готовий мікс.",
-    }),
-    n("div", { id: "mix-roast-list" }),
-  );
-  const profile = document.getElementById("mix-profile-title").parentElement;
-  const strengthTemplate = document.querySelector(".mix-strength-icons").cloneNode(true);
-  const formatTaste = new Intl.NumberFormat("uk-UA", { maximumFractionDigits: 1 });
-  const tasteRows = Object.entries(S.tasteDimensions).map(([key, label]) => {
-    const labelId = `mix-${key}-label`;
-    const meter = n("meter", {
-      class: "mix-profile-meter",
-      id: `mix-${key}-meter`,
-      min: 0,
-      max: 10,
-      value: 0,
-      "aria-labelledby": labelId,
-      "aria-describedby": "mix-profile-help",
-      hidden: true,
-    });
-    const empty = n("span", { class: "mix-profile-empty", "aria-hidden": "true" });
-    const value = n("span", { class: "mix-profile-value", "aria-hidden": "true", text: "—" });
-    const row = n(
-      "div",
-      { class: "mix-profile-row" },
-      n("span", { id: labelId, text: label }),
-      n("div", { class: "mix-profile-track" }, meter, empty),
-      value,
-    );
-    return { key, meter, empty, value, row };
+  const roastUI = window.CoffeeMixCustomizer.mountRoast({
+    element: form.querySelector('[aria-labelledby="mix-roast-title"]'),
+    mutate: (change) => setDraft(change),
   });
-  const tasteStatus = n("p", { id: "mix-profile-status", class: "mix-profile-status muted" });
-  profile.replaceChildren(
-    n("h3", { id: "mix-profile-title", class: "mix-summary-subheading", text: "Смаковий профіль" }),
-    n(
-      "div",
-      { class: "mix-profile-chart", id: "mix-profile-chart" },
-      tasteRows.map((entry) => entry.row),
-    ),
-    tasteStatus,
-    n("p", {
-      id: "mix-profile-help",
-      class: "mix-profile-help muted",
-      text: "Орієнтовна оцінка за складом і обсмаженням. 0–10 — відносна шкала, не результат вимірювання.",
-    }),
-    n("h4", { class: "mix-summary-subheading", text: "Смакові ноти" }),
-    n("ul", { class: "mix-flavor-notes", id: "mix-notes" }),
+  const mixProfile = window.CoffeeMixProfile.mount(
+    document.getElementById("mix-profile-title").parentElement,
   );
   const buttons = document.querySelectorAll(".mix-summary-actions button");
   buttons.forEach((b) => (b.disabled = false));
   const [cartButton, saveButton, resetButton] = buttons;
+  const editCartKey = new URLSearchParams(location.search).get("editCart");
+  const editingLine =
+    editCartKey &&
+    S.get().cart.find((item) => item.type === "mix" && S.lineKey(item) === editCartKey);
+  const editingSnapshot = editingLine ? JSON.stringify(editingLine.mix) : null;
+  if (editCartKey) cartButton.textContent = "Зберегти зміни в кошику";
   const actionStatus = n("p", {
     id: "mix-action-status",
     class: "mix-action-status",
     role: "status",
     "aria-live": "polite",
     "aria-atomic": "true",
+    hidden: true,
   });
   const persistenceStatus = n("p", {
     id: "mix-persistence-status",
@@ -277,11 +62,6 @@
       "aria-describedby",
       `${button.getAttribute("aria-describedby") || ""} mix-action-status mix-persistence-status`.trim(),
     );
-  const strengthHelp = n("p", {
-    class: "mix-strength-help",
-    text: "Умовна смакова інтенсивність за описами сортів; це не показник кофеїну.",
-  });
-  document.querySelectorAll(".mix-summary-list")[1].after(strengthHelp);
   let draftWrites = 0;
   function persistence(ok) {
     persistenceStatus.hidden = ok;
@@ -290,11 +70,7 @@
       : "Браузер не зберіг зміни. Вони доступні лише на цій сторінці. Дозвольте сховище перед переходом або збереженням рецепта.";
     persistenceStatus.dataset.invalid = String(!ok);
   }
-  const totalBadge = document.querySelector(".mix-total-badge");
-  totalBadge.id = "mix-total-status";
-  totalBadge.setAttribute("role", "status");
-  totalBadge.setAttribute("aria-live", "polite");
-  totalBadge.setAttribute("aria-atomic", "true");
+  const totalBadge = document.getElementById("mix-total-status");
   const ratioSection = document.getElementById("mix-proportions-title").closest("section");
   const ratioRows = ratioSection.querySelector(".mix-ratios");
   ratioSection.classList.add("mix-proportions-enhanced");
@@ -311,27 +87,13 @@
     text: "Оберіть частки сортів",
   });
   composition.append(compositionEmpty);
-  const totalRow = totalBadge.closest(".mix-total-row");
-  totalRow.querySelector("span:first-child").textContent = "Разом";
-  ratioRows.before(n("div", { class: "mix-ratio-overview" }, totalRow, composition));
+  ratioRows.before(n("div", { class: "mix-ratio-overview" }, composition));
   const equalizeButton = n("button", {
     type: "button",
     class: "button button-secondary mix-equalize",
     text: "Поділити порівну",
-    "aria-describedby": "mix-ratio-actions-help",
   });
-  ratioRows.after(
-    n(
-      "div",
-      { class: "mix-ratio-footer" },
-      equalizeButton,
-      n("p", {
-        id: "mix-ratio-actions-help",
-        class: "mix-ratio-actions-help",
-        text: "Кожен повзунок змінює лише свій сорт.",
-      }),
-    ),
-  );
+  ratioRows.after(n("div", { class: "mix-ratio-footer" }, equalizeButton));
   equalizeButton.addEventListener("click", async () => {
     await editRatios((draft) => {
       if (!draft.beans.length) return;
@@ -342,13 +104,6 @@
       });
     });
   });
-  document.querySelector(".mix-summary-actions").append(
-    n("a", {
-      class: "shop-text-link",
-      href: S.url("my-mixes.html"),
-      text: "Мої збережені мікси",
-    }),
-  );
   const setDraft = async (fn) => {
     draftWrites++;
     summary();
@@ -361,29 +116,7 @@
       summary();
     }
   };
-  let scheduledName = null;
   const scheduledRatios = new Map();
-  async function writeName() {
-    const value = nameInput.value.trim() || "Мій мікс";
-    if (scheduledName?.value === value) return scheduledName.promise;
-    if (!scheduledName && S.get().draft.name === value) return true;
-    const request = { value };
-    scheduledName = request;
-    request.promise = setDraft((m) => {
-      m.name = value;
-    });
-    try {
-      return await request.promise;
-    } finally {
-      if (scheduledName === request) scheduledName = null;
-    }
-  }
-  nameInput.addEventListener("input", writeName);
-  nameInput.addEventListener("change", async () => {
-    const value = nameInput.value.trim() || "Мій мікс";
-    await writeName();
-    nameInput.value = value;
-  });
   form.querySelectorAll('[name="weight"],[name="grind"],[name="packaging"]').forEach((input) =>
     input.addEventListener("change", async () => {
       if (input.checked)
@@ -399,53 +132,20 @@
       total = ready ? S.mixPrice(m) : 0,
       percentage = m.beans.reduce((sum, bean) => sum + bean.ratio, 0);
     updateRatioTools(m);
-    const taste = S.mixTaste(m);
-    for (const entry of tasteRows) {
-      entry.meter.hidden = !taste;
-      entry.empty.hidden = Boolean(taste);
-      const value = taste ? taste[entry.key] / 10 : null;
-      const valueText = taste ? `${formatTaste.format(value)} з 10` : "—";
-      entry.value.textContent = valueText;
-      if (taste) {
-        entry.meter.value = value;
-        entry.meter.textContent = valueText;
-        entry.meter.setAttribute("aria-valuetext", `${valueText}, орієнтовна оцінка`);
-      } else {
-        entry.meter.value = 0;
-        entry.meter.textContent = "Оцінка недоступна";
-        entry.meter.removeAttribute("aria-valuetext");
-      }
-    }
-    tasteStatus.hidden = Boolean(taste);
-    tasteStatus.textContent = !m.beans.length
-      ? "Додайте зерно та встановіть суму часток 100%, щоб побачити профіль."
-      : !ready
-        ? `Сума часток — ${percentage}%. Профіль з’явиться при сумі 100%.`
-        : "Для обраного складу ще немає оцінок смаку.";
+    mixProfile.update(m, ready, S.mixTaste(m));
     const pair = (key, value) => n("div", {}, n("dt", { text: key }), n("dd", {}, value));
     const lists = document.querySelectorAll(".mix-summary-list");
     lists[0].replaceChildren(...m.beans.map((b) => pair(S.byId.get(b.id).name, `${b.ratio}%`)));
     if (!m.beans.length) lists[0].append(pair("Склад", "Оберіть зерна з каталогу"));
+    const packagingRow = pair(
+      "Пакування",
+      S.packaging[m.packaging].price ? S.packagingText(m) : S.packaging[m.packaging].name,
+    );
+    packagingRow.className = "mix-summary-packaging";
     lists[1].replaceChildren(
       pair("Вага", `${m.weight} г`),
       pair("Помел", S.grinds[m.grind]),
-      pair("Пакування", S.packagingText(m)),
-      pair("Міцність", strength(m, ready)),
-    );
-    const activeBeans = m.beans.filter((bean) => bean.ratio > 0);
-    document.getElementById("mix-notes").replaceChildren(
-      ...(activeBeans.length
-        ? activeBeans.map((bean) => {
-            const p = S.byId.get(bean.id);
-            const notes = S.isGreen(p) ? p.notesByRoast?.[S.beanRoast(bean)] || p.notes : p.notes;
-            return n(
-              "li",
-              {},
-              n("strong", { text: p.name }),
-              n("span", { text: notes.split(".")[0] }),
-            );
-          })
-        : [n("li", { text: "Додайте сорт і встановіть його частку." })]),
+      packagingRow,
     );
     document.querySelector(".mix-price").textContent = ready ? S.money(total) : "—";
     document.querySelector(".mix-delivery-row span:last-child").textContent = !ready
@@ -463,47 +163,15 @@
           : `${percentage}% · зменште на ${percentage - 100}%`;
     totalBadge.textContent = totalText;
     totalBadge.dataset.invalid = String(!ready);
-    actionStatus.textContent = !m.beans.length
-      ? "Додайте хоча б один сорт. Збереження й кошик доступні, коли сума часток дорівнює 100%."
-      : !ready
-        ? `Сума часток — ${percentage}%. ${percentage < 100 ? `Додайте ще ${100 - percentage}%` : `Зменште частки на ${percentage - 100}%`}, щоб зберегти мікс або додати його до кошика.`
-        : draftWrites
-          ? "Зберігаємо налаштування…"
-          : "Сума часток — 100%. Мікс готовий до збереження й замовлення.";
-    actionStatus.dataset.invalid = String(!ready);
+    const needsShares = m.beans.length > 0 && !ready;
+    actionStatus.hidden = !needsShares;
+    actionStatus.textContent = needsShares
+      ? `Сума часток — ${percentage}%. ${percentage < 100 ? `Додайте ще ${100 - percentage}%` : `Зменште частки на ${percentage - 100}%`}.`
+      : "";
+    actionStatus.dataset.invalid = String(needsShares);
     cartButton.disabled = saveButton.disabled = !ready || draftWrites > 0;
     cartButton.setAttribute("aria-busy", String(draftWrites > 0));
     saveButton.setAttribute("aria-busy", String(draftWrites > 0));
-  }
-  function strength(m, ready) {
-    const icons = strengthTemplate.cloneNode(true);
-    const rating = ready
-      ? Math.round(
-          m.beans.reduce(
-            (sum, bean) =>
-              sum +
-              (S.isGreen(S.byId.get(bean.id))
-                ? { light: 2, medium: 3, dark: 4 }[S.beanRoast(bean)]
-                : S.byId.get(bean.id).strength) *
-                bean.ratio,
-            0,
-          ) / 100,
-        )
-      : 0;
-    icons
-      .querySelectorAll(".mix-strength-bean")
-      .forEach((bean, index) => bean.classList.toggle("mix-strength-bean-filled", index < rating));
-    return n(
-      "span",
-      { class: "mix-strength-value" },
-      n("span", {
-        class: "visually-hidden",
-        text: ready
-          ? `${rating} з 5; смакова інтенсивність`
-          : "Встановіть суму часток 100%, щоб визначити смакову інтенсивність",
-      }),
-      icons,
-    );
   }
   async function ratio(id, value) {
     if (!S.get().draft.beans.some((b) => b.id === id)) return;
@@ -542,7 +210,9 @@
     if (beans.length !== ratioControls.size || beans.some((bean) => !ratioControls.has(bean.id))) {
       const activeId = document.activeElement?.id;
       renderFields();
-      (document.getElementById(activeId) || select)?.focus({ preventScroll: true });
+      const target = document.getElementById(activeId);
+      if (target) target.focus({ preventScroll: true });
+      else beanPicker.focusTrigger();
       return;
     }
     for (const bean of beans) {
@@ -579,12 +249,14 @@
     const total = m.beans.reduce((sum, bean) => sum + bean.ratio, 0);
     const visible = m.beans.filter((bean) => bean.ratio > 0);
     const gaps = Math.max(0, visible.length - 1) * 4;
+    composition.parentElement.hidden = !m.beans.length;
     compositionEmpty.hidden = visible.length > 0;
     composition.setAttribute(
       "aria-label",
       `Склад міксу: ${m.beans.map((bean) => `${S.byId.get(bean.id).name} ${bean.ratio}%`).join(", ") || "сортів ще немає"}. Сума ${total}%.`,
     );
     equalizeButton.disabled = !m.beans.length;
+    equalizeButton.parentElement.hidden = !m.beans.length;
     for (const bean of m.beans) {
       const controls = ratioControls.get(bean.id);
       if (!controls) continue;
@@ -615,47 +287,13 @@
   }
   function renderFields() {
     const m = S.get().draft;
-    options.replaceChildren();
-    document.querySelector(".mix-step .muted").textContent = `${m.beans.length} з 4 сортів`;
-    m.beans.forEach((b) => {
-      const p = S.byId.get(b.id),
-        remove = n("button", {
-          class: "mix-bean-remove",
-          type: "button",
-          "aria-label": `Прибрати сорт «${p.name}»`,
-          text: "×",
-        });
-      remove.addEventListener("click", async () => {
-        await setDraft((d) => {
-          d.beans = d.beans.filter((x) => x.id !== b.id);
-        });
-        renderFields();
-        select.focus();
-      });
-      options.append(
-        n(
-          "div",
-          { class: "mix-bean-chip" },
-          n("span", { class: "mix-bean-select", text: p.name }),
-          remove,
-        ),
-      );
-    });
-    if (!m.beans.length)
-      options.append(n("p", { class: "muted", text: "Обраних сортів ще немає." }));
+    beanSlots.render(m);
     const rows = ratioRows;
     rows.replaceChildren();
     ratioControls.clear();
     composition.replaceChildren(compositionEmpty);
-    for (const id of ratioColors.keys())
-      if (!m.beans.some((bean) => bean.id === id)) ratioColors.delete(id);
-    for (const bean of m.beans)
-      if (!ratioColors.has(bean.id)) {
-        ratioColors.set(
-          bean.id,
-          [0, 1, 2, 3].find((color) => ![...ratioColors.values()].includes(color)),
-        );
-      }
+    ratioColors.clear();
+    for (const bean of m.beans) ratioColors.set(bean.id, bean.slot);
     m.beans.forEach((b) => {
       const p = S.byId.get(b.id),
         slider = n("input", {
@@ -667,7 +305,7 @@
           step: 1,
           value: b.ratio,
           "aria-valuetext": `${b.ratio} відсотків`,
-          "aria-describedby": "mix-proportions-help mix-total-status",
+          "aria-describedby": "mix-total-status",
         }),
         number = n("input", {
           id: `percent-${b.id}`,
@@ -676,7 +314,7 @@
           max: 100,
           step: 1,
           value: b.ratio,
-          "aria-describedby": "mix-proportions-help mix-total-status",
+          "aria-describedby": "mix-total-status",
           "aria-label": `Частка кави ${p.name}, відсотків`,
         });
       slider.addEventListener("input", () => ratio(b.id, Number(slider.value)));
@@ -770,85 +408,60 @@
       row.style.setProperty("--mix-ratio", `${b.ratio}%`);
       rows.append(row);
     });
-    document.getElementById("mix-roast-list").replaceChildren(
-      ...m.beans.map((b) => {
-        const p = S.byId.get(b.id);
-        if (!S.isGreen(p))
-          return n("p", {
-            class: "muted",
-            text: `${p.name} · ${S.roasts[p.roast].toLocaleLowerCase("uk")}`,
-          });
-        const roast = n(
-          "select",
-          { id: `roast-${b.id}`, "data-roast": b.id },
-          Object.entries(S.roasts).map(([value, text]) => n("option", { value, text })),
-        );
-        roast.value = S.beanRoast(b);
-        roast.addEventListener("change", async () => {
-          const value = roast.value;
-          await setDraft((draft) => {
-            const bean = draft.beans.find((entry) => entry.id === b.id);
-            if (bean && Object.hasOwn(S.roasts, value)) bean.roast = value;
-          });
-        });
-        return n(
-          "div",
-          { class: "mix-roast-row" },
-          n("label", { for: `roast-${b.id}`, text: p.name }),
-          roast,
-        );
-      }),
-    );
+    roastUI.render(m);
     for (const name of ["weight", "grind", "packaging"])
       form
         .querySelectorAll(`[name="${name}"]`)
         .forEach((i) => (i.checked = String(m[name]) === i.value));
-    nameInput.value = m.name;
-    addButton.disabled = m.beans.length >= 4;
+    beanPicker.sync();
     summary();
   }
   cartButton.addEventListener("click", async () => {
     cartButton.disabled = true;
-    await S.addMix(S.get().draft);
+    if (editCartKey) {
+      const draft = S.get().draft;
+      if (!S.validMix(draft)) {
+        summary();
+        return;
+      }
+      const ok = await S.update((state) => {
+        const current = state.cart.find(
+          (item) => item.type === "mix" && S.lineKey(item) === editCartKey,
+        );
+        if (!current || JSON.stringify(current.mix) !== editingSnapshot) return false;
+        const updated = S.recipe({ ...draft, id: current.mix.id, name: current.mix.name });
+        const recipeKey = (mix) =>
+          JSON.stringify([
+            mix.name,
+            [...mix.beans]
+              .sort((a, b) => a.id.localeCompare(b.id))
+              .map(({ slot, ...bean }) => bean),
+            mix.weight,
+            mix.grind,
+            mix.packaging,
+          ]);
+        const duplicate = state.cart.find(
+          (item) =>
+            item !== current && item.type === "mix" && recipeKey(item.mix) === recipeKey(updated),
+        );
+        if (duplicate && duplicate.qty + current.qty > 99) return false;
+        current.mix = updated;
+      });
+      if (ok) {
+        location.href = S.url("cart.html");
+        return;
+      }
+      S.notify("Не вдалося оновити мікс: кошик змінився або дані не збереглися. Перевірте кошик.");
+    } else await S.addMix(S.get().draft);
     summary();
   });
-  saveButton.addEventListener("click", async () => {
-    saveButton.disabled = true;
-    let failure = "Не вдалося зберегти рецепт. Дозвольте сховище браузера та повторіть спробу.";
-    const ok = await S.update((s) => {
-      const m = S.mix(s.draft);
-      if (!S.validMix(m)) {
-        failure = "Оберіть зерна та встановіть суму пропорцій 100%.";
-        return false;
-      }
-      const existing = s.saved.find((saved) => saved.id === m.id);
-      if (!existing && s.saved.length >= 30) {
-        failure = "Збережено максимум 30 рецептів. Видаліть зайві.";
-        return false;
-      }
-      const now = new Date().toISOString();
-      m.id = m.id || S.uid();
-      m.createdAt = existing ? existing.createdAt || "" : m.createdAt || now;
-      m.updatedAt = now;
-      const recipe = S.recipe(m);
-      const i = s.saved.findIndex((saved) => saved.id === m.id);
-      if (i < 0) s.saved.push(recipe);
-      else s.saved[i] = recipe;
-      s.draft = m;
-    });
-    if (ok) {
-      persistence(true);
-      S.notify("Рецепт збережено.", { href: "my-mixes.html", text: "Мої мікси" });
-    } else {
-      S.notify(failure);
-      persistenceStatus.hidden = false;
-      persistenceStatus.textContent = failure;
-      persistenceStatus.dataset.invalid = "true";
-    }
-    summary();
+  saveButton.addEventListener("click", () => {
+    if (window.CoffeeAccount) window.CoffeeAccount.requestSave();
+    else S.notify("Збереження тимчасово недоступне. Спробуйте ще раз.");
   });
   resetButton.addEventListener("click", async (e) => {
     e.preventDefault();
+    beanSlots.clearError();
     const ok = await S.update((s) => {
       s.draft = S.emptyMix();
     });
@@ -865,4 +478,13 @@
       renderFields();
   });
   renderFields();
+  if (
+    new URLSearchParams(location.search).get("save") === "1" &&
+    !new URLSearchParams(location.search).has("mix")
+  ) {
+    const url = new URL(location.href);
+    url.searchParams.delete("save");
+    history.replaceState(null, "", url);
+    window.CoffeeAccount?.requestSave();
+  }
 })();

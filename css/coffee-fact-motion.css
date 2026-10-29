@@ -1,0 +1,197 @@
+/* Coffee minute: compact authored facts, sources and a short decorative steam cycle. */
+.mo-fact-card {
+  padding: 28px 32px;
+  border: var(--border-default);
+  border-radius: var(--radius-container);
+  background: var(--color-background-soft);
+  color: var(--color-text);
+}
+.mo-fact-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mo-fact-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+.mo-fact-icon > svg {
+  width: 36px;
+  height: 36px;
+}
+.mo-fact-heading-group {
+  min-width: 0;
+  flex: 1;
+}
+.mo-fact-kicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-primary);
+}
+.mo-fact-kicker > span {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.mo-fact-date {
+  padding: 3px 9px;
+  border: var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.mo-fact-date[hidden],
+.mo-fact-next[hidden] {
+  display: none;
+}
+.mo-fact-heading-group h2 {
+  margin-top: 4px;
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.mo-fact-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  flex: none;
+  padding: 10px 14px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.mo-fact-next svg,
+.mo-fact-footer svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+.mo-fact-next:hover {
+  background: var(--color-background-light);
+}
+.mo-fact-next:focus-visible,
+.mo-fact-footer a:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.mo-fact-content {
+  margin-top: 24px;
+  width: 100%;
+  max-width: none;
+}
+.mo-fact-content h3 {
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.mo-fact-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  min-height: 4.8em;
+  color: var(--color-text);
+}
+.mo-fact-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+.mo-fact-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.mo-fact-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 767px) {
+  .mo-fact-card {
+    padding: 22px 20px;
+  }
+  .mo-fact-header {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .mo-fact-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .mo-fact-icon > svg {
+    width: 32px;
+    height: 32px;
+  }
+  .mo-fact-heading-group h2 {
+    font-size: 23px;
+  }
+  .mo-fact-next {
+    grid-column: 1/-1;
+    justify-self: end;
+  }
+  .mo-fact-content {
+    margin-top: 18px;
+  }
+  .mo-fact-content h3 {
+    font-size: 22px;
+  }
+  .mo-fact-content p {
+    font-size: 17px;
+  }
+  .mo-fact-footer {
+    gap: 0 8px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mo-ready .mo-fact-steam {
+    animation: mo-coffee-steam 2200ms ease-in-out 2;
+  }
+  .mo-ready .mo-fact-steam:nth-child(2) {
+    animation-delay: 160ms;
+  }
+  @keyframes mo-coffee-steam {
+    0%,
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 0.35;
+      transform: translateY(-3px);
+    }
+  }
+}

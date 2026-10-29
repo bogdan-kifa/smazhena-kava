@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Quiz-підбір Смаженої Кави: смаки, спосіб приготування та рекомендація кави." />
-    <title>Quiz-підбір кави — Смажена Кава</title>
+    <meta
+      name="description"
+      content="Квіз-підбір Смаженої Кави: смаки, спосіб приготування та рекомендація кави."
+    />
+    <title>Квіз-підбір кави — Смажена Кава</title>
     <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/icons.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -13,30 +16,57 @@
     <link rel="stylesheet" href="css/interaction.css" />
     <script src="js/products.js" defer></script>
     <script src="js/shop.js" defer></script>
+    <script src="js/quiz-model.js" defer></script>
     <script src="js/quiz.js" defer></script>
+      <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/quiz-motion.css" />
+    <link rel="stylesheet" href="css/footer-motion.css" />
+    <script src="js/motion.js" defer></script>
+    <script src="js/footer-config.js" defer></script>
+    <script src="js/footer.js" defer></script>
   </head>
   <body class="catalog-page quiz-page">
-    <noscript><p class="shop-nojs">Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.</p></noscript>
+    <noscript
+      ><p class="shop-nojs">
+        Для пошуку, кошика й конструктора ввімкніть JavaScript. Зараз показано статичний макет.
+      </p></noscript
+    >
     <a class="skip-link" href="#quiz-content">Перейти до основного вмісту</a>
     <header class="site-header">
       <div class="container">
         <a class="logo" href="index.html">
-          <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
+          <img
+            class="logo-image"
+            src="assets/images/logo.svg"
+            alt="Смажена Кава"
+            width="254"
+            height="274"
+          />
           <span aria-hidden="true">Смажена Кава</span>
         </a>
         <nav class="navigation catalog-desktop-navigation" aria-label="Основна навігація">
           <ul class="navigation-list" role="list">
             <li><a href="catalog.html">Кава</a></li>
-            <li><a class="navigation-link-current" href="quiz.html" aria-current="page">Quiz-підбір</a></li>
+            <li>
+              <a class="navigation-link-current" href="quiz.html" aria-current="page"
+                >Квіз-підбір</a
+              >
+            </li>
+            <li><a href="my-mixes.html">Мої мікси</a></li>
             <li><a href="about.html">Про нас</a></li>
           </ul>
         </nav>
         <div class="header-actions">
-          <a class="header-account" href="login.html"><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a>
+          <a class="header-account" href="login.html"
+            ><i class="fa-regular fa-user icon" aria-hidden="true"></i> Акаунт</a
+          >
           <a class="header-cart" href="cart.html" aria-label="Кошик, 2 товари">
-            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i><span class="cart-count" aria-hidden="true">2</span>
+            <i class="fa-solid fa-bag-shopping icon" aria-hidden="true"></i
+            ><span class="cart-count" aria-hidden="true">2</span>
           </a>
-          <a class="button header-cta" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a>
+          <a class="button header-cta" href="constructor.html"
+            >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+          ></a>
         </div>
         <!-- Нативне details відкриває мобільне меню без JavaScript. -->
         <details class="catalog-mobile-menu">
@@ -48,10 +78,19 @@
           <nav class="navigation" aria-label="Основна мобільна навігація">
             <ul class="navigation-list" role="list">
               <li><a href="catalog.html">Кава</a></li>
-              <li><a class="navigation-link-current" href="quiz.html" aria-current="page">Quiz-підбір</a></li>
+              <li>
+                <a class="navigation-link-current" href="quiz.html" aria-current="page"
+                  >Квіз-підбір</a
+                >
+              </li>
+              <li><a href="my-mixes.html">Мої мікси</a></li>
               <li><a href="about.html">Про нас</a></li>
               <li><a href="login.html">Акаунт</a></li>
-              <li><a class="button" href="constructor.html">Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></a></li>
+              <li>
+                <a class="button" href="constructor.html"
+                  >Створити мікс <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i
+                ></a>
+              </li>
             </ul>
           </nav>
         </details>
@@ -61,105 +100,71 @@
     <main id="quiz-content" tabindex="-1">
       <div class="container catalog-heading quiz-heading">
         <nav class="breadcrumbs" aria-label="Шлях до сторінки">
-          <ol><li><a href="index.html">Головна</a></li><li><span aria-current="page">Quiz-підбір</span></li></ol>
-        </nav>
-        <p class="eyebrow">Питання 2 з 3</p>
-        <h1 id="quiz-question-title">Як ви заварюєте каву?</h1>
-        <p class="catalog-intro">Оберіть спосіб приготування, і ми звузимо вибір.</p>
-      </div>
-      <div class="container quiz-layout">
-        <!-- Універсальний екран запитання. Зараз показано друге питання з макета; банк запитань і послідовність підключимо з JS. -->
-        <form class="card quiz-card" id="quiz-form" data-question-id="brewing" aria-labelledby="quiz-question-title" aria-describedby="quiz-status">
-          <p class="visually-hidden" id="quiz-status">Показано початковий приклад із макета. Вибір відповідей і проходження Quiz поки недоступні.</p>
-          <ol class="quiz-progress" id="quiz-progress" role="list" aria-label="Прогрес підбору: питання 2 з 3">
-            <li class="quiz-progress-complete"><span class="visually-hidden">Питання 1: відповідь обрано</span></li>
-            <li aria-current="step"><span class="visually-hidden">Питання 2: поточне</span></li>
-            <li><span class="visually-hidden">Питання 3: попереду</span></li>
+          <ol>
+            <li><a href="index.html">Головна</a></li>
+            <li><span aria-current="page">Квіз-підбір</span></li>
           </ol>
-          <fieldset class="quiz-choice-group" id="quiz-answer-options" disabled>
-            <legend class="visually-hidden">Спосіб приготування кави</legend>
-            <div class="quiz-choices">
-              <input class="visually-hidden quiz-choice-input" type="radio" id="brewing-espresso" name="brewing" value="espresso" /><label class="quiz-choice-label" for="brewing-espresso"><strong>Еспресо</strong><span class="muted">Кавомашина, ріжкова кава</span></label>
-              <input class="visually-hidden quiz-choice-input" type="radio" id="brewing-filter" name="brewing" value="filter" checked /><label class="quiz-choice-label" for="brewing-filter"><strong>Фільтр</strong><span class="muted">Пуровер, V60, аеропрес</span></label>
-              <input class="visually-hidden quiz-choice-input" type="radio" id="brewing-cezve" name="brewing" value="cezve" /><label class="quiz-choice-label" for="brewing-cezve"><strong>Джезва</strong><span class="muted">Турка, кава по-східному</span></label>
-            </div>
-          </fieldset>
-          <details class="quiz-help">
-            <summary>Не впевнені? Допомога з вибором помелу. <i class="fa-solid fa-chevron-down icon" aria-hidden="true"></i></summary>
-            <ul><li>Еспресо — дрібний помел.</li><li>Фільтр — середній помел.</li><li>Джезва — дуже дрібний помел.</li></ul>
+        </nav>
+        <h1>Знайдіть свою каву</h1>
+        <p class="catalog-intro">Кілька відповідей — і три сорти під ваш смак.</p>
+      </div>
+      <div class="container quiz-layout mo-quiz-welcome">
+        <section class="card quiz-card" id="quiz-app" aria-label="Підбір кави">
+          <h2>Почнімо з ваших уподобань</h2>
+          <p>
+            Увімкніть JavaScript, щоб пройти квіз, або
+            <a href="catalog.html">перегляньте каталог</a>.
+          </p>
+        </section>
+        <aside class="quiz-sidebar" aria-label="Панель підбору" hidden>
+          <details class="card quiz-card quiz-answers-details" open>
+            <summary>Ваші відповіді</summary>
+            <div id="quiz-answer-panel"><p class="muted">Поки що відповідей немає.</p></div>
           </details>
-          <div class="quiz-actions">
-            <button class="button quiz-button-quiet" type="button" data-action="previous-question" disabled aria-describedby="quiz-status">Назад</button>
-            <div class="quiz-actions-forward">
-              <button class="button quiz-button-quiet" type="button" data-action="skip-question" disabled aria-describedby="quiz-status">Пропустити</button>
-              <button class="button" type="button" data-action="next-question" disabled aria-describedby="quiz-status">Далі <i class="fa-solid fa-arrow-right icon" aria-hidden="true"></i></button>
+          <div class="quiz-leader" id="quiz-leader" hidden>
+            <p class="quiz-leader-label">Поки лідирує</p>
+            <div class="quiz-leader-top" role="status" aria-live="polite" aria-atomic="true">
+              <strong class="quiz-leader-name"></strong><span class="quiz-leader-score"></span>
             </div>
-          </div>
-        </form>
-        <aside class="quiz-sidebar" aria-labelledby="quiz-answers-title">
-          <div class="card quiz-card">
-            <h2 id="quiz-answers-title">Ваші відповіді</h2>
-            <dl class="quiz-answers">
-              <div><dt>Питання 1</dt><dd>Смак: фруктовий</dd></div>
-              <div><dt>Питання 2</dt><dd>Фільтр</dd></div>
-              <div><dt>Питання 3</dt><dd>не відповідали</dd></div>
-            </dl>
+            <meter min="0" max="100" value="0" aria-label="Орієнтовний збіг із відповідями">
+              0%
+            </meter>
+            <small>Орієнтовний збіг. Наступна відповідь може змінити підбір.</small>
           </div>
         </aside>
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img class="logo-image" src="assets/images/logo.svg" alt="Смажена Кава" width="254" height="274" />
-            <span aria-hidden="true">Смажена Кава</span>
-          </a>
-          <p>Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
-          <address class="footer-contacts">
-            <!-- Демонстраційні контакти з Figma. -->
-            <p>+38 044 000 00 00</p>
-            <p><a href="mailto:hello@smazhenakava.ua">hello@smazhenakava.ua</a></p>
-            <p>Львів, площа Ринок · демолокація</p>
-          </address>
-        </div>
-        <nav class="footer-navigation" aria-label="Навігація в підвалі">
-          <div class="footer-link-group">
-            <p class="footer-heading">Дізнатися</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="about.html">Про нас</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="delivery.html">Доставка та оплата</a></li>
-            </ul>
+        <section class="mo-footer-newsletter" aria-labelledby="mo-footer-news-title" data-mo-footer-reveal>
+          <div><h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2><p>Нові зерна, кавові поради й пропозиції — на пошту.</p></div>
+          <form class="mo-footer-form" aria-label="Підписка на розсилку" method="post" novalidate>
+            <label class="mo-footer-email-label" for="mo-footer-email">Твоя електронна пошта</label>
+            <div class="mo-footer-subscribe"><input id="mo-footer-email" name="newsletter-email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@example.com" aria-describedby="mo-footer-subscribe-note mo-footer-email-error" /><button type="submit" disabled aria-describedby="mo-footer-subscribe-note">Підписатися</button></div>
+            <p class="mo-footer-subscribe-note" id="mo-footer-subscribe-note">Підписка буде доступна незабаром.</p>
+            <p class="mo-footer-error" id="mo-footer-email-error" aria-live="polite" hidden></p>
+          </form>
+        </section>
+        <div class="mo-footer-main">
+          <div class="mo-footer-brand" data-mo-footer-reveal>
+            <a class="mo-footer-logo" href="index.html"><img src="assets/images/logo.svg" alt="" width="254" height="274" loading="lazy" decoding="async" /><span>Смажена Кава</span></a>
+            <p class="mo-footer-tagline">Крафтова кава, яку можна налаштувати під свій смак і ритм.</p>
+            <address class="mo-footer-address"><span data-mo-footer-address>Львів, площа Ринок</span><span data-mo-footer-hours>Пн–Нд · 9:00–20:00</span></address>
           </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Кава</p>
-            <ul class="navigation-list" role="list">
-              <li><a href="catalog.html">Каталог</a></li>
-              <li><a href="constructor.html">Створити мікс</a></li>
-              <li><a href="quiz.html" aria-current="page">Quiz-підбір</a></li>
-            </ul>
-          </div>
-          <div class="footer-link-group">
-            <p class="footer-heading">Соцмережі</p>
-            <ul class="navigation-list" role="list">
-              <li><a role="link" aria-disabled="true">Instagram</a></li>
-              <li><a role="link" aria-disabled="true">Facebook</a></li>
-              <li><a role="link" aria-disabled="true">YouTube</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="footer-bottom">
-          <p class="copyright">© 2026 Смажена Кава</p>
-          <nav aria-label="Правова інформація">
-            <ul class="navigation-list footer-legal" role="list">
-              <li><a role="link" aria-disabled="true">Політика конфіденційності</a></li>
-              <li><a role="link" aria-disabled="true">Публічна оферта</a></li>
-              <li><a role="link" aria-disabled="true">Умови використання</a></li>
-            </ul>
+          <nav class="mo-footer-nav" aria-label="Навігація в підвалі" data-mo-footer-reveal>
+            <div><h2>Дізнатися</h2><ul role="list"><li><a class="mo-footer-link" href="about.html">Про нас</a></li><li><a class="mo-footer-link" href="faq.html">Запитання й відповіді</a></li><li><a class="mo-footer-link" href="delivery.html">Доставка та оплата</a></li></ul></div>
+            <div><h2>Кава</h2><ul role="list"><li><a class="mo-footer-link" href="catalog.html">Каталог</a></li><li><a class="mo-footer-link" href="constructor.html">Створити мікс</a></li><li><a class="mo-footer-link" href="quiz.html">Квіз-підбір</a></li><li><a class="mo-footer-link" href="my-mixes.html">Мої мікси</a></li></ul></div>
           </nav>
+          <section class="mo-footer-contacts" aria-labelledby="mo-footer-contact-title" data-mo-footer-reveal>
+            <h2 id="mo-footer-contact-title">Будьмо на зв’язку</h2>
+            <address><a class="mo-footer-link" href="tel:+380320000000" data-mo-footer-phone>+38 (032) 000-00-00</a><a class="mo-footer-link" href="mailto:hello@smazhenakava.example" data-mo-footer-email>hello@smazhenakava.example</a></address>
+            <ul class="mo-footer-socials" role="list" aria-label="Соцмережі й месенджери"><li><a class="mo-footer-social" data-mo-footer-social="instagram" href="https://www.instagram.com/smazhena.kava.example/" aria-label="Instagram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="facebook" href="https://www.facebook.com/smazhena.kava.example/" aria-label="Facebook, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="youtube" href="https://www.youtube.com/@smazhenakava-example" aria-label="YouTube, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="telegram" href="https://t.me/smazhenakava_example" aria-label="Telegram, у новій вкладці" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 10 20-7-5 18-6-6-4 3 1-6 10-6-7 9"/></svg></a></li><li><a class="mo-footer-social" data-mo-footer-social="viber" href="viber://chat?number=%2B380320000000" aria-label="Viber, відкрити Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9l-5 3v-4a3 3 0 0 1-2-3V6a3 3 0 0 1 3-3Z"/><path d="m7 7 2-1 2 4-1 1 3 3 1-1 4 2-1 2c-4 1-11-6-10-10ZM14 7a4 4 0 0 1 4 4"/></svg></a></li></ul>
+          </section>
         </div>
+        <div class="mo-footer-service" aria-label="Доставка та замовлення"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h12v12H2V5Zm12 4h4l4 5v3h-8V9Z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Доставка по Україні · Нова пошта / Укрпошта</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg>Обсмажуємо під замовлення</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2ZM9 7h6M9 11h6M9 15h4"/></svg>Оплата при отриманні</span></div>
+        <div class="mo-footer-divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(35 12 12)"/><path d="M16 4c-10 5 2 9-8 16"/></svg></div>
+        <div class="mo-footer-bottom"><p>© <span data-mo-footer-year>2026</span> Смажена Кава</p><div class="mo-footer-legal" aria-label="Правова інформація"><span>Політика конфіденційності</span><span>Публічна оферта</span><span>Умови використання</span></div><button class="mo-footer-up" type="button" aria-label="Нагору" title="Нагору" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></div>
       </div>
     </footer>
   </body>

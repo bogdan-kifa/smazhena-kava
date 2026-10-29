@@ -1,0 +1,520 @@
+/* Opt-in enhancement: no mo-* classes are added until motion.js runs. */
+.mo-ready main [id] {
+  scroll-margin-top: calc(var(--mo-header-height, 0px) + 24px);
+}
+.mo-header {
+  position: relative !important;
+  top: auto;
+  z-index: 70;
+  padding: 0 !important;
+  background: var(--color-background-light);
+  border-bottom: var(--border-default);
+  isolation: isolate;
+}
+.mo-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  box-shadow: var(--shadow-overlay);
+  opacity: 0;
+  pointer-events: none;
+}
+.mo-header > .mo-header-inner {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 20px;
+  max-width: calc(var(--container-width) + 2 * var(--container-gutter));
+  width: 100%;
+  margin: 0 auto;
+  padding: 12px var(--container-gutter);
+  position: relative;
+}
+.mo-header .mo-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  min-width: 0;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.mo-header .mo-brand img {
+  display: block !important;
+  width: 40px;
+  height: 44px;
+  max-width: none;
+  object-fit: contain;
+  flex: none;
+  padding: 0;
+}
+.mo-header .mo-nav {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  width: auto;
+}
+.mo-header .mo-nav > ul {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+.mo-header .mo-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 10px !important;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+  background: transparent;
+}
+/* Suppress legacy border/text underlines; retain the single motion indicator. */
+.mo-header .mo-nav a.mo-nav-link,
+.mo-header .mo-menu-panel a.mo-nav-link {
+  border-bottom: 0;
+  text-decoration: none;
+}
+.mo-header .mo-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--color-accent-strong);
+  opacity: 0;
+  pointer-events: none;
+}
+.mo-header .mo-nav-link[aria-current="page"]::after {
+  opacity: 1;
+}
+.mo-header .mo-tools {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0 !important;
+  min-width: 0;
+}
+.mo-header .mo-account,
+.mo-header .mo-cart {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  gap: 6px;
+  padding: 8px;
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.4;
+  text-decoration: none;
+  border-radius: var(--radius-control);
+  white-space: nowrap;
+}
+/* One filled cart icon and the same borderless surface on every page. */
+.mo-ready .mo-header a.mo-cart {
+  border: 0;
+  box-shadow: none;
+  background: var(--color-background-soft);
+  color: var(--color-primary);
+}
+.mo-header .mo-cart-icon {
+  flex: none;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mo-header .mo-cart-caption {
+  font-family: var(--font-primary);
+  font-size: 13px;
+}
+.mo-header .mo-cart svg,
+.mo-header .mo-account svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+.mo-header .mo-cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 14px;
+  white-space: nowrap;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: var(--border-width) solid var(--color-primary);
+  border-radius: var(--radius-control);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  font-weight: 600;
+}
+.mo-header a:focus-visible,
+.mo-header summary:focus-visible,
+.mo-top:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.mo-header .mo-menu {
+  display: none !important;
+}
+.mo-ready .catalog-topbar {
+  top: var(--mo-header-height, 0px);
+  z-index: 40;
+}
+.mo-ready .is-compact.filters-expanded #catalog-filter-home {
+  top: calc(var(--mo-header-height, 0px) + 64px);
+}
+.mo-hover {
+  position: relative;
+  isolation: isolate;
+}
+.mo-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: var(--shadow-overlay);
+  opacity: 0;
+  pointer-events: none;
+}
+.mo-flying-bean {
+  position: fixed;
+  z-index: 150;
+  pointer-events: none;
+  color: var(--color-primary);
+  width: 24px;
+  height: 30px;
+}
+.mo-flying-bean svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.mo-draggable {
+  cursor: grab;
+}
+.mo-draggable.mo-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: none !important;
+  scroll-behavior: auto !important;
+}
+.mo-dragging * {
+  user-select: none;
+}
+.mo-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-height: 58px;
+  padding: 6px;
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-raised);
+  cursor: pointer;
+  font-family: var(--font-primary);
+}
+.mo-top[hidden] {
+  display: none !important;
+}
+.mo-top-arrow {
+  font-size: 22px;
+  line-height: 1.1;
+}
+.mo-top-percent {
+  font-size: 10px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+.mo-top-meter {
+  display: block;
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 3px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background: var(--color-background-soft);
+}
+.mo-top-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent-strong);
+  opacity: var(--mo-progress, 0);
+}
+.mo-ready:has(#shop-notice:not([hidden])) .mo-top {
+  visibility: hidden;
+  pointer-events: none;
+}
+.mo-ready.has-catalog-tray .mo-top {
+  bottom: calc(24px + var(--catalog-tray-height, 0px));
+}
+@media (max-width: 1100px) {
+  .mo-ready .mo-header > .mo-header-inner {
+    grid-template-columns: minmax(0, 1fr) 44px 44px;
+    gap: 8px;
+  }
+  .mo-header .mo-brand {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 18px;
+  }
+  .mo-header .mo-nav {
+    display: none !important;
+  }
+  .mo-header .mo-tools {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    justify-content: flex-end;
+    gap: 0;
+  }
+  .mo-header .mo-cart {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+  .mo-ready .mo-header a.mo-cart {
+    border: var(--border-default);
+    border-radius: var(--radius-control);
+    background: var(--color-background-light);
+  }
+  .mo-header .mo-cart-caption {
+    display: none;
+  }
+  .mo-header .mo-cart > span:not(.mo-cart-caption) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+  }
+  .mo-header .mo-account {
+    display: none !important;
+  }
+  .mo-header .mo-cta {
+    display: none !important;
+  }
+  .mo-header .mo-cta svg,
+  .mo-header .mo-cta .icon {
+    display: none;
+  }
+  .mo-header .mo-menu {
+    display: block !important;
+    position: static !important;
+    grid-column: 3;
+    grid-row: 1;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    flex-basis: auto;
+  }
+  .mo-header .mo-menu-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: static !important;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: var(--border-default);
+    border-radius: var(--radius-control);
+    color: var(--color-primary);
+    background: var(--color-background-light);
+    list-style: none;
+    cursor: pointer;
+  }
+  .mo-menu-toggle::-webkit-details-marker {
+    display: none;
+  }
+  .mo-header .mo-menu-panel {
+    position: absolute;
+    left: var(--container-gutter);
+    right: var(--container-gutter);
+    top: 100%;
+    max-height: 65vh;
+    overflow: auto;
+    margin: 0;
+    padding: 12px;
+    background: var(--color-background-light);
+    border: var(--border-default);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-overlay);
+    width: auto;
+  }
+  .mo-header .mo-menu:not([open]) .mo-menu-panel {
+    display: none !important;
+  }
+  .mo-header .mo-menu[open] .mo-menu-panel {
+    display: block !important;
+  }
+  .mo-header .mo-menu-panel ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 4px;
+    padding: 0;
+    margin: 0;
+  }
+  .mo-header .mo-menu-panel li {
+    width: 100%;
+  }
+  .mo-header .mo-menu-panel a {
+    min-height: 44px;
+    width: 100%;
+  }
+  .mo-header .mo-menu-panel a[href$="constructor.html"] {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+}
+@media (max-width: 767px) {
+  .mo-top {
+    right: 12px;
+    bottom: 12px;
+    width: 44px;
+    min-height: 52px;
+  }
+  .mo-header .mo-brand {
+    font-size: 17px;
+  }
+}
+/* Every automatic animation/transition and pointer tilt is gated by the preference. */
+@media (prefers-reduced-motion: no-preference) {
+  .mo-hero-line {
+    animation: mo-enter 600ms ease-out both;
+    animation-delay: var(--mo-delay, 0ms);
+  }
+  .mo-tilt {
+    transform: perspective(1000px) rotateX(var(--mo-tilt-x, 0deg)) rotateY(var(--mo-tilt-y, 0deg));
+    transition: transform 200ms ease-out;
+  }
+  .mo-reveal {
+    opacity: 0;
+  }
+  .mo-reveal.mo-shown {
+    animation: mo-enter 580ms ease-out both;
+    animation-delay: var(--mo-delay, 0ms);
+  }
+  .mo-header::after {
+    transition: opacity 200ms ease-out;
+  }
+  .mo-header .mo-brand img {
+    transition: transform 200ms ease-out;
+  }
+  .mo-header .mo-header-inner {
+    transition: transform 200ms ease-out;
+  }
+  .mo-header .mo-nav-link::after {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition:
+      transform 180ms ease-out,
+      opacity 180ms ease-out;
+  }
+  .mo-header .mo-nav-link:hover::after,
+  .mo-header .mo-nav-link:focus-visible::after,
+  .mo-header .mo-nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  .mo-ready .mo-hover {
+    transition:
+      transform 200ms ease-out,
+      opacity 200ms ease-out;
+  }
+  .mo-hover::after {
+    transition: opacity 200ms ease-out;
+  }
+  .mo-hover:hover {
+    transform: translateY(-3px);
+  }
+  .mo-hover:hover::after {
+    opacity: 1;
+  }
+  .mo-badge {
+    transition:
+      transform 200ms ease-out,
+      opacity 200ms ease-out;
+    transform-origin: left center;
+    opacity: 0.9;
+  }
+  .mo-hover:hover .mo-badge {
+    transform: scale(1.035);
+    opacity: 1;
+  }
+  .mo-top-fill {
+    transform: scaleX(var(--mo-progress, 0));
+    transform-origin: left;
+    opacity: 1;
+  }
+  @keyframes mo-enter {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+.catalog-taste-row[data-taste="strength"] { --catalog-taste-tone: var(--mo-strength-tone); }
+.catalog-taste-row[data-taste="bitterness"] { --catalog-taste-tone: var(--mo-bitterness-tone); }
+:root {
+  --mo-strength-tone: var(--color-accent-strong);
+  --mo-bitterness-tone: var(--color-primary);
+}
+
+@media (max-width: 359px) {
+  .mo-header .mo-brand { gap: 8px; font-size: 16px; }
+  .mo-header .mo-brand img { width: 32px; height: 36px; }
+}
+
+/* Hide the floating return-to-top control on phones. */
+@media (max-width: 767px) {
+  .mo-ready .mo-top { display: none !important; }
+}
