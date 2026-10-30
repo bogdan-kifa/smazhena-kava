@@ -80,3 +80,12 @@
  .mo-footer-reveal { opacity:0; transform:translateY(10px); transition:opacity 220ms ease var(--mo-footer-delay,0ms),transform 220ms ease var(--mo-footer-delay,0ms); }
  .mo-footer-reveal.mo-footer-visible { opacity:1; transform:translateY(0); }
 }
+
+@media(max-width:767px) {
+ .mo-footer-up { display:none !important; }
+ .mo-footer-brand { margin-bottom:16px; }
+ .mo-footer-contacts { margin-bottom:18px; }
+ .mo-footer-address { margin-top:12px; gap:4px; }
+ .mo-footer-service { gap:8px; padding-block:12px; }
+ .mo-footer-bottom { grid-template-columns:minmax(0,1fr); }
+}

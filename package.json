@@ -6,7 +6,11 @@
   "scripts": {
     "format": "prettier --write \"*.html\" \"products/*.html\" \"css/*.css\" \"js/*.js\"",
     "build:css": "tailwindcss -i css/tailwind.input.css -o css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i css/tailwind.input.css -o css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i css/tailwind.input.css -o css/tailwind.css --watch",
+    "start": "node --env-file-if-exists=.env server/index.cjs",
+    "dev": "node --watch --env-file-if-exists=.env server/index.cjs",
+    "build": "node server/build.cjs",
+    "test:backend": "node --test server/tests/*.test.cjs"
   },
   "devDependencies": {
     "prettier": "3.9.10",
@@ -28,5 +32,11 @@
     "vanilla-javascript",
     "tailwindcss",
     "responsive-design"
-  ]
+  ],
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "pg": "^8.23.1"
+  }
 }

@@ -5,14 +5,7 @@
   const products = window.COFFEE_PRODUCTS;
   const byId = new Map(products.map((p) => [p.id, p]));
   const key = "smazhena-kava:shop:v1";
-  const weights = [100, 200, 250, 500, 1000, 2000];
-  const grinds = { beans: "У зернах", espresso: "Еспресо", filter: "Фільтр", cezve: "Джезва" };
-  const roasts = { light: "Світле", medium: "Середнє", dark: "Темне" };
-  const packaging = {
-    1: { name: "Пакет із клапаном", price: 0 },
-    2: { name: "Подарункова коробка", price: 4000 },
-    3: { name: "Багаторазова банка", price: 8000 },
-  };
+  const { weights, grinds, roasts, packaging, available } = window.CoffeeRules;
   const isGreen = (product) => product?.category === "green";
   // Shared illustrative method preferences; no beans are excluded by this hint.
   const brewingMethods = (product) =>
@@ -111,42 +104,6 @@
       m.packaging,
     ]);
   }
-  function demoOrder(value) {
-    if (!value || !/^DEMO-[A-Z0-9-]{8}$/.test(value.id) || !Array.isArray(value.items)) return null;
-    if (!value.items.length || value.items.length > 50 || !isoDate(value.created)) return null;
-    const items = value.items;
-    if (
-      !items.every(
-        (i) =>
-          i &&
-          typeof i.name === "string" &&
-          i.name.length <= 100 &&
-          Number.isInteger(i.weight) &&
-          weights.includes(i.weight) &&
-          Number.isInteger(i.qty) &&
-          i.qty >= 1 &&
-          i.qty <= 99 &&
-          Number.isSafeInteger(i.total) &&
-          i.total >= 0,
-      )
-    )
-      return null;
-    const total = items.reduce((sum, i) => sum + i.total, 0);
-    if (!Number.isSafeInteger(total) || total !== value.total) return null;
-    return {
-      id: value.id,
-      items: items.map(({ name, weight, qty, total, details }) => ({
-        name,
-        weight,
-        qty,
-        total,
-        ...(typeof details === "string" ? { details: details.slice(0, 600) } : {}),
-      })),
-      total,
-      delivery: value.delivery === "ukrposhta" ? "ukrposhta" : value.delivery === "courier" ? "courier" : "post",
-      created: isoDate(value.created),
-    };
-  }
   function normalize(v = {}) {
     if (!v || typeof v !== "object") v = {};
     const cart = [];
@@ -206,14 +163,13 @@
                 .map((k) => [k, v.quiz[k].slice(0, 30)]),
             )
           : {},
-      lastOrder: demoOrder(v.lastOrder),
     };
   }
   const sessionKey = `${key}:session`;
   let sharedWrites = typeof navigator.locks?.request === "function";
   let storageMode = sharedWrites ? "local" : "session";
   const volatileKeys = new Set();
-  const stateFields = ["cart", "favorites", "draft", "saved", "quiz", "lastOrder"];
+  const stateFields = ["cart", "favorites", "draft", "saved", "quiz"];
   function read(fallback = {}) {
     try {
       const temporary = sessionStorage.getItem(sessionKey);
@@ -323,35 +279,6 @@
         applyState(clean, "local");
       } else applyState(current, "external");
       return saved;
-    });
-  }
-  function finishOrder({ delivery, expectedCart }) {
-    return withStateLock(() => {
-      const current = latestState();
-      applyState(current, "external");
-      if (!current.cart.length) return { ok: false, reason: "empty" };
-      if (JSON.stringify(current.cart) !== JSON.stringify(expectedCart))
-        return { ok: false, reason: "changed" };
-      const order = {
-        id: "DEMO-" + uid().slice(0, 8).toUpperCase(),
-        items: current.cart.map((item) => ({
-          name: name(item),
-          details: itemDetails(item),
-          weight: item.type === "product" ? item.weight : item.mix.weight,
-          qty: item.qty,
-          total: unit(item) * item.qty,
-        })),
-        total: current.cart.reduce((sum, item) => sum + unit(item) * item.qty, 0),
-        delivery,
-        created: new Date().toISOString(),
-      };
-      const next = normalize({ ...current, cart: [], lastOrder: order });
-      if (!persist(next)) {
-        applyState(current, "external");
-        return { ok: false, reason: "cart-storage" };
-      }
-      applyState(next, "local");
-      return { ok: true, order: next.lastOrder };
     });
   }
   function node(tag, attrs = {}, ...children) {
@@ -595,7 +522,7 @@
   }
   async function addProduct(id, weight = 250, grind = "beans", qty = 1, roast = "raw") {
     if (
-      !byId.has(id) ||
+      !available(byId.get(id)) ||
       ![250, 500, 1000].includes(weight) ||
       !Number.isInteger(qty) ||
       qty < 1 ||
@@ -644,7 +571,7 @@
     return ok;
   }
   async function addBean(id, roast = "medium") {
-    if (!byId.has(id)) return false;
+    if (!available(byId.get(id))) { notify("Цей сорт тимчасово недоступний."); return false; }
     let message;
     let added = false;
     const persisted = await update((s) => {
@@ -682,6 +609,7 @@
   }
   async function addMix(m) {
     m = recipe(m);
+    if (m.beans.some((b) => !available(byId.get(b.id)))) { notify("Один із сортів недоступний. Замініть його у конструкторі."); return false; }
     if (!validMix(m)) {
       notify("Оберіть зерна та встановіть суму пропорцій 100%.");
       return false;
@@ -723,6 +651,7 @@
     packagingText,
     itemDetails,
     isGreen,
+    available,
     brewingMethods,
     beanRoast,
     beanStrength,
@@ -751,7 +680,6 @@
     addMix,
     get: () => copy(state),
     update,
-    finishOrder,
   };
   window.addEventListener("storage", (e) => {
     if ((e.key === key || e.key === null) && storageMode === "local") {
@@ -892,6 +820,7 @@
       purchase.addEventListener("change", price);
       price();
       purchase.addEventListener("submit", (e) => e.preventDefault());
+      if (!available(p)) { buttons.forEach((b) => { b.disabled = true; }); status.textContent = "Цей сорт тимчасово недоступний. Оберіть інший у каталозі."; }
       buttons[0].addEventListener("click", async () => {
         if (await addProduct(id, weight(), grindSelect.value, 1, roastSelect?.value || "raw"))
           location.href = url("cart.html");
@@ -913,19 +842,6 @@
           href: url("my-mixes.html"),
           text: "Мої мікси",
         }),
-      ),
-    );
-  }
-  // Швидкі переходи до локальних рецептів та обраного без імітації акаунта.
-  for (const nav of document.querySelectorAll(
-    "header .catalog-desktop-navigation ul,header details nav ul",
-  )) {
-    if (nav.querySelector('a[href$="my-mixes.html"]')) continue;
-    nav.append(
-      node(
-        "li",
-        {},
-        node("a", { class: "shop-nav-link", href: url("my-mixes.html"), text: "Мої мікси" }),
       ),
     );
   }

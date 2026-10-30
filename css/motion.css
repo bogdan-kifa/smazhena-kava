@@ -548,3 +548,88 @@
     font-weight: var(--font-weight-semibold);
   }
 }
+
+/* One account control across every header, before and after account loading. */
+.mo-header .mo-account-link { gap:var(--spacing-xs);padding-inline:var(--spacing-xs);font-family:var(--font-primary);font-size:var(--font-size-small);font-weight:var(--font-weight-regular);line-height:var(--line-height-control);color:var(--color-text);text-decoration:none; }
+.mo-header .mo-account-link .mo-account-icon { display:block;width:18px;height:18px;flex:none; }
+.mo-header .mo-account-link:focus-visible { outline:2px solid var(--color-primary);outline-offset:3px; }
+
+/* Account recipe count is fetched with the authenticated user on every cabinet tab. */
+.mo-mix-count { display:inline-grid;place-items:center;min-width:22px;min-height:22px;padding-inline:5px;border:1px solid var(--color-control-border);border-radius:var(--radius-pill);color:inherit;background:transparent;font-size:var(--font-size-caption);font-weight:var(--font-weight-regular);font-variant-numeric:tabular-nums;line-height:1.4; }
+[aria-current="page"] > .mo-mix-count { border-color:currentColor; }
+.mo-cabinet-nav a { gap:var(--spacing-xs); }
+
+/* Shared native scrollbars: same palette for the page, carousels and dialogs.
+   The standard color is inherited by nested scrolling areas (Firefox included). */
+:root {
+  scrollbar-color: var(--color-accent-strong) var(--color-background-soft);
+}
+@supports (not (-moz-appearance: none)) and selector(::-webkit-scrollbar) {
+  /* Non-auto standard properties override WebKit styling in current Chromium. */
+  :root {
+    scrollbar-color: auto;
+  }
+  .shop-carousel,
+  .catalog-quick-filters,
+  .mo-faq-nav ul {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background-soft);
+    border-radius: var(--radius-pill);
+  }
+  ::-webkit-scrollbar-thumb {
+    min-width: 36px;
+    min-height: 36px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-accent-strong);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-primary);
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  .shop-carousel::-webkit-scrollbar {
+    height: 10px;
+  }
+  @media (min-width: 768px) {
+    .mo-world-filters {
+      scrollbar-width: auto;
+      scrollbar-color: auto;
+    }
+  }
+}
+@media (forced-colors: active) {
+  :root,
+  .shop-carousel,
+  .catalog-quick-filters,
+  .mo-faq-nav ul {
+    scrollbar-color: auto;
+  }
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-button,
+  ::-webkit-scrollbar-corner {
+    all: revert;
+  }
+}
+
+.mo-demo-note { margin:16px auto; padding:12px 16px; width:min(100%, 1200px); border:1px solid var(--color-control-border); border-radius:var(--radius-control); background:var(--color-background-soft); color:var(--color-primary); font-size:14px; line-height:1.5; }
+[data-mo-auth] .mo-cabinet-field { display:grid; gap:8px; margin-block:16px; }
+[data-mo-auth] .mo-cabinet-field input { width:100%; min-height:48px; padding:12px; border:1px solid var(--color-control-border); border-radius:var(--radius-control); background:var(--color-surface); font:inherit; font-size:16px; }
+[data-mo-auth] .mo-cabinet-field input:focus-visible { outline:2px solid var(--color-accent-strong); outline-offset:3px; }

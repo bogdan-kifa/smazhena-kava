@@ -9,7 +9,7 @@
   const quick = n("dialog", {
     id: "mo-quick-view",
     class: "mo-quick-dialog",
-    "aria-labelledby": "mo-quick-title",
+    "aria-label": "Швидкий перегляд кави",
   });
   document.body.append(quick);
   let view = null,
@@ -108,7 +108,7 @@
     if (!product || quick.open) return;
     opener = trigger;
     ignoreBackdropUntil = held ? Infinity : 0;
-    const v = { product, weight: 250, unavailable: product.availability === "unavailable" };
+    const v = { product, weight: 250, unavailable: !S.available(product) };
     view = v;
     const close = n("button", {
       class: "mo-quick-close",
@@ -304,6 +304,7 @@
       n("div", { class: "mo-quick-scroll" }, n("div", { class: "mo-quick-layout" }, photo, info)),
       actions,
     );
+    quick.setAttribute("aria-labelledby", "mo-quick-title");
     updateGrind();
     profile(v);
     syncMix();

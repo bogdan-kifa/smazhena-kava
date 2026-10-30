@@ -1,4 +1,4 @@
-/* Visual form interactions only: no authentication, requests or credential storage. */
+/* Account form: credentials go only to the same-origin API. */
 (() => {
   "use strict";
   const form = document.querySelector("form[data-mo-auth]");
@@ -9,10 +9,12 @@
   const motion = matchMedia("(prefers-reduced-motion: no-preference)"),
     phone = matchMedia("(max-width:767px)");
   const touched = new Set();
+  let pending = false;
   let mode = "login",
     panelAnimation;
   function errorFor(input) {
     if (input.disabled) return "";
+    if (window.CoffeeSite?.demo && [$("password"), $("confirm")].includes(input)) return "";
     if (input === $("consent"))
       return input.checked ? "" : "Потрібна згода з умовами та політикою конфіденційності.";
     const value = input.value;
@@ -24,6 +26,7 @@
           : input === $("confirm")
             ? "Повтори пароль."
             : "Введи пароль.";
+    if (input === $("name") && (Array.from(value.trim()).length < 2 || Array.from(value.trim()).length > 80)) return "Введіть ім’я від 2 до 80 символів.";
     if (input === $("email") && !input.validity.valid)
       return "Перевір адресу, наприклад name@example.com.";
     if (
@@ -69,6 +72,7 @@
     }
   }
   function setMode(next, updateURL = true) {
+    if (pending) return;
     const changed = mode !== next;
     mode = next;
     form.dataset.mode = mode;
@@ -86,7 +90,7 @@
         input.required = mode === "register";
       }
     }
-    form.querySelector("[data-mo-login]").hidden = mode === "register";
+    form.querySelector("[data-mo-login]").hidden = true;
     $("password").autocomplete = mode === "register" ? "new-password" : "current-password";
     if (mode === "register") $("password").minLength = 8;
     else $("password").removeAttribute("minlength");
@@ -103,6 +107,7 @@
       box.hidden = true;
       box.textContent = "";
     }
+    if (window.CoffeeSite?.demo) { $("password").required = $("confirm").required = false; }
     requirements();
     if (updateURL) {
       const url = new URL(location.href);
@@ -158,8 +163,9 @@
       );
     });
   }
-  function inspectForm(event) {
+  async function inspectForm(event) {
     event.preventDefault();
+    if (pending) return;
     let first;
     for (const input of fields.filter((input) => !input.disabled)) {
       touched.add(input.id);
@@ -177,8 +183,48 @@
           ],
           { duration: 190 },
         );
-    } else
-      $("feedback").textContent = "Дані заповнено. Вхід і реєстрація будуть доступні незабаром.";
+    } else {
+      pending = true;
+      const submit = $("submit"),
+        feedback = $("feedback");
+      submit.disabled = true;
+      submit.setAttribute("aria-busy", "true");
+      submit.textContent = mode === "register" ? "Створюємо акаунт…" : "Входимо…";
+      tabs.forEach((tab) => (tab.disabled = true));
+      feedback.classList.remove("visually-hidden");
+      feedback.textContent = "";
+      try {
+        const credentials = { email: $("email").value.trim(), ...(window.CoffeeSite?.demo ? {} : {password: $("password").value}) };
+        if (mode === "register")
+          await CoffeeAPI.register({
+            ...credentials,
+            name: $("name").value.trim(),
+            consent: $("consent").checked,
+          });
+        else await CoffeeAPI.login(credentials);
+        submit.textContent = "✓ Готово";
+        const next = new URLSearchParams(location.search).get("next");
+        location.assign(
+          [
+            "constructor.html?save=1",
+            "profile.html",
+            "orders.html",
+            "my-mixes.html",
+            "checkout.html",
+          ].includes(next)
+            ? next
+            : "profile.html",
+        );
+      } catch (error) {
+        feedback.textContent = error.message || "Не вдалося увійти. Спробуйте ще раз.";
+      } finally {
+        pending = false;
+        submit.disabled = false;
+        submit.removeAttribute("aria-busy");
+        submit.textContent = mode === "register" ? "Зареєструватися" : "Увійти";
+        tabs.forEach((tab) => (tab.disabled = false));
+      }
+    }
   }
   form.addEventListener("submit", inspectForm);
   form.addEventListener("keydown", (event) => {
@@ -201,9 +247,13 @@
     arrow.textContent = "→";
     $("guest").append(arrow);
   }
+  $("submit").disabled = !window.CoffeeAPI;
   guestRoute();
   addEventListener("coffee:change", guestRoute);
-  addEventListener("pagehide", maskPasswords);
+  addEventListener("pagehide", () => {
+    maskPasswords();
+    $("password").value = $("confirm").value = "";
+  });
   addEventListener("popstate", () =>
     setMode(
       new URLSearchParams(location.search).get("mode") === "register" ? "register" : "login",

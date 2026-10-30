@@ -212,9 +212,9 @@
         card.element.hidden = !visible;
         if (visible) found++;
         card.element.classList.toggle("is-selected", chosen);
-        card.add.disabled = Boolean(pendingId) || chosen || beans.length >= 4;
+        card.add.disabled = Boolean(pendingId) || chosen || beans.length >= 4 || !S.available(card.product);
         card.add.textContent =
-          pendingId === card.product.id ? "Додаємо…" : chosen ? "✓ У міксі" : "Додати";
+          !S.available(card.product) ? "Немає в наявності" : pendingId === card.product.id ? "Додаємо…" : chosen ? "✓ У міксі" : "Додати";
         card.add.setAttribute(
           "aria-label",
           chosen ? `${card.product.name} — уже у міксі` : `Додати ${card.product.name} до міксу`,

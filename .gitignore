@@ -1,3 +1,9 @@
 node_modules/
 *.log
 tatus
+
+.env
+.env.*
+!.env.example
+.data/
+public/

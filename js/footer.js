@@ -31,6 +31,7 @@
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) updateYear();
   });
+  footer.querySelector(".mo-footer-newsletter").hidden = true;
   const form = footer.querySelector("form"),
     input = form.querySelector('input[type="email"]'),
     error = footer.querySelector(".mo-footer-error");

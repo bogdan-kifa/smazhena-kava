@@ -4,22 +4,41 @@
     { node: n } = S;
   const form = document.getElementById("checkout-form");
   if (form) {
-    // Власні підказки розташовані біля полів; значення перевіряємо до демооформлення.
+    // The API verifies every field and recomputes the order from the canonical catalog.
     form.noValidate = true;
     let submitting = false,
       renderedCart = [];
     const button = document.querySelector('[data-action="confirm-order"]');
     const submitMessage = document.getElementById("checkout-submit-message");
-    button.textContent = "Створити демозамовлення";
+    button.textContent = window.CoffeeSite?.demo ? "Створити демозамовлення" : "Оформити замовлення";
     const status = document.getElementById("checkout-status");
-    status.textContent =
-      "Це навчальна демонстрація. Контактні дані не надсилаються і не зберігаються. Реальні замовлення й оплата ще недоступні.";
+    status.textContent = window.CoffeeSite?.demo ? "Демонстрація оформлення. Замовлення нікуди не надсилається." : "Оплата при отриманні. Замовлення з акаунта з’явиться у вашій історії.";
     status.classList.remove("visually-hidden");
     form
       .querySelectorAll("fieldset[disabled],input[disabled]")
       .forEach((x) => (x.disabled = false));
-    document.getElementById("guest-checkout").disabled = true;
-    // Онлайн-еквайринг навмисно не імітується: доступне лише демонстраційне оформлення.
+    const guest = document.getElementById("guest-checkout");
+    guest.disabled = true;
+    CoffeeAPI.getUser()
+      .then((user) => {
+        guest.parentElement.hidden = true;
+        guest.checked = !user;
+        if (!user) {
+          status.textContent = window.CoffeeSite?.demo ? "Демонстрація оформлення без реєстрації." : "Оформлення без реєстрації · оплата при отриманні.";
+          return;
+        }
+        for (const [id, value] of [
+          ["customer-name", user.name],
+          ["customer-email", user.email],
+          ["customer-phone", user.phone],
+          ["delivery-address", user.address],
+        ]) {
+          const field = document.getElementById(id);
+          if (!field.value) field.value = value || "";
+        }
+      })
+      .catch(() => {});
+    // Card payments are not connected; only payment on receipt is offered.
     const card = document.getElementById("payment-card"),
       receipt = document.getElementById("payment-receipt");
     card.disabled = true;
@@ -88,8 +107,8 @@
       let message = "";
       if (!value) message = "Заповніть це поле.";
       else if (field.id === "customer-name") {
-        if (!/^[\p{L}\p{M}\s’'ʼ.-]+$/u.test(value) || (value.match(/\p{L}/gu) || []).length < 2)
-          message = "Укажіть ім’я літерами, щонайменше дві літери.";
+        if (Array.from(value).length < 2 || Array.from(value).length > 80)
+          message = "Укажіть ім’я від 2 до 80 символів.";
       } else if (field.id === "customer-email") {
         if (field.validity.typeMismatch || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
           message = "Укажіть email у форматі name@example.com.";
@@ -169,31 +188,49 @@
       button.disabled = true;
       button.setAttribute("aria-busy", "true");
       try {
-        const result = await S.finishOrder({
+        const body = {
           delivery: form.querySelector('[name="delivery"]:checked').value,
-          expectedCart,
-        });
-        if (result.ok) {
-          location.href = S.url("order-confirmation.html");
-          return;
-        }
-        const messages = {
-          changed:
-            "Кошик змінився в іншій вкладці. Перевірте оновлений підсумок і підтвердьте ще раз.",
-          empty: "Кошик уже порожній. Додайте каву, щоб створити демозамовлення.",
-          "order-storage":
-            "Не вдалося зберегти демопідсумок. Дозвольте сховище браузера; кошик залишився без змін.",
-          "cart-storage":
-            "Не вдалося підтвердити очищення кошика. Демозамовлення не створено, кошик залишився без змін.",
+          customer: {
+            name: fields[0].value,
+            email: fields[1].value,
+            phone: fields[2].value,
+            address: fields[3].value,
+          },
+          items: expectedCart,
+          expectedTotal: expectedCart.reduce((sum, item) => sum + S.unit(item) * item.qty, 0),
         };
+        // Persist only an opaque key and a digest, never customer fields or passwords.
+        const bytes = await crypto.subtle.digest(
+          "SHA-256",
+          new TextEncoder().encode(JSON.stringify(body)),
+        );
+        const fingerprint = Array.from(new Uint8Array(bytes), (x) =>
+          x.toString(16).padStart(2, "0"),
+        ).join("");
+        let previous;
+        try {
+          previous = JSON.parse(sessionStorage.getItem("coffee-order-request"));
+        } catch {}
+        const key = previous?.fingerprint === fingerprint ? previous.key : crypto.randomUUID();
+        try {
+          sessionStorage.setItem("coffee-order-request", JSON.stringify({ key, fingerprint }));
+        } catch {}
+        const { order } = await CoffeeAPI.request("orders", {
+          method: "POST",
+          body,
+          headers: { "Idempotency-Key": key },
+        });
+        await S.update((state) => {
+          if (JSON.stringify(state.cart) === JSON.stringify(expectedCart)) state.cart = [];
+        });
+        location.href = S.url("order-confirmation.html?id=" + encodeURIComponent(order.id));
+        return;
+      } catch (error) {
         submitMessage.textContent =
-          messages[result.reason] || "Не вдалося створити демозамовлення. Спробуйте ще раз.";
+          error.message ||
+          "Не вдалося створити замовлення. Перевірте з’єднання та спробуйте ще раз.";
         submitMessage.hidden = false;
         summary();
-      } catch {
-        submitMessage.textContent =
-          "Не вдалося завершити демонстрацію. Перевірте кошик і спробуйте ще раз.";
-        submitMessage.hidden = false;
       } finally {
         submitting = false;
         button.removeAttribute("aria-busy");
@@ -206,60 +243,78 @@
   }
   const title = document.getElementById("confirmation-title");
   if (!title) return;
-  title.textContent = "Демонстрацію оформлення завершено";
-  document.querySelector(".confirmation-description").textContent =
-    "Це навчальний приклад. Реальне замовлення не створено, оплату не проведено, листи не надсилалися.";
   const status = document.getElementById("confirmation-status");
-  status.textContent = "Показано лише підсумок демонстраційного оформлення.";
-  const order = S.get().lastOrder;
-  const valid =
-    order &&
-    /^DEMO-[A-Z0-9-]{8}$/.test(order.id) &&
-    Number.isSafeInteger(order.total) &&
-    order.total >= 0 &&
-    Array.isArray(order.items) &&
-    order.items.length > 0 &&
-    order.items.length <= 50 &&
-    order.items.every(
-      (i) =>
-        typeof i.name === "string" &&
-        i.name.length <= 100 &&
-        Number.isSafeInteger(i.total) &&
-        i.total >= 0 &&
-        Number.isInteger(i.qty) &&
-        i.qty > 0 &&
-        i.qty <= 99 &&
-        Number.isInteger(i.weight),
-    );
+  const description = document.querySelector(".confirmation-description");
   const details = document.querySelector(".confirmation-order-details");
+  const confirmationActions = n("div", { class: "mo-confirmation-actions" });
+  details.after(confirmationActions);
   details.replaceChildren();
-  if (!valid) {
-    document.getElementById("confirmation-order-title").textContent = "Немає демозамовлення";
-    details.append(
-      n(
-        "div",
-        {},
-        n("dt", {}, n("a", { href: S.url("catalog.html"), text: "Перейти до каталогу" })),
-      ),
-    );
-    return;
-  }
-  document.getElementById("confirmation-order-title").textContent = `Приклад ${order.id}`;
-  const pair = (label, value) => n("div", {}, n("dt", { text: label }), n("dd", { text: value }));
-  details.append(
-    ...order.items.map((i) =>
-      pair(
-        `${i.name} · ${i.weight} г × ${i.qty}${i.details ? ` · ${i.details}` : ""}`,
-        S.money(i.total),
-      ),
-    ),
-    pair(
-      "Спосіб доставки",
-      { post: "Нова пошта", "nova-poshta": "Нова пошта", ukrposhta: "Укрпошта", courier: "Кур’єр" }[
-        order.delivery
-      ] || "Нова пошта",
-    ),
-    pair("Доставка", order.total >= 80000 ? "Безкоштовно" : "За тарифом перевізника"),
-    pair("Разом за товари", S.money(order.total)),
-  );
+  title.textContent = "Перевіряємо замовлення…";
+  description.textContent = "";
+  status.textContent = "Завантажуємо підтвердження.";
+  const id = new URLSearchParams(location.search).get("id");
+  (async () => {
+    try {
+      if (!id || !/^[a-f0-9-]{36}$/.test(id))
+        throw new Error(
+          "Відкрийте підтвердження після оформлення або знайдіть замовлення у своєму кабінеті.",
+        );
+      const { order } = await CoffeeAPI.request("orders/" + encodeURIComponent(id));
+      title.textContent = window.CoffeeSite?.demo ? "Демозамовлення створено" : "Дякуємо за замовлення!";
+      description.textContent = window.CoffeeSite?.demo ? "Демозамовлення створено. Воно не надсилається магазину й не потребує оплати." : "Замовлення прийнято. Оплата — при отриманні.";
+      status.textContent = window.CoffeeSite?.demo ? "Демозамовлення збережено лише в цьому браузері." : "Замовлення збережено на сервері.";
+      document.getElementById("confirmation-order-title").textContent =
+        "Замовлення №" + order.id.slice(0, 8).toUpperCase();
+      const pair = (label, value) =>
+        n("div", {}, n("dt", { text: label }), n("dd", { text: value }));
+      details.append(
+        ...order.items.map((item) =>
+          pair(
+            `${item.name} · ${item.weight} г × ${item.qty} · ${item.details}`,
+            S.money(item.total),
+          ),
+        ),
+        pair("Отримувач", order.customer.name),
+        pair("Телефон", order.customer.phone),
+        pair(
+          "Спосіб доставки",
+          {
+            post: "Нова пошта",
+            "nova-poshta": "Нова пошта",
+            ukrposhta: "Укрпошта",
+            courier: "Кур’єр",
+          }[order.delivery],
+        ),
+        pair("Адреса", order.customer.address),
+        pair("Доставка", order.total >= 80000 ? "Безкоштовно" : "За тарифом перевізника"),
+        pair("Разом за товари", S.money(order.total)),
+      );
+      const user = await CoffeeAPI.getUser();
+      if (user)
+        confirmationActions.append(
+          n(
+            "div",
+            {},
+            n("a", {
+              href: S.url("orders.html"),
+              class: "button button-secondary",
+              text: "Мої замовлення",
+            }),
+          ),
+        );
+    } catch (error) {
+      title.textContent = "Підтвердження недоступне";
+      description.textContent = error.message;
+      status.textContent =
+        "Перевірте, чи ви увійшли у потрібний акаунт. Гостьове підтвердження доступне в браузері оформлення протягом доби.";
+      document.getElementById("confirmation-order-title").textContent = "Перейти далі";
+      confirmationActions.append(
+        n(
+          "div",
+          {},
+          n("a", { href: S.url("orders.html"), class: "button", text: "Історія замовлень" }),
+        ),
+      );
+    }
+  })();
 })();

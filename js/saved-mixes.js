@@ -1,4 +1,4 @@
-/* Presentation over the existing local list. New account/management operations stay deferred. */
+/* Saved recipes belong to the authenticated account and are loaded from the API. */
 (() => {
   "use strict";
   const S = window.CoffeeShop,
@@ -8,8 +8,6 @@
   const paths = {
     edit: "M14 4 20 10M3 21l5-1L21 7a2 2 0 0 0-4-4L4 16z",
     trash: "M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7",
-    link: "m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 2 2-2a4 4 0 1 1 6 6l-5 5a4 4 0 0 1-6 0",
-    pin: "m8 3 9 0-1 7 3 4H5l3-4zM12 14v8",
     rename: "M4 7V3h16v4M12 3v18m-4 0h8",
     info: "M12 8h.1M12 11v6M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0",
     warning: "M12 3 1 21h22zM12 9v5m0 3h.1",
@@ -45,20 +43,6 @@
           ? "мікси"
           : "міксів";
   const letter = (slot) => String.fromCharCode(65 + slot);
-  function futureButton(kind, label, name) {
-    return n(
-      "button",
-      {
-        class: "saved-icon-button saved-future-button",
-        type: "button",
-        disabled: true,
-        title: `${label} — скоро`,
-        "aria-label": `${label} мікс «${name}». Скоро — буде доступно пізніше.`,
-      },
-      icon(kind),
-      n("span", { class: "saved-future-label", "aria-hidden": "true", text: "Скоро" }),
-    );
-  }
   function date(m) {
     const updated = m.updatedAt && m.updatedAt !== m.createdAt,
       value = updated ? m.updatedAt : m.createdAt;
@@ -92,8 +76,125 @@
     } catch {
       /* An error view never displays a fabricated price. */
     }
-    const state = presentation.state || (amount === null ? "price-error" : "ready");
+    const state = presentation.state || (beans.some((b) => !S.available(S.byId.get(b.id))) ? "unavailable" : amount === null ? "price-error" : "ready");
     const blocked = state !== "ready";
+    const renameId = `saved-rename-${index}`;
+    const rename = n(
+      "button",
+      {
+        class: "saved-icon-button mo-saved-rename-toggle",
+        type: "button",
+        "data-recipe-action": "rename",
+        title: "Перейменувати мікс",
+        "aria-label": `Перейменувати мікс «${name}»`,
+        "aria-expanded": "false",
+        "aria-controls": renameId,
+      },
+      icon("rename"),
+    );
+    const renameForm = n("form", {
+      id: renameId,
+      class: "saved-rename-form mo-saved-rename",
+      hidden: true,
+      novalidate: "",
+      "aria-label": `Перейменування міксу «${name}»`,
+    });
+    const input = n("input", {
+      id: renameId + "-input",
+      name: "mix-name",
+      type: "text",
+      value: name,
+      maxlength: 60,
+      required: "",
+      autocomplete: "off",
+      "aria-describedby": renameId + "-error",
+    });
+    const error = n("p", {
+      id: renameId + "-error",
+      class: "mo-saved-rename-error",
+      role: "alert",
+      hidden: true,
+    });
+    const save = n("button", { type: "submit", class: "button", text: "Зберегти назву" });
+    const cancel = n("button", {
+      type: "button",
+      class: "button button-secondary",
+      text: "Скасувати",
+    });
+    renameForm.append(
+      n("label", { for: input.id, text: "Нова назва міксу" }),
+      input,
+      error,
+      n("div", { class: "mo-saved-rename-actions" }, save, cancel),
+    );
+    let pending = false;
+    function closeRename() {
+      if (pending) return;
+      renameForm.hidden = true;
+      rename.setAttribute("aria-expanded", "false");
+      rename.focus();
+    }
+    rename.addEventListener("click", () => {
+      if (pending) return;
+      if (!renameForm.hidden) return closeRename();
+      renameForm.hidden = false;
+      rename.setAttribute("aria-expanded", "true");
+      input.value = name;
+      error.hidden = true;
+      input.removeAttribute("aria-invalid");
+      input.focus();
+      input.select();
+    });
+    cancel.addEventListener("click", closeRename);
+    renameForm.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeRename();
+      }
+    });
+    input.addEventListener("input", () => {
+      error.hidden = true;
+      input.removeAttribute("aria-invalid");
+    });
+    async function updateMix(body) {
+      if (pending) return;
+      pending = true;
+      article.setAttribute("aria-busy", "true");
+      const controls = [...article.querySelectorAll("button,input")].map((control) => [
+        control,
+        control.disabled,
+      ]);
+      controls.forEach(([control]) => (control.disabled = true));
+      try {
+        await CoffeeAPI.request("mixes/" + encodeURIComponent(m.id), { method: "PATCH", body });
+        await render({ id: m.id, action: "rename" });
+        S.notify("Назву міксу збережено.");
+      } catch (e) {
+        error.textContent = e.message || "Не вдалося змінити назву.";
+        error.hidden = false;
+      } finally {
+        pending = false;
+        article.removeAttribute("aria-busy");
+        controls.forEach(([control, disabled]) => (control.disabled = disabled));
+        if (article.isConnected) {
+          input.focus();
+        }
+      }
+    }
+    renameForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (pending) return;
+      const value = input.value.trim().replace(/\s+/g, " ");
+      if (!value || value.length > 60) {
+        error.textContent = "Введіть назву від 1 до 60 символів.";
+        error.hidden = false;
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        return;
+      }
+      if (value === name) return closeRename();
+      updateMix({ name: value });
+    });
     const edit = n(
       "button",
       {
@@ -110,11 +211,9 @@
       edit.disabled = true;
       try {
         const ok = await S.update((s) => {
-          const current = s.saved.find((item) => item.id === m.id);
-          if (!current) return false;
-          s.draft = current;
+          s.draft = S.mix(m);
         });
-        if (ok) location.href = S.url("constructor.html");
+        if (ok) location.href = S.url("constructor.html?editSaved=" + encodeURIComponent(m.id));
         else S.notify("Не вдалося відкрити мікс. Перевірте дозвіл браузера на збереження даних.");
       } catch {
         S.notify("Не вдалося відкрити мікс. Спробуйте ще раз.");
@@ -158,10 +257,12 @@
       if (remove.getAttribute("aria-busy") === "true") return;
       remove.setAttribute("aria-busy", "true");
       try {
-        const ok = await S.update((s) => {
-          s.saved = s.saved.filter((item) => item.id !== m.id);
+        await CoffeeAPI.request("mixes/" + encodeURIComponent(m.id), {
+          method: "DELETE",
+          body: {},
         });
-        S.notify(ok ? "Мікс видалено." : "Не вдалося видалити мікс. Браузер не зберіг зміни.");
+        S.notify("Мікс видалено.");
+        await render();
       } catch {
         S.notify("Не вдалося видалити мікс. Спробуйте ще раз.");
       } finally {
@@ -261,26 +362,15 @@
           n("h2", { id: titleId, text: name }),
           date(m),
         ),
-        n(
-          "div",
-          { class: "saved-mix-title-tools" },
-          futureButton("rename", "Перейменувати", name),
-          futureButton("pin", "Закріпити", name),
-        ),
+        n("div", { class: "saved-mix-title-tools" }, rename),
       ),
+      renameForm,
       bar,
       legend,
       chips,
       warning,
       priceRow,
-      n(
-        "div",
-        { class: "saved-mix-actions" },
-        repeat,
-        edit,
-        futureButton("link", "Скопіювати посилання на", name),
-        remove,
-      ),
+      n("div", { class: "saved-mix-actions" }, repeat, edit, remove),
     );
     if (blocked) {
       const hintId = `saved-mix-${index}-warning`;
@@ -293,23 +383,59 @@
     notice = document.getElementById("saved-local-notice"),
     toolbar = document.getElementById("saved-mixes-toolbar"),
     sort = document.getElementById("saved-sort-field");
-  function render() {
+  let generation = 0;
+  async function render(preferredFocus = null) {
+    const run = ++generation;
+    const status = document.getElementById("saved-account-status");
+    let saved;
+    try {
+      const user = await CoffeeAPI.getUser();
+      if (run !== generation) return;
+      if (!user) {
+        list.replaceChildren();
+        list.hidden = true;
+        empty.hidden = true;
+        toolbar.hidden = true;
+        status.replaceChildren(
+          n("p", { text: "Увійдіть, щоб переглянути збережені мікси." }),
+          n("a", {
+            class: "button",
+            href: S.url("login.html?next=my-mixes.html"),
+            text: (window.CoffeeSite?.demo ? "Відкрити демопрофіль" : "Увійти або зареєструватися"),
+          }),
+        );
+        return;
+      }
+      saved = (await CoffeeAPI.request("mixes")).mixes;
+      if (run !== generation) return;
+      status.replaceChildren();
+    } catch (error) {
+      if (run !== generation) return;
+      status.textContent = error.message;
+      list.hidden = true;
+      empty.hidden = true;
+      return;
+    }
     const active = document.activeElement,
       previous = [...list.querySelectorAll("[data-recipe-id]")],
       card = active?.closest("[data-recipe-id]");
-    const focus = list.contains(active)
-      ? {
-          id: card?.dataset.recipeId,
-          index: previous.indexOf(card),
-          action: active?.dataset.recipeAction,
-        }
-      : null;
-    const saved = S.get().saved,
-      count = saved.length;
+    const focus = preferredFocus?.id
+      ? preferredFocus
+      : list.contains(active)
+        ? {
+            id: card?.dataset.recipeId,
+            index: previous.indexOf(card),
+            action: active?.dataset.recipeAction,
+          }
+        : null;
+    const count = saved.length;
+    const order = document.getElementById("saved-sort").value;
+    if (order === "price") saved.sort((a, b) => S.mixPrice(a) - S.mixPrice(b));
+    if (order === "name") saved.sort((a, b) => a.name.localeCompare(b.name, "uk"));
     list.replaceChildren(...saved.map((m, index) => n("li", {}, createCard(m, index))));
     empty.hidden = count > 0;
     list.hidden = !count;
-    notice.hidden = !count;
+    notice.hidden = true;
     toolbar.hidden = !count;
     sort.hidden = count < 2;
     document.getElementById("saved-tab-count").textContent = String(count);
@@ -329,6 +455,10 @@
   window.CoffeeSavedMixes = Object.freeze({ createCard, noun });
   window.addEventListener("coffee:change", (event) => {
     if (!event.detail?.changed || event.detail.changed.includes("saved")) render();
+  });
+  document.getElementById("saved-sort").addEventListener("change", render);
+  addEventListener("pageshow", (event) => {
+    if (event.persisted) render();
   });
   render();
 })();

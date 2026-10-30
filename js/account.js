@@ -47,10 +47,10 @@
       "aria-labelledby": "mix-auth-title",
     });
     authError = n("p", { class: "account-error", role: "alert", hidden: true });
-    const links = [
+    const links = (window.CoffeeSite?.demo ? [["login", "Відкрити демопрофіль"]] : [
       ["login", "Увійти"],
       ["register", "Зареєструватися"],
-    ].map(([mode, text]) => {
+    ]).map(([mode, text]) => {
       const params = new URLSearchParams({ mode, next: "constructor.html?save=1" });
       const link = n("a", {
         href: S.url(`login.html?${params}`),
@@ -83,7 +83,7 @@
         closeButton(authDialog),
       ),
       n("p", {
-        text: "Увійдіть або зареєструйтеся, щоб зберегти рецепт. Після входу ви зможете дати йому назву.",
+        text: window.CoffeeSite?.demo ? "Відкрийте демопрофіль без пароля, щоб зберегти рецепт у цьому браузері." : "Увійдіть або зареєструйтеся, щоб зберегти рецепт. Після входу ви зможете дати йому назву.",
       }),
       n("div", { class: "account-dialog-actions" }, links),
       authError,
@@ -185,13 +185,15 @@
           showAuth();
           return;
         }
-        const saved = await client.saveMix({ name, recipe: { ...snapshot, name } });
+        const editing = new URLSearchParams(location.search).get("editSaved");
+        const id = editing && snapshot.id === editing && event.submitter?.value !== "copy" ? editing : null;
+        const saved = await client.saveMix({ ...(id ? { id } : {}), name, recipe: { ...snapshot, name } });
         if (!saved || typeof saved.id !== "string" || !saved.id.trim())
           throw new Error("Save was not confirmed.");
         nameDialog.close();
         S.notify(`Мікс «${name}» збережено.`);
-      } catch {
-        saveError.textContent = "Не вдалося зберегти мікс. Спробуйте ще раз.";
+      } catch (error) {
+        saveError.textContent = error.message || "Не вдалося зберегти мікс. Спробуйте ще раз.";
         saveError.hidden = false;
       } finally {
         submitting = false;
@@ -234,6 +236,11 @@
       nameError.hidden = saveError.hidden = true;
       document.getElementById("mix-save-summary").textContent =
         `${S.composition(snapshot)} · ${snapshot.weight} г`;
+      const editing = new URLSearchParams(location.search).get("editSaved") === snapshot.id;
+      submitButton.textContent = editing ? "Зберегти зміни" : "Зберегти";
+      let copyButton = nameDialog.querySelector("[value=copy]");
+      if (!copyButton) { copyButton = n("button", {type:"submit",value:"copy",class:"button button-secondary",text:"Зберегти копію"}); submitButton.after(copyButton); }
+      copyButton.hidden = !editing;
       nameDialog.showModal();
       nameInput.focus();
       nameInput.select();
@@ -245,76 +252,4 @@
   }
   window.CoffeeAccount = Object.freeze({ configureClient, getUser, requestSave });
 
-  const loginForm = document.getElementById("login-form");
-  if (loginForm && !loginForm.hasAttribute("data-mo-auth")) {
-    const params = new URLSearchParams(location.search);
-    const nameField = n(
-      "div",
-      { class: "login-field", hidden: true },
-      n("label", { for: "account-name", text: "Ім’я" }),
-      n("input", {
-        id: "account-name",
-        name: "name",
-        type: "text",
-        autocomplete: "name",
-        maxlength: 80,
-      }),
-    );
-    const repeatField = n(
-      "div",
-      { class: "login-field", hidden: true },
-      n("label", { for: "account-password-confirm", text: "Повторіть пароль" }),
-      n("input", {
-        id: "account-password-confirm",
-        name: "password-confirm",
-        type: "password",
-        autocomplete: "new-password",
-      }),
-    );
-    loginForm.querySelector(".login-modes").after(nameField);
-    loginForm.querySelector(".login-submit").before(repeatField);
-    const status = document.getElementById("login-status");
-    status.textContent = "Вхід і реєстрація будуть доступні незабаром.";
-    status.classList.remove("visually-hidden");
-    status.classList.add("account-preparation-note");
-    loginForm.querySelector(".login-description").textContent =
-      "Зберігайте улюблені рецепти у своєму акаунті.";
-    const setMode = (mode) => {
-      const register = mode === "register";
-      nameField.hidden = repeatField.hidden = !register;
-      nameField.querySelector("input").disabled = repeatField.querySelector("input").disabled =
-        !register;
-      loginForm.querySelectorAll(".login-mode").forEach((button) => {
-        button.disabled = false;
-        button.setAttribute("aria-pressed", String(button.dataset.mode === mode));
-      });
-      document.getElementById("login-form-title").textContent = register
-        ? "Створіть акаунт"
-        : "Вхід до акаунта";
-      document.querySelector(".login-heading h1").textContent = register ? "Реєстрація" : "Вхід";
-      document.getElementById("login-password").autocomplete = register
-        ? "new-password"
-        : "current-password";
-      loginForm.querySelector(".login-submit").textContent = register
-        ? "Зареєструватися"
-        : "Увійти";
-      loginForm.querySelector(".login-password-reset").hidden = register;
-      const url = new URL(location.href);
-      url.searchParams.set("mode", mode);
-      history.replaceState(null, "", url);
-    };
-    loginForm
-      .querySelectorAll(".login-mode")
-      .forEach((button) => button.addEventListener("click", () => setMode(button.dataset.mode)));
-    loginForm.addEventListener("submit", (event) => event.preventDefault());
-    setMode(params.get("mode") === "register" ? "register" : "login");
-    if (params.get("next") === "constructor.html?save=1")
-      loginForm.append(
-        n("a", {
-          class: "account-return-link",
-          href: S.url("constructor.html"),
-          text: "Повернутися до міксу",
-        }),
-      );
-  }
 })();

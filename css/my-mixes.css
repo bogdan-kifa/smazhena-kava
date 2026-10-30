@@ -125,7 +125,7 @@
   background: var(--color-surface);
   color: var(--color-text-muted);
   font: inherit;
-  cursor: not-allowed;
+  cursor: pointer;
   opacity: 1;
 }
 .saved-mixes-empty {
@@ -233,7 +233,7 @@
   border-style: dashed;
   color: var(--color-text-muted);
   background: transparent;
-  cursor: not-allowed;
+  cursor: pointer;
   opacity: 1;
 }
 .saved-future-button {
@@ -392,7 +392,7 @@
 }
 .saved-mix-actions {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) repeat(3, 44px);
+  grid-template-columns: minmax(0, 1fr) repeat(2, 44px);
   align-items: center;
   gap: 8px;
   padding-top: 16px;
@@ -510,4 +510,44 @@
   .saved-sort-field label {
     flex-basis: 100%;
   }
+}
+
+/* Account actions use the existing palette and comfortable touch targets. */
+.mo-saved-rename {
+  width: 100%;
+  padding: 14px;
+  border: var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--color-background-soft);
+}
+.mo-saved-rename input {
+  width: 100%;
+  min-width: 0;
+  font-size: 16px;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+.mo-saved-rename input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+.mo-saved-rename-error {
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+}
+.mo-saved-rename-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mo-saved-rename-actions .button {
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: var(--font-size-small);
+}
+.mo-saved-rename :focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.mo-saved-rename-toggle:disabled {
+  cursor: wait;
 }

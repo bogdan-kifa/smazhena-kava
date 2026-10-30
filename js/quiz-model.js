@@ -168,7 +168,7 @@
     const a = cleanAnswers(raw);
     const weights = Object.fromEntries(QUESTIONS.map((q) => [q.id, q.weight]));
     return S.products
-      .filter((p) => !S.isGreen(p))
+      .filter((p) => !S.isGreen(p) && S.available(p))
       .map((p) => {
         let points = 0,
           maximum = 0;
@@ -269,7 +269,7 @@
     const url = new URL(S.url("constructor.html"));
     url.searchParams.set("mix", `${product.id}:100`);
     url.searchParams.set("weight", String(weight));
-    if (["espresso", "filter", "cezve"].includes(grind)) url.searchParams.set("grind", grind);
+    if (["beans", "espresso", "filter", "cezve"].includes(grind)) url.searchParams.set("grind", grind);
     if (save) url.searchParams.set("save", "1");
     return url.href;
   }

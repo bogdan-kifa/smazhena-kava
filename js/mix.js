@@ -153,7 +153,9 @@
       : total >= 80000
         ? "Доступна"
         : S.money(80000 - total);
-    document.querySelector(".mix-delivery-progress").value = Math.min(800, total / 100);
+    const deliveryProgress = document.querySelector(".mix-delivery-progress");
+    deliveryProgress.value = Math.min(800, total / 100);
+    deliveryProgress.textContent = `${S.money(Math.min(80000, total))} з ${S.money(80000)}`;
     const totalText = !m.beans.length
       ? "0% · додайте зерна"
       : ready
@@ -169,7 +171,9 @@
       ? `Сума часток — ${percentage}%. ${percentage < 100 ? `Додайте ще ${100 - percentage}%` : `Зменште частки на ${percentage - 100}%`}.`
       : "";
     actionStatus.dataset.invalid = String(needsShares);
-    cartButton.disabled = saveButton.disabled = !ready || draftWrites > 0;
+    saveButton.disabled = !ready || draftWrites > 0;
+    cartButton.disabled = saveButton.disabled || m.beans.some((b) => b.ratio > 0 && !S.available(S.byId.get(b.id)));
+    if (ready && cartButton.disabled && !draftWrites) { actionStatus.hidden = false; actionStatus.textContent = "Один із сортів недоступний. Замініть його перед замовленням."; }
     cartButton.setAttribute("aria-busy", String(draftWrites > 0));
     saveButton.setAttribute("aria-busy", String(draftWrites > 0));
   }

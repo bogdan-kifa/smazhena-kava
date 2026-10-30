@@ -14,16 +14,82 @@
   </head>
   <body>
     <main class="container mx-auto max-w-3xl space-y-8 py-8 sm:py-12">
-      <a class="inline-flex min-h-11 items-center gap-3 rounded-control font-heading font-semibold text-brand no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" href="index.html"><img src="assets/images/logo.svg" alt="" width="36" height="40" />Смажена Кава</a>
+      <a
+        class="inline-flex min-h-11 items-center gap-3 rounded-control font-heading font-semibold text-brand no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+        href="index.html"
+        ><img src="assets/images/logo.svg" alt="" width="36" height="40" />Смажена Кава</a
+      >
       <h1 class="font-heading text-heading-1">Політика конфіденційності</h1>
-      <p class="text-brand-muted">Ця сторінка пояснює, як поточна версія сайту працює з даними форми та налаштуваннями у браузері.</p>
-      <section class="space-y-3" aria-labelledby="privacy-form"><h2 id="privacy-form" class="font-heading text-heading-3">Дані у формі зворотного зв’язку</h2><p>Форма містить ім’я, електронну пошту, телефон, повідомлення та згоду. Їх використовують у браузері для перевірки правильності заповнення.</p><p>Форма працює як демонстрація: вона не надсилає звернення на сервер, не записує його в базу даних, localStorage або sessionStorage. Після успішної перевірки й відкриття підтвердження поля очищуються. Без JavaScript кнопка надсилання вимкнена.</p></section>
-      <section class="space-y-3" aria-labelledby="privacy-local"><h2 id="privacy-local" class="font-heading text-heading-3">Налаштування на цьому пристрої</h2><p>Кошик, обране й чернетка міксу зберігаються локально у вашому браузері. Для відновлення незавершеного квізу сайт використовує сховище поточної вкладки. Ці дані відокремлені від тексту звернення. Ви можете прибрати їх, очистивши дані сайту в налаштуваннях браузера.</p></section>
-      <section class="space-y-3" aria-labelledby="privacy-external"><h2 id="privacy-external" class="font-heading text-heading-3">Зовнішні сервіси</h2><p>Сайт містить посилання на сторонні ресурси та зовнішні медіа. При їх відкритті або завантаженні застосовуються правила відповідного сервісу. Якщо ви надсилаєте повідомлення через пошту чи месенджер, це окреме звернення через обраний вами сервіс.</p></section>
-      <section class="space-y-3" aria-labelledby="privacy-consent"><h2 id="privacy-consent" class="font-heading text-heading-3">Ваша згода</h2><p>Позначка у формі підтверджує ознайомлення з описаною роботою цієї версії сайту. Вона не підписує вас на розсилку й не запускає передавання звернення. Перед підключенням справжнього приймання повідомлень умови та цей опис мають бути оновлені.</p></section>
-      <a class="inline-flex min-h-12 items-center rounded-control border border-solid border-brand-control px-4 py-3 font-medium text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" href="contacts.html">Повернутися до контактів</a>
+      <p class="text-brand-muted">
+        Ця сторінка пояснює, які дані використовують акаунт, оформлення замовлення та форма
+        звернення.
+      </p>
+      <section class="space-y-3" aria-labelledby="privacy-form">
+        <h2 id="privacy-form" class="font-heading text-heading-3">
+          Дані у формі зворотного зв’язку
+        </h2>
+        <p>
+          Форма містить ім’я, електронну пошту, телефон, тему звернення, повідомлення та згоду. Їх
+          використовують у браузері для перевірки правильності заповнення.
+        </p>
+        <p>
+          Форма працює як демонстрація: вона не надсилає звернення на сервер, не записує його в базу
+          даних, localStorage або sessionStorage. Після успішної перевірки й відкриття підтвердження
+          поля очищуються. Без JavaScript кнопка надсилання вимкнена.
+        </p>
+      </section>
+      <section class="space-y-3" aria-labelledby="privacy-account">
+        <h2 id="privacy-account" class="font-heading text-heading-3">Акаунт і замовлення</h2>
+        <p>
+          Під час реєстрації сервер зберігає ім’я, email та захищений хеш пароля. У профілі можна
+          додати телефон і адресу. Збережені мікси належать вашому акаунту. Під час оформлення
+          сервер зберігає контакти отримувача, адресу, склад, суму й стан замовлення.
+        </p>
+        <p>
+          Для входу використовується необхідна HttpOnly cookie сеансу до 7 днів. Вихід припиняє
+          поточний сеанс, а зміна пароля — попередні сеанси. Гостьове підтвердження захищене окремою
+          cookie протягом доби; гостьова покупка не додається автоматично в історію акаунта за
+          збігом email.
+        </p>
+        <p>
+          Ці дані зберігаються на сервері, тому очищення браузера не видаляє акаунт або замовлення.
+          Онлайн-оплату не підключено: реквізити платіжних карток сайт не збирає. Перевірку email та
+          листи поки не підключено.
+        </p>
+      </section>
+      <section class="space-y-3" aria-labelledby="privacy-local">
+        <h2 id="privacy-local" class="font-heading text-heading-3">
+          Налаштування на цьому пристрої
+        </h2>
+        <p>
+          Кошик, обране й чернетка міксу зберігаються локально у вашому браузері. Для відновлення
+          незавершеного квізу сайт використовує сховище поточної вкладки. Ці дані відокремлені від
+          тексту звернення. Ви можете прибрати їх, очистивши дані сайту в налаштуваннях браузера.
+        </p>
+      </section>
+      <section class="space-y-3" aria-labelledby="privacy-external">
+        <h2 id="privacy-external" class="font-heading text-heading-3">Зовнішні сервіси</h2>
+        <p>
+          Сайт містить посилання на сторонні ресурси та зовнішні медіа. При їх відкритті або
+          завантаженні застосовуються правила відповідного сервісу. Якщо ви надсилаєте повідомлення
+          через пошту чи месенджер, це окреме звернення через обраний вами сервіс.
+        </p>
+      </section>
+      <section class="space-y-3" aria-labelledby="privacy-consent">
+        <h2 id="privacy-consent" class="font-heading text-heading-3">Ваша згода</h2>
+        <p>
+          Позначка у формі підтверджує ознайомлення з описаною роботою цієї версії сайту. Вона не
+          підписує вас на розсилку й не запускає передавання звернення. Перед підключенням
+          справжнього приймання повідомлень умови та цей опис мають бути оновлені.
+        </p>
+      </section>
+      <a
+        class="inline-flex min-h-12 items-center rounded-control border border-solid border-brand-control px-4 py-3 font-medium text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+        href="contacts.html"
+        >Повернутися до контактів</a
+      >
     </main>
-<footer class="site-footer mo-footer" data-component="footer">
+    <footer class="site-footer mo-footer" data-component="footer">
       <div class="container">
         <section class="mo-footer-newsletter" aria-labelledby="mo-footer-news-title" data-mo-footer-reveal>
           <div><h2 id="mo-footer-news-title">Кава, яку варто спробувати</h2><p>Нові зерна, кавові поради й пропозиції — на пошту.</p></div>
