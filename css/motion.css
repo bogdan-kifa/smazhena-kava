@@ -1,4 +1,4 @@
-/* Opt-in enhancement: no mo-* classes are added until motion.js runs. */
+/* Header layout is static; optional motion enhances it after load. */
 .mo-ready main [id] {
   scroll-margin-top: calc(var(--mo-header-height, 0px) + 24px);
 }
@@ -128,7 +128,7 @@
   white-space: nowrap;
 }
 /* One filled cart icon and the same borderless surface on every page. */
-.mo-ready .mo-header a.mo-cart {
+.mo-header a.mo-cart {
   border: 0;
   box-shadow: none;
   background: var(--color-background-soft);
@@ -280,7 +280,7 @@
   bottom: calc(24px + var(--catalog-tray-height, 0px));
 }
 @media (max-width: 1100px) {
-  .mo-ready .mo-header > .mo-header-inner {
+  .mo-header > .mo-header-inner {
     grid-template-columns: minmax(0, 1fr) 44px 44px;
     gap: 8px;
   }
@@ -306,7 +306,7 @@
     height: 44px;
     padding: 10px;
   }
-  .mo-ready .mo-header a.mo-cart {
+  .mo-header a.mo-cart {
     border: var(--border-default);
     border-radius: var(--radius-control);
     background: var(--color-background-light);
@@ -521,14 +521,14 @@
 
 /* Desktop cart: a quiet outline and a separate, compact quantity. */
 @media (min-width: 1101px) {
-  .mo-ready .mo-header a.mo-cart {
+  .mo-header a.mo-cart {
     min-height: 44px;
     padding: 10px 12px;
     gap: 8px;
     border: var(--border-default);
     background: transparent;
   }
-  .mo-ready .mo-header a.mo-cart:hover {
+  .mo-header a.mo-cart:hover {
     border-color: var(--color-control-border);
     background: var(--color-background-soft);
   }
@@ -633,3 +633,12 @@
 [data-mo-auth] .mo-cabinet-field { display:grid; gap:8px; margin-block:16px; }
 [data-mo-auth] .mo-cabinet-field input { width:100%; min-height:48px; padding:12px; border:1px solid var(--color-control-border); border-radius:var(--radius-control); background:var(--color-surface); font:inherit; font-size:16px; }
 [data-mo-auth] .mo-cabinet-field input:focus-visible { outline:2px solid var(--color-accent-strong); outline-offset:3px; }
+
+/* Header fallback must work before scripts and without Tailwind utilities. */
+.mo-header .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.mo-header .mo-menu-toggle svg { width:18px; height:18px; }
+.mo-header .mo-menu:not([open]) .mo-menu-toggle svg:first-of-type { display:block; }
+.mo-header .mo-menu:not([open]) .mo-menu-toggle svg:last-of-type { display:none; }
+.mo-header .mo-menu[open] .mo-menu-toggle svg:first-of-type { display:none; }
+.mo-header .mo-menu[open] .mo-menu-toggle svg:last-of-type { display:block; }
+.mo-header .mo-cta svg { width:18px; height:18px; flex:none; }

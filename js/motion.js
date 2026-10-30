@@ -61,7 +61,7 @@
       if (previousIcon) previousIcon.replaceWith(icon);
       else cart.prepend(icon);
       const caption = n("span", { class: "mo-cart-caption", text: "Кошик" });
-      cart.prepend(caption);
+      if (!cart.querySelector(".mo-cart-caption")) cart.prepend(caption);
     }
     for (const a of header.querySelectorAll("nav a[href]")) {
       a.classList.add("mo-nav-link");
