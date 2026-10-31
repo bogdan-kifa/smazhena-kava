@@ -1,0 +1,53 @@
+/* Photo-led packaging choices; native radio controls retain selection and focus. */
+.mix-packaging-label.mo-packaging-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  min-height: 0;
+  padding: 6px;
+}
+.mo-packaging-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  border-radius: calc(var(--radius-card) - 4px);
+}
+.mo-packaging-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 12px 12px;
+}
+.mo-packaging-copy strong { min-height: 2.8em; }
+.mo-packaging-copy .mix-packaging-price { margin-top: auto; }
+.mo-packaging-card .mix-choice-mark {
+  z-index: 1;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px var(--color-surface);
+}
+@media (max-width: 767px) {
+  .mix-packaging-label.mo-packaging-card {
+    flex-direction: row;
+    align-items: center;
+    min-height: 112px;
+  }
+  .mo-packaging-photo {
+    flex: 0 0 104px;
+    width: 104px;
+    height: 104px;
+    aspect-ratio: 1;
+  }
+  .mo-packaging-copy { min-width: 0; gap: 8px; padding: 12px 30px 12px 12px; }
+  .mo-packaging-copy strong { min-height: 0; padding-right: 0; }
+  .mo-packaging-copy .mix-packaging-price { margin-top: 0; }
+  .mo-packaging-card .mix-choice-mark { top: 12px; right: 12px; }
+}
+@media (max-width: 359px) {
+  .mo-packaging-photo { flex-basis: 80px; width: 80px; height: 96px; }
+  .mo-packaging-copy { padding-left: 8px; padding-right: 26px; }
+}

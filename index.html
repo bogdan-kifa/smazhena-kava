@@ -65,8 +65,6 @@
 
     <script src="js/carousel.js" defer></script>
 
-    <script src="js/reviews.js" defer></script>
-
     <link rel="stylesheet" href="css/motion.css" />
     <link rel="stylesheet" href="css/coffee-fact-motion.css" />
     <link rel="stylesheet" href="css/coffee-world-motion.css" />
@@ -77,6 +75,14 @@
     <script src="js/coffee-world.js" defer></script>
     <script src="js/footer-config.js" defer></script>
     <script src="js/footer.js" defer></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css" integrity="sha384-gAPqlBuTCdtVcYt9ocMOYWrnBZ4XSL6q+4eXqwNycOr4iFczhNKtnYhF3NEXJM51" crossorigin="anonymous" data-mo-library="swiper-css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" integrity="sha384-qlUhevqmCF5AxtnfkF0zXJClBzA6GJuX/UrLejCfE61bBGt+zo/My0AJ+ojVmUSb" crossorigin="anonymous" data-mo-library="fancybox-css" />
+<link rel="stylesheet" href="css/media-components.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js" integrity="sha384-2UI1PfnXFjVMQ7/ZDEF70CR943oH3v6uZrFQGGqJYlvhh4g6z6uVktxYbOlAczav" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" integrity="sha384-BodKYo5iRmFaqEaP1o8AAu9hCHqLvNhSWEg12QF1IjPnl1SgsrwQMSMKUB4POJ18" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js" integrity="sha384-cMrTlShXEGSdSFA359p+3aVUxK/R+0TAfbRZMcTlAn8yqzxEDj05QsS65nTFMMj4" crossorigin="anonymous" defer></script>
+<script src="js/media-components.js" defer></script>
   </head>
 
   <body>
@@ -183,6 +189,7 @@
     </header>
 
 
+
     <!-- Один main містить основний контент; кожна section має тематичний заголовок. -->
 
     <main id="main-content" class="page-content focus:outline-none" tabindex="-1">
@@ -197,9 +204,11 @@
               Персональний кавовий мікс
             </p>
 
-            <h1 id="hero-title" class="font-heading text-hero font-semibold">
-              Створи каву, яка підходить саме тобі
-            </h1>
+            <div class="mo-media-hero-heading"><h1 id="hero-title" class="font-heading text-hero font-semibold">
+  <span class="sr-only">Створи каву, яка підходить саме тобі</span>
+  <span aria-hidden="true">Створи каву<span class="mo-media-typed-line"><span id="mo-media-typed">під свій смак</span></span></span>
+</h1>
+</div>
 
             <p class="text-brand-muted">
               Свіжообсмажена кава за твоїм рецептом. Обирай зерно, обсмаження та помел — у
@@ -827,7 +836,6 @@
                       <button
                         class="inline-flex min-h-12 w-full min-w-0 flex-1 items-center justify-center rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-center font-sans text-sm font-semibold text-brand-background transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand enabled:hover:border-brand-hover enabled:hover:bg-brand-hover enabled:active:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-disabled motion-reduce:transition-none xl:w-auto"
                         type="button"
-                        aria-describedby="mix-action-note"
                         disabled
                       >
                         Додати до міксу
@@ -917,7 +925,6 @@
                       <button
                         class="inline-flex min-h-12 w-full min-w-0 flex-1 items-center justify-center rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-center font-sans text-sm font-semibold text-brand-background transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand enabled:hover:border-brand-hover enabled:hover:bg-brand-hover enabled:active:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-disabled motion-reduce:transition-none xl:w-auto"
                         type="button"
-                        aria-describedby="mix-action-note"
                         disabled
                       >
                         Додати до міксу
@@ -1007,7 +1014,6 @@
                       <button
                         class="inline-flex min-h-12 w-full min-w-0 flex-1 items-center justify-center rounded-lg border border-solid border-brand bg-brand px-3 py-3 text-center font-sans text-sm font-semibold text-brand-background transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand enabled:hover:border-brand-hover enabled:hover:bg-brand-hover enabled:active:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-disabled motion-reduce:transition-none xl:w-auto"
                         type="button"
-                        aria-describedby="mix-action-note"
                         disabled
                       >
                         Додати до міксу
@@ -1018,51 +1024,33 @@
               </article>
             </li>
           </ul>
-
-          <p id="mix-action-note" class="m-0 mt-4 text-sm leading-6 text-brand-muted">
-            Додавання до міксу буде доступне пізніше.
-          </p>
         </div>
       </section>
 
-      <section class="pb-16 pt-0" id="reviews" aria-labelledby="reviews-title">
-        <div class="container">
-          <p
-            class="mb-3 font-sans text-caption font-bold uppercase tracking-eyebrow text-brand-accent-strong"
-          >
-            Демонстраційні відгуки
-          </p>
+      <section class="mo-media-gallery" id="coffee-gallery-section" aria-labelledby="mo-media-gallery-title"><div class="container">
+<div class="mo-media-heading"><p class="eyebrow">Твій спосіб — твоя чашка</p><h2 class="font-heading text-heading-2 font-semibold" id="mo-media-gallery-title">Як готуєш свою каву?</h2><p>Роздивись способи приготування та підбери відповідний помел.</p></div>
+<ul class="mo-media-gallery-grid" role="list"><li><a class="mo-media-photo" href="assets/images/brewing/espresso.webp" data-fancybox="coffee-gallery" data-caption="Еспресо — дрібний помел. Для кавомашини або ріжкової кавоварки. Насичена чашка з крема.">
+<span class="mo-media-photo-frame"><img src="assets/images/brewing/espresso-640.webp" srcset="assets/images/brewing/espresso-640.webp 640w, assets/images/brewing/espresso.webp 1536w" sizes="(min-width:1280px) 384px, (min-width:768px) 30vw, 100vw" alt="Кавомашина готує еспресо в керамічну чашку" width="1536" height="1024" loading="lazy" decoding="async" />
+<span class="mo-media-photo-open" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5M10.5 8v5"/></svg></span></span>
+<span class="mo-media-method-copy"><span class="mo-media-photo-caption">Еспресо<span aria-hidden="true">↗</span></span><span class="mo-media-method-description">Для кавомашини або ріжкової кавоварки. Насичена чашка з крема.</span><span class="mo-media-method-grind">Дрібний помел</span></span></a></li><li><a class="mo-media-photo" href="assets/images/brewing/filter.webp" data-fancybox="coffee-gallery" data-caption="Фільтр — середній помел. Для пуровера, V60 або крапельної кавоварки. Легка чашка з виразними нотами.">
+<span class="mo-media-photo-frame"><img src="assets/images/brewing/filter-640.webp" srcset="assets/images/brewing/filter-640.webp 640w, assets/images/brewing/filter.webp 1536w" sizes="(min-width:1280px) 384px, (min-width:768px) 30vw, 100vw" alt="Керамічний пуровер із паперовим фільтром на скляному сервері" width="1536" height="1024" loading="lazy" decoding="async" />
+<span class="mo-media-photo-open" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5M10.5 8v5"/></svg></span></span>
+<span class="mo-media-method-copy"><span class="mo-media-photo-caption">Фільтр<span aria-hidden="true">↗</span></span><span class="mo-media-method-description">Для пуровера, V60 або крапельної кавоварки. Легка чашка з виразними нотами.</span><span class="mo-media-method-grind">Середній помел</span></span></a></li><li><a class="mo-media-photo" href="assets/images/brewing/cezve.webp" data-fancybox="coffee-gallery" data-caption="Джезва — дуже дрібний помел. Для приготування в джезві. Щільний, ароматний напій без паперового фільтра.">
+<span class="mo-media-photo-frame"><img src="assets/images/brewing/cezve-640.webp" srcset="assets/images/brewing/cezve-640.webp 640w, assets/images/brewing/cezve.webp 1536w" sizes="(min-width:1280px) 384px, (min-width:768px) 30vw, 100vw" alt="Мідна джезва з кавою та невелика керамічна чашка" width="1536" height="1024" loading="lazy" decoding="async" />
+<span class="mo-media-photo-open" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5M10.5 8v5"/></svg></span></span>
+<span class="mo-media-method-copy"><span class="mo-media-photo-caption">Джезва<span aria-hidden="true">↗</span></span><span class="mo-media-method-description">Для приготування в джезві. Щільний, ароматний напій без паперового фільтра.</span><span class="mo-media-method-grind">Дуже дрібний помел</span></span></a></li></ul></div></section>
 
-          <h2 id="reviews-title" class="max-w-copy font-heading text-heading-2 font-semibold">
-            Враження від персонального підбору
-          </h2>
-
-          <p id="reviews-note" class="mt-3 max-w-copy text-body-sm text-brand-muted">
-            Приклади відгуків для демонстрації макета.
-          </p>
-
-          <!-- blockquote містить цитату; figcaption пов'язує її з автором. -->
-
-          <ul
-            class="m-0 mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3 shop-carousel relative"
-            id="home-reviews-carousel"
-            tabindex="0"
-            aria-label="Відгуки з горизонтальним гортанням"
-            role="list"
-          >
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+<section class="pb-16 pt-0" id="reviews" aria-labelledby="reviews-title">
+<div class="container">
+<p class="mb-3 font-sans text-caption font-bold uppercase tracking-eyebrow text-brand-accent-strong">Демонстраційні відгуки</p>
+<h2 id="reviews-title" class="max-w-copy font-heading text-heading-2 font-semibold">Враження від персонального підбору</h2>
+<p id="reviews-note" class="mt-3 max-w-copy text-body-sm text-brand-muted">Приклади відгуків для демонстрації макета.</p>
+<div class="swiper mo-media-reviews" id="home-reviews-slider" role="region" aria-label="Відгуки про персональний підбір кави" tabindex="0">
+<ul class="swiper-wrapper mo-media-review-list" id="home-reviews-carousel" role="list">
+<li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1073,26 +1061,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Олена</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">О</span><p class="text-body-sm font-bold">Олена</p>
 
                   <p class="text-caption text-brand-muted">Мікс «Ранок» · фільтр</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1100,26 +1079,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Андрій</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">А</span><p class="text-body-sm font-bold">Андрій</p>
 
                   <p class="text-caption text-brand-muted">Ефіопія Guji · еспресо</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1129,26 +1099,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Марія</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">М</span><p class="text-body-sm font-bold">Марія</p>
 
                   <p class="text-caption text-brand-muted">Квіз-підбір · джезва</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1159,26 +1120,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Ірина</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">І</span><p class="text-body-sm font-bold">Ірина</p>
 
                   <p class="text-caption text-brand-muted">Бразилія Cerrado · еспресо</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1189,26 +1141,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Дмитро</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">Д</span><p class="text-body-sm font-bold">Дмитро</p>
 
                   <p class="text-caption text-brand-muted">Колумбія Huila · фільтр</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1219,26 +1162,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Софія</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">С</span><p class="text-body-sm font-bold">Софія</p>
 
                   <p class="text-caption text-brand-muted">Власний мікс · подарункова коробка</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1249,26 +1183,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Максим</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">М</span><p class="text-body-sm font-bold">Максим</p>
 
                   <p class="text-caption text-brand-muted">Ефіопія Yirgacheffe · фільтр</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1279,26 +1204,17 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Катерина</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">К</span><p class="text-body-sm font-bold">Катерина</p>
 
                   <p class="text-caption text-brand-muted">Бразилія Cerrado · зелене зерно</p>
                 </figcaption>
               </figure>
             </li>
 
-            <li class="flex min-w-0 flex-col">
-              <figure
-                class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6"
-              >
+            <li class="swiper-slide mo-media-review-slide">
+              <figure class="flex min-w-0 flex-1 flex-col gap-4 rounded-card border border-solid border-brand-border bg-brand-surface p-4 shadow-card md:p-6 mo-media-review-card">
                 <p class="review-rating">
-                  <span class="sr-only">Оцінка: 5 із 5</span
-                  ><span class="inline-flex gap-1" aria-hidden="true"
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                    ><i class="fa-solid fa-star icon" aria-hidden="true"></i
-                  ></span>
+                  <span class="sr-only">Оцінка: 5 із 5</span><span class="inline-flex gap-1" aria-hidden="true"><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i><i class="fa-solid fa-star icon" aria-hidden="true"></i></span>
                 </p>
 
                 <blockquote class="text-body-sm">
@@ -1309,48 +1225,22 @@
                 </blockquote>
 
                 <figcaption class="mt-auto flex flex-col gap-1 pt-2">
-                  <p class="text-body-sm font-bold">Тарас</p>
+                  <span class="mo-media-review-avatar" aria-hidden="true">Т</span><p class="text-body-sm font-bold">Тарас</p>
 
                   <p class="text-caption text-brand-muted">Власний мікс · джезва</p>
                 </figcaption>
               </figure>
             </li>
-          </ul>
 
-          <div class="shop-carousel-controls" id="reviews-controls" hidden>
-            <span
-              class="muted"
-              id="reviews-position"
-              role="status"
-              aria-live="polite"
-              aria-atomic="true"
-            ></span>
-
-            <div class="actions">
-              <button
-                class="button button-secondary"
-                id="reviews-previous"
-                type="button"
-                aria-label="Попередні відгуки"
-                aria-controls="home-reviews-carousel"
-                disabled
-              >
-                ←
-              </button>
-
-              <button
-                class="button button-secondary"
-                id="reviews-next"
-                type="button"
-                aria-label="Наступні відгуки"
-                aria-controls="home-reviews-carousel"
-              >
-                →
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+</ul></div>
+<div class="mo-media-review-controls" id="reviews-controls" hidden>
+<span class="visually-hidden" id="reviews-position" role="status" aria-live="off" aria-atomic="true"></span>
+<div class="mo-media-review-actions">
+<button class="mo-media-control" id="reviews-previous" type="button" aria-label="Попередні відгуки" aria-controls="home-reviews-carousel">←</button>
+<button class="mo-media-control" id="reviews-next" type="button" aria-label="Наступні відгуки" aria-controls="home-reviews-carousel">→</button>
+</div>
+<div class="mo-media-pagination" id="reviews-pagination" aria-label="Вибір відгуку" hidden></div></div>
+</div></section>
 
       <section class="mo-world container" id="coffee-world" aria-labelledby="mo-world-title">
         <div class="mo-world-heading">

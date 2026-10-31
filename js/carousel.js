@@ -60,7 +60,7 @@
   list.id = "home-coffee-carousel";
   list.tabIndex = 0;
   list.setAttribute("aria-label", "Добірка кави з горизонтальним гортанням");
-  const label = n("span", { class: "muted", "aria-live": "polite" }),
+  const label = n("span", { class: "visually-hidden", "aria-live": "polite" }),
     prev = n("button", {
       type: "button",
       class: "button button-secondary",

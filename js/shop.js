@@ -828,10 +828,7 @@
       buttons[1].addEventListener("click", () => addBean(id, roastSelect?.value || "medium"));
     }
   }
-  document
-    .querySelector("#mix-action-note")
-    ?.replaceChildren("Додавайте сорти до міксу, а вагу й пропорції налаштовуйте у конструкторі.");
-  const catalogFooterLink = document.querySelector('footer a[href$="catalog.html"]');
+const catalogFooterLink = document.querySelector('footer a[href$="catalog.html"]');
   if (catalogFooterLink?.closest("ul") && !catalogFooterLink.closest("ul").querySelector('a[href$="my-mixes.html"]')) {
     catalogFooterLink.closest("ul").append(
       node(

@@ -124,6 +124,7 @@
     </header>
 
 
+
     <main id="product-content" tabindex="-1">
       <div class="container catalog-heading product-heading">
         <nav class="breadcrumbs" aria-label="Шлях до сторінки">
@@ -139,34 +140,7 @@
       <section class="container product-detail" aria-labelledby="product-detail-title">
         <h2 id="product-detail-title" class="visually-hidden">Фото та характеристики кави</h2>
         <div class="product-detail-grid">
-          <!-- Мініатюри показують різні кадрування наявного фото, а не три окремі фотографії. -->
-          <fieldset class="product-gallery">
-            <legend class="visually-hidden">Вигляд упаковки кави</legend>
-            <input
-              class="visually-hidden"
-              type="radio"
-              name="product-photo"
-              id="photo-overview"
-              value="overview"
-              checked
-            />
-            <input
-              class="visually-hidden"
-              type="radio"
-              name="product-photo"
-              id="photo-close"
-              value="close"
-            />
-            <input
-              class="visually-hidden"
-              type="radio"
-              name="product-photo"
-              id="photo-detail"
-              value="detail"
-            />
-            <div class="product-gallery-stage">
-              <figure class="product-view-overview">
-                <img
+          <figure class="product-gallery"><img style="width:100%;height:auto;border-radius:var(--radius-card)"
                   src="../assets/images/coffee/rwanda-nyamasheke-packaging.webp"
                   srcset="
                     ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-400.webp  400w,
@@ -177,89 +151,7 @@
                   width="1536"
                   height="1024"
                   fetchpriority="high"
-                />
-              </figure>
-              <figure class="product-view-close">
-                <img
-                  src="../assets/images/coffee/rwanda-nyamasheke-packaging.webp"
-                  srcset="
-                    ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-400.webp  400w,
-                    ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-800.webp  800w,
-                    ../assets/images/coffee/rwanda-nyamasheke-packaging.webp                1536w
-                  "
-                  alt="Ілюстративна упаковка: Руанда Nyamasheke"
-                  width="1536"
-                  height="1024"
-                  decoding="async"
-                />
-              </figure>
-              <figure class="product-view-detail">
-                <img
-                  src="../assets/images/coffee/rwanda-nyamasheke-packaging.webp"
-                  srcset="
-                    ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-400.webp  400w,
-                    ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-800.webp  800w,
-                    ../assets/images/coffee/rwanda-nyamasheke-packaging.webp                1536w
-                  "
-                  alt="Ілюстративна упаковка: Руанда Nyamasheke"
-                  width="1536"
-                  height="1024"
-                  decoding="async"
-                />
-              </figure>
-              <span class="product-badge">Single origin</span>
-            </div>
-            <ul class="product-thumbnails" role="list">
-              <li>
-                <label class="product-thumbnail" for="photo-overview"
-                  ><img
-                    src="../assets/images/coffee/rwanda-nyamasheke-packaging.webp"
-                    srcset="
-                      ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-400.webp  400w,
-                      ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-800.webp  800w,
-                      ../assets/images/coffee/rwanda-nyamasheke-packaging.webp                1536w
-                    "
-                    alt=""
-                    width="1536"
-                    height="1024"
-                    decoding="async"
-                  /><span class="visually-hidden">Загальний вигляд</span></label
-                >
-              </li>
-              <li>
-                <label class="product-thumbnail product-thumbnail-close" for="photo-close"
-                  ><img
-                    src="../assets/images/coffee/rwanda-nyamasheke-packaging.webp"
-                    srcset="
-                      ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-400.webp  400w,
-                      ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-800.webp  800w,
-                      ../assets/images/coffee/rwanda-nyamasheke-packaging.webp                1536w
-                    "
-                    alt=""
-                    width="1536"
-                    height="1024"
-                    decoding="async"
-                  /><span class="visually-hidden">Крупний план</span></label
-                >
-              </li>
-              <li>
-                <label class="product-thumbnail product-thumbnail-detail" for="photo-detail"
-                  ><img
-                    src="../assets/images/coffee/rwanda-nyamasheke-packaging.webp"
-                    srcset="
-                      ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-400.webp  400w,
-                      ../assets/images/coffee/responsive/rwanda-nyamasheke-packaging-800.webp  800w,
-                      ../assets/images/coffee/rwanda-nyamasheke-packaging.webp                1536w
-                    "
-                    alt=""
-                    width="1536"
-                    height="1024"
-                    decoding="async"
-                  /><span class="visually-hidden">Деталі упаковки</span></label
-                >
-              </li>
-            </ul>
-          </fieldset>
+                /></figure>
           <div class="product-information">
             <p class="eyebrow">Руанда · Світле</p>
             <ul class="product-tasting-notes" role="list" aria-label="Смакові ноти">

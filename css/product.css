@@ -333,3 +333,19 @@
 .product-origin .eyebrow {
   color: var(--color-primary);
 }
+
+/* Keep the single product photo beside the longer purchase column on desktop. */
+@media (min-width: 1000px) and (min-height: 500px) {
+  .product-detail-grid > .product-gallery {
+    position: sticky;
+    top: var(--spacing-lg);
+    align-self: start;
+  }
+
+  .product-detail-grid > .product-gallery > img {
+    display: block;
+    max-height: calc(100vh - 2 * var(--spacing-lg));
+    max-height: calc(100svh - 2 * var(--spacing-lg));
+    object-fit: contain;
+  }
+}
