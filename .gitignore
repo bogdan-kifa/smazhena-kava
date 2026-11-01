@@ -1,9 +1,12 @@
 node_modules/
 *.log
-tatus
 
 .env
 .env.*
 !.env.example
 .data/
 public/
+.vercel/
+.DS_Store
+Thumbs.db
+coverage/

@@ -2,7 +2,7 @@
 const fs=require("node:fs"),path=require("node:path");
 const root=path.resolve(__dirname,"..");
 function synchronize(){
- const parts=Object.fromEntries(["header","footer"].map(tag=>[tag,fs.readFileSync(path.join(__dirname,"layouts",tag+".html"),"utf8")]));
+ const parts=Object.fromEntries(["header","footer"].map(tag=>[tag,fs.readFileSync(path.join(__dirname,"layouts",tag+".html"),"utf8").trimEnd()]));
  const pages=[...fs.readdirSync(root).filter(f=>f.endsWith(".html")),...fs.readdirSync(path.join(root,"products")).filter(f=>f.endsWith(".html")).map(f=>"products/"+f)];
  for(const page of pages){
   const filename=path.join(root,page),prefix=page.startsWith("products/")?"../":"";
