@@ -10,7 +10,8 @@
     "start": "node --env-file-if-exists=.env server/index.cjs",
     "dev": "node --watch --env-file-if-exists=.env server/index.cjs",
     "build": "node server/build.cjs",
-    "test:backend": "node --test server/tests/*.test.cjs"
+    "test:backend": "node --test server/tests/*.test.cjs",
+    "test:constructor": "node tests/constructor-check.cjs"
   },
   "devDependencies": {
     "prettier": "3.9.10",

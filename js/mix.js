@@ -1,9 +1,23 @@
 (() => {
   "use strict";
-  const S = window.CoffeeShop,
-    { node: n } = S;
+  const S = window.CoffeeShop;
   const form = document.getElementById("mix-form");
   if (!form) return;
+  const required = [".mix-settings", "#mix-form-status", ".mix-options",
+    "#mix-profile-title", "#mix-total-status", "#mix-proportions-title",
+    ".mix-ratios", ".mix-summary-actions", ".mix-price", ".mix-delivery-row",
+    ".mix-delivery-progress"];
+  if (!S || !window.CoffeeBeanPicker || !window.CoffeeMixCustomizer ||
+      !window.CoffeeMixProfile || required.some((selector) => !document.querySelector(selector)) ||
+      document.querySelectorAll(".mix-summary-list").length < 2 ||
+      document.querySelectorAll(".mix-summary-actions button").length < 3) {
+    const warning = document.createElement("p");
+    warning.setAttribute("role", "alert");
+    warning.textContent = "Не вдалося завантажити конструктор. Оновіть сторінку або оберіть каву в каталозі.";
+    form.append(warning);
+    return;
+  }
+  const { node: n } = S;
   form.querySelector(".mix-settings").disabled = false;
   form.addEventListener("submit", (e) => e.preventDefault());
   const status = document.getElementById("mix-form-status");
@@ -75,6 +89,7 @@
   const ratioRows = ratioSection.querySelector(".mix-ratios");
   ratioSection.classList.add("mix-proportions-enhanced");
   const ratioControls = new Map();
+  const invalidRatioInputs = new Set();
   const ratioColors = new Map();
   const composition = n("div", {
     class: "mix-composition",
@@ -128,7 +143,7 @@
   );
   function summary() {
     const m = S.get().draft,
-      ready = S.validMix(m),
+      ready = S.validMix(m) && invalidRatioInputs.size === 0,
       total = ready ? S.mixPrice(m) : 0,
       percentage = m.beans.reduce((sum, bean) => sum + bean.ratio, 0);
     updateRatioTools(m);
@@ -156,7 +171,9 @@
     const deliveryProgress = document.querySelector(".mix-delivery-progress");
     deliveryProgress.value = Math.min(800, total / 100);
     deliveryProgress.textContent = `${S.money(Math.min(80000, total))} з ${S.money(80000)}`;
-    const totalText = !m.beans.length
+    const totalText = invalidRatioInputs.size
+      ? "Перевірте частки сортів"
+      : !m.beans.length
       ? "0% · додайте зерна"
       : ready
         ? "100% · готово"
@@ -167,7 +184,9 @@
     totalBadge.dataset.invalid = String(!ready);
     const needsShares = m.beans.length > 0 && !ready;
     actionStatus.hidden = !needsShares;
-    actionStatus.textContent = needsShares
+    actionStatus.textContent = invalidRatioInputs.size
+      ? "Виправте частки сортів: введіть цілі числа від 0 до 100."
+      : needsShares
       ? `Сума часток — ${percentage}%. ${percentage < 100 ? `Додайте ще ${100 - percentage}%` : `Зменште частки на ${percentage - 100}%`}.`
       : "";
     actionStatus.dataset.invalid = String(needsShares);
@@ -184,6 +203,11 @@
       syncRatioInputs(id);
       return;
     }
+    invalidRatioInputs.delete(id);
+    const ratioError = document.getElementById(`percent-error-${id}`);
+    const ratioNumber = document.getElementById(`percent-${id}`);
+    if (ratioError) ratioError.hidden = true;
+    if (ratioNumber) ratioNumber.setAttribute("aria-invalid", "false");
     const scheduled = scheduledRatios.get(id);
     if (scheduled?.value === value) return scheduled.promise;
     const current = S.get().draft.beans.find((bean) => bean.id === id);
@@ -221,10 +245,14 @@
     }
     for (const bean of beans) {
       if (id && bean.id !== id) continue;
+      invalidRatioInputs.delete(bean.id);
+      const error = document.getElementById(`percent-error-${bean.id}`);
+      if (error) error.hidden = true;
       const slider = document.getElementById(`ratio-${bean.id}`),
         number = document.getElementById(`percent-${bean.id}`);
       if (!slider || !number) continue;
       slider.value = number.value = bean.ratio;
+      number.setAttribute("aria-invalid", "false");
       slider.setAttribute("aria-valuetext", `${bean.ratio} відсотків`);
       slider.closest(".mix-ratio-row").style.setProperty("--mix-ratio", `${bean.ratio}%`);
     }
@@ -295,6 +323,7 @@
     const rows = ratioRows;
     rows.replaceChildren();
     ratioControls.clear();
+    invalidRatioInputs.clear();
     composition.replaceChildren(compositionEmpty);
     ratioColors.clear();
     for (const bean of m.beans) ratioColors.set(bean.id, bean.slot);
@@ -322,11 +351,28 @@
           "aria-label": `Частка кави ${p.name}, відсотків`,
         });
       slider.addEventListener("input", () => ratio(b.id, Number(slider.value)));
-      number.addEventListener("input", () => {
-        const value = number.valueAsNumber;
-        if (Number.isInteger(value) && value >= 0 && value <= 100) ratio(b.id, value);
+      const fieldError = n("p", {
+        id: `percent-error-${b.id}`,
+        class: "mix-ratio-error",
+        role: "status",
+        hidden: true,
+        text: "Введіть ціле число від 0 до 100.",
       });
-      number.addEventListener("change", () => ratio(b.id, number.valueAsNumber));
+      number.setAttribute("aria-describedby", `mix-total-status ${fieldError.id}`);
+      number.setAttribute("aria-invalid", "false");
+      function validateNumber() {
+        const value = number.valueAsNumber;
+        const valid = number.value.trim() !== "" && Number.isInteger(value) && value >= 0 && value <= 100;
+        number.setAttribute("aria-invalid", String(!valid));
+        fieldError.hidden = valid;
+        if (valid) invalidRatioInputs.delete(b.id);
+        else invalidRatioInputs.add(b.id);
+        summary();
+        if (valid) ratio(b.id, value);
+      }
+      number.addEventListener("input", validateNumber);
+      number.addEventListener("change", validateNumber);
+      number.addEventListener("blur", validateNumber);
       const minus = n("button", {
         id: `ratio-minus-${b.id}`,
         type: "button",
@@ -408,6 +454,7 @@
           ),
         ),
         n("div", { class: "mix-ratio-adjust" }, slider, balance),
+        fieldError,
       );
       row.style.setProperty("--mix-ratio", `${b.ratio}%`);
       rows.append(row);

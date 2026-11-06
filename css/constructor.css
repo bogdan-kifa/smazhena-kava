@@ -1033,3 +1033,7 @@
     min-height: 44px;
   }
 }
+
+/* Lab 11: invalid proportions remain visible and block purchase. */
+.mix-ratio-error { color: var(--color-error, var(--color-primary)); font-size: .875rem; margin: .35rem 0 0; }
+.mix-percent-field input[aria-invalid="true"] { outline: 2px solid var(--color-error, var(--color-primary)); outline-offset: 2px; }

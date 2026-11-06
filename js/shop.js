@@ -85,10 +85,24 @@
       updatedAt: isoDate(value.updatedAt),
     };
   }
-  const validMix = (m) =>
-    m.beans.length > 0 &&
-    m.beans.every((b) => Number.isInteger(b.ratio) && b.ratio >= 0 && b.ratio <= 100) &&
-    m.beans.reduce((s, b) => s + b.ratio, 0) === 100;
+  // Validate the whole recipe before trusting it in calculations.
+  const validMix = (m) => {
+    if (!m || typeof m !== "object" || !Array.isArray(m.beans) ||
+        m.beans.length < 1 || m.beans.length > 4 ||
+        !weights.includes(m.weight) || !Object.hasOwn(grinds, m.grind) ||
+        !Object.hasOwn(packaging, m.packaging)) return false;
+    const seen = new Set();
+    for (const bean of m.beans) {
+      if (!bean || typeof bean !== "object" || !byId.has(bean.id) ||
+          seen.has(bean.id) || !Number.isInteger(bean.ratio) ||
+          bean.ratio < 0 || bean.ratio > 100) return false;
+      const product = byId.get(bean.id);
+      if (!Number.isSafeInteger(product.price) || product.price < 0 ||
+          (isGreen(product) && !Object.hasOwn(roasts, bean.roast))) return false;
+      seen.add(bean.id);
+    }
+    return m.beans.reduce((sum, bean) => sum + bean.ratio, 0) === 100;
+  };
   function recipe(value) {
     const result = mix(value);
     result.beans = result.beans.filter((b) => b.ratio > 0);
@@ -305,10 +319,15 @@
       .format(cents / 100)
       .replace(/грн\.?/u, "₴");
   const productPrice = (p, weight = 250) => Math.round((p.price * weight) / 250);
-  const mixPrice = (m) =>
-    Math.round(
-      (m.beans.reduce((s, b) => s + (byId.get(b.id).price * b.ratio) / 100, 0) * m.weight) / 250,
-    ) + (packaging[m.packaging]?.price || 0);
+  const mixPrice = (m) => {
+    // Invalid or incomplete drafts have no purchasable total.
+    if (!validMix(m)) return 0;
+    const total = Math.round(
+      (m.beans.reduce((sum, bean) => sum + byId.get(bean.id).price * bean.ratio / 100, 0)
+        * m.weight) / 250,
+    ) + packaging[m.packaging].price;
+    return Number.isSafeInteger(total) && total >= 0 ? total : 0;
+  };
   const tasteDimensions = {
     acidity: "Кислотність",
     sweetness: "Солодкість",
