@@ -96,12 +96,73 @@
   }
   const hero = document.getElementById("hero"),
     video = document.getElementById("hero-video");
+  function playHeroBeans(hero, mixLink, origin) {
+    const stage = hero.getBoundingClientRect();
+    const button = mixLink.getBoundingClientRect();
+    const targetX = button.right - stage.left - 28;
+    const targetY = button.top - stage.top + button.height / 2;
+    const visibleHeight = Math.min(
+      stage.height,
+      Math.max(targetY + 24, window.innerHeight - Math.max(0, stage.top)),
+    );
+    const sizeScale = stage.width < 600 ? 0.72 : 1;
+    const colors = ["--color-accent", "--color-primary", "--color-accent-strong"];
+    // Alternate edges so the first wave spans the whole hero on any screen.
+    const paths = [
+      [.9, .2, 3.4], [.11, .22, 2.8], [.75, .88, 3.2], [.18, .8, 2.2],
+      [.64, .14, 2.1], [.94, .6, 2.6], [.31, .13, 2.6], [.49, .86, 2.8],
+      [.8, .39, 1.8], [.08, .51, 1.8], [.57, .36, 2.6], [.33, .69, 1.8],
+      [.84, .73, 2.1], [.41, .26, 2.2], [.65, .58, 1.5],
+    ];
+    const point = (x, y) => `${x - 12}px, ${y - 12}px`;
+    const beans = document.createDocumentFragment();
+    origin.setAttribute("transform", `translate(${targetX} ${targetY})`);
+
+    paths.forEach(([x, y, size], index) => {
+      const dx = stage.width * x - targetX;
+      const dy = visibleHeight * y - targetY;
+      const bean = document.createElementNS(origin.namespaceURI, "use");
+      bean.classList.add("mo-hero-bean");
+      bean.setAttribute("href", "#hero-coffee-bean");
+      bean.style.color = `var(${colors[index % colors.length]})`;
+      bean.style.setProperty("--mo-bean-start", point(dx, dy));
+      bean.style.setProperty("--mo-bean-arc", point(.67 * dx - .24 * dy, .24 * dx + .67 * dy));
+      bean.style.setProperty("--mo-bean-near", point(.24 * dx - .28 * dy, .28 * dx + .24 * dy));
+      bean.style.setProperty("--mo-bean-angle", `${index * 43 - 74}deg`);
+      bean.style.setProperty("--mo-bean-size", size * sizeScale);
+      bean.style.setProperty("--mo-bean-delay", `${index * 52}ms`);
+      beans.append(bean);
+    });
+    origin.prepend(beans);
+    const lastBean = origin.querySelector(".mo-hero-bean:last-of-type");
+    const finish = () => {
+      hero.classList.remove("mo-hero-beans-play");
+      origin.querySelectorAll(".mo-hero-bean").forEach((bean) => bean.remove());
+      media.removeEventListener("change", finish);
+    };
+    lastBean.addEventListener("animationend", finish, { once: true });
+    media.addEventListener("change", finish);
+    hero.classList.add("mo-hero-beans-play");
+  }
   if (config.hero && hero) {
     const copy = hero.querySelector("h1")?.parentElement;
     [...(copy?.children || [])].forEach((el, index) => {
       el.classList.add("mo-hero-line");
       el.style.setProperty("--mo-delay", `${index * 85}ms`);
     });
+    const mixLink = hero.querySelector("[data-hero-bean-cta]");
+    const beanOrigin = hero.querySelector(".mo-hero-origin");
+    if (mixLink && beanOrigin && canMove()) {
+      const visitKey = "coffee:hero-beans-v3-seen";
+      let alreadyPlayed = false;
+      try {
+        alreadyPlayed = sessionStorage.getItem(visitKey) === "1";
+        if (!alreadyPlayed) sessionStorage.setItem(visitKey, "1");
+      } catch {
+        // The entrance can still play when storage is unavailable.
+      }
+      if (!alreadyPlayed) playHeroBeans(hero, mixLink, beanOrigin);
+    }
   }
   if (config.tilt && video) {
     const panel = video.parentElement;

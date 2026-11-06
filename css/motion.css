@@ -422,8 +422,94 @@
     font-size: 17px;
   }
 }
+.mo-hero-stage {
+  position: relative;
+  isolation: isolate;
+}
+.mo-hero-scene {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+[data-hero-bean-cta] {
+  position: relative;
+}
+.mo-hero-bean,
+.mo-hero-sparks {
+  opacity: 0;
+}
+.mo-hero-bean {
+  transform-origin: 12px 12px;
+  filter: drop-shadow(1px 3px 2px rgb(var(--color-shadow-rgb) / 28%));
+}
+.mo-hero-sparks {
+  color: var(--color-accent);
+}
 /* Every automatic animation/transition and pointer tilt is gated by the preference. */
 @media (prefers-reduced-motion: no-preference) {
+  .mo-hero-beans-play .mo-hero-scene {
+    display: block;
+  }
+  .mo-hero-beans-play .mo-hero-bean {
+    animation: mo-bean-sweep 1680ms var(--mo-bean-delay) cubic-bezier(.32, .05, .5, 1) both;
+  }
+  .mo-hero-beans-play .mo-hero-sparks {
+    animation: mo-bean-sparks 540ms 1770ms ease-out both;
+  }
+  .mo-hero-beans-play [data-hero-bean-cta] > .fa-arrow-right {
+    animation: mo-mix-arrow 400ms 1760ms ease-out both;
+  }
+  .mo-hero-beans-play [data-hero-bean-cta]::before,
+  .mo-hero-beans-play [data-hero-bean-cta]::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border: 2px solid var(--color-accent);
+    border-radius: inherit;
+    pointer-events: none;
+    animation: mo-mix-ripple 560ms 1710ms ease-out both;
+  }
+  .mo-hero-beans-play [data-hero-bean-cta]::after {
+    animation-delay: 1850ms;
+  }
+  @keyframes mo-bean-sweep {
+    0% {
+      opacity: 0;
+      transform: translate(var(--mo-bean-start)) rotate(var(--mo-bean-angle)) scale(calc(var(--mo-bean-size) * .75));
+    }
+    18% {
+      opacity: .94;
+    }
+    46% {
+      opacity: 1;
+      transform: translate(var(--mo-bean-arc)) rotate(calc(var(--mo-bean-angle) + 125deg)) scale(var(--mo-bean-size));
+    }
+    77% {
+      opacity: .9;
+      transform: translate(var(--mo-bean-near)) rotate(calc(var(--mo-bean-angle) + 220deg)) scale(calc(var(--mo-bean-size) * .62));
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-12px, -12px) rotate(calc(var(--mo-bean-angle) + 305deg)) scale(.1);
+    }
+  }
+  @keyframes mo-bean-sparks {
+    0% { opacity: 0; transform: scale(.28) rotate(-12deg); }
+    30% { opacity: .9; }
+    100% { opacity: 0; transform: scale(1.45) rotate(12deg); }
+  }
+  @keyframes mo-mix-arrow {
+    50% { transform: translateX(6px); }
+  }
+  @keyframes mo-mix-ripple {
+    from { opacity: .85; transform: scale(1); }
+    to { opacity: 0; transform: scale(1.09, 1.36); }
+  }
   .mo-hero-line {
     animation: mo-enter 600ms ease-out both;
     animation-delay: var(--mo-delay, 0ms);
