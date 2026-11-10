@@ -5,6 +5,7 @@
     { node: n } = S,
     list = document.querySelector('[data-component="coffee-grid"]');
   if (!list) return;
+  function initialize() {
   const originals = [...list.children],
     shown = new Set(
       originals.map((li) =>
@@ -110,4 +111,14 @@
   });
   new ResizeObserver(sync).observe(list);
   sync();
+  }
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        initialize();
+      }
+    }, { rootMargin: "400px" });
+    observer.observe(list);
+  } else initialize();
 })();

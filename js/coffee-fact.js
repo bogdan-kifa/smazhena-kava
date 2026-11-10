@@ -4,6 +4,7 @@
   const widget = document.getElementById("coffee-fact"),
     facts = window.COFFEE_FACTS;
   if (!widget || !Array.isArray(facts) || !facts.length) return;
+  function initialize() {
   const heading = document.getElementById("coffee-fact-topic"),
     text = document.getElementById("coffee-fact-text"),
     source = document.getElementById("coffee-fact-source"),
@@ -79,4 +80,14 @@
     if (!document.hidden) load();
   }, 60000);
   load();
+  }
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        initialize();
+      }
+    }, { rootMargin: "400px" });
+    observer.observe(widget);
+  } else initialize();
 })();
