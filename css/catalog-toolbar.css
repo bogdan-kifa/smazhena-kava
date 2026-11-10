@@ -121,6 +121,7 @@
   flex: none;
 }
 .catalog-chip-options {
+  min-height: 36px;
   gap: 6px;
   flex-wrap: nowrap;
 }

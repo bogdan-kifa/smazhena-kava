@@ -254,3 +254,10 @@
     transform: none;
   }
 }
+/* Keep distant sections in the accessibility tree while avoiding initial layout/paint. */
+@supports (content-visibility: auto) {
+  #main-content > section:not(#hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+  }
+}

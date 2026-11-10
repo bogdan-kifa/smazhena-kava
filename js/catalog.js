@@ -5,6 +5,7 @@
     n = S.node,
     form = document.querySelector(".catalog-controls");
   if (!form) return;
+  const tasteNumber = new Intl.NumberFormat("uk-UA", { maximumFractionDigits: 1 });
   const grid = document.querySelector(".catalog-grid"),
     count = document.getElementById("catalog-result-count"),
     empty = document.getElementById("catalog-empty"),
@@ -343,7 +344,7 @@
         class: "catalog-taste-value",
         title: available ? `${score} з 10` : "Оцінка залежить від обсмаження",
         text: available
-          ? new Intl.NumberFormat("uk-UA", { maximumFractionDigits: 1 }).format(score)
+          ? tasteNumber.format(score)
           : "—",
       }),
     );

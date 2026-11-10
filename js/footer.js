@@ -3,6 +3,7 @@
   "use strict";
   const footer = document.querySelector(".mo-footer");
   if (!footer) return;
+  function initialize() {
   const config = window.CoffeeFooterConfig || {};
   const phone = footer.querySelector("[data-mo-footer-phone]"),
     email = footer.querySelector("[data-mo-footer-email]");
@@ -94,4 +95,14 @@
           .forEach((el) => el.classList.add("mo-footer-visible"));
     });
   }
+  }
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        initialize();
+      }
+    }, { rootMargin: "500px" });
+    observer.observe(footer);
+  } else initialize();
 })();

@@ -310,14 +310,16 @@
     return n;
   }
   const url = (path) => new URL(path, root).href;
-  const money = (cents) =>
-    new Intl.NumberFormat("uk-UA", {
-      style: "currency",
-      currency: "UAH",
-      maximumFractionDigits: cents % 100 ? 2 : 0,
-    })
-      .format(cents / 100)
-      .replace(/грн\.?/u, "₴");
+  const currencyFormats = new Map();
+  function money(cents) {
+    const digits = cents % 100 ? 2 : 0;
+    if (!currencyFormats.has(digits)) {
+      currencyFormats.set(digits, new Intl.NumberFormat("uk-UA", {
+        style: "currency", currency: "UAH", maximumFractionDigits: digits,
+      }));
+    }
+    return currencyFormats.get(digits).format(cents / 100).replace(/грн\.?/u, "₴");
+  }
   const productPrice = (p, weight = 250) => Math.round((p.price * weight) / 250);
   const mixPrice = (m) => {
     // Invalid or incomplete drafts have no purchasable total.
