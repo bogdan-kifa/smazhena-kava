@@ -38,6 +38,7 @@
       },
       keyboard: { enabled: true, onlyInViewport: true, pageUpDown: false },
       a11y: {
+        slideRole: "listitem",
         enabled: true, prevSlideMessage: "Попередній відгук", nextSlideMessage: "Наступний відгук",
         firstSlideMessage: "Перший відгук", lastSlideMessage: "Останній відгук",
         paginationBulletMessage: "Перейти до відгуку {{index}}", slideLabelMessage: "{{index}} з {{slidesLength}}",
@@ -121,7 +122,38 @@
   }
 
   function initialize() {
-    initReviews(); bindGallery(); initTyped();
+    // Below-the-fold libraries are fetched only when their section approaches.
+    function prepareSection(id, assets, initializeComponent) {
+      const section = byId(id);
+      const template = document.querySelector('template[data-media-assets="' + assets + '"]');
+      if (!section || !template) return;
+      async function load() {
+        try {
+          for (const source of template.content.children) {
+            await new Promise((resolve, reject) => {
+              const resource = source.cloneNode(true);
+              resource.onload = resolve;
+              resource.onerror = reject;
+              document.head.append(resource);
+            });
+          }
+          initializeComponent();
+        } catch {
+          // The ordinary list and image links remain available if the CDN fails.
+        }
+      }
+      if (!("IntersectionObserver" in window)) return void load();
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          load();
+        }
+      }, { rootMargin: "600px" });
+      observer.observe(section);
+    }
+    prepareSection("reviews", "reviews", initReviews);
+    prepareSection("coffee-gallery-section", "gallery", bindGallery);
+    initTyped();
     motion.addEventListener("change", () => { initTyped(); bindGallery(); });
     document.addEventListener("visibilitychange", () => { syncReviews(); syncTyped(); });
   }

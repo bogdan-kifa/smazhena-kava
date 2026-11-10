@@ -1,4 +1,7 @@
 {
   "buildCommand": "node server/build.cjs",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "git": {
+    "deploymentEnabled": false
+  }
 }

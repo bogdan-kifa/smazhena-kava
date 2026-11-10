@@ -2,7 +2,7 @@
 
 Адаптивний сайт кавового магазину: каталог із 20 сортів, конструктор власного міксу, квіз для підбору кави та кошик.
 
-**[Відкрити сайт](https://smazhena-kava-lab10.vercel.app/)** · [Репозиторій](https://github.com/bogdan-kifa/smazhena-kava)
+**[Відкрити сайт](https://smazhena-kava-lab12.vercel.app/)** · [Репозиторій](https://github.com/bogdan-kifa/smazhena-kava)
 
 ## Можливості
 
@@ -71,7 +71,7 @@ vercel.json            Налаштування публікації
 
 ## Публікація
 
-Окремий проєкт Vercel **smazhena-kava-lab10** відстежує гілку **lab10-media**.
+Окремий проєкт Vercel **smazhena-kava-lab12** відстежує гілку **lab12-audit**.
 
 - Application Preset: `Other`.
 - Build Command: `node server/build.cjs`.
@@ -80,7 +80,17 @@ vercel.json            Налаштування публікації
 
 Папка `public/` створюється під час збірки й не комітиться. Серверний код, локальна база та `.env` не копіюються у статичний результат. Зміни в `lab10-media` запускають оновлення окремого сайту; `main` містить актуальний код.
 
-## Збережений бекенд
+## Перевірки та реліз ЛР №12
+
+Workflow `.github/workflows/deploy.yml` запускає 33 тести конструктора, статичну збірку, перевірку 39 сторінок і мобільний Lighthouse. Усі чотири категорії повинні мати щонайменше 90 балів. HTML і JSON звіту зберігаються в артефакті Actions `lab12-lighthouse`.
+
+Після успішної перевірки Actions виконує `vercel pull`, `vercel build --prod` і `vercel deploy --prebuilt --prod`. У repository secrets потрібні `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` нового проєкту ЛР №12. Git-деплої вимкнено для цієї версії через `vercel.json`, щоб реліз проходив перевірки Actions.
+
+Для локальної перевірки виконайте `node server/build.cjs`, `node tests/site-check.cjs`, `node tests/constructor-check.cjs`. Статичну збірку можна відкрити через `node tests/serve.cjs` на порту 5514.
+
+Змінна `SITE_URL` задає домен для canonical, Open Graph, robots.txt та sitemap.xml. Без неї використовується production-домен Vercel або адреса ЛР №12.
+
+## Збережений серверний код
 
 Код у `server/` залишено для подальшої серверної реалізації. Він не обслуговує опубліковану демоверсію. Для локальної роботи з ним встановіть `demo: false`, використовуйте Node.js 24 і запустіть `pnpm start`. Локальні дані створюються у `.data/`; ця папка виключена з Git.
 

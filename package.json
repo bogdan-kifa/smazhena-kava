@@ -11,7 +11,8 @@
     "dev": "node --watch --env-file-if-exists=.env server/index.cjs",
     "build": "node server/build.cjs",
     "test:backend": "node --test server/tests/*.test.cjs",
-    "test:constructor": "node tests/constructor-check.cjs"
+    "test:constructor": "node tests/constructor-check.cjs",
+    "test:site": "node tests/site-check.cjs"
   },
   "devDependencies": {
     "prettier": "3.9.10",
@@ -23,7 +24,7 @@
     "type": "git",
     "url": "https://github.com/bogdan-kifa/smazhena-kava.git"
   },
-  "homepage": "https://smazhena-kava-lab10.vercel.app/",
+  "homepage": "https://smazhena-kava-lab12.vercel.app/",
   "bugs": {
     "url": "https://github.com/bogdan-kifa/smazhena-kava/issues"
   },

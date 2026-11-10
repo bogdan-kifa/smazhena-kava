@@ -19,7 +19,7 @@
 
     <link
       rel="preload"
-      href="assets/fonts/lora-cyrillic.woff2"
+      href="assets/fonts/lora-site.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -27,13 +27,13 @@
 
     <link
       rel="preload"
-      href="assets/fonts/inter-cyrillic.woff2"
+      href="assets/fonts/inter-site.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
 
-    <link rel="preload" href="assets/images/hero-coffee.webp" as="image" fetchpriority="high" />
+    <link rel="preload" href="assets/images/hero-coffee-640.webp" as="image" media="(max-width: 767px)" fetchpriority="high" />
 
     <link rel="stylesheet" href="css/fonts.css" />
 
@@ -76,13 +76,21 @@
     <script src="js/footer-config.js" defer></script>
     <script src="js/footer.js" defer></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css" integrity="sha384-gAPqlBuTCdtVcYt9ocMOYWrnBZ4XSL6q+4eXqwNycOr4iFczhNKtnYhF3NEXJM51" crossorigin="anonymous" data-mo-library="swiper-css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" integrity="sha384-qlUhevqmCF5AxtnfkF0zXJClBzA6GJuX/UrLejCfE61bBGt+zo/My0AJ+ojVmUSb" crossorigin="anonymous" data-mo-library="fancybox-css" />
+
+
 <link rel="stylesheet" href="css/media-components.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js" integrity="sha384-2UI1PfnXFjVMQ7/ZDEF70CR943oH3v6uZrFQGGqJYlvhh4g6z6uVktxYbOlAczav" crossorigin="anonymous" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" integrity="sha384-BodKYo5iRmFaqEaP1o8AAu9hCHqLvNhSWEg12QF1IjPnl1SgsrwQMSMKUB4POJ18" crossorigin="anonymous" defer></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js" integrity="sha384-cMrTlShXEGSdSFA359p+3aVUxK/R+0TAfbRZMcTlAn8yqzxEDj05QsS65nTFMMj4" crossorigin="anonymous" defer></script>
 <script src="js/media-components.js" defer></script>
+  <template data-media-assets="reviews">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css" integrity="sha384-gAPqlBuTCdtVcYt9ocMOYWrnBZ4XSL6q+4eXqwNycOr4iFczhNKtnYhF3NEXJM51" crossorigin="anonymous" data-mo-library="swiper-css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js" integrity="sha384-2UI1PfnXFjVMQ7/ZDEF70CR943oH3v6uZrFQGGqJYlvhh4g6z6uVktxYbOlAczav" crossorigin="anonymous" defer></script>
+</template>
+  <template data-media-assets="gallery">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css" integrity="sha384-qlUhevqmCF5AxtnfkF0zXJClBzA6GJuX/UrLejCfE61bBGt+zo/My0AJ+ojVmUSb" crossorigin="anonymous" data-mo-library="fancybox-css" />
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" integrity="sha384-BodKYo5iRmFaqEaP1o8AAu9hCHqLvNhSWEg12QF1IjPnl1SgsrwQMSMKUB4POJ18" crossorigin="anonymous" defer></script>
+</template>
   </head>
 
   <body>
@@ -280,7 +288,7 @@
               loop
               playsinline
               preload="none"
-              poster="assets/images/hero-coffee.webp"
+              poster="assets/images/hero-coffee-640.webp"
               aria-label="Кавові зерна поєднуються у персональний мікс"
             >
               <source src="assets/videos/hero-coffee.mp4" type="video/mp4" />
@@ -619,7 +627,7 @@
               >
                 <img
                   class="absolute inset-0 h-full w-full object-cover transition-opacity duration-normal group-hover:opacity-90 motion-reduce:transition-none"
-                  src="assets/images/about/coffee-workshop.webp"
+                  src="assets/images/about/coffee-workshop-640.webp" srcset="assets/images/about/coffee-workshop-640.webp 640w, assets/images/about/coffee-workshop.webp 1536w" sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw"
                   width="1536"
                   height="1024"
                   alt=""
