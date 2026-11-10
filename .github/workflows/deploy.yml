@@ -39,8 +39,10 @@ jobs:
             if curl --fail --silent http://127.0.0.1:5514/ > /dev/null; then break; fi
             sleep 1
           done
-          npx --yes lighthouse@13.6.0 http://127.0.0.1:5514/ --chrome-flags="--headless=new --no-sandbox" --only-categories=performance,accessibility,best-practices,seo --output=json --output=html --output-path=audit-reports/mobile --quiet
-          node tests/lighthouse-check.cjs audit-reports/mobile.report.json
+          for sample in 1 2 3; do
+            npx --yes lighthouse@13.6.0 http://127.0.0.1:5514/ --chrome-flags="--headless=new --no-sandbox" --only-categories=performance,accessibility,best-practices,seo --output=json --output=html --output-path="audit-reports/mobile-$sample" --quiet
+          done
+          node tests/lighthouse-check.cjs audit-reports/mobile-*.report.json
       - name: Keep Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v7.0.2
