@@ -1,4 +1,5 @@
 {
+  "installCommand": "true",
   "buildCommand": "node server/build.cjs",
   "outputDirectory": "public",
   "git": {
