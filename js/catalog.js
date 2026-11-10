@@ -107,7 +107,6 @@
   function writeURL(mode = "push") {
     clearTimeout(searchTimer);
     const url = new URL(location.href);
-    url.pathname = url.pathname.replace(/catalog-page-2\.html$/, "catalog.html");
     url.search = "";
     for (const [key, value] of Object.entries(options)) {
       if (

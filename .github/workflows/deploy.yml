@@ -1,14 +1,14 @@
 name: Lab 12 quality checks and production deploy
 on:
   push:
-    branches: [lab12-audit]
+    branches: [main]
   pull_request:
-    branches: [lab12-audit]
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: lab12-release
+  group: lab12-${{ github.event_name == 'pull_request' && github.ref || 'release' }}
   cancel-in-progress: true
 jobs:
   quality:
@@ -49,7 +49,7 @@ jobs:
           path: audit-reports/
           if-no-files-found: warn
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: quality
     runs-on: ubuntu-latest
     timeout-minutes: 15

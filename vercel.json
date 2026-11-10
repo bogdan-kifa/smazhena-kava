@@ -2,6 +2,13 @@
   "installCommand": "true",
   "buildCommand": "node server/build.cjs",
   "outputDirectory": "public",
+  "redirects": [
+    {
+      "source": "/catalog-page-2.html",
+      "destination": "/catalog.html",
+      "permanent": true
+    }
+  ],
   "git": {
     "deploymentEnabled": false
   }
