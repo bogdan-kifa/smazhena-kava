@@ -12,4 +12,5 @@ for (const name of fs.readdirSync(root))
 for (const name of ["css", "js", "assets", "products"])
   fs.cpSync(path.join(root, name), path.join(out, name), { recursive: true });
 require("./metadata.cjs").generateMetadata(out);
+require("./styles.cjs").bundleStyles(out);
 console.log("Static site copied to public; server code and database excluded.");
