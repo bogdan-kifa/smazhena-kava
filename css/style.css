@@ -714,6 +714,16 @@ a[aria-disabled="true"] {
   object-fit: contain;
 }
 
+[data-theme="dark"] .benefit-icon[src$="/freshness.svg"] {
+  content: url("../assets/icons/freshness-dark.svg");
+}
+[data-theme="dark"] .benefit-icon[src$="/personalization.svg"] {
+  content: url("../assets/icons/personalization-dark.svg");
+}
+[data-theme="dark"] .benefit-icon[src$="/transparency.svg"] {
+  content: url("../assets/icons/transparency-dark.svg");
+}
+
 .benefits h3 {
   font-family: var(--font-primary);
   font-size: var(--font-size-benefit-title);
