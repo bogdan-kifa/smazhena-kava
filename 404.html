@@ -2,11 +2,27 @@
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
+    <script src="js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Сторінку не знайдено — Смажена Кава</title>
     <meta name="description" content="Сторінку не знайдено. Перейдіть до каталогу кави або на головну сторінку Смаженої Кави." />
     <style>
+      :root {
+        --page-bg: #fbf6f0;
+        --page-text: #2b1d14;
+        --page-muted: #6b5a4c;
+        --page-accent: #4a2e1e;
+        --page-on-accent: #fff;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --page-bg: #1b1511;
+        --page-text: #f5e9de;
+        --page-muted: #cdb8a8;
+        --page-accent: #e6b893;
+        --page-on-accent: #24170f;
+      }
       * {
         box-sizing: border-box;
       }
@@ -16,8 +32,8 @@
         display: grid;
         place-items: center;
         padding: 24px;
-        background: #fbf6f0;
-        color: #2b1d14;
+        background: var(--page-bg);
+        color: var(--page-text);
         font:
           18px/1.6 system-ui,
           sans-serif;
@@ -31,7 +47,7 @@
           serif;
       }
       .code {
-        color: #6b5a4c;
+        color: var(--page-muted);
         letter-spacing: 0.1em;
       }
       h1 {
@@ -50,17 +66,17 @@
         align-items: center;
         min-height: 48px;
         padding: 10px 18px;
-        border: 1px solid #4a2e1e;
+        border: 1px solid var(--page-accent);
         border-radius: 8px;
-        color: #4a2e1e;
+        color: var(--page-accent);
         text-decoration: none;
       }
       a:first-child {
-        color: white;
-        background: #4a2e1e;
+        color: var(--page-on-accent);
+        background: var(--page-accent);
       }
       a:focus-visible {
-        outline: 3px solid #9b5f34;
+        outline: 3px solid var(--page-accent);
         outline-offset: 4px;
       }
     </style>

@@ -7,6 +7,8 @@ function synchronize(){
  for(const page of pages){
   const filename=path.join(root,page),prefix=page.startsWith("products/")?"../":"";
   let html=fs.readFileSync(filename,"utf8");
+  const themeScript='<script src="'+prefix+'js/theme.js"></script>';
+  if(!html.includes(themeScript))html=html.replace(/(<meta charset="UTF-8"\s*\/?>)/i,"$1\n    "+themeScript);
   for(const tag of ["header","footer"]){
    if(!new RegExp("<"+tag+"\\b").test(html))continue;
    let part=parts[tag].replace(/\saria-current="[^"]*"/g,"");

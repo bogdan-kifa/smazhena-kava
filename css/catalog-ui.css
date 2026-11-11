@@ -496,6 +496,12 @@
 .catalog-stock.is-low {
   color: #80551b;
 }
+[data-theme="dark"] .catalog-stock.is-available {
+  color: var(--color-success);
+}
+[data-theme="dark"] .catalog-stock.is-low {
+  color: var(--color-warning-strong);
+}
 .catalog-stock.is-low::before {
   background: #b8872c;
 }
@@ -524,6 +530,10 @@
   background: #e4ebdf;
   color: #29451f;
   border-color: var(--color-success);
+}
+[data-theme="dark"] .catalog-add-mix.is-in-mix {
+  background: var(--color-success-surface);
+  color: var(--color-success);
 }
 .catalog-add-mix[aria-disabled="true"] {
   cursor: default;

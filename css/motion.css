@@ -281,7 +281,7 @@
 }
 @media (max-width: 1100px) {
   .mo-header > .mo-header-inner {
-    grid-template-columns: minmax(0, 1fr) 44px 44px;
+    grid-template-columns: minmax(0, 1fr) auto 44px;
     gap: 8px;
   }
   .mo-header .mo-brand {
@@ -297,7 +297,7 @@
     grid-row: 1;
     width: auto;
     justify-content: flex-end;
-    gap: 0;
+    gap: 8px;
   }
   .mo-header .mo-cart {
     position: relative;

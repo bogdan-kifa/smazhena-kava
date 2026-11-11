@@ -1,7 +1,6 @@
 /* Конструктор за локальними макетами Constructor.
    Спільна дизайн-система — style.css; шрифти й нативне меню — catalog.css. */
 :root {
-  --color-success-surface: #e4ebdf;
   --mix-summary-width: 384px;
 }
 

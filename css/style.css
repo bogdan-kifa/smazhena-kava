@@ -29,6 +29,7 @@
 
   --color-background-soft: #f5ede3;
   --color-placeholder: #ede0d0;
+  --color-success-surface: #e4ebdf;
 
   /* 2. Typography — Inter, Lora та іконки */
   --font-primary: "Inter", system-ui, Arial, sans-serif;
@@ -122,6 +123,60 @@
     background-color var(--transition-duration-fast) var(--transition-easing),
     border-color var(--transition-duration-fast) var(--transition-easing);
   --transition-shadow: box-shadow var(--transition-duration-normal) var(--transition-easing);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-primary: #e6b893;
+  --color-primary-hover: #f2c9a8;
+  --color-secondary: #553c2c;
+  --color-accent: #e6a675;
+  --color-accent-strong: #e5a77e;
+  --color-background-light: #1b1511;
+  --color-background-soft: #30231b;
+  --color-surface: #261d17;
+  --color-placeholder: #493427;
+  --color-text: #f5e9de;
+  --color-text-muted: #cdb8a8;
+  --color-text-inverse: #24170f;
+  --color-border: #514034;
+  --color-control-border: #987a65;
+  --color-shadow-rgb: 0 0 0;
+  --color-success: #a7c697;
+  --color-success-surface: #2b3b26;
+  --color-warning: #ebc078;
+  --color-warning-strong: #efc78d;
+  --color-error: #f5a18f;
+}
+
+.theme-toggle:not([hidden]) {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--color-background-light);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--color-background-soft); }
+.theme-toggle:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.theme-toggle .theme-sun,
+[data-theme="dark"] .theme-toggle .theme-moon { display: none; }
+[data-theme="dark"] .theme-toggle .theme-sun { display: block; }
+[data-theme="dark"] .mo-brand img { background: #e6b893; }
+
+/* These inverse panels keep their dark brand surface in both themes. */
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] .catalog-mix-tray {
+  --color-primary: #4a2e1e;
+  --color-secondary: #d8c3a5;
+  --color-text: #2b1d14;
+  --color-text-inverse: #fff;
+  --color-surface: #fbf6f0;
 }
 
 /* 2. Reset */
