@@ -167,7 +167,13 @@
 .theme-toggle .theme-sun,
 [data-theme="dark"] .theme-toggle .theme-moon { display: none; }
 [data-theme="dark"] .theme-toggle .theme-sun { display: block; }
-[data-theme="dark"] .mo-brand img { background: #e6b893; }
+[data-theme="dark"] img[src$="/logo.svg"] {
+  content: url("../assets/images/logo-dark.svg");
+}
+[data-theme="dark"] .mo-header .mo-brand img,
+[data-theme="dark"] .mo-footer-logo img {
+  background: transparent;
+}
 
 /* These inverse panels keep their dark brand surface in both themes. */
 [data-theme="dark"] .site-footer,
@@ -714,13 +720,13 @@ a[aria-disabled="true"] {
   object-fit: contain;
 }
 
-[data-theme="dark"] .benefit-icon[src$="/freshness.svg"] {
+[data-theme="dark"] img[src$="/freshness.svg"] {
   content: url("../assets/icons/freshness-dark.svg");
 }
-[data-theme="dark"] .benefit-icon[src$="/personalization.svg"] {
+[data-theme="dark"] img[src$="/personalization.svg"] {
   content: url("../assets/icons/personalization-dark.svg");
 }
-[data-theme="dark"] .benefit-icon[src$="/transparency.svg"] {
+[data-theme="dark"] img[src$="/transparency.svg"] {
   content: url("../assets/icons/transparency-dark.svg");
 }
 
